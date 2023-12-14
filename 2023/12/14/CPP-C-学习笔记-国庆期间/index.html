@@ -1,0 +1,456 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>C++ | bai的小窝</title><meta name="author" content="xxbaizero"><meta name="copyright" content="xxbaizero"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="笔记来源网课教程：C++教程10月·8号发布 @TOC C++是怎么工作的项目中的源文件传输给编译器，编译器将其转化成二进制的东西，可能转化成某种库，也可能是可执行的程序opp编译成obj文件，然后通过linker将obj整合起来 预处理编译前处理include后面的文件，该文件通常叫做“头文件”，我们之所以要包括iostream这个头文件，是因为我们需要一个被调用的函数的声明，例如std::co">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++">
+<meta property="og:url" content="http://bailog.top/2023/12/14/CPP-C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%9B%BD%E5%BA%86%E6%9C%9F%E9%97%B4/index.html">
+<meta property="og:site_name" content="bai的小窝">
+<meta property="og:description" content="笔记来源网课教程：C++教程10月·8号发布 @TOC C++是怎么工作的项目中的源文件传输给编译器，编译器将其转化成二进制的东西，可能转化成某种库，也可能是可执行的程序opp编译成obj文件，然后通过linker将obj整合起来 预处理编译前处理include后面的文件，该文件通常叫做“头文件”，我们之所以要包括iostream这个头文件，是因为我们需要一个被调用的函数的声明，例如std::co">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://bailog.top/img/background/season3.jpg">
+<meta property="article:published_time" content="2023-12-14T14:40:09.000Z">
+<meta property="article:modified_time" content="2023-12-14T14:41:14.627Z">
+<meta property="article:author" content="xxbaizero">
+<meta property="article:tag" content="C++">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://bailog.top/img/background/season3.jpg"><link rel="shortcut icon" href="/img/ico/supervisor.png"><link rel="canonical" href="http://bailog.top/2023/12/14/CPP-C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%9B%BD%E5%BA%86%E6%9C%9F%E9%97%B4/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  noticeOutdate: {"limitDay":500,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":230},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体中文","cht_to_chs":"你已切换为简体中文","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'C++',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-14 22:41:14'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const now = new Date()
+          const hour = now.getHours()
+          const isNight = hour <= 6 || hour >= 18
+          if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+          else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-double-row-display@1.00/cardlistpost.min.css"/>
+<style>#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags:before {content:"\A";
+  white-space: pre;}#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags > .article-meta__separator{display:none}</style>
+<link rel="stylesheet" href="https://unpkg.zhimg.com/hexo-butterfly-footer-beautify@1.0.0/lib/runtime.min.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/ico/avatar_1.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">4</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="bai的小窝"><span class="site-name">bai的小窝</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">C++</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-12-14T14:40:09.000Z" title="发表于 2023-12-14 22:40:09">2023-12-14</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-12-14T14:41:14.627Z" title="更新于 2023-12-14 22:41:14">2023-12-14</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/C/">C++</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>14分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="C++"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><p>笔记来源网课教程：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1oD4y1h7S3">C++教程</a><br>10月·8号发布</p>
+<p>@<a href="%E7%9B%AE%E5%BD%95">TOC</a></p>
+<h1 id="C-是怎么工作的"><a href="#C-是怎么工作的" class="headerlink" title="C++是怎么工作的"></a>C++是怎么工作的</h1><p>项目中的源文件传输给编译器，编译器将其转化成二进制的东西，可能转化成某种库，也可能是可执行的程序<br>opp编译成obj文件，然后通过linker将obj整合起来</p>
+<h2 id="预处理"><a href="#预处理" class="headerlink" title="预处理"></a>预处理</h2><p>编译前处理include后面的文件，该文件通常叫做“头文件”，我们之所以要包括iostream这个头文件，是因为我们需要一个被调用的函数的声明，例如<code>std::cout</code></p>
+<h2 id="main函数"><a href="#main函数" class="headerlink" title="main函数"></a>main函数</h2><p>程序的入口，它不一定需要返回值，默认返回0</p>
+<h2 id=""><a href="#" class="headerlink" title="&lt;&lt;重载语句"></a>&lt;&lt;重载语句</h2><p>相当于一个函数而已，相当于print()<br><code>std::cout &lt;&lt; &quot;Hello World&quot;&lt;&lt; std::endl;</code><br>相当于<br><code>std::cout .print( &quot;Hello World&quot;).pint(std::endl); </code></p>
+<h2 id="链接项目中的函数代码"><a href="#链接项目中的函数代码" class="headerlink" title="链接项目中的函数代码"></a>链接项目中的函数代码</h2><p><strong>Log.cpp</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">log</span><span class="params">(<span class="type">const</span> <span class="type">char</span>* message)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	std::cout &lt;&lt; message &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>Main.cpp</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">log</span><span class="params">(<span class="type">const</span> <span class="type">char</span>* message)</span></span>; </span><br><span class="line"><span class="comment">// 声明语句</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">log</span>(<span class="string">&quot;hello&quot;</span>);</span><br><span class="line">	std::cin.<span class="built_in">get</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>通过linker将main.cpp中声明并使用的函数链接到某个项目文件中唯一的log函数中</p>
+</blockquote>
+<blockquote>
+<p>声明只包含了函数，定义包含了函数和函数体</p>
+</blockquote>
+<h1 id="C-编译器的工作"><a href="#C-编译器的工作" class="headerlink" title="C++编译器的工作"></a>C++编译器的工作</h1><p>首先预处理,将所有代码转化成常量数据或指令。<br>将我们项目所有的cpp生成opj文件<br>cpp叫做<strong>翻译单元</strong></p>
+<h2 id="include工作原理"><a href="#include工作原理" class="headerlink" title="#include工作原理"></a>#include工作原理</h2><p>在编译前将指定的文件粘贴并复制到当前cpp当中</p>
+<p><strong>EndBrace.h</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>Main.cpp</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">log</span><span class="params">(<span class="type">const</span> <span class="type">char</span>* message)</span></span>; </span><br><span class="line"><span class="comment">// 声明语句</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">log</span>(<span class="string">&quot;hello&quot;</span>);</span><br><span class="line">	std::cin.<span class="built_in">get</span>();</span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&#x27;EndBrace.h&#x27;</span></span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>编译器的工作就是，将EndBrace中的所有代码copy进去当前cpp</p>
+</blockquote>
+<h2 id="查看预处理器实际上生成的文件"><a href="#查看预处理器实际上生成的文件" class="headerlink" title="查看预处理器实际上生成的文件"></a>查看预处理器实际上生成的文件</h2><p><img src="https://img-blog.csdnimg.cn/c5075273ac124b4baab380f12a62bb3b.png#pic_center" alt="预处理器文件"><br>编译后会生成一个.i文件<br>里面含有预处理后的结果</p>
+<h2 id="查看obj文件"><a href="#查看obj文件" class="headerlink" title="查看obj文件"></a>查看obj文件</h2><p><img src="https://img-blog.csdnimg.cn/cb49d014e53b475e97dc7447616cb94a.png#pic_center" alt="在这里插入图片描述"></p>
+<p>将obj中的二进制文件转化为汇编代码(ASM文件) </p>
+<blockquote>
+<p>若在优化将速度调最大会忽略掉一些无用的操作</p>
+</blockquote>
+<h1 id="C-链接"><a href="#C-链接" class="headerlink" title="C++链接"></a>C++链接</h1><p>编译后的操作，链接的焦点是找到每个符号和函数在哪里然后连接在一起。<br><strong>编译可能不需要main函数，但是链接过程一定需要main函数</strong></p>
+<blockquote>
+<p>编译错误 错误类型是C开头，链接错误是LIN开头</p>
+</blockquote>
+<blockquote>
+<p>不能存在两个相同的函数带着相同的参数，这样链接器不知道链接哪一个，从而产生错误。</p>
+</blockquote>
+<h2 id="易错处"><a href="#易错处" class="headerlink" title="易错处"></a>易错处</h2><p><strong>Log.cpp</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">logr</span><span class="params">(<span class="type">const</span> <span class="type">char</span>* message)</span></span></span><br><span class="line"><span class="function"><span class="comment">// 注意log函数名字已经被修改了</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	std::cout &lt;&lt; message &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>Main.cpp</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">log</span><span class="params">(<span class="type">const</span> <span class="type">char</span>* message)</span></span>; </span><br><span class="line"><span class="comment">//声明语句</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">Multiply</span><span class="params">(<span class="type">int</span> a,<span class="type">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">//log(&quot;multiply&quot;);</span></span><br><span class="line">	<span class="keyword">return</span> a*b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	std::cout &lt;&lt; <span class="built_in">Multiply</span>(<span class="number">5</span>, <span class="number">8</span>) &lt;&lt; std::endl;</span><br><span class="line">	std::cin.<span class="built_in">get</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>链接没有错误</p>
+</blockquote>
+<p><strong>Main.cpp</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">log</span><span class="params">(<span class="type">const</span> <span class="type">char</span>* message)</span></span>; </span><br><span class="line"><span class="comment">//声明语句</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">Multiply</span><span class="params">(<span class="type">int</span> a,<span class="type">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">log</span>(<span class="string">&quot;multiply&quot;</span>);</span><br><span class="line">	<span class="keyword">return</span> a*b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">//std::cout &lt;&lt; Multiply(5, 8) &lt;&lt; std::endl;</span></span><br><span class="line">	std::cin.<span class="built_in">get</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>链接错误</p>
+</blockquote>
+<p><strong>为什么？</strong><br>虽然在这个文件中可能用不上Multiply函数，但在其他文件可能用得上，所以链接器确实需要链接它</p>
+<h3 id="限制链接，函数只在当前翻译单元使用的方法"><a href="#限制链接，函数只在当前翻译单元使用的方法" class="headerlink" title="限制链接，函数只在当前翻译单元使用的方法"></a>限制链接，函数只在当前翻译单元使用的方法</h3><p>用<code>static</code>加在函数前</p>
+<h2 id="产生链接错误的例子及修正"><a href="#产生链接错误的例子及修正" class="headerlink" title="产生链接错误的例子及修正"></a>产生链接错误的例子及修正</h2><h3 id="错误例子"><a href="#错误例子" class="headerlink" title="错误例子"></a>错误例子</h3><p><strong>log.h</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">pragma</span> once</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">log</span><span class="params">(<span class="type">const</span> <span class="type">char</span>* message)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	std::cout &lt;&lt; message &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>log.cpp</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;log.h&quot;</span></span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Initlog</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">log</span>(<span class="string">&quot;Initialized log&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>main.cpp</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;log.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">Multiply</span><span class="params">(<span class="type">int</span> a,<span class="type">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">log</span>(<span class="string">&quot;multiply&quot;</span>);</span><br><span class="line">	<span class="keyword">return</span> a*b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">//std::cout &lt;&lt; Multiply(5, 8) &lt;&lt; std::endl;</span></span><br><span class="line">	std::cin.<span class="built_in">get</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>链接失败，log重复了</p>
+</blockquote>
+<p><strong>原因分析：</strong><br>两个头文件同时引入了两个log函数所以产生错误.</p>
+<h3 id="修改方法"><a href="#修改方法" class="headerlink" title="修改方法"></a>修改方法</h3><ol>
+<li><strong>log.h</strong><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">pragma</span> once</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">static</span> <span class="type">void</span> <span class="title">log</span><span class="params">(<span class="type">const</span> <span class="type">char</span>* message)</span></span></span><br><span class="line"><span class="function"><span class="comment">//将log函数修改为静态函数</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	std::cout &lt;&lt; message &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><strong>log.h</strong><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">pragma</span> once</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">log</span><span class="params">(<span class="type">const</span> <span class="type">char</span>* message)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	std::cout &lt;&lt; message &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<blockquote>
+<p>inlind的作用是获得我们实际的函数体并将函数调用替换为函数体。</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">log</span>(<span class="string">&quot;Initialized log&quot;</span>);</span><br><span class="line"><span class="comment">//相当于</span></span><br><span class="line">std::cout &lt;&lt; <span class="string">&quot;Initialized log&quot;</span> &lt;&lt; std::endl;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>将定义移到一个翻译单元</li>
+</ol>
+<p><strong>log.h</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">pragma</span> once</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">log</span><span class="params">(<span class="type">const</span> <span class="type">char</span>* message)</span></span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>log.cpp</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;log.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Initlog</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">log</span>(<span class="string">&quot;Initialized log&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">log</span><span class="params">(<span class="type">const</span> <span class="type">char</span>* message)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	std::cout &lt;&lt; message &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="C-变量"><a href="#C-变量" class="headerlink" title="C++变量"></a>C++变量</h1><p>变量允许我们命名存储在内存中的数据并继续使用<br>当我们创造变量时，他被存储在内存中。</p>
+<h2 id="不同变量类型的区别是内存大小"><a href="#不同变量类型的区别是内存大小" class="headerlink" title="不同变量类型的区别是内存大小"></a>不同变量类型的区别是内存大小</h2><h3 id="变量类型"><a href="#变量类型" class="headerlink" title="变量类型"></a>变量类型</h3><ul>
+<li>char : 1 byte (经常存储字符)</li>
+<li>short : 2 byte</li>
+<li>int : 4 byte</li>
+<li>long : 4 byte</li>
+<li>long long : 8 byte</li>
+<li>float : 4 byte</li>
+<li>double : 8 byte</li>
+<li>bool : 1 byte<blockquote>
+<p>float和double的区别可以是在数字后面加f(float)<br>1 是 Ture,0 是 False.</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="查看数字大小"><a href="#查看数字大小" class="headerlink" title="查看数字大小"></a>查看数字大小</h3><p>sizeof(bool)</p>
+<h1 id="C-函数"><a href="#C-函数" class="headerlink" title="C++函数"></a>C++函数</h1><p>最主要的是提高维护效率<br>避免复制重复<br>我们通常在头文件中写声明，在翻译单元或cpp文件中编写定义，原因就是<strong>链接错误中的修改方法3</strong></p>
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><p><strong>Main.cpp</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">multiply</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a*b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">io_mul</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">int</span> result = <span class="built_in">multiply</span>(a, b);</span><br><span class="line">	std::cout &lt;&lt; result &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">io_mul</span>(<span class="number">3</span>,<span class="number">4</span>);</span><br><span class="line">	<span class="built_in">io_mul</span>(<span class="number">3</span>,<span class="number">8</span>);</span><br><span class="line">	<span class="built_in">io_mul</span>(<span class="number">2</span>,<span class="number">4</span>);</span><br><span class="line">	std::cin.<span class="built_in">get</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>io_mul的作用就是避免重复</p>
+</blockquote>
+<h1 id="C-头文件"><a href="#C-头文件" class="headerlink" title="C++头文件"></a>C++头文件</h1><p> 当我们跨文件调用函数的时候免不了声明，如果某个函数很常用那就要一直复制粘贴，很繁琐。<br> 而头文件就是塞入一堆声明，然后在其他cpp中include后，让预处理器帮忙复制粘贴。</p>
+<h2 id="pragma-once"><a href="#pragma-once" class="headerlink" title="pragma once"></a>pragma once</h2><p>当我们创建了一个头文件，vs会自动帮我们填写<code>#pragma once</code><br>这个的作用是防止include多个头文件时，里面有重复的声明，导致编译失败。他只会复制一次声明</p>
+<h2 id="ifndef"><a href="#ifndef" class="headerlink" title="ifndef"></a>ifndef</h2><p><strong>log.h</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifndef</span> _LOG_H</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> _LOG_H</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">nitLog</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">log</span><span class="params">(<span class="type">const</span> <span class="type">char</span>* message)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Player</span> &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>检查是否有个_LOG_H被定义了，如果没有就编译中包括以下代码,如果被定义了，那么这些都不会被包括进来 </p>
+</blockquote>
+<blockquote>
+<p>如果通过了这初次检查，我们定义_LOG_H,如果下次用到的时候，就不会重复声明了</p>
+</blockquote>
+<h2 id="include两个不同形式"><a href="#include两个不同形式" class="headerlink" title="include两个不同形式"></a>include两个不同形式</h2><h3 id="形式"><a href="#形式" class="headerlink" title="&lt; &gt;形式"></a>&lt; &gt;形式</h3><p>告诉编译器去搜索包含路径的文件夹 </p>
+<h3 id="“-“形式"><a href="#“-“形式" class="headerlink" title="“ “形式"></a>“ “形式</h3><p>告诉编译器就在当前文件夹，我们也可以用”..&#x2F;log.h”去返回到当前文件的上级目录</p>
+<h2 id="区别c-标准库和c标准库"><a href="#区别c-标准库和c标准库" class="headerlink" title="区别c++标准库和c标准库"></a>区别c++标准库和c标准库</h2><p>关键在于有无.h扩展，c++文件通常没有。</p>
+<h1 id="如何在vs中调试代码"><a href="#如何在vs中调试代码" class="headerlink" title="如何在vs中调试代码"></a>如何在vs中调试代码</h1><h2 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h2><h3 id="断点"><a href="#断点" class="headerlink" title="断点"></a>断点</h3><p>在断点处暂停程序</p>
+<h3 id="读取内存"><a href="#读取内存" class="headerlink" title="读取内存"></a>读取内存</h3><p>程序中断后,内存数据实际上还在,查看内存对诊断问题.</p>
+<h2 id="如何调试"><a href="#如何调试" class="headerlink" title="如何调试"></a>如何调试</h2><ol start="0">
+<li>确保模式是<strong>debug模式</strong></li>
+<li><strong>设置断点</strong></li>
+<li><strong>读内存</strong></li>
+</ol>
+<h3 id="按键介绍"><a href="#按键介绍" class="headerlink" title="按键介绍"></a>按键介绍</h3><ul>
+<li>逐语句(F11)(step into):进入到当前这行代码上的函数里面</li>
+<li>逐过程(F10)(step over):从当前函数跳到下一行代码</li>
+<li>跳出(shift+F11)(step out):跳出当前函数，回到调用这个函数的位置</li>
+</ul>
+<h3 id="窗口介绍"><a href="#窗口介绍" class="headerlink" title="窗口介绍"></a>窗口介绍</h3><ul>
+<li>自动、局部窗口 : 向你展示可能重要的全局或局部</li>
+<li>监视1：观察变量(输入要观察的变量然后回车)</li>
+</ul>
+<blockquote>
+<p>右键可以修改成查看16进制</p>
+</blockquote>
+<h3 id="内存视图"><a href="#内存视图" class="headerlink" title="内存视图"></a>内存视图</h3><p><img src="https://img-blog.csdnimg.cn/51d4ba2535e64124a473ab3940a8f774.png#pic_center" alt="内存视图"><br><img src="https://img-blog.csdnimg.cn/637bef4806874bcda0457c8f359e6d20.png#pic_center" alt="内存视图浏览"></p>
+<ul>
+<li>最左侧为内存地址</li>
+<li>中间是以16进制存储的实际值</li>
+<li>最右边是以ACCII对值的解释</li>
+</ul>
+<h4 id="内存视图的使用"><a href="#内存视图的使用" class="headerlink" title="内存视图的使用"></a>内存视图的使用</h4><p>在地址一栏输入&amp;＋变量名即可</p>
+<h1 id="VS的最佳设置"><a href="#VS的最佳设置" class="headerlink" title="VS的最佳设置"></a>VS的最佳设置</h1><h2 id="项目的设置"><a href="#项目的设置" class="headerlink" title="项目的设置"></a>项目的设置</h2><p><img src="https://img-blog.csdnimg.cn/c558a0ce3d494992b567799b5271f908.png#pic_center" alt="虚拟组织"></p>
+<blockquote>
+<p>这只是虚拟组织的文件夹，在文件资源管理器中并不存在。</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/1f2932ac47be4082b5afea512deab985.png#pic_center" alt="在这里插入图片描述"><br>我们可以点击<strong>显示所有文件</strong>这个按钮，这样子新添加文件夹的时候就实际的添加了文件夹，而非虚拟文件夹。</p>
+<h2 id="文件夹的设置"><a href="#文件夹的设置" class="headerlink" title="文件夹的设置"></a>文件夹的设置</h2><p><img src="https://img-blog.csdnimg.cn/e6698f5f5072499092e3637c8654d2fa.png#pic_center" alt="在这里插入图片描述"><br><code>$(SolutionDir)bin\$(Platform)\$(Configuration)\</code></p>
+<h1 id="C-条件与分值-if语句"><a href="#C-条件与分值-if语句" class="headerlink" title="C++条件与分值(if语句)"></a>C++条件与分值(if语句)</h1><p> 检查条件，然后跳转到内存的不同的地方,并从这里开始执行指令。</p>
+<h2 id="内在指令"><a href="#内在指令" class="headerlink" title="内在指令"></a>内在指令</h2><p> <img src="https://img-blog.csdnimg.cn/1e2c4bf200be401280d2ba7f164430d9.png#pic_center" alt="反汇编"></p>
+<blockquote>
+<p>设置断点调试时，右键进入反汇编模式</p>
+</blockquote>
+<ul>
+<li>mov : move</li>
+<li>jne ：jump not equal</li>
+<li>je ：jump equel</li>
+</ul>
+<blockquote>
+<ol>
+<li><p><code>mov dword ptr [a], 5</code>：这条指令将立即数5移动到名为<code>a</code>的整数变量。它将5存储到<code>a</code>的内存位置。</p>
+</li>
+<li><p><code>cmp dword ptr [a], 5</code>：这是一个比较指令，用于比较<code>a</code>的值与5的值。它将<code>a</code>的值与5进行比较，但不会更改任何寄存器的值。</p>
+</li>
+<li><p><code>jne main+34h (07FF6F0B823B4h)</code>：这是一个条件跳转指令。它检查前面的比较结果是否不等于（jne表示”jump if not<br>equal”）零，如果不等于零，则跳转到指定的地址，这里是<code>main+34h</code>。</p>
+</li>
+<li><p><code>mov dword ptr [rbp+0F4h], 1</code>：如果比较结果是相等的（即<code>a</code>等于5），则将立即数1移动到内存中的某个位置，该位置可能是一个标志变量，用于表示条件满足。</p>
+</li>
+<li><p><code>jmp main+3Eh (07FF6F0B823BEh)</code>：这是一个无条件跳转指令，它将程序跳转到指定的地址，这里是<code>main+3Eh</code>。</p>
+</li>
+<li><p><code>mov dword ptr [rbp+0F4h], 0</code>：这个指令是前面条件跳转的目标（如果比较结果不等于零），它将立即数0移动到内存中的某个位置，表示条件不满足。</p>
+</li>
+<li><p><code>movzx eax, byte ptr [rbp+0F4h]</code>：这条指令将内存中的一个字节（8位）加载到32位寄存器<code>eax</code>中，并将其零扩展（即高位填充0）。这可能是为了将条件满足与否的标志位加载到寄存器中。</p>
+</li>
+<li><p><code>mov byte ptr [comparisonResult], al</code>：这个指令将寄存器<code>al</code>中的字节值写入名为<code>comparisonResult</code>的布尔变量。这是将条件判断的结果保存到布尔变量中的操作。</p>
+</li>
+<li><p><code>movzx eax, byte ptr [comparisonResult]</code>：这是将布尔变量<code>comparisonResult</code>的值加载到寄存器<code>eax</code>中，以便进行进一步的条件判断。</p>
+</li>
+<li><p><code>test eax, eax</code>：这个指令将寄存器<code>eax</code>与自身进行按位与操作。它的目的是检查<code>eax</code>中的值是否为零。</p>
+</li>
+<li><p><code>je main+5Ch (07FF6F0B823DCh)</code>：这是一个条件跳转指令，如果前面的按位与操作结果等于零（即<code>eax</code>中的值为零），则跳转到指定的地址，这里是<code>main+5Ch</code>。</p>
+</li>
+<li><p><code>lea rcx, [string &quot;hello&quot; (07FF6F0B8BCA4h)]</code>：这个指令将字符串”hello”的地址加载到寄存器<code>rcx</code>中，准备调用一个名为<code>Log</code>的函数。</p>
+</li>
+<li><p><code>call Log (07FF6F0B8135Ch)</code>：这是一个函数调用指令，它调用名为<code>Log</code>的函数，并将<code>rcx</code>中的地址作为参数传递给该函数，用于记录”hello”。</p>
+</li>
+</ol>
+</blockquote>
+<h1 id="C-循环"><a href="#C-循环" class="headerlink" title="C++循环"></a>C++循环</h1><p>for and while 循环</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; a &lt; <span class="number">5</span> ; i++)</span><br><span class="line">&#123;</span><br><span class="line">	pass</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>变量的声明,循环的条件(评估后的bool值),一次循环后的操作</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> i = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span> (i &lt; <span class="number">0</span>)</span><br><span class="line">&#123;</span><br><span class="line">	.....</span><br><span class="line">	i ++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">&#125; <span class="keyword">while</span> (i &lt; <span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+
+<h1 id="C-控制流语句"><a href="#C-控制流语句" class="headerlink" title="C++控制流语句"></a>C++控制流语句</h1><p>控制流一般和循环一起使用</p>
+<ul>
+<li>continue :只能在循环使用</li>
+<li>break : 能在循环和switch语句使用</li>
+<li>return</li>
+</ul>
+<h2 id="continue"><a href="#continue" class="headerlink" title="continue"></a>continue</h2><p>跳到循环的下一个迭代</p>
+<h2 id="break"><a href="#break" class="headerlink" title="break"></a>break</h2><p>跳出循环</p>
+<h2 id="return"><a href="#return" class="headerlink" title="return"></a>return</h2><p>返回值，终止语句</p>
+<h1 id="C-指针"><a href="#C-指针" class="headerlink" title="C++指针"></a>C++指针</h1><p>指针是整数，一种存储内存地址的数字。对管理和操纵内存有很大用处.</p>
+<h2 id="指针的引用和逆引用"><a href="#指针的引用和逆引用" class="headerlink" title="指针的引用和逆引用"></a>指针的引用和逆引用</h2><p>类型的意义在于逆引用指针时可以访问和修改变量</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">int</span> var = <span class="number">8</span>;</span><br><span class="line">	<span class="type">int</span>* ptr = &amp;var;</span><br><span class="line">	*ptr = <span class="number">10</span>;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="申请内存和二次指针"><a href="#申请内存和二次指针" class="headerlink" title="申请内存和二次指针"></a>申请内存和二次指针</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">char</span>* buffer = <span class="keyword">new</span> <span class="type">char</span>[<span class="number">8</span>];</span><br><span class="line">	<span class="built_in">memset</span>(buffer, <span class="number">0</span>, <span class="number">8</span>);</span><br><span class="line">	</span><br><span class="line">	<span class="type">char</span>** ptr = &amp;buffer;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">delete</span>[] buffer;</span><br><span class="line">	std::cin.<span class="built_in">get</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>pte地址的内存实际上是buffer的内存地址，只不过反了过来<br>比如如果pte的内存是b8 f1 02 00<br>那么buffer的内存地址就是00 02 f1 b8</p>
+</blockquote>
+<h1 id="C-引用"><a href="#C-引用" class="headerlink" title="C++引用"></a>C++引用</h1><p>(指针的扩展)<br>引用不用占用内存，但是指针是变量，会占用内存。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">int</span> a = <span class="number">5</span>;</span><br><span class="line">	<span class="type">int</span>&amp; ref = a;</span><br><span class="line">	<span class="comment">//ref 实际上不存在，编译后只会有变量a</span></span><br><span class="line">	<span class="comment">//相当于a的别名</span></span><br><span class="line">	 </span><br><span class="line">	 std::cin.<span class="built_in">get</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="引用的作用"><a href="#引用的作用" class="headerlink" title="引用的作用"></a>引用的作用</h2><blockquote>
+<p>运用指针的例子</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">Increment</span><span class="params">(<span class="type">int</span>* value)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	(*value)++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">int</span> a = <span class="number">5</span>;</span><br><span class="line">	<span class="built_in">Increment</span>(&amp;a)；</span><br><span class="line">	<span class="built_in">Log</span>(a);</span><br><span class="line">	<span class="comment">//结果为 : 6</span></span><br><span class="line">	std::cin.<span class="built_in">get</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>运用引用的例子</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">Increment</span><span class="params">(<span class="type">int</span>&amp; value)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	value++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">int</span> a = <span class="number">5</span>;</span><br><span class="line">	<span class="built_in">Increment</span>(a);</span><br><span class="line">	<span class="built_in">Log</span>(a);</span><br><span class="line">	<span class="comment">//结果为 : 6</span></span><br><span class="line">	std::cin.<span class="built_in">get</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>在C++中，函数参数的默认传递方式是按值传递(pass by value)。这意味着当你调用一个函数时，传递给函数的是原始数据的副本，而不是原始数据本身。这是因为按值传递会创建原始数据的副本，以便函数可以在副本上执行操作，而不会影响原始数据。<br> 当你调用Increment(a)时，a的值被复制到Increment函数的局部变量value中，然后在函数内部对value进行递增操作。这个递增操作只会影响value的副本，而不会影响a的原始值。这就是为什么在main函数中a 的值仍然是5。</p>
+</blockquote>
+<p>那如果我用return a呢？</p>
+<blockquote>
+<p>如果你在 Increment 函数中返回 value，那么你需要在 main 函数中捕获这个返回值并将其分配给 a，才能使 a 的值增加。这是因为在 C++ 中，函数的返回值不会自动修改传递给它的参数。<br>a &#x3D; increment(a)</p>
+</blockquote>
+<p>简而言之，引用可以节约内存开销,避免重复复制。</p>
+<h2 id="引用的注意"><a href="#引用的注意" class="headerlink" title="引用的注意"></a>引用的注意</h2><p>你不能改变它引用的东西<br>例如</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">int</span> a = <span class="number">5</span>;</span><br><span class="line">	<span class="type">int</span> b = <span class="number">8</span>;</span><br><span class="line">	<span class="type">int</span>&amp; ref = a;</span><br><span class="line">	ref = b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>应该改为</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">int</span> a = <span class="number">5</span>;</span><br><span class="line">	<span class="type">int</span> b = <span class="number">8</span>;</span><br><span class="line">	<span class="type">int</span>* ref = &amp;a;</span><br><span class="line">	*ref = <span class="number">2</span>;</span><br><span class="line">	ref = &amp;b;</span><br><span class="line">	*ref = <span class="number">1</span>;</span><br><span class="line">	<span class="built_in">Log</span>(a);</span><br><span class="line">	<span class="built_in">Log</span>(b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意，错误例子中会运行成功，但是他并不是更改引用,ref这个引用还是引用的a</p>
+</blockquote>
+<h1 id="C-类"><a href="#C-类" class="headerlink" title="C++类"></a>C++类</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Player</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="type">int</span> x,y;</span><br><span class="line">	<span class="type">int</span> speed;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">Move</span><span class="params">(<span class="type">int</span> xa, <span class="type">int</span> ya)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">	x += xa * speed;</span><br><span class="line">	y += ya * speed;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//void Move(Player&amp; player, int xa, int ya)</span></span><br><span class="line"><span class="comment">//&#123;</span></span><br><span class="line"><span class="comment">//	player.x += xa * player.speed;</span></span><br><span class="line"><span class="comment">//	player.y += xa * player.speed;</span></span><br><span class="line"><span class="comment">//&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Player player;</span><br><span class="line">	player.x = <span class="number">5</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>花括号后面需要有分号<br>由类类型构成的变量称为<strong>对象</strong><br>新的对象变量称为<strong>实例</strong><br>类中的函数称为<strong>方法</strong></p>
+</blockquote>
+<blockquote>
+<p>类中的属性是私有的，如果需要访问修改需要public类中的属性。</p>
+</blockquote>
+<h1 id="C-类与结构体对比"><a href="#C-类与结构体对比" class="headerlink" title="C++类与结构体对比"></a>C++类与结构体对比</h1><p>类默认是私有的，类外部调用时无法调用。<br>技术上说，没什么区别，但是使用情境不同。<br>struct and class</p>
+<blockquote>
+<p>弹幕：用结构体当数据容器，用类来写具备逻辑的功能对象.</p>
+</blockquote>
+<h2 id="区别："><a href="#区别：" class="headerlink" title="区别："></a>区别：</h2><ol>
+<li>默认的继承访问权 : class默认的是private,strcut默认的是public。</li>
+<li>默认访问权限 : struct作为数据结构的实现体，它默认的数据访问控制是public的，而class作为对象的实现体，它默认的成员变量访问控制是private的。</li>
+<li>“class”这个关键字还用于定义模板参数，就像“typename”。</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://bailog.top">xxbaizero</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://bailog.top/2023/12/14/CPP-C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%9B%BD%E5%BA%86%E6%9C%9F%E9%97%B4/">http://bailog.top/2023/12/14/CPP-C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%9B%BD%E5%BA%86%E6%9C%9F%E9%97%B4/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://bailog.top" target="_blank">bai的小窝</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/C/">C++</a></div><div class="post_share"><div class="social-share" data-image="/img/background/season3.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/12/14/Python-tree%E9%80%92%E5%BD%92-tree%E9%80%92%E5%BD%92/" title="tree递归"><img class="cover" src="/img/background/dream.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">tree递归</div></div></a></div><div class="next-post pull-right"><a href="/2023/12/14/Python-Python%E2%80%94%E5%AD%97%E7%AC%A6%E4%B8%B2-%E5%A4%9A%E6%80%81%E5%87%BD%E6%95%B0%EF%BC%88%E6%8E%A5%E5%8F%A3%EF%BC%89%EF%BC%8C%E7%89%B9%E6%AE%8A%E6%96%B9%E6%B3%95%E5%90%8D%E7%A7%B0-61A-Fall-2023-Lecture-20%E2%80%94%E2%80%94Inheritance-Python%E2%80%94%E5%AD%97%E7%AC%A6%E4%B8%B2-%E5%A4%9A%E6%80%81%E5%87%BD%E6%95%B0%EF%BC%88%E6%8E%A5%E5%8F%A3%EF%BC%89%EF%BC%8C%E7%89%B9%E6%AE%8A%E6%96%B9%E6%B3%95%E5%90%8D%E7%A7%B0-61A-Fall-2023-Lecture-20%E2%80%94%E2%80%94Inheritance/" title="Python—字符串,多态函数（接口），特殊方法名称[61A Fall 2023 Lecture 20——Inheritance]"><img class="cover" src="/img/background/dream.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Python—字符串,多态函数（接口），特殊方法名称[61A Fall 2023 Lecture 20——Inheritance]</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/ico/avatar_1.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">xxbaizero</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">4</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxbaizero0"><i class="fab fa-github"></i><span>中国矿业大学本科生 23级</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/xxbaizero0" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:2597453011@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到bai的小屋</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#C-%E6%98%AF%E6%80%8E%E4%B9%88%E5%B7%A5%E4%BD%9C%E7%9A%84"><span class="toc-number">1.</span> <span class="toc-text">C++是怎么工作的</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%84%E5%A4%84%E7%90%86"><span class="toc-number">1.1.</span> <span class="toc-text">预处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#main%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.</span> <span class="toc-text">main函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">1.3.</span> <span class="toc-text">&lt;&lt;重载语句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%93%BE%E6%8E%A5%E9%A1%B9%E7%9B%AE%E4%B8%AD%E7%9A%84%E5%87%BD%E6%95%B0%E4%BB%A3%E7%A0%81"><span class="toc-number">1.4.</span> <span class="toc-text">链接项目中的函数代码</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#C-%E7%BC%96%E8%AF%91%E5%99%A8%E7%9A%84%E5%B7%A5%E4%BD%9C"><span class="toc-number">2.</span> <span class="toc-text">C++编译器的工作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#include%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="toc-number">2.1.</span> <span class="toc-text">#include工作原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E9%A2%84%E5%A4%84%E7%90%86%E5%99%A8%E5%AE%9E%E9%99%85%E4%B8%8A%E7%94%9F%E6%88%90%E7%9A%84%E6%96%87%E4%BB%B6"><span class="toc-number">2.2.</span> <span class="toc-text">查看预处理器实际上生成的文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8Bobj%E6%96%87%E4%BB%B6"><span class="toc-number">2.3.</span> <span class="toc-text">查看obj文件</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#C-%E9%93%BE%E6%8E%A5"><span class="toc-number">3.</span> <span class="toc-text">C++链接</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%98%93%E9%94%99%E5%A4%84"><span class="toc-number">3.1.</span> <span class="toc-text">易错处</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%99%90%E5%88%B6%E9%93%BE%E6%8E%A5%EF%BC%8C%E5%87%BD%E6%95%B0%E5%8F%AA%E5%9C%A8%E5%BD%93%E5%89%8D%E7%BF%BB%E8%AF%91%E5%8D%95%E5%85%83%E4%BD%BF%E7%94%A8%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-number">3.1.1.</span> <span class="toc-text">限制链接，函数只在当前翻译单元使用的方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%A7%E7%94%9F%E9%93%BE%E6%8E%A5%E9%94%99%E8%AF%AF%E7%9A%84%E4%BE%8B%E5%AD%90%E5%8F%8A%E4%BF%AE%E6%AD%A3"><span class="toc-number">3.2.</span> <span class="toc-text">产生链接错误的例子及修正</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E4%BE%8B%E5%AD%90"><span class="toc-number">3.2.1.</span> <span class="toc-text">错误例子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E6%96%B9%E6%B3%95"><span class="toc-number">3.2.2.</span> <span class="toc-text">修改方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#C-%E5%8F%98%E9%87%8F"><span class="toc-number">4.</span> <span class="toc-text">C++变量</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8D%E5%90%8C%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E5%86%85%E5%AD%98%E5%A4%A7%E5%B0%8F"><span class="toc-number">4.1.</span> <span class="toc-text">不同变量类型的区别是内存大小</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B"><span class="toc-number">4.1.1.</span> <span class="toc-text">变量类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%95%B0%E5%AD%97%E5%A4%A7%E5%B0%8F"><span class="toc-number">4.1.2.</span> <span class="toc-text">查看数字大小</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#C-%E5%87%BD%E6%95%B0"><span class="toc-number">5.</span> <span class="toc-text">C++函数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%8B%E5%AD%90"><span class="toc-number">5.1.</span> <span class="toc-text">例子</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#C-%E5%A4%B4%E6%96%87%E4%BB%B6"><span class="toc-number">6.</span> <span class="toc-text">C++头文件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#pragma-once"><span class="toc-number">6.1.</span> <span class="toc-text">pragma once</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ifndef"><span class="toc-number">6.2.</span> <span class="toc-text">ifndef</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#include%E4%B8%A4%E4%B8%AA%E4%B8%8D%E5%90%8C%E5%BD%A2%E5%BC%8F"><span class="toc-number">6.3.</span> <span class="toc-text">include两个不同形式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BD%A2%E5%BC%8F"><span class="toc-number">6.3.1.</span> <span class="toc-text">&lt; &gt;形式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%80%9C-%E2%80%9C%E5%BD%A2%E5%BC%8F"><span class="toc-number">6.3.2.</span> <span class="toc-text">“ “形式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8C%BA%E5%88%ABc-%E6%A0%87%E5%87%86%E5%BA%93%E5%92%8Cc%E6%A0%87%E5%87%86%E5%BA%93"><span class="toc-number">6.4.</span> <span class="toc-text">区别c++标准库和c标准库</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%9C%A8vs%E4%B8%AD%E8%B0%83%E8%AF%95%E4%BB%A3%E7%A0%81"><span class="toc-number">7.</span> <span class="toc-text">如何在vs中调试代码</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B0%83%E8%AF%95"><span class="toc-number">7.1.</span> <span class="toc-text">调试</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%AD%E7%82%B9"><span class="toc-number">7.1.1.</span> <span class="toc-text">断点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E5%8F%96%E5%86%85%E5%AD%98"><span class="toc-number">7.1.2.</span> <span class="toc-text">读取内存</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E8%B0%83%E8%AF%95"><span class="toc-number">7.2.</span> <span class="toc-text">如何调试</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%89%E9%94%AE%E4%BB%8B%E7%BB%8D"><span class="toc-number">7.2.1.</span> <span class="toc-text">按键介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AA%97%E5%8F%A3%E4%BB%8B%E7%BB%8D"><span class="toc-number">7.2.2.</span> <span class="toc-text">窗口介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E8%A7%86%E5%9B%BE"><span class="toc-number">7.2.3.</span> <span class="toc-text">内存视图</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E8%A7%86%E5%9B%BE%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">7.2.3.1.</span> <span class="toc-text">内存视图的使用</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#VS%E7%9A%84%E6%9C%80%E4%BD%B3%E8%AE%BE%E7%BD%AE"><span class="toc-number">8.</span> <span class="toc-text">VS的最佳设置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E7%9A%84%E8%AE%BE%E7%BD%AE"><span class="toc-number">8.1.</span> <span class="toc-text">项目的设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%A4%B9%E7%9A%84%E8%AE%BE%E7%BD%AE"><span class="toc-number">8.2.</span> <span class="toc-text">文件夹的设置</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#C-%E6%9D%A1%E4%BB%B6%E4%B8%8E%E5%88%86%E5%80%BC-if%E8%AF%AD%E5%8F%A5"><span class="toc-number">9.</span> <span class="toc-text">C++条件与分值(if语句)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%9C%A8%E6%8C%87%E4%BB%A4"><span class="toc-number">9.1.</span> <span class="toc-text">内在指令</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#C-%E5%BE%AA%E7%8E%AF"><span class="toc-number">10.</span> <span class="toc-text">C++循环</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#C-%E6%8E%A7%E5%88%B6%E6%B5%81%E8%AF%AD%E5%8F%A5"><span class="toc-number">11.</span> <span class="toc-text">C++控制流语句</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#continue"><span class="toc-number">11.1.</span> <span class="toc-text">continue</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#break"><span class="toc-number">11.2.</span> <span class="toc-text">break</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#return"><span class="toc-number">11.3.</span> <span class="toc-text">return</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#C-%E6%8C%87%E9%92%88"><span class="toc-number">12.</span> <span class="toc-text">C++指针</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%87%E9%92%88%E7%9A%84%E5%BC%95%E7%94%A8%E5%92%8C%E9%80%86%E5%BC%95%E7%94%A8"><span class="toc-number">12.1.</span> <span class="toc-text">指针的引用和逆引用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%B3%E8%AF%B7%E5%86%85%E5%AD%98%E5%92%8C%E4%BA%8C%E6%AC%A1%E6%8C%87%E9%92%88"><span class="toc-number">12.2.</span> <span class="toc-text">申请内存和二次指针</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#C-%E5%BC%95%E7%94%A8"><span class="toc-number">13.</span> <span class="toc-text">C++引用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E7%94%A8%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-number">13.1.</span> <span class="toc-text">引用的作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E7%94%A8%E7%9A%84%E6%B3%A8%E6%84%8F"><span class="toc-number">13.2.</span> <span class="toc-text">引用的注意</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#C-%E7%B1%BB"><span class="toc-number">14.</span> <span class="toc-text">C++类</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#C-%E7%B1%BB%E4%B8%8E%E7%BB%93%E6%9E%84%E4%BD%93%E5%AF%B9%E6%AF%94"><span class="toc-number">15.</span> <span class="toc-text">C++类与结构体对比</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8C%BA%E5%88%AB%EF%BC%9A"><span class="toc-number">15.1.</span> <span class="toc-text">区别：</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 By xxbaizero</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"></div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="20" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_footer_beautify_injector_config(){
+    var parent_div_git = document.getElementById('footer-wrap');
+    var item_html = '<div id="workboard"></div><p id="ghbdages"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px" data-title="博客框架为Hexo_v6.2.0" title=""><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&amp;logo=hexo" alt=""/></a><a class="github-badge" target="_blank" href="https://butterfly.js.org/" style="margin-inline:5px" data-title="主题版本Butterfly_v4.3.1" title=""><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&amp;logo=bitdefender" alt=""/></a><a class="github-badge" target="_blank" href="https://vercel.com/" style="margin-inline:5px" data-title="本站采用多线部署，主线路托管于Vercel" title=""><img src="https://img.shields.io/badge/Hosted-Vercel-brightgreen?style=flat&amp;logo=Vercel" alt=""/></a><a class="github-badge" target="_blank" href="https://dashboard.4everland.org/" style="margin-inline:5px" data-title="本站采用多线部署，备用线路托管于4EVERLAND" title=""><img src="https://img.shields.io/badge/Hosted-4EVERLAND-22DDDD?style=flat&amp;logo=IPFS" alt=""/></a><a class="github-badge" target="_blank" href="https://github.com/" style="margin-inline:5px" data-title="本站项目由Github托管" title=""><img src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&amp;logo=GitHub" alt=""/></a><a class="github-badge" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="margin-inline:5px" data-title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可" title=""><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&amp;logo=Claris" alt=""/></a></p>';
+    console.log('已挂载butterfly_footer_beautify')
+    parent_div_git.insertAdjacentHTML("beforeend",item_html)
+    }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_footer_beautify_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_footer_beautify_injector_config();
+  }
+  </script><script async src="https://unpkg.zhimg.com/hexo-butterfly-footer-beautify@1.0.0/lib/runtime.min.js"></script><!-- hexo injector body_end end --></body></html>
