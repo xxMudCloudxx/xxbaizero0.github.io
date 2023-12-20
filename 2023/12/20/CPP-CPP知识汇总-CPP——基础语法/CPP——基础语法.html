@@ -1,0 +1,319 @@
+<hr>
+<h2 id="title-CPP知识汇总date-2023-12-20-19-11-23"><a href="#title-CPP知识汇总date-2023-12-20-19-11-23" class="headerlink" title="title: CPP知识汇总date: 2023-12-20 19:11:23"></a>title: CPP知识汇总<br>date: 2023-12-20 19:11:23</h2><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>数组之前的知识是基础中的基础就不再整理了,只挑几个稍微要看一下的。</p>
+<h1 id="switch语句"><a href="#switch语句" class="headerlink" title="switch语句"></a>switch语句</h1><p>基本语法例子示范</p>
+<pre><code class="c++">#include&lt;iostream&gt;
+using namespace std;
+int main() {
+    int day = 3;
+    switch (day) {
+        case 1:
+            std::cout &lt;&lt; &quot;Monday&quot; &lt;&lt; std::endl;
+            break;
+        case 2:
+            std::cout &lt;&lt; &quot;Tuesday&quot; &lt;&lt; std::endl;
+            break;
+        case 3:
+            std::cout &lt;&lt; &quot;Wednesday&quot; &lt;&lt; std::endl;
+            break;
+        case 4:
+            std::cout &lt;&lt; &quot;Thursday&quot; &lt;&lt; std::endl;
+            break;
+        case 5:
+            std::cout &lt;&lt; &quot;Friday&quot; &lt;&lt; std::endl;
+            break;
+        default:
+            std::cout &lt;&lt; &quot;Weekend&quot; &lt;&lt; std::endl;
+    }
+    return 0;
+}
+</code></pre>
+<blockquote>
+<p>输出结果为 Wednesday；</p>
+</blockquote>
+<p>如果case语句中没有break;那么将执行该case下的所有语句:</p>
+<pre><code class="c++">#include &lt;iostream&gt;
+
+int main() {
+    int day = 3;
+    switch (day) {
+        case 1:
+            std::cout &lt;&lt; &quot;Monday&quot; &lt;&lt; std::endl;
+            // 没有break，继续执行下一个case
+        case 2:
+            std::cout &lt;&lt; &quot;Tuesday&quot; &lt;&lt; std::endl;
+            // 没有break，继续执行下一个case
+        case 3:
+            std::cout &lt;&lt; &quot;Wednesday&quot; &lt;&lt; std::endl;
+            // 没有break，继续执行下一个case
+        case 4:
+            std::cout &lt;&lt; &quot;Thursday&quot; &lt;&lt; std::endl;
+            // 没有break，继续执行下一个case
+        case 5:
+            std::cout &lt;&lt; &quot;Friday&quot; &lt;&lt; std::endl;
+            // 没有break，继续执行下一个case
+        default:
+            std::cout &lt;&lt; &quot;Weekend&quot; &lt;&lt; std::endl;
+    }
+    return 0;
+}
+</code></pre>
+<blockquote>
+<p>输出结果:</p>
+<pre><code class="c++">Wednesday
+Thursday
+Friday
+Weekend
+</code></pre>
+</blockquote>
+<p>其他需要注意的点:</p>
+<ul>
+<li><p>switch后圆括号中的表达式的类型只能是整型或能够隐式转换为整型的类型(如字符型,或枚举型)</p>
+</li>
+<li><p>每个case语句后必须是与表达式类型兼容的一个常量(但不能是<strong>字符串常量</strong>)</p>
+</li>
+</ul>
+<pre><code class="c++">int main() {
+    char grade = &#39;B&#39;;
+    switch (grade) {
+        case &#39;A&#39;:  // 字符常量，与表达式类型兼容
+            // 代码块
+            break;
+        case 2:    // 整数常量，与表达式类型兼容
+            // 代码块
+            break;
+        case 2.5:  // 错误，浮点数常量与字符类型不兼容
+            // 代码块
+            break;
+        case &quot;B&quot;:  // 错误，字符串常量不兼容
+            // 代码块
+            break;
+    }
+
+    return 0;
+}
+</code></pre>
+<h1 id="do-while语句"><a href="#do-while语句" class="headerlink" title="do-while语句"></a>do-while语句</h1><p>基本语法例子</p>
+<pre><code class="c++">#include &lt;iostream&gt;
+
+int main() {
+    int count = 0;
+
+    do {
+        std::cout &lt;&lt; &quot;Count: &quot; &lt;&lt; count &lt;&lt; std::endl;
+        count++;
+    } while (count &lt; 5);
+
+    return 0;
+}
+</code></pre>
+<ul>
+<li>注意while后面有<strong>分号;</strong></li>
+</ul>
+<h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><h1 id="字符串数组常用函数"><a href="#字符串数组常用函数" class="headerlink" title="字符串数组常用函数"></a>字符串数组常用函数</h1><h1 id="strcat-字符串连接函数"><a href="#strcat-字符串连接函数" class="headerlink" title="strcat-字符串连接函数"></a>strcat-字符串连接函数</h1><h3 id="函数原形"><a href="#函数原形" class="headerlink" title="函数原形:"></a>函数原形:</h3><pre><code class="c++">char* strcat(char str1[],const char str2[]);
+</code></pre>
+<h3 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h3><p>把str2中的字符串连接到str1字符的后面, str1中字符的结束标志<code>\0</code>被st2里的字符串及其结束标志所覆盖。本函数返回值是str1的首地址。</p>
+<p><img src="/CPP%E2%80%94%E2%80%94%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/image-20231220200644095.png" alt="image-20231220200644095"></p>
+<h2 id="strcpy-字符串复制函数"><a href="#strcpy-字符串复制函数" class="headerlink" title="strcpy-字符串复制函数"></a>strcpy-字符串复制函数</h2><h3 id="函数原型"><a href="#函数原型" class="headerlink" title="函数原型"></a>函数原型</h3><pre><code class="c++">char* strcat(char str1[],const char str2[]);
+</code></pre>
+<h3 id="作用-1"><a href="#作用-1" class="headerlink" title="作用"></a>作用</h3><p>把str2中的字符串复制到str1中，str2中的串结束标志”\0”也一同复制。参数str2还可以是一个字符串常量，这时相当于把一个字符串赋予一个字符数组。</p>
+<p><img src="/CPP%E2%80%94%E2%80%94%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/image-20231220200904869.png" alt="image-20231220200904869"></p>
+<h2 id="strcmp-字符串比较函数"><a href="#strcmp-字符串比较函数" class="headerlink" title="strcmp-字符串比较函数"></a>strcmp-字符串比较函数</h2><h3 id="函数原型-1"><a href="#函数原型-1" class="headerlink" title="函数原型"></a>函数原型</h3><pre><code class="c++">int strcmp(const char str1[],const char str2[]);
+</code></pre>
+<h3 id="作用-2"><a href="#作用-2" class="headerlink" title="作用"></a>作用</h3><p>依照ASCII码表中的值的大小，依次比较两个字符串中对应位置上的字符，并由函数返回值返回比较结果。</p>
+<p><img src="/CPP%E2%80%94%E2%80%94%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/image-20231220201312707.png" alt="image-20231220201312707"></p>
+<h2 id="strlen-计算字符串长度函数"><a href="#strlen-计算字符串长度函数" class="headerlink" title="strlen-计算字符串长度函数"></a>strlen-计算字符串长度函数</h2><h3 id="函数原型-2"><a href="#函数原型-2" class="headerlink" title="函数原型"></a>函数原型</h3><pre><code class="c++">int strlen(const char str[]);
+</code></pre>
+<h3 id="作用-3"><a href="#作用-3" class="headerlink" title="作用"></a>作用</h3><p>计算字符串中的长度,返回首次出现的结束标志<code>\0</code>之前的字符数,并作为返回值。</p>
+<blockquote>
+<p>计算时不包括\0</p>
+</blockquote>
+<h1 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h1><h2 id="指针的定义与声明"><a href="#指针的定义与声明" class="headerlink" title="指针的定义与声明"></a>指针的定义与声明</h2><pre><code class="c++">int *ptr;  // 定义一个指向整数的指针
+double *dblPtr;  // 定义一个指向双精度浮点数的指针
+char *charPtr;  // 定义一个指向字符的指针
+</code></pre>
+<h2 id="取地址操作符"><a href="#取地址操作符" class="headerlink" title="取地址操作符&amp;"></a>取地址操作符<code>&amp;</code></h2><p>取地址操作符 <code>&amp;</code> 用于获取变量的内存地址：</p>
+<pre><code class="c++">int number = 42;
+int *ptr = &amp;number;  // 将变量number的地址赋给指针ptr
+</code></pre>
+<h2 id="指针和函数"><a href="#指针和函数" class="headerlink" title="指针和函数:"></a>指针和函数:</h2><p>指针可以用于传递地址，从而在函数中修改实际参数的值：</p>
+<pre><code class="c++">void modifyValue(int *ptr) {
+    *ptr = 100;
+}
+
+int main() {
+    int number = 42;
+    int *ptr = &amp;number;
+    
+    modifyValue(ptr);  // 传递指向number的指针给函数
+    // 现在，number的值被修改为100
+}
+</code></pre>
+<h2 id="指针解引用操作符"><a href="#指针解引用操作符" class="headerlink" title="指针解引用操作符 *"></a>指针解引用操作符 <code>*</code></h2><p>指针解引用操作符 <code>*</code> 用于访问指针所指向地址的值：</p>
+<pre><code class="c++">int value = *ptr;  // 获取ptr指针所指向地址的值，将其赋给变量value
+</code></pre>
+<h2 id="动态内存分配与释放"><a href="#动态内存分配与释放" class="headerlink" title="动态内存分配与释放:"></a>动态内存分配与释放:</h2><p>使用 <code>new</code> 操作符可以在运行时动态分配内存，而 <code>delete</code> 操作符用于释放动态分配的内存：</p>
+<pre><code class="c++">int *dynamicPtr = new int;  // 动态分配一个整数大小的内存空间
+// 使用 dynamicPtr 操作内存
+delete dynamicPtr;  // 释放动态分配的内存
+</code></pre>
+<h2 id="指针和数组"><a href="#指针和数组" class="headerlink" title="指针和数组"></a>指针和数组</h2><p>指针和数组之间有着密切的关系，指针可以用于访问数组元素：</p>
+<pre><code class="c++">int numbers[5] = {1, 2, 3, 4, 5};
+int *arrPtr = numbers;  // 将数组名赋给指针，指向数组的第一个元素
+</code></pre>
+<h2 id="空指针"><a href="#空指针" class="headerlink" title="空指针"></a>空指针</h2><p>空指针表示不指向任何有效的内存地址。在C++中，可以使用 <code>nullptr</code> 来表示空指针：</p>
+<pre><code class="c++">int *nullPtr = nullptr;  // 定义一个空指针
+</code></pre>
+<h2 id="常量指针和指针常量"><a href="#常量指针和指针常量" class="headerlink" title="常量指针和指针常量"></a>常量指针和指针常量</h2><ul>
+<li><p>常量指针：指针本身不可变，但指向的值可变。</p>
+<pre><code class="c++">int value = 42;
+const int *ptr = &amp;value;  // 指向常量的指针
+</code></pre>
+</li>
+<li><p>指针常量：指向的值不可变，但指针本身可变。</p>
+<pre><code class="c++">int value = 42;
+int *const ptr = &amp;value;  // 常量指针
+</code></pre>
+</li>
+</ul>
+<h1 id="结构体"><a href="#结构体" class="headerlink" title="结构体"></a>结构体</h1><h1 id="实验题目"><a href="#实验题目" class="headerlink" title="实验题目"></a>实验题目</h1><h2 id="漂亮的递归"><a href="#漂亮的递归" class="headerlink" title="漂亮的递归"></a>漂亮的递归</h2><p>【问题描述】键盘输入正整数 n，求出n与其反序数x之和并输出。例如，输入2038，n+x &#x3D; 2038 +8302 &#x3D;10340，输出应为10340。要求：编写函数实现数据转换成反序数值。【输入形式】输入一个整数； 【输出形式】输出一个整数； 【样例输入】2038 【样例输出】10340 【样例说明】不要任何输入输出的文字提示。</p>
+<pre><code class="c++">#include &lt;iostream&gt;
+int reverse(int n, int store = 0){
+    if (n &lt; 10) return store + n;
+    else {
+        store += n % 10;
+        return reverse(n / 10, store * 10);
+    }
+}
+
+int main(){
+    int n, reverse_num;
+    std::cin &gt;&gt; n;
+    reverse_num = reverse(n);
+    std::cout &lt;&lt; n + reverse_num;
+    return 0;
+}
+</code></pre>
+<blockquote>
+<p>写递归最关键的地方在于<strong>基本条件</strong>，基本条件出来了，递归的转折点也就出来了。</p>
+</blockquote>
+<h1 id="数组-1"><a href="#数组-1" class="headerlink" title="数组"></a>数组</h1><h2 id="数组的旋转"><a href="#数组的旋转" class="headerlink" title="数组的旋转"></a>数组的旋转</h2><p><strong>【问题描述】</strong> 旋转是图像处理的基本操作，在这个问题中，你需要将一个图像逆时针旋转90度。 计算机中的图像表示可以用一个矩阵来表示，为了旋转一个图像，只需要将对应的矩阵旋转即可。 <strong>【输入格式】</strong> 输入的第一行包含两个整数n, m（1≤n, m≤10），分别表示图像矩阵的行数和列数。 接下来n行每行包含m个整数，表示输入的图像。 </p>
+<p><strong>【输出格式】</strong> 输出m行，每行包含n个整数，表示原始矩阵逆时针旋转90度后的矩阵。每行后空格结束。 </p>
+<pre><code>【样例输入】
+        2 3
+        1 5 3
+        3 2 4
+【样例输出】
+        3 4 
+        5 2 
+        1 3 
+</code></pre>
+<pre><code class="c++">#include &lt;iostream&gt;
+using namespace std;
+int main() {
+    int n, m;
+    cin &gt;&gt; n &gt;&gt; m;
+    int ls[10][10] = { 0 };
+    int ls2[10][10] = { 0 };
+    //初始化ls数组
+    for (int i = 0; i &lt; n; i++) {
+        for (int j = 0; j &lt; m; j++) {
+            cin &gt;&gt; ls[i][j];
+        }
+    }
+    //数组旋转
+    for (int i = 0; i &lt; m; i++) {
+        for (int j = 0; j &lt; n; j++) {
+            ls2[i][j] = ls[j][m - i - 1];
+        }
+    }
+    //输出旋转后的数组
+    for (int i = 0; i &lt; m; i++) {
+        for (int j = 0; j &lt; n; j++) {
+            cout &lt;&lt; ls2[i][j]&lt;&lt;&quot; &quot;;
+        }
+        cout &lt;&lt; endl;
+    }
+}
+</code></pre>
+<blockquote>
+<p>也可以动态开辟:</p>
+<p>&#x2F;&#x2F; 使用new运算符分配内存<br>int** ls &#x3D; new int* [n];<br>for (int i &#x3D; 0; i &lt; n; ++i) {<br>    ls[i] &#x3D; new int[m];<br>}<br>for (int i &#x3D; 0; i &lt; n; i++) {<br>    for (int j &#x3D; 0; j &lt; m; j++) {<br>        cin &gt;&gt; ls[i][j];<br>    }<br>}</p>
+</blockquote>
+<h2 id="求二维数组的鞍点"><a href="#求二维数组的鞍点" class="headerlink" title="求二维数组的鞍点"></a>求二维数组的鞍点</h2><p>【问题描述】找出一个二维数组（以三行四列的数组为例）中的鞍点，即该位置上的元素在该行上值最大，在该列上值最小（也可能没有鞍点）。</p>
+<p>【输入形式】二维数组（以三行四列的数组为例）</p>
+<p>【输出形式】如果有鞍点，输出鞍点的值及所在行列（例如[1][2]&#x3D;96 is Saddle Point），如果没有，输出没有鞍点（例如 No Saddle Point）</p>
+<pre><code>【样例输入】 
+  9 80 205 40
+  90 60 96 1
+  210 3 101 89
+【样例输出】
+  [1][2]=96 is Saddle Point
+</code></pre>
+<pre><code class="c++">#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int ls[3][4] = { 0 };
+    int min = 999, max = 0;
+    for (int i = 0; i &lt; 3; i++) {
+        for (int j = 0; j &lt; 4; j++) {
+            cin &gt;&gt; ls[i][j];
+        }
+    }
+    int row = 0, col = 0;
+    for(int i = 0;i&lt;3;i++){
+        for (int j = 0; j &lt; 4; j++){
+            if (ls[i][j] &gt; max) {
+                max = ls[i][j];
+                col = j;
+            }
+        }
+        for (int j = 0; j &lt; 3; j++) {
+            if (ls[j][col] &lt; min) {
+                min = ls[j][col];
+                row = j;
+            }
+        }
+        if (ls[row][col] == max) {
+            break;
+        }
+        else {
+            max = 0;
+            min = 999;
+        }
+    }
+    if (min == max) cout &lt;&lt; &quot;[&quot; &lt;&lt; row &lt;&lt; &#39;]&#39; &lt;&lt; &#39;[&#39; &lt;&lt; col &lt;&lt; &quot;] = &quot; &lt;&lt; min &lt;&lt; &quot; is Saddle Point&quot;;
+    else cout &lt;&lt; &#39;NO&#39;;
+}
+</code></pre>
+<h2 id="字符串数组"><a href="#字符串数组" class="headerlink" title="字符串数组"></a>字符串数组</h2><p>【题目描述】<br>输入一个字符串（长度不超过255），请找出字符串中的所有的正整数（如-12，当作12），然后输出其中的素数。如果出现12.5，则看作12和5两个整数。</p>
+<pre><code>【样例输入】
+ How3.5many12prime-17number79inthestring.
+【样例输出】
+ 3 5 17 79
+</code></pre>
+<pre><code class="c++">#include &lt;iostream&gt;
+using namespace std;
+
+bool is_prime(int n) {
+    for (int i = 2; i &lt; n; i++) {
+        if (n % i == 0) return false;
+    }
+    return true;
+}
+
+int main() {
+    string str;
+    cin &gt;&gt; str;
+    int i = 0;
+    while (i &lt; str.length()) {
+        int num = 0;
+        while (str[i] &gt; &#39;0&#39; &amp;&amp; str[i] &lt;= &#39;9&#39;) {
+            num = num * 10 + str[i] - &#39;0&#39;;
+            i++;
+        }
+        if (is_prime(num) &amp;&amp; num &gt; 1) cout &lt;&lt; num &lt;&lt; &quot; &quot;;
+        i++;
+    }
+}
+</code></pre>
