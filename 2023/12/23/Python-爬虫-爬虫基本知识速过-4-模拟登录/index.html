@@ -1,0 +1,264 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Python笔记(四)—模拟登录(cookie) | bai的小窝</title><meta name="author" content="xxbaizero"><meta name="copyright" content="xxbaizero"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="POST请求登录打开登录页后打开浏览器的开发者工具   选择网络(Network) 清空 勾选保留日志(Preserve log)  随后进行登录  我们可以发现请求列表中关于登录请求的标头(Headers)中，我们可以看到请求地址（Request URL），请求方式（Request Method）是 POST，状态码为 302。  Tips：302 表示临时页面跳转，所以登录后会跳转到首页。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python笔记(四)—模拟登录(cookie)">
+<meta property="og:url" content="http://bailog.top/2023/12/23/Python-%E7%88%AC%E8%99%AB-%E7%88%AC%E8%99%AB%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E9%80%9F%E8%BF%87-4-%E6%A8%A1%E6%8B%9F%E7%99%BB%E5%BD%95/index.html">
+<meta property="og:site_name" content="bai的小窝">
+<meta property="og:description" content="POST请求登录打开登录页后打开浏览器的开发者工具   选择网络(Network) 清空 勾选保留日志(Preserve log)  随后进行登录  我们可以发现请求列表中关于登录请求的标头(Headers)中，我们可以看到请求地址（Request URL），请求方式（Request Method）是 POST，状态码为 302。  Tips：302 表示临时页面跳转，所以登录后会跳转到首页。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://bailog.top/img/background/dream.jpg">
+<meta property="article:published_time" content="2023-12-23T09:31:12.000Z">
+<meta property="article:modified_time" content="2023-12-23T15:32:26.723Z">
+<meta property="article:author" content="xxbaizero">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="爬虫">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://bailog.top/img/background/dream.jpg"><link rel="shortcut icon" href="/img/ico/%E5%9C%A3%E8%AF%9E%E6%A0%91.png"><link rel="canonical" href="http://bailog.top/2023/12/23/Python-%E7%88%AC%E8%99%AB-%E7%88%AC%E8%99%AB%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E9%80%9F%E8%BF%87-4-%E6%A8%A1%E6%8B%9F%E7%99%BB%E5%BD%95/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  noticeOutdate: {"limitDay":500,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":230},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体中文","cht_to_chs":"你已切换为简体中文","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Python笔记(四)—模拟登录(cookie)',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-23 23:32:26'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const now = new Date()
+          const hour = now.getHours()
+          const isNight = hour <= 6 || hour >= 18
+          if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+          else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/cat.css"><div id="myscoll"></div><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-double-row-display@1.00/cardlistpost.min.css"/>
+<style>#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags:before {content:"\A";
+  white-space: pre;}#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags > .article-meta__separator{display:none}</style>
+<link rel="stylesheet" href="https://unpkg.zhimg.com/hexo-butterfly-footer-beautify@1.0.0/lib/runtime.min.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/ico/avatar_1.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">12</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">6</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="bai的小窝"><span class="site-name">bai的小窝</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">Python笔记(四)—模拟登录(cookie)</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-12-23T09:31:12.000Z" title="发表于 2023-12-23 17:31:12">2023-12-23</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-12-23T15:32:26.723Z" title="更新于 2023-12-23 23:32:26">2023-12-23</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Python/">Python</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Python/%E7%88%AC%E8%99%AB/">爬虫</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>6分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Python笔记(四)—模拟登录(cookie)"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="POST请求登录"><a href="#POST请求登录" class="headerlink" title="POST请求登录"></a>POST请求登录</h1><p>打开登录页后打开浏览器的开发者工具</p>
+<p><img src="/2023/12/23/Python-%E7%88%AC%E8%99%AB-%E7%88%AC%E8%99%AB%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E9%80%9F%E8%BF%87-4-%E6%A8%A1%E6%8B%9F%E7%99%BB%E5%BD%95/image-20231223175343250.png" alt="image-20231223175343250"></p>
+<ul>
+<li>选择<strong>网络(Network)</strong></li>
+<li>清空</li>
+<li>勾选<strong>保留日志(Preserve log)</strong></li>
+</ul>
+<p>随后进行登录</p>
+<p><img src="/2023/12/23/Python-%E7%88%AC%E8%99%AB-%E7%88%AC%E8%99%AB%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E9%80%9F%E8%BF%87-4-%E6%A8%A1%E6%8B%9F%E7%99%BB%E5%BD%95/image-20231223175745726.png" alt="image-20231223175745726"></p>
+<p>我们可以发现请求列表中关于登录请求的标头(Headers)中，我们可以看到请求地址（Request URL），请求方式（Request Method）是 <strong>POST</strong>，状态码为 <strong>302</strong>。</p>
+<blockquote>
+<p>Tips：<strong>302</strong> 表示临时页面跳转，所以登录后会跳转到首页。</p>
+</blockquote>
+<p>和 <strong>GET</strong> 一样，<strong>POST</strong> 也是请求方式的一种。除此之外还有 <strong>PUT</strong>、<strong>DELETE</strong> 等方式，但最常用的还是 <strong>GET</strong> 和 <strong>POST</strong>。</p>
+<p>它俩的区别是:</p>
+<ul>
+<li><p>本质上的区别:</p>
+<ul>
+<li><p><strong>GET</strong> 用于获取数据，比如刷微博；</p>
+</li>
+<li><p><strong>POST</strong> 用于提交数据，比如登录微博。</p>
+</li>
+</ul>
+</li>
+<li><p>形式上的区别:</p>
+<ul>
+<li><p><strong>GET</strong> 的参数显示在请求地址里；</p>
+</li>
+<li><p><strong>POST</strong> 的参数隐藏在 <strong>Form Data</strong> 里。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2023/12/23/Python-%E7%88%AC%E8%99%AB-%E7%88%AC%E8%99%AB%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E9%80%9F%E8%BF%87-4-%E6%A8%A1%E6%8B%9F%E7%99%BB%E5%BD%95/image-20231223191510621.png" alt="image-20231223191510621"></p>
+<p><strong>log</strong> 是用户名，<strong>pwd</strong> 是密码，<strong>wp-submit</strong> 是提交类型，<strong>redirect_to</strong> 是登录后的跳转地址，<strong>test_cookie</strong> 不知道，可以先不管。</p>
+<p>和发送 <strong>GET</strong> 请求一样，<strong>requests</strong> 库发送 <strong>POST</strong> 请求也很简单。我们看看官方文档中的介绍：</p>
+<p><img src="/2023/12/23/Python-%E7%88%AC%E8%99%AB-%E7%88%AC%E8%99%AB%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E9%80%9F%E8%BF%87-4-%E6%A8%A1%E6%8B%9F%E7%99%BB%E5%BD%95/image-20231223191721715.png" alt="image-20231223191721715"></p>
+<p>可以看到，我们通过 <strong>requests.post()</strong> 发送 <strong>POST</strong> 请求，而 <strong>POST</strong> 请求的参数通过字典的形式传递给 <strong>data</strong> 参数。因此，博客的登录操作可以用代码这样写：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">headers = &#123;</span><br><span class="line">  <span class="string">&#x27;user-agent&#x27;</span>: <span class="string">&#x27;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line">data = &#123;</span><br><span class="line">  <span class="string">&#x27;log&#x27;</span>: <span class="string">&#x27;xx用户名xx&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;pwd&#x27;</span>: <span class="string">&#x27;xx密码xx&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;wp-submit&#x27;</span>: <span class="string">&#x27;登录&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;redirect_to&#x27;</span>: <span class="string">&#x27;xx登录网站xx&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;testcookie&#x27;</span>: <span class="string">&#x27;1&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line">requests.post(<span class="string">&#x27;xx请求网站xx&#x27;</span>, data=data, headers=headers)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>请求网站在标头中可以找到</p>
+</blockquote>
+<p>在发出 <strong>POST</strong> 请求之后，服务器会在 <strong>Response Headers</strong>（响应头）里返回一些关于该请求的信息。有内容的格式、内容大小、过期时间等信息，我们重点关注的是有关登录的信息——<strong>set-cookie</strong>。</p>
+<p><img src="/2023/12/23/Python-%E7%88%AC%E8%99%AB-%E7%88%AC%E8%99%AB%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E9%80%9F%E8%BF%87-4-%E6%A8%A1%E6%8B%9F%E7%99%BB%E5%BD%95/image-20231223191949432.png" alt="image-20231223191949432"></p>
+<p><strong>set-cookie</strong> 的作用是在浏览器中写入 <strong>cookie</strong>，之后的请求中会带上 <strong>cookie</strong> 信息。而我们的登录信息就藏在其中，所以在登录后，服务器能判断出我们是否已经登录。</p>
+<h1 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h1><p>简单地说，<strong>cookie</strong> 是浏览器储存在用户电脑上的一小段文本文件。该文件里存了加密后的用户信息，过期时间等，且每次请求都会带上 <strong>cookie</strong>。所以，你登录过某网站后，下次再次打开该网站便不再需要登录。</p>
+<p>因为 <strong>cookie</strong> 有过期时间，因此一段时间之后，<strong>cookie</strong> 便会失效，需要你再次重新登录，生成新的 <strong>cookie</strong>。<strong>cookie</strong> 就像一张通行证，当没有或通行证过期了，就无法通过，需要重新办理通行证才行。</p>
+<p><img src="/2023/12/23/Python-%E7%88%AC%E8%99%AB-%E7%88%AC%E8%99%AB%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E9%80%9F%E8%BF%87-4-%E6%A8%A1%E6%8B%9F%E7%99%BB%E5%BD%95/image-20231223192027251.png" alt="image-20231223192027251"></p>
+<p>我们也可以用<code>r.cookies</code>将cookies打印出来</p>
+<h1 id="使用cookies模拟登录"><a href="#使用cookies模拟登录" class="headerlink" title="使用cookies模拟登录"></a>使用cookies模拟登录</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"></span><br><span class="line">headers = &#123;</span><br><span class="line">  <span class="string">&#x27;user-agent&#x27;</span>: <span class="string">&#x27;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment"># 登录参数</span></span><br><span class="line">login_data = &#123;</span><br><span class="line">  <span class="string">&#x27;log&#x27;</span>: <span class="string">&#x27;xx用户名xx&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;pwd&#x27;</span>: <span class="string">&#x27;xx密码xx&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;wp-submit&#x27;</span>: <span class="string">&#x27;登录&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;redirect_to&#x27;</span>: <span class="string">&#x27;xx登录网站xx&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;testcookie&#x27;</span>: <span class="string">&#x27;1&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 发请求登录</span></span><br><span class="line">login_req = requests.post(<span class="string">&#x27;xx请求网站xx&#x27;</span>, data=login_data, headers=headers)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取登录后的 cookies</span></span><br><span class="line">shared_cookies = login_req.cookies</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将登录后的 cookies 传递给 cookies 参数用于获取文章页面内容</span></span><br><span class="line">res = requests.get(<span class="string">&#x27;xx文章网站xx&#x27;</span>, cookies=shared_cookies, headers=headers)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是，<strong>requests</strong> 请求之间的 <strong>cookie</strong> 不共享。因此，我们需要手动将登录过后的 <strong>cookie</strong> 传给爬取文章的请求。</p>
+<p>登录成功后，我们通过 <code>login_req.cookies</code> 拿到登录后的 <code>cookie</code>，赋值给变量 <code>shared_cookies</code>，然后将其传递给查看文章请求的 <code>cookies</code> 参数，这样查看文章也有了登录状态，让我们顺利解析页面。</p>
+<h1 id="session"><a href="#session" class="headerlink" title="session"></a>session</h1><p>因为 <strong>HTTP</strong> 是无状态的，在一次请求、响应结束过后，连接就断开了。再次发起请求时，之前的状态全都丢失了，服务器也不再“认识你”。</p>
+<p>有了 <strong>cookie</strong> 之后，我们可以将一些信息存到其中，比如用户身份信息等。但因为 <strong>cookie</strong> 容量有限，只有 <strong>4KB</strong>。因此，不可能将所有的用户信息都存到里面。这时候，<strong>session</strong> 就出现了。</p>
+<p><strong>session</strong> 相当于在服务器上建立的一份用户档案，<strong>cookie</strong> 中只要存储用户的身份信息，服务器通过身份信息在 <strong>session</strong> 中查询用户的其他信息。这样一来，我们的所有操作都会被保留。比如我们添加到购物车的商品，重新打开页面后仍会被保留。</p>
+<p>这么好用的东西，<strong>requests</strong> 库当然也支持。我们来看看官方文档中的关于 <strong>session</strong> 介绍：</p>
+<p><img src="/2023/12/23/Python-%E7%88%AC%E8%99%AB-%E7%88%AC%E8%99%AB%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E9%80%9F%E8%BF%87-4-%E6%A8%A1%E6%8B%9F%E7%99%BB%E5%BD%95/image-20231223193127920.png" alt="image-20231223193127920"></p>
+<p>文档说，我们可以通过 <strong>requests.Session()</strong> 创建一个 <strong>session</strong>，注意 <strong>S</strong> 要大写。然后我们就可以像使用 <strong>requests</strong> 一样使用 <strong>session</strong> 对象了，<strong>get()<strong>、</strong>post()</strong> 等方法统统都有，只需将原先的 <strong>requests</strong> 替换成我们创建的 <strong>session</strong> 即可。</p>
+<p>有了 <strong>session</strong>，多个请求之间就可以共享 <strong>cookie</strong> 了，后续请求便不再需要传 <strong>cookies</strong> 参数。</p>
+<p>除了 <strong>cookies</strong> 参数每次都要传很麻烦，<strong>headers</strong> 参数每次都要传也很麻烦。如果想要共享 <strong>headers</strong> 的话，可以像下面这样写：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">session = requests.Session()</span><br><span class="line">headers = &#123;</span><br><span class="line">  <span class="string">&#x27;user-agent&#x27;</span>: <span class="string">&#x27;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment"># 设置 session 的全局 headers</span></span><br><span class="line">session.headers.update(headers)</span><br><span class="line"><span class="comment"># 默认使用全局的 headers</span></span><br><span class="line">session.get(<span class="string">&#x27;&#x27;</span>)</span><br><span class="line"><span class="comment"># 自定义 headers</span></span><br><span class="line">custom_headers = &#123; <span class="string">&#x27;referer&#x27;</span>: <span class="string">&#x27;&#x27;</span> &#125;</span><br><span class="line">session.get(<span class="string">&#x27;&#x27;</span>, headers=custom_headers)</span><br><span class="line"><span class="comment"># 既有全局的 user-agent 也有自定义的 referer</span></span><br></pre></td></tr></table></figure>
+
+<p>我们可以通过 <strong>session.headers.update()</strong> 方法来更新全局的 <strong>headers</strong>，通过该 <strong>session</strong> 发送的请求都会使用我们设置的全局 <strong>headers</strong>。</p>
+<p>当全局 <strong>headers</strong> 不满足我们的需求时，也可以给某个请求单独设置 <strong>headers</strong>。这时，该请求将同时拥有全局和单独设置的 <strong>headers</strong>。如果两个 <strong>headers</strong> 里的字段重复，会优先使用单独设置的 <strong>headers</strong> 字段的值。</p>
+<p>因此，之前发的代码可以改写成下面这样：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"></span><br><span class="line">headers = &#123;</span><br><span class="line">  <span class="string">&#x27;user-agent&#x27;</span>: <span class="string">&#x27;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment"># 登录参数</span></span><br><span class="line">login_data = &#123;</span><br><span class="line">  <span class="string">&#x27;log&#x27;</span>: <span class="string">&#x27;xx用户名xx&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;pwd&#x27;</span>: <span class="string">&#x27;xx密码xx&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;wp-submit&#x27;</span>: <span class="string">&#x27;登录&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;redirect_to&#x27;</span>: <span class="string">&#x27;xx登录网站xx&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;testcookie&#x27;</span>: <span class="string">&#x27;1&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">session = requests.Session()</span><br><span class="line">session.headers.update(headers)</span><br><span class="line"><span class="comment"># 使用 session 登录</span></span><br><span class="line">login_req = session.post(<span class="string">&#x27;xx请求网站xx&#x27;</span>, data=login_data)</span><br><span class="line"><span class="comment"># 使用 session 获得 Python 分类文章</span></span><br><span class="line">comment_req = session.get(<span class="string">&#x27;xx文章网站xx&#x27;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>相比之前，我们的代码又简洁了很多, 并且在向同一个网站发送多个请求时，使用 <strong>session</strong> 可以复用 TCP 连接，从而带来显著的性能提升.</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://bailog.top">xxbaizero</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://bailog.top/2023/12/23/Python-%E7%88%AC%E8%99%AB-%E7%88%AC%E8%99%AB%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E9%80%9F%E8%BF%87-4-%E6%A8%A1%E6%8B%9F%E7%99%BB%E5%BD%95/">http://bailog.top/2023/12/23/Python-%E7%88%AC%E8%99%AB-%E7%88%AC%E8%99%AB%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E9%80%9F%E8%BF%87-4-%E6%A8%A1%E6%8B%9F%E7%99%BB%E5%BD%95/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://bailog.top" target="_blank">bai的小窝</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Python/">Python</a><a class="post-meta__tags" href="/tags/%E7%88%AC%E8%99%AB/">爬虫</a></div><div class="post_share"><div class="social-share" data-image="/img/background/dream.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/12/23/Python-%E7%88%AC%E8%99%AB-%E7%88%AC%E8%99%AB%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E9%80%9F%E8%BF%87-5-%E6%B5%8F%E8%A7%88%E5%99%A8%E8%87%AA%E5%8A%A8%E5%8C%96/" title="Python笔记(五)-浏览器自动化"><img class="cover" src="/img/background/season4.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Python笔记(五)-浏览器自动化</div></div></a></div><div class="next-post pull-right"><a href="/2023/12/20/CPP-CPP%E7%9F%A5%E8%AF%86%E6%B1%87%E6%80%BB-CPP%E2%80%94%E9%9D%A2%E5%AF%B9%E5%AF%B9%E8%B1%A1/" title="CPP—面对对象"><img class="cover" src="/img/background/season4.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">CPP—面对对象</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/12/19/Python-%E7%88%AC%E8%99%AB-%E7%88%AC%E8%99%AB%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E9%80%9F%E8%BF%87-1-%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" title="Python爬虫笔记(一)—基本知识"><img class="cover" src="/img/background/season4.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-19</div><div class="title">Python爬虫笔记(一)—基本知识</div></div></a></div><div><a href="/2023/12/19/Python-%E7%88%AC%E8%99%AB-%E7%88%AC%E8%99%AB%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E9%80%9F%E8%BF%87-2-%E7%88%AC%E8%99%AB%E4%B8%89%E6%AD%A5%E9%AA%A4%E7%AE%80%E8%AE%B2/" title="Python爬虫笔记(二)—爬虫三步骤简讲-静态网站爬取"><img class="cover" src="/img/background/dream2.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-19</div><div class="title">Python爬虫笔记(二)—爬虫三步骤简讲-静态网站爬取</div></div></a></div><div><a href="/2023/12/19/Python-%E7%88%AC%E8%99%AB-%E7%88%AC%E8%99%AB%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E9%80%9F%E8%BF%87-3-%E5%8A%A8%E6%80%81%E7%BD%91%E7%AB%99%E7%88%AC%E5%8F%96/" title="Python爬虫笔记(三)—动态网站爬取"><img class="cover" src="/img/background/season1.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-19</div><div class="title">Python爬虫笔记(三)—动态网站爬取</div></div></a></div><div><a href="/2023/12/23/Python-%E7%88%AC%E8%99%AB-%E7%88%AC%E8%99%AB%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E9%80%9F%E8%BF%87-5-%E6%B5%8F%E8%A7%88%E5%99%A8%E8%87%AA%E5%8A%A8%E5%8C%96/" title="Python笔记(五)-浏览器自动化"><img class="cover" src="/img/background/season4.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-23</div><div class="title">Python笔记(五)-浏览器自动化</div></div></a></div><div><a href="/2023/12/14/Python-Python%E2%80%94%E5%AD%97%E7%AC%A6%E4%B8%B2-%E5%A4%9A%E6%80%81%E5%87%BD%E6%95%B0%EF%BC%88%E6%8E%A5%E5%8F%A3%EF%BC%89%EF%BC%8C%E7%89%B9%E6%AE%8A%E6%96%B9%E6%B3%95%E5%90%8D%E7%A7%B0-61A-Fall-2023-Lecture-20%E2%80%94%E2%80%94Inheritance-Python%E2%80%94%E5%AD%97%E7%AC%A6%E4%B8%B2-%E5%A4%9A%E6%80%81%E5%87%BD%E6%95%B0%EF%BC%88%E6%8E%A5%E5%8F%A3%EF%BC%89%EF%BC%8C%E7%89%B9%E6%AE%8A%E6%96%B9%E6%B3%95%E5%90%8D%E7%A7%B0-61A-Fall-2023-Lecture-20%E2%80%94%E2%80%94Inheritance/" title="Python—字符串,多态函数（接口），特殊方法名称[61A Fall 2023 Lecture 20——Inheritance]"><img class="cover" src="/img/background/season1.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-14</div><div class="title">Python—字符串,多态函数（接口），特殊方法名称[61A Fall 2023 Lecture 20——Inheritance]</div></div></a></div><div><a href="/2023/12/14/Python-tree%E9%80%92%E5%BD%92-tree%E9%80%92%E5%BD%92/" title="tree递归"><img class="cover" src="/img/background/season4.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-14</div><div class="title">tree递归</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/ico/avatar_1.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">xxbaizero</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">12</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">6</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxbaizero0"><i class="fab fa-github"></i><span>中国矿业大学本科生 23级</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/xxbaizero0" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:2597453011@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到bai的小屋</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#POST%E8%AF%B7%E6%B1%82%E7%99%BB%E5%BD%95"><span class="toc-number">1.</span> <span class="toc-text">POST请求登录</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#cookie"><span class="toc-number">2.</span> <span class="toc-text">cookie</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8cookies%E6%A8%A1%E6%8B%9F%E7%99%BB%E5%BD%95"><span class="toc-number">3.</span> <span class="toc-text">使用cookies模拟登录</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#session"><span class="toc-number">4.</span> <span class="toc-text">session</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 By xxbaizero</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"></div><script defer src="https://npm.elemecdn.com/jquery@latest/dist/jquery.min.js"></script><script defer data-pjax src="/js/cat.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="20" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><!-- hexo injector body_end start --> <script data-pjax>if(document.getElementById('recent-posts') && (location.pathname ==='/'|| '/' ==='all')){
+    var parent = document.getElementById('recent-posts');
+    var child = '<div class="recent-post-item" style="width:100%;height: auto"><div id="catalog_magnet"><div class="magnet_item"><a class="magnet_link" href="http://bailog.top/categories/C/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📚 C++笔记 (3)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://bailog.top/categories/CS自学笔记/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🎮 CS自学笔记 (2)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://bailog.top/categories/Python/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🐱‍👓 Python学习笔记 (7)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item" style="visibility: hidden"></div><a class="magnet_link_more"  href="http://bailog.top/categories" style="flex:1;text-align: center;margin-bottom: 10px;">查看更多...</a></div></div>';
+    console.log('已挂载magnet')
+    parent.insertAdjacentHTML("afterbegin",child)}
+     </script><style>#catalog_magnet{flex-wrap: wrap;display: flex;width:100%;justify-content:space-between;padding: 10px 10px 0 10px;align-content: flex-start;}.magnet_item{flex-basis: calc(50% - 5px);background: #f2f2f2;margin-bottom: 10px;border-radius: 8px;transition: all 0.2s ease-in-out;}.magnet_item:hover{background: #69e8f2}.magnet_link_more{color:#555}.magnet_link{color:black}.magnet_link:hover{color:white}@media screen and (max-width: 600px) {.magnet_item {flex-basis: 100%;}}.magnet_link_context{display:flex;padding: 10px;font-size:16px;transition: all 0.2s ease-in-out;}.magnet_link_context:hover{padding: 10px 20px;}</style>
+    <style></style><script data-pjax>
+  function butterfly_footer_beautify_injector_config(){
+    var parent_div_git = document.getElementById('footer-wrap');
+    var item_html = '<div id="workboard"></div><p id="ghbdages"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px" data-title="博客框架为Hexo_v6.2.0" title=""><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&amp;logo=hexo" alt=""/></a><a class="github-badge" target="_blank" href="https://butterfly.js.org/" style="margin-inline:5px" data-title="主题版本Butterfly_v4.3.1" title=""><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&amp;logo=bitdefender" alt=""/></a><a class="github-badge" target="_blank" href="https://vercel.com/" style="margin-inline:5px" data-title="本站采用多线部署，主线路托管于Vercel" title=""><img src="https://img.shields.io/badge/Hosted-Vercel-brightgreen?style=flat&amp;logo=Vercel" alt=""/></a><a class="github-badge" target="_blank" href="https://dashboard.4everland.org/" style="margin-inline:5px" data-title="本站采用多线部署，备用线路托管于4EVERLAND" title=""><img src="https://img.shields.io/badge/Hosted-4EVERLAND-22DDDD?style=flat&amp;logo=IPFS" alt=""/></a><a class="github-badge" target="_blank" href="https://github.com/" style="margin-inline:5px" data-title="本站项目由Github托管" title=""><img src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&amp;logo=GitHub" alt=""/></a><a class="github-badge" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="margin-inline:5px" data-title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可" title=""><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&amp;logo=Claris" alt=""/></a></p>';
+    console.log('已挂载butterfly_footer_beautify')
+    parent_div_git.insertAdjacentHTML("beforeend",item_html)
+    }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_footer_beautify_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_footer_beautify_injector_config();
+  }
+  </script><script async src="https://unpkg.zhimg.com/hexo-butterfly-footer-beautify@1.0.0/lib/runtime.min.js"></script><!-- hexo injector body_end end --></body></html>
