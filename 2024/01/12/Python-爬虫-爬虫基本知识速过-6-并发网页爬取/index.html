@@ -1,0 +1,350 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Python爬虫笔记(六)--并发网页爬取 | bai的小窝</title><meta name="author" content="xxbaizero"><meta name="copyright" content="xxbaizero"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="什么叫并发？第一个例子我们用 requests 成功请求一个网页，实际上 requests 做了三件事：  根据链接、参数等组合成一个请求；  把这个请求发往要爬取的网站，等待网站响应；  网站响应后，把结果包装成一个响应对象方便我们使用。    其中步骤 2 花费的时间是最长的，取决于被爬网站的性能，这个时间可能达到几十到几百毫秒。相比之下，步骤 1、3 可能只需 1 毫秒左右的时间，比上面这张">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python爬虫笔记(六)--并发网页爬取">
+<meta property="og:url" content="http://bailog.top/2024/01/12/Python-%E7%88%AC%E8%99%AB-%E7%88%AC%E8%99%AB%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E9%80%9F%E8%BF%87-6-%E5%B9%B6%E5%8F%91%E7%BD%91%E9%A1%B5%E7%88%AC%E5%8F%96/index.html">
+<meta property="og:site_name" content="bai的小窝">
+<meta property="og:description" content="什么叫并发？第一个例子我们用 requests 成功请求一个网页，实际上 requests 做了三件事：  根据链接、参数等组合成一个请求；  把这个请求发往要爬取的网站，等待网站响应；  网站响应后，把结果包装成一个响应对象方便我们使用。    其中步骤 2 花费的时间是最长的，取决于被爬网站的性能，这个时间可能达到几十到几百毫秒。相比之下，步骤 1、3 可能只需 1 毫秒左右的时间，比上面这张">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://bailog.top/img/background/dream.jpg">
+<meta property="article:published_time" content="2024-01-12T13:58:59.000Z">
+<meta property="article:modified_time" content="2024-01-12T17:17:44.940Z">
+<meta property="article:author" content="xxbaizero">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="爬虫">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://bailog.top/img/background/dream.jpg"><link rel="shortcut icon" href="/img/ico/%E5%9C%A3%E8%AF%9E%E6%A0%91.png"><link rel="canonical" href="http://bailog.top/2024/01/12/Python-%E7%88%AC%E8%99%AB-%E7%88%AC%E8%99%AB%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E9%80%9F%E8%BF%87-6-%E5%B9%B6%E5%8F%91%E7%BD%91%E9%A1%B5%E7%88%AC%E5%8F%96/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  noticeOutdate: {"limitDay":500,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":230},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体中文","cht_to_chs":"你已切换为简体中文","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Python爬虫笔记(六)--并发网页爬取',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-01-13 01:17:44'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const now = new Date()
+          const hour = now.getHours()
+          const isNight = hour <= 6 || hour >= 18
+          if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+          else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/cat.css"><div id="myscoll"></div><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-double-row-display@1.00/cardlistpost.min.css"/>
+<style>#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags:before {content:"\A";
+  white-space: pre;}#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags > .article-meta__separator{display:none}</style>
+<link rel="stylesheet" href="https://unpkg.zhimg.com/hexo-butterfly-footer-beautify@1.0.0/lib/runtime.min.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/ico/avatar_1.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">13</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">6</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/diary"><i class="fa-fw fas fa-book"></i><span> 日记</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="bai的小窝"><span class="site-name">bai的小窝</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/diary"><i class="fa-fw fas fa-book"></i><span> 日记</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">Python爬虫笔记(六)--并发网页爬取</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-01-12T13:58:59.000Z" title="发表于 2024-01-12 21:58:59">2024-01-12</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-01-12T17:17:44.940Z" title="更新于 2024-01-13 01:17:44">2024-01-13</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Python/">Python</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Python/%E7%88%AC%E8%99%AB/">爬虫</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>13分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Python爬虫笔记(六)--并发网页爬取"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="什么叫并发？"><a href="#什么叫并发？" class="headerlink" title="什么叫并发？"></a>什么叫并发？</h1><h2 id="第一个例子"><a href="#第一个例子" class="headerlink" title="第一个例子"></a>第一个例子</h2><p>我们用 <strong>requests</strong> 成功请求一个网页，实际上 <strong>requests</strong> 做了三件事：</p>
+<ul>
+<li><p>根据链接、参数等组合成一个请求；</p>
+</li>
+<li><p>把这个请求发往要爬取的网站，等待网站响应；</p>
+</li>
+<li><p>网站响应后，把结果包装成一个响应对象方便我们使用。</p>
+<p><img src="/2024/01/12/Python-%E7%88%AC%E8%99%AB-%E7%88%AC%E8%99%AB%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E9%80%9F%E8%BF%87-6-%E5%B9%B6%E5%8F%91%E7%BD%91%E9%A1%B5%E7%88%AC%E5%8F%96/%E8%A7%A3%E6%9E%90%E9%A1%BA%E5%BA%8F.png" alt="解析顺序"></p>
+</li>
+</ul>
+<p>其中步骤 2 花费的时间是最长的，取决于被爬网站的性能，这个时间可能达到几十到几百毫秒。相比之下，步骤 1、3 可能只需 1 毫秒左右的时间，比上面这张图的对比还要更夸张。</p>
+<p>对这个程序来说：绿色部分代表代码是在 <strong>运行</strong> 的，黄色部分（步骤 2）代表程序是 <strong>空闲</strong> 的，因为在等待网站响应。</p>
+<p>所以，爬虫代码真正运行的时间很短，大部分时间都浪费在等待网站响应上了。</p>
+<h2 id="第二个例子"><a href="#第二个例子" class="headerlink" title="第二个例子"></a>第二个例子</h2><p>我们连续用 <strong>requests</strong> 请求三个网页 A、B、C，执行的过程如下图所示：</p>
+<p><img src="/2024/01/12/Python-%E7%88%AC%E8%99%AB-%E7%88%AC%E8%99%AB%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E9%80%9F%E8%BF%87-6-%E5%B9%B6%E5%8F%91%E7%BD%91%E9%A1%B5%E7%88%AC%E5%8F%96/%E8%BF%9E%E7%BB%AD%E8%A7%A3%E6%9E%90%E4%BE%8B%E5%AD%90.png" alt="连续解析例子"></p>
+<p>同样的，每次步骤 1、3 和 2 所花费时间的差异很大。我们假设步骤 1 和步骤 3 都要花费 1 毫秒，步骤 2 要花费 98 毫秒。那么一个网页要花费 100 毫秒，爬取 A、B、C 三个网页一共花费了 300 毫秒。</p>
+<p>注意，这时我们其实遇到一个问题：整个过程的 300 毫秒里，代码运行的时间只有 6 毫秒，剩下有 294 毫秒我们的程序只是空闲在那里等待着网站响应。那么我们有没有办法利用起来这被浪费的 294 毫秒呢？</p>
+<h2 id="第三个例子"><a href="#第三个例子" class="headerlink" title="第三个例子"></a>第三个例子</h2><p>想一想，第一个例子里，顺序必须是 1-2-3，因为步骤 2 依赖步骤 1 的结果，步骤 3 依赖步骤 2 的结果。但是第二个例子里，步骤为什么必须是 A1-A2-A3-B1-B2-B3-C1-C2-C3 呢？「爬取网页 B」的步骤 1 其实和「爬取网页 A」的步骤 3 并没有依赖关系。</p>
+<p>所以，一个并发的程序，步骤是这样的：</p>
+<p><img src="/2024/01/12/Python-%E7%88%AC%E8%99%AB-%E7%88%AC%E8%99%AB%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E9%80%9F%E8%BF%87-6-%E5%B9%B6%E5%8F%91%E7%BD%91%E9%A1%B5%E7%88%AC%E5%8F%96/%E7%AC%AC%E4%B8%89%E4%B8%AA%E4%BE%8B%E5%AD%90.png" alt="第三个例子"></p>
+<p>这张图是什么意思呢？其实就是：在「爬取网页 A」这个过程进行到步骤 2 的时候，程序空闲下来了，这时我们让「爬取网页 B」的步骤 1 开始执行；同样的，「爬取网页 B」的步骤 1 执行完，程序又空闲下来，于是我们安排「爬取网页 C」开始执行。</p>
+<p>依然假设步骤 1 和 3 需要花费 1 毫秒，步骤 2 花费 98 毫秒。算一算，整个过程花了多长时间呢？</p>
+<p>答案是 102 毫秒。更妙的是，我们要爬 10 个或者 20 个网页，现在预计分别只需要 109 毫秒和 119 毫秒。而假如我们用第二个例子里的方式运行，则分别需要 1000 毫秒和 2000 毫秒！</p>
+<p>可以看到，我们仅仅是利用了爬虫等待网站响应的空闲时间，爬虫的效率就提升了数十倍。当爬取数据量更大时，爬虫效率提升会更加的显著。</p>
+<h2 id="回到问题：什么叫并发？"><a href="#回到问题：什么叫并发？" class="headerlink" title="回到问题：什么叫并发？"></a>回到问题：什么叫并发？</h2><p>上面第二个例子就 <strong>不是并发</strong>：我要做三件事，然后我一件一件完成它们。</p>
+<p>上面的第三个例子就 <strong>是并发</strong>：我们明明要做三件事，但是在这段时间内，我们交错着做这三件事，就好像在 <strong>同时做这些事</strong> ！</p>
+<p>而上面第一个例子里，我们只需要做一件事情，这时不管我们写并发的代码或者普通的代码，它总是步骤 1-2-3 这样被执行完，没有什么区别。</p>
+<p>其实，我们生活中就有很多并发的例子。比如：你早上起床先把米放到锅里煮粥，你肯定不会傻傻地一直等着粥煮好。在粥煮的这段时间里，你肯定会去洗漱、打扫房间等。等你洗漱、打扫完毕，粥也煮好了。</p>
+<p>上面这种情况，在计算机中被称为 <strong>并发</strong>。</p>
+<blockquote>
+<p>耗时例子</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Adapter</span>(requests.adapters.HTTPAdapter):</span><br><span class="line">  <span class="keyword">def</span> <span class="title function_">send</span>(<span class="params">self, *args, **kwargs</span>):</span><br><span class="line">    <span class="keyword">global</span> start</span><br><span class="line">    <span class="built_in">print</span>(</span><br><span class="line">      <span class="string">&quot;步骤 1 结束，耗时&quot;</span>,</span><br><span class="line">      <span class="built_in">round</span>((time.time() - start) * <span class="number">1000</span>),</span><br><span class="line">      <span class="string">&quot;毫秒&quot;</span></span><br><span class="line">    )</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">super</span>().send(*args, **kwargs)</span><br><span class="line"></span><br><span class="line">s = requests.Session()</span><br><span class="line">s.mount(<span class="string">&quot;https://&quot;</span>, Adapter())</span><br><span class="line">start = time.time()</span><br><span class="line">r = s.get(<span class="string">&#x27;https://www.baidu.com&#x27;</span>)</span><br><span class="line">end = time.time()</span><br><span class="line"><span class="built_in">print</span>(</span><br><span class="line">  <span class="string">&quot;步骤 2 结束，耗时&quot;</span>,</span><br><span class="line">  <span class="built_in">round</span>(r.elapsed.total_seconds() * <span class="number">1000</span>),</span><br><span class="line">  <span class="string">&quot;毫秒&quot;</span></span><br><span class="line">)</span><br><span class="line"><span class="built_in">print</span>(</span><br><span class="line">  <span class="string">&quot;步骤 3 结束，耗时&quot;</span>,</span><br><span class="line">  <span class="built_in">int</span>((end -start - r.elapsed.total_seconds()) * <span class="number">1000</span>),</span><br><span class="line">  <span class="string">&quot;毫秒&quot;</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>结果：</p>
+<p>步骤 1 结束，耗时 3 毫秒</p>
+<p>步骤 2 结束，耗时 79 毫秒</p>
+<p>步骤 3 结束，耗时 3 毫秒</p>
+</blockquote>
+<h1 id="并发和多线程"><a href="#并发和多线程" class="headerlink" title="并发和多线程"></a>并发和多线程</h1><p>在上一节中，我们理解了是什么并发。总的来说就是：在一段时间里，我们同时做多件事情。</p>
+<p>并发的结果看起来确实很好，但是前面例子三的步骤看起来很复杂，我们实际编写代码的时候难道要考虑计算机将事情 A 做得怎么样了，有没有空闲？</p>
+<h2 id="操作系统赋予你的能力：多线程"><a href="#操作系统赋予你的能力：多线程" class="headerlink" title="操作系统赋予你的能力：多线程"></a>操作系统赋予你的能力：多线程</h2><p>实际上并非如此，操作系统为我们提供了两个东西：<strong>进程</strong> 和 <strong>线程</strong>。利用这两样东西，我们可以轻易地实现代码的并发，而不用考虑这些细枝末节。现在大家可以在电脑上同时登 QQ、听音乐、刷微博，都得益于操作系统提供了进程和线程给这些程序使用。</p>
+<p>比如，我们只要把任务 A 和任务 B 两个任务放到两个线程里，操作系统就会“智能”地让任务 A 执行一会，再让任务 B 执行一会，而不会一直等待在那里。这样，一段时间里我们可以看作任务 A 和任务 B 都在运行。</p>
+<p><img src="/2024/01/12/Python-%E7%88%AC%E8%99%AB-%E7%88%AC%E8%99%AB%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E9%80%9F%E8%BF%87-6-%E5%B9%B6%E5%8F%91%E7%BD%91%E9%A1%B5%E7%88%AC%E5%8F%96/%E7%BA%BF%E7%A8%8B.png" alt="线程"></p>
+<blockquote>
+<p>拓展：并发程序有很多种方式可以编写，除了上面提到的 <strong>进程</strong>、<strong>线程</strong>，常见的还有 <strong>协程</strong>、<strong>函数式编程</strong> 等等。进程和线程都是最常见的方式，其中线程又比进程更简单、轻量，所以更适合在一个简单程序里使用。</p>
+</blockquote>
+<h2 id="多线程程序初窥"><a href="#多线程程序初窥" class="headerlink" title="多线程程序初窥"></a>多线程程序初窥</h2><ul>
+<li><p>最简单、不并行的爬虫:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line"><span class="comment"># 假设我们要爬取 30 个网页</span></span><br><span class="line">urls = [<span class="string">&quot;https://wpblog.x0y1.com/?p=34&quot;</span>] * <span class="number">30</span></span><br><span class="line">session = requests.Session()</span><br><span class="line"></span><br><span class="line">start = time.time()</span><br><span class="line"></span><br><span class="line">results = []</span><br><span class="line"><span class="keyword">for</span> url <span class="keyword">in</span> urls:</span><br><span class="line">  r = session.get(url)</span><br><span class="line">  results.append(r.text)</span><br><span class="line"></span><br><span class="line">end = time.time()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;花费&quot;</span>, end-start, <span class="string">&quot;秒&quot;</span>)</span><br><span class="line"><span class="comment"># 输出：花费 15 秒</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>多线程:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> concurrent <span class="keyword">import</span> futures</span><br><span class="line"></span><br><span class="line"><span class="comment"># 假设我们要爬取 30 个网页</span></span><br><span class="line">urls = [<span class="string">&quot;https://wpblog.x0y1.com/?p=34&quot;</span>] * <span class="number">30</span></span><br><span class="line">executor = futures.ThreadPoolExecutor(max_workers=<span class="number">5</span>)</span><br><span class="line">session = requests.Session()</span><br><span class="line"></span><br><span class="line">start = time.time()</span><br><span class="line"></span><br><span class="line">fs = []</span><br><span class="line"><span class="keyword">for</span> url <span class="keyword">in</span> urls:</span><br><span class="line">  f = executor.submit(session.get, url)</span><br><span class="line">  fs.append(f)</span><br><span class="line"></span><br><span class="line">futures.wait(fs)</span><br><span class="line">result = [f.result().text <span class="keyword">for</span> f <span class="keyword">in</span> fs]</span><br><span class="line">end = time.time()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;花费&quot;</span>, end-start, <span class="string">&quot;秒&quot;</span>)</span><br><span class="line"><span class="comment"># 输出：花费 4 秒</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="代码详解"><a href="#代码详解" class="headerlink" title="代码详解"></a>代码详解</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="comment"># 导入 concurrent.futures 这个包</span></span><br><span class="line"><span class="keyword">from</span> concurrent <span class="keyword">import</span> futures</span><br><span class="line"></span><br><span class="line">urls = [<span class="string">&quot;https://wpblog.x0y1.com/?p=34&quot;</span>] * <span class="number">30</span></span><br><span class="line"><span class="comment"># 初始化一个线程池，最大的同时任务数是 5</span></span><br><span class="line">executor = futures.ThreadPoolExecutor(max_workers=<span class="number">5</span>)</span><br><span class="line">session = requests.Session()</span><br><span class="line"></span><br><span class="line">fs = []</span><br><span class="line"><span class="keyword">for</span> url <span class="keyword">in</span> urls:</span><br><span class="line">  <span class="comment"># 提交任务到线程池</span></span><br><span class="line">  f = executor.submit(session.get, url)</span><br><span class="line">  fs.append(f)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 等待这些任务全部完成</span></span><br><span class="line">futures.wait(fs)</span><br><span class="line"><span class="comment"># 获取任务的结果</span></span><br><span class="line">result = [f.result().text <span class="keyword">for</span> f <span class="keyword">in</span> fs]</span><br></pre></td></tr></table></figure>
+
+<h3 id="第一部分代码，初始化一个线程池"><a href="#第一部分代码，初始化一个线程池" class="headerlink" title="第一部分代码，初始化一个线程池"></a>第一部分代码，初始化一个线程池</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 导入 concurrent.futures 这个包</span></span><br><span class="line"><span class="keyword">from</span> concurrent <span class="keyword">import</span> futures</span><br><span class="line"></span><br><span class="line"><span class="comment"># 初始化一个线程池，最大的同时任务数是 5</span></span><br><span class="line">executor = futures.ThreadPoolExecutor(max_workers=<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+
+<p><strong>concurrent</strong> 是 Python 自带的库，这个库具有线程池和进程池、管理并行编程任务、处理非确定性的执行流程、进程&#x2F;线程同步等功能。</p>
+<h3 id="问题一：线程池是什么？"><a href="#问题一：线程池是什么？" class="headerlink" title="问题一：线程池是什么？"></a>问题一：线程池是什么？</h3><p>前面我们讲过，线程是操作系统提供给我们的能力，可以把不同的任务放到不同的线程里，这样它们可以 <strong>同时</strong> 运行。</p>
+<p>但是这个能力并不是无限好用、无脑使用的。</p>
+<p>第一个问题是，一台电脑&#x2F;手机能同时运行多少线程取决于它的处理器、内存的配置。如果运行的线程数太多，操作系统在安排这些线程的执行顺序等事情上要花费很大的代价。</p>
+<p>第二个问题，要请你回忆一下 <strong>什么叫并发</strong> 的第三个例子。</p>
+<p><img src="/2024/01/12/Python-%E7%88%AC%E8%99%AB-%E7%88%AC%E8%99%AB%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E9%80%9F%E8%BF%87-6-%E5%B9%B6%E5%8F%91%E7%BD%91%E9%A1%B5%E7%88%AC%E5%8F%96/%E7%AC%AC%E4%B8%89%E4%B8%AA%E4%BE%8B%E5%AD%90.png" alt="第三个例子"></p>
+<p>在这个例子里，之所以切换到第二个任务可以提高我们的效率，是因为第一个任务已经处于空闲状态。</p>
+<p>假如我们的线程数非常多，步骤 1 可以一直往图的右下堆叠，直到占满了空闲时间。这时再加线程对爬虫而言是没有意义的，任务同样要排队来运行。</p>
+<p><img src="/2024/01/12/Python-%E7%88%AC%E8%99%AB-%E7%88%AC%E8%99%AB%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E9%80%9F%E8%BF%87-6-%E5%B9%B6%E5%8F%91%E7%BD%91%E9%A1%B5%E7%88%AC%E5%8F%96/%E7%BA%BF%E7%A8%8B%E6%8E%92%E9%98%9F.png" alt="线程排队"></p>
+<p>所以线程池是什么？</p>
+<p>线程池限制了最多同时运行的线程数。比如我们初始化一个最大任务数为 5 的线程池，这样即使我们提交了 100 任务到这个池子里，同时在运行的也只有五个。而一个任务被完成后，也会被移出线程池腾出空间。所以，用线程池可以避免上面提到的两个问题。</p>
+<p>其实还有第三个问题，就是考虑到被爬网站的性能和其反爬机制，我们也不应该让机器过快地去运行爬虫。线程池的数量建议可以在 10 左右，电脑性能好而且不担心被爬取网站封禁的可以考虑加到几十，性能差的可以考虑降到 5。</p>
+<h3 id="第二部分代码，提交任务到线程池"><a href="#第二部分代码，提交任务到线程池" class="headerlink" title="第二部分代码，提交任务到线程池"></a>第二部分代码，提交任务到线程池</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">fs = []</span><br><span class="line"><span class="keyword">for</span> url <span class="keyword">in</span> urls:</span><br><span class="line">  <span class="comment"># 提交任务到线程池</span></span><br><span class="line">  f = executor.submit(session.get, url)</span><br><span class="line">  fs.append(f)</span><br></pre></td></tr></table></figure>
+
+<p><code>executor</code> 就是我们刚刚初始化的线程池，我们调用 <code>executor</code> 的 <code>submit()</code> 方法往里面提交任务。第一个参数 <code>session.get</code> 是提交要运行的函数，第二个参数 <code>url</code> 是提交的函数运行时的参数。</p>
+<p><code>executor.submit()</code> 方法会给我们一个返回值，它是一个 <strong>future 对象</strong>，我们把它赋值给变量 f。</p>
+<h3 id="问题二：future-对象是什么？"><a href="#问题二：future-对象是什么？" class="headerlink" title="问题二：future 对象是什么？"></a>问题二：future 对象是什么？</h3><p>future 这个单词的原意是 <strong>未来</strong>。在并发编程的领域，future 对象这个东西通常保存着函数调用完成时的结果。</p>
+<p>我们结合实例再试着理解一遍。</p>
+<p>比如在上面我们告诉线程池，要调用 <code>session.get</code> 方法，参数为 <code>url</code>。如果线程池还没满，程序就启动一个线程开始执行它；如果线程池满了，就等待有任务完成被挪出线程池，再把这个任务放到那个线程上运行。</p>
+<p>但是我们不知道 <code>session.get(url)</code> 在多久之后被完成，那我们要的结果保存在什么地方呢？答案就是 <strong>future 对象</strong>。如果某一个任务已经完成，那么通过这个任务被提交时返回给我们的 future 对象，就可以拿到这个任务的结果。</p>
+<h3 id="第三部分代码，等待任务全部完成"><a href="#第三部分代码，等待任务全部完成" class="headerlink" title="第三部分代码，等待任务全部完成"></a>第三部分代码，等待任务全部完成</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 等待这些任务全部完成</span></span><br><span class="line">futures.wait(fs)</span><br></pre></td></tr></table></figure>
+
+<p>fs 是保存了上面所有任务的 future 对象的列表，<code>futures.wait()</code> 方法可以等待直到 fs 里面所有的 future 对象都有结果为止。</p>
+<blockquote>
+<p>Tips：这一步如果没有执行，去获取某个任务的结果时同样会等待它完成，但是逻辑上可能让人困惑。所以在这里直接等待所有任务都完成，我们再进行下一步。</p>
+</blockquote>
+<h3 id="第四部分代码，获取所有任务的结果"><a href="#第四部分代码，获取所有任务的结果" class="headerlink" title="第四部分代码，获取所有任务的结果"></a>第四部分代码，获取所有任务的结果</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 获取任务的结果</span></span><br><span class="line">result = [f.result().text <span class="keyword">for</span> f <span class="keyword">in</span> fs]</span><br></pre></td></tr></table></figure>
+
+<p>fs 是保存了上面所有任务的 future 对象的列表，我们遍历所有任务的 future 对象，调用 future 对象的 <code>result()</code> 方法，就能得到任务的结果。</p>
+<p>那结果是什么类型的呢？取决于提交的任务。比如我们提交的是 <code>session.get(url)</code>，它的返回值是一个 response 对象，那我们调用它的 <code>text</code> 属性就能得到响应的完整内容了。</p>
+<p><img src="/2024/01/12/Python-%E7%88%AC%E8%99%AB-%E7%88%AC%E8%99%AB%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E9%80%9F%E8%BF%87-6-%E5%B9%B6%E5%8F%91%E7%BD%91%E9%A1%B5%E7%88%AC%E5%8F%96/concurrent%E7%94%A8%E6%B3%95.png"></p>
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子:"></a>例子:</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">from</span> concurrent <span class="keyword">import</span> futures</span><br><span class="line"></span><br><span class="line">start = time.time()</span><br><span class="line">params = [<span class="number">17</span>, <span class="number">20</span>, <span class="number">30</span>, <span class="number">89</span>, <span class="number">23</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">slow_func</span>(<span class="params">param</span>):</span><br><span class="line">  time.sleep(<span class="number">2</span>)</span><br><span class="line">  <span class="keyword">return</span> param // <span class="number">4</span></span><br><span class="line"></span><br><span class="line">results = []</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 并发的代码-开始</span></span><br><span class="line"></span><br><span class="line">executor = futures.ThreadPoolExecutor(max_workers=<span class="number">5</span>)</span><br><span class="line">fs = []</span><br><span class="line"><span class="keyword">for</span> param <span class="keyword">in</span> params:</span><br><span class="line"> f = executor.submit(slow_func, param)</span><br><span class="line"> fs.append(f)</span><br><span class="line">futures.wait(fs)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 并发的代码-结束</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 需要补充的部分-开始</span></span><br><span class="line"><span class="keyword">for</span> f <span class="keyword">in</span> fs:</span><br><span class="line"> results.append(f.result())</span><br><span class="line"><span class="comment"># 需要补充的部分-结束</span></span><br><span class="line"></span><br><span class="line">end = time.time()</span><br><span class="line"><span class="built_in">print</span>(results)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;耗时&quot;</span>, end - start, <span class="string">&quot;秒&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>结果:</p>
+<p>[4, 5, 7, 22, 5]<br>耗时 2.009477376937866 秒</p>
+</blockquote>
+<h1 id="项目实战"><a href="#项目实战" class="headerlink" title="项目实战"></a>项目实战</h1><p>我们以爬取水木清华(<a target="_blank" rel="noopener" href="https://www.newsmth.net/nForum/#!board/Python?p=1">水木社区-Python的自由天空 (newsmth.net)</a>)的帖子内容为例，讲解多线程爬虫在实战中的运用。</p>
+<h2 id="链接分析"><a href="#链接分析" class="headerlink" title="链接分析"></a>链接分析</h2><p>初步判断该网站为动态网站，因此获取数据时需要分析<strong>XHR</strong>类型的类型请求</p>
+<p><img src="/2024/01/12/Python-%E7%88%AC%E8%99%AB-%E7%88%AC%E8%99%AB%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E9%80%9F%E8%BF%87-6-%E5%B9%B6%E5%8F%91%E7%BD%91%E9%A1%B5%E7%88%AC%E5%8F%96/%E5%88%97%E8%A1%A8%E7%B1%BB%E5%9E%8B%E8%AF%B7%E6%B1%82.png" alt="列表类型请求"></p>
+<p>我们可以发现，网站列表页 所请求的网站为原先网站后面后缀改成<code>?ajax&amp;p=1</code>。同理，我们可以得到文章页请求网站也是后缀加上?ajax</p>
+<p><img src="/2024/01/12/Python-%E7%88%AC%E8%99%AB-%E7%88%AC%E8%99%AB%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E9%80%9F%E8%BF%87-6-%E5%B9%B6%E5%8F%91%E7%BD%91%E9%A1%B5%E7%88%AC%E5%8F%96/%E6%96%87%E7%AB%A0%E8%AF%B7%E6%B1%82.png" alt="文章请求"></p>
+<h2 id="列表页结构分析"><a href="#列表页结构分析" class="headerlink" title="列表页结构分析"></a>列表页结构分析</h2><p><img src="/2024/01/12/Python-%E7%88%AC%E8%99%AB-%E7%88%AC%E8%99%AB%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E9%80%9F%E8%BF%87-6-%E5%B9%B6%E5%8F%91%E7%BD%91%E9%A1%B5%E7%88%AC%E5%8F%96/%E5%88%97%E8%A1%A8%E9%A1%B5.png" alt="列表页"></p>
+<p>我们只需筛选出<code>table.board-list.tiz &gt; tbody</code>中的<code>td.title_9</code>即可</p>
+<h2 id="内容页结构分析"><a href="#内容页结构分析" class="headerlink" title="内容页结构分析"></a>内容页结构分析</h2><ul>
+<li>标题:</li>
+</ul>
+<p><img src="/2024/01/12/Python-%E7%88%AC%E8%99%AB-%E7%88%AC%E8%99%AB%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E9%80%9F%E8%BF%87-6-%E5%B9%B6%E5%8F%91%E7%BD%91%E9%A1%B5%E7%88%AC%E5%8F%96/%E6%A0%87%E9%A2%98.png"></p>
+<p>筛选出<code>span.n-left</code>即可</p>
+<ul>
+<li>内容:</li>
+</ul>
+<p><img src="/2024/01/12/Python-%E7%88%AC%E8%99%AB-%E7%88%AC%E8%99%AB%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E9%80%9F%E8%BF%87-6-%E5%B9%B6%E5%8F%91%E7%BD%91%E9%A1%B5%E7%88%AC%E5%8F%96/%E5%86%85%E5%AE%B9.png" alt="内容"></p>
+<p>筛选出<code>div.b-content.corner</code>中的<code>div.a-warp.corner</code>中的每个<code>p.text</code>即可</p>
+<h2 id="代码编写"><a href="#代码编写" class="headerlink" title="代码编写"></a>代码编写</h2><p><strong>爬虫流程：</strong></p>
+<ul>
+<li><code>parse_list_url(text)</code>: 从列表页HTML文本中解析出每个文章的URL。</li>
+<li><code>parse_body_page(text)</code>: 从正文页HTML文本中解析出标题和内容。</li>
+<li><code>transform_url(path)</code>: 将相对路径转换为完整URL。</li>
+<li><code>get_list_url(list_url)</code>: 获取列表页数据，解析出链接，并转换成真实链接。</li>
+<li><code>get_page_content(real_url)</code>: 获取正文页内容，解析出标题和帖子。</li>
+</ul>
+<p><strong>主执行过程：</strong></p>
+<ul>
+<li>生成前10页的URL。</li>
+<li>初始化会话（<code>requests.Session()</code>）和线程池执行器（<code>futures.ThreadPoolExecutor</code>）。</li>
+<li>提交任务：获取每个列表页中文章的真实URL。</li>
+<li>等待任务完成。</li>
+<li>提取真实URL并提交新任务：获取每个帖子的标题和内容。</li>
+<li>等待任务完成。</li>
+<li>将结果保存在字典中，字典的键为帖子标题，值为帖子内容。</li>
+<li>打印输出结果中的帖子标题。</li>
+</ul>
+<h3 id="辅助函数"><a href="#辅助函数" class="headerlink" title="辅助函数"></a>辅助函数</h3><h4 id="提取单个列表页文章链接"><a href="#提取单个列表页文章链接" class="headerlink" title="提取单个列表页文章链接"></a>提取单个列表页文章链接</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">parse_list_url</span>(<span class="params">text</span>):</span><br><span class="line">    soup = BeautifulSoup(text, <span class="string">&#x27;html.parser&#x27;</span>)</span><br><span class="line">    tbody = soup.select(<span class="string">&#x27;table.board-list.tiz &gt; tbody&#x27;</span>)[<span class="number">0</span>]</span><br><span class="line">    urls = []</span><br><span class="line">    <span class="keyword">for</span> t <span class="keyword">in</span> tbody:</span><br><span class="line">        url = t.select(<span class="string">&#x27;td.title_9&#x27;</span>)[<span class="number">0</span>]</span><br><span class="line">        urls.append(url.a.attrs[<span class="string">&#x27;href&#x27;</span>])</span><br><span class="line">    <span class="keyword">return</span> urls</span><br></pre></td></tr></table></figure>
+
+<h4 id="提取单个文章标题与内容"><a href="#提取单个文章标题与内容" class="headerlink" title="提取单个文章标题与内容"></a>提取单个文章标题与内容</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">parse_body_page</span>(<span class="params">text</span>):</span><br><span class="line"></span><br><span class="line">    soup = BeautifulSoup(text, <span class="string">&#x27;html.parser&#x27;</span>)</span><br><span class="line">    title = soup.select(<span class="string">&#x27;span.n-left&#x27;</span>)[<span class="number">0</span>].text</span><br><span class="line">    contents = []</span><br><span class="line">    corner = soup.select(<span class="string">&#x27;div.b-content.corner&#x27;</span>)[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">for</span> icontent <span class="keyword">in</span> corner.select(<span class="string">&quot;div.a-wrap.corner&quot;</span>):</span><br><span class="line">        content = icontent.p.text</span><br><span class="line">        contents.append(content)</span><br><span class="line">    <span class="keyword">return</span> title,contents</span><br></pre></td></tr></table></figure>
+
+<h4 id="url转化"><a href="#url转化" class="headerlink" title="url转化"></a>url转化</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">transform_url</span>(<span class="params">path</span>):</span><br><span class="line">    URL_PREFIX = <span class="string">&#x27;http://www.mysmth.net&#x27;</span></span><br><span class="line">    path += <span class="string">&#x27;?ajax&#x27;</span></span><br><span class="line">    <span class="keyword">return</span> URL_PREFIX + path</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="主流程"><a href="#主流程" class="headerlink" title="主流程"></a>主流程</h3><ol>
+<li><p>生成前10页的url</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">list_urls = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="number">11</span>):</span><br><span class="line">  url = <span class="string">&#x27;http://www.mysmth.net/nForum/board/Python?ajax&amp;p=&#x27;</span></span><br><span class="line">  url += <span class="built_in">str</span>(i)</span><br><span class="line">  list_urls.append(url)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>初始化<code>session</code>和线程池执行器</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">session = requests.Session()</span><br><span class="line">executor = futures.ThreadPoolExecutor(max_workers=<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取列表页数据，解析出链接，并转换成真实链接。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">get_list_url</span>(<span class="params">list_url</span>):</span><br><span class="line">    res = session.get(list_url)</span><br><span class="line">    real_url = []</span><br><span class="line">    urls = parse_list_url(res.text)</span><br><span class="line">    <span class="keyword">for</span> url <span class="keyword">in</span> urls:</span><br><span class="line">        real_url.append(transform_url(url))</span><br><span class="line">    <span class="keyword">return</span> real_url</span><br><span class="line"></span><br><span class="line"><span class="comment"># 根据刚刚生成的十个列表页链接，开始提交任务</span></span><br><span class="line">content_urls = <span class="built_in">set</span>()</span><br><span class="line">fs = []</span><br><span class="line"><span class="keyword">for</span> list_url <span class="keyword">in</span> list_urls:</span><br><span class="line">    fs.append(executor.submit(get_list_url,list_url))</span><br><span class="line">futures.wait(fs)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> f <span class="keyword">in</span> fs:</span><br><span class="line">    <span class="keyword">for</span> url <span class="keyword">in</span> f.result():</span><br><span class="line">        content_urls.add(url)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取正文页内容，解析出标题和帖子。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">get_page_content</span>(<span class="params">real_url</span>):</span><br><span class="line">    res = session.get(real_url)</span><br><span class="line">    title,content = parse_body_page(res.text)</span><br><span class="line">    <span class="keyword">return</span> title,content</span><br><span class="line"><span class="comment"># 提交解析正文的任务</span></span><br><span class="line">fs = []</span><br><span class="line"><span class="keyword">for</span> url <span class="keyword">in</span> content_urls:</span><br><span class="line">    fs.append(executor.submit(get_page_content, url))</span><br><span class="line">futures.wait(fs)</span><br><span class="line"></span><br><span class="line">results = &#123;&#125;</span><br><span class="line"><span class="keyword">for</span> f <span class="keyword">in</span> fs:</span><br><span class="line">    title, contents = f.result()</span><br><span class="line">    results[title] = contents</span><br></pre></td></tr></table></figure></li>
+</ol>
+<blockquote>
+<p>set()是集合，相当于数学中的集合，当遇到重复的url链接时只保留一个</p>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://bailog.top">xxbaizero</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://bailog.top/2024/01/12/Python-%E7%88%AC%E8%99%AB-%E7%88%AC%E8%99%AB%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E9%80%9F%E8%BF%87-6-%E5%B9%B6%E5%8F%91%E7%BD%91%E9%A1%B5%E7%88%AC%E5%8F%96/">http://bailog.top/2024/01/12/Python-%E7%88%AC%E8%99%AB-%E7%88%AC%E8%99%AB%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E9%80%9F%E8%BF%87-6-%E5%B9%B6%E5%8F%91%E7%BD%91%E9%A1%B5%E7%88%AC%E5%8F%96/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://bailog.top" target="_blank">bai的小窝</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Python/">Python</a><a class="post-meta__tags" href="/tags/%E7%88%AC%E8%99%AB/">爬虫</a></div><div class="post_share"><div class="social-share" data-image="/img/background/dream.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2023/12/23/Python-%E7%88%AC%E8%99%AB-%E7%88%AC%E8%99%AB%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E9%80%9F%E8%BF%87-5-%E6%B5%8F%E8%A7%88%E5%99%A8%E8%87%AA%E5%8A%A8%E5%8C%96/" title="Python爬虫笔记(五)-浏览器自动化"><img class="cover" src="/img/background/season4.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Python爬虫笔记(五)-浏览器自动化</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/12/19/Python-%E7%88%AC%E8%99%AB-%E7%88%AC%E8%99%AB%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E9%80%9F%E8%BF%87-1-%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" title="Python爬虫笔记(一)—基本知识"><img class="cover" src="/img/background/season4.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-19</div><div class="title">Python爬虫笔记(一)—基本知识</div></div></a></div><div><a href="/2023/12/19/Python-%E7%88%AC%E8%99%AB-%E7%88%AC%E8%99%AB%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E9%80%9F%E8%BF%87-2-%E7%88%AC%E8%99%AB%E4%B8%89%E6%AD%A5%E9%AA%A4%E7%AE%80%E8%AE%B2/" title="Python爬虫笔记(二)—爬虫三步骤简讲-静态网站爬取"><img class="cover" src="/img/background/season3.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-19</div><div class="title">Python爬虫笔记(二)—爬虫三步骤简讲-静态网站爬取</div></div></a></div><div><a href="/2023/12/19/Python-%E7%88%AC%E8%99%AB-%E7%88%AC%E8%99%AB%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E9%80%9F%E8%BF%87-3-%E5%8A%A8%E6%80%81%E7%BD%91%E7%AB%99%E7%88%AC%E5%8F%96/" title="Python爬虫笔记(三)—动态网站爬取"><img class="cover" src="/img/background/season4.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-19</div><div class="title">Python爬虫笔记(三)—动态网站爬取</div></div></a></div><div><a href="/2023/12/23/Python-%E7%88%AC%E8%99%AB-%E7%88%AC%E8%99%AB%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E9%80%9F%E8%BF%87-4-%E6%A8%A1%E6%8B%9F%E7%99%BB%E5%BD%95/" title="Python爬虫笔记(四)—模拟登录(cookie)"><img class="cover" src="/img/background/season2.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-23</div><div class="title">Python爬虫笔记(四)—模拟登录(cookie)</div></div></a></div><div><a href="/2023/12/23/Python-%E7%88%AC%E8%99%AB-%E7%88%AC%E8%99%AB%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E9%80%9F%E8%BF%87-5-%E6%B5%8F%E8%A7%88%E5%99%A8%E8%87%AA%E5%8A%A8%E5%8C%96/" title="Python爬虫笔记(五)-浏览器自动化"><img class="cover" src="/img/background/season4.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-23</div><div class="title">Python爬虫笔记(五)-浏览器自动化</div></div></a></div><div><a href="/2023/12/14/Python-Python%E2%80%94%E5%AD%97%E7%AC%A6%E4%B8%B2-%E5%A4%9A%E6%80%81%E5%87%BD%E6%95%B0%EF%BC%88%E6%8E%A5%E5%8F%A3%EF%BC%89%EF%BC%8C%E7%89%B9%E6%AE%8A%E6%96%B9%E6%B3%95%E5%90%8D%E7%A7%B0-61A-Fall-2023-Lecture-20%E2%80%94%E2%80%94Inheritance-Python%E2%80%94%E5%AD%97%E7%AC%A6%E4%B8%B2-%E5%A4%9A%E6%80%81%E5%87%BD%E6%95%B0%EF%BC%88%E6%8E%A5%E5%8F%A3%EF%BC%89%EF%BC%8C%E7%89%B9%E6%AE%8A%E6%96%B9%E6%B3%95%E5%90%8D%E7%A7%B0-61A-Fall-2023-Lecture-20%E2%80%94%E2%80%94Inheritance/" title="Python—字符串,多态函数（接口），特殊方法名称[61A Fall 2023 Lecture 20——Inheritance]"><img class="cover" src="/img/background/season4.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-14</div><div class="title">Python—字符串,多态函数（接口），特殊方法名称[61A Fall 2023 Lecture 20——Inheritance]</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/ico/avatar_1.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">xxbaizero</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">13</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">6</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxbaizero0"><i class="fab fa-github"></i><span>中国矿业大学本科生 23级</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/xxbaizero0" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:2597453011@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到bai的小屋</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E5%8F%AB%E5%B9%B6%E5%8F%91%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">什么叫并发？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E4%B8%AA%E4%BE%8B%E5%AD%90"><span class="toc-number">1.1.</span> <span class="toc-text">第一个例子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E4%B8%AA%E4%BE%8B%E5%AD%90"><span class="toc-number">1.2.</span> <span class="toc-text">第二个例子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E4%B8%AA%E4%BE%8B%E5%AD%90"><span class="toc-number">1.3.</span> <span class="toc-text">第三个例子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9E%E5%88%B0%E9%97%AE%E9%A2%98%EF%BC%9A%E4%BB%80%E4%B9%88%E5%8F%AB%E5%B9%B6%E5%8F%91%EF%BC%9F"><span class="toc-number">1.4.</span> <span class="toc-text">回到问题：什么叫并发？</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B9%B6%E5%8F%91%E5%92%8C%E5%A4%9A%E7%BA%BF%E7%A8%8B"><span class="toc-number">2.</span> <span class="toc-text">并发和多线程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E8%B5%8B%E4%BA%88%E4%BD%A0%E7%9A%84%E8%83%BD%E5%8A%9B%EF%BC%9A%E5%A4%9A%E7%BA%BF%E7%A8%8B"><span class="toc-number">2.1.</span> <span class="toc-text">操作系统赋予你的能力：多线程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%A8%8B%E5%BA%8F%E5%88%9D%E7%AA%A5"><span class="toc-number">2.2.</span> <span class="toc-text">多线程程序初窥</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E8%AF%A6%E8%A7%A3"><span class="toc-number">2.3.</span> <span class="toc-text">代码详解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86%E4%BB%A3%E7%A0%81%EF%BC%8C%E5%88%9D%E5%A7%8B%E5%8C%96%E4%B8%80%E4%B8%AA%E7%BA%BF%E7%A8%8B%E6%B1%A0"><span class="toc-number">2.3.1.</span> <span class="toc-text">第一部分代码，初始化一个线程池</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E4%B8%80%EF%BC%9A%E7%BA%BF%E7%A8%8B%E6%B1%A0%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">2.3.2.</span> <span class="toc-text">问题一：线程池是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%88%86%E4%BB%A3%E7%A0%81%EF%BC%8C%E6%8F%90%E4%BA%A4%E4%BB%BB%E5%8A%A1%E5%88%B0%E7%BA%BF%E7%A8%8B%E6%B1%A0"><span class="toc-number">2.3.3.</span> <span class="toc-text">第二部分代码，提交任务到线程池</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E4%BA%8C%EF%BC%9Afuture-%E5%AF%B9%E8%B1%A1%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">2.3.4.</span> <span class="toc-text">问题二：future 对象是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E9%83%A8%E5%88%86%E4%BB%A3%E7%A0%81%EF%BC%8C%E7%AD%89%E5%BE%85%E4%BB%BB%E5%8A%A1%E5%85%A8%E9%83%A8%E5%AE%8C%E6%88%90"><span class="toc-number">2.3.5.</span> <span class="toc-text">第三部分代码，等待任务全部完成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E9%83%A8%E5%88%86%E4%BB%A3%E7%A0%81%EF%BC%8C%E8%8E%B7%E5%8F%96%E6%89%80%E6%9C%89%E4%BB%BB%E5%8A%A1%E7%9A%84%E7%BB%93%E6%9E%9C"><span class="toc-number">2.3.6.</span> <span class="toc-text">第四部分代码，获取所有任务的结果</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%8B%E5%AD%90"><span class="toc-number">2.4.</span> <span class="toc-text">例子:</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98"><span class="toc-number">3.</span> <span class="toc-text">项目实战</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%93%BE%E6%8E%A5%E5%88%86%E6%9E%90"><span class="toc-number">3.1.</span> <span class="toc-text">链接分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%97%E8%A1%A8%E9%A1%B5%E7%BB%93%E6%9E%84%E5%88%86%E6%9E%90"><span class="toc-number">3.2.</span> <span class="toc-text">列表页结构分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%AE%B9%E9%A1%B5%E7%BB%93%E6%9E%84%E5%88%86%E6%9E%90"><span class="toc-number">3.3.</span> <span class="toc-text">内容页结构分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E7%BC%96%E5%86%99"><span class="toc-number">3.4.</span> <span class="toc-text">代码编写</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%85%E5%8A%A9%E5%87%BD%E6%95%B0"><span class="toc-number">3.4.1.</span> <span class="toc-text">辅助函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8F%90%E5%8F%96%E5%8D%95%E4%B8%AA%E5%88%97%E8%A1%A8%E9%A1%B5%E6%96%87%E7%AB%A0%E9%93%BE%E6%8E%A5"><span class="toc-number">3.4.1.1.</span> <span class="toc-text">提取单个列表页文章链接</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8F%90%E5%8F%96%E5%8D%95%E4%B8%AA%E6%96%87%E7%AB%A0%E6%A0%87%E9%A2%98%E4%B8%8E%E5%86%85%E5%AE%B9"><span class="toc-number">3.4.1.2.</span> <span class="toc-text">提取单个文章标题与内容</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#url%E8%BD%AC%E5%8C%96"><span class="toc-number">3.4.1.3.</span> <span class="toc-text">url转化</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E6%B5%81%E7%A8%8B"><span class="toc-number">3.4.2.</span> <span class="toc-text">主流程</span></a></li></ol></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2024 By xxbaizero</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"></div><script defer src="https://npm.elemecdn.com/jquery@latest/dist/jquery.min.js"></script><script defer data-pjax src="/js/cat.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="20" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><!-- hexo injector body_end start --> <script data-pjax>if(document.getElementById('recent-posts') && (location.pathname ==='/'|| '/' ==='all')){
+    var parent = document.getElementById('recent-posts');
+    var child = '<div class="recent-post-item" style="width:100%;height: auto"><div id="catalog_magnet"><div class="magnet_item"><a class="magnet_link" href="http://bailog.top/categories/C/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📚 C++笔记 (3)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://bailog.top/categories/CS自学笔记/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🎮 CS自学笔记 (2)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://bailog.top/categories/Python/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🐱‍👓 Python学习笔记 (8)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item" style="visibility: hidden"></div><a class="magnet_link_more"  href="http://bailog.top/categories" style="flex:1;text-align: center;margin-bottom: 10px;">查看更多...</a></div></div>';
+    console.log('已挂载magnet')
+    parent.insertAdjacentHTML("afterbegin",child)}
+     </script><style>#catalog_magnet{flex-wrap: wrap;display: flex;width:100%;justify-content:space-between;padding: 10px 10px 0 10px;align-content: flex-start;}.magnet_item{flex-basis: calc(50% - 5px);background: #f2f2f2;margin-bottom: 10px;border-radius: 8px;transition: all 0.2s ease-in-out;}.magnet_item:hover{background: #69e8f2}.magnet_link_more{color:#555}.magnet_link{color:black}.magnet_link:hover{color:white}@media screen and (max-width: 600px) {.magnet_item {flex-basis: 100%;}}.magnet_link_context{display:flex;padding: 10px;font-size:16px;transition: all 0.2s ease-in-out;}.magnet_link_context:hover{padding: 10px 20px;}</style>
+    <style></style><script data-pjax>
+  function butterfly_footer_beautify_injector_config(){
+    var parent_div_git = document.getElementById('footer-wrap');
+    var item_html = '<div id="workboard"></div><p id="ghbdages"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px" data-title="博客框架为Hexo_v6.2.0" title=""><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&amp;logo=hexo" alt=""/></a><a class="github-badge" target="_blank" href="https://butterfly.js.org/" style="margin-inline:5px" data-title="主题版本Butterfly_v4.3.1" title=""><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&amp;logo=bitdefender" alt=""/></a><a class="github-badge" target="_blank" href="https://vercel.com/" style="margin-inline:5px" data-title="本站采用多线部署，主线路托管于Vercel" title=""><img src="https://img.shields.io/badge/Hosted-Vercel-brightgreen?style=flat&amp;logo=Vercel" alt=""/></a><a class="github-badge" target="_blank" href="https://dashboard.4everland.org/" style="margin-inline:5px" data-title="本站采用多线部署，备用线路托管于4EVERLAND" title=""><img src="https://img.shields.io/badge/Hosted-4EVERLAND-22DDDD?style=flat&amp;logo=IPFS" alt=""/></a><a class="github-badge" target="_blank" href="https://github.com/" style="margin-inline:5px" data-title="本站项目由Github托管" title=""><img src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&amp;logo=GitHub" alt=""/></a><a class="github-badge" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="margin-inline:5px" data-title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可" title=""><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&amp;logo=Claris" alt=""/></a></p>';
+    console.log('已挂载butterfly_footer_beautify')
+    parent_div_git.insertAdjacentHTML("beforeend",item_html)
+    }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_footer_beautify_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_footer_beautify_injector_config();
+  }
+  </script><script async src="https://unpkg.zhimg.com/hexo-butterfly-footer-beautify@1.0.0/lib/runtime.min.js"></script><!-- hexo injector body_end end --></body></html>
