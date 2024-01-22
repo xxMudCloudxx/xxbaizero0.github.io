@@ -1,0 +1,278 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>CS61B学习笔记(四)--Reading2.1-列表-海象之谜 | bai的小窝</title><meta name="author" content="xxbaizero"><meta name="copyright" content="xxbaizero"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="什么是海象之谜?尝试预测当我们运行下面的代码时会发生什么。更改为 b 会影响 a 吗，更改为 x 会影响 y 吗？提示：如果你来自 Python，Java 也有相同的行为。 12345678910111213141516171819202122232425262728293031public class PollQuestions &amp;#123;    public static void main">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CS61B学习笔记(四)--Reading2.1-列表-海象之谜">
+<meta property="og:url" content="http://bailog.top/2024/01/20/JAVA-4-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Reading2-1-%E6%95%B0%E7%BB%84/index.html">
+<meta property="og:site_name" content="bai的小窝">
+<meta property="og:description" content="什么是海象之谜?尝试预测当我们运行下面的代码时会发生什么。更改为 b 会影响 a 吗，更改为 x 会影响 y 吗？提示：如果你来自 Python，Java 也有相同的行为。 12345678910111213141516171819202122232425262728293031public class PollQuestions &amp;#123;    public static void main">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://bailog.top/img/background/season3.jpg">
+<meta property="article:published_time" content="2024-01-19T18:25:47.000Z">
+<meta property="article:modified_time" content="2024-01-19T19:06:55.483Z">
+<meta property="article:author" content="xxbaizero">
+<meta property="article:tag" content="JAVA">
+<meta property="article:tag" content="CS61B">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://bailog.top/img/background/season3.jpg"><link rel="shortcut icon" href="/img/ico/%E5%9C%A3%E8%AF%9E%E6%A0%91.png"><link rel="canonical" href="http://bailog.top/2024/01/20/JAVA-4-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Reading2-1-%E6%95%B0%E7%BB%84/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  noticeOutdate: {"limitDay":500,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":230},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体中文","cht_to_chs":"你已切换为简体中文","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'CS61B学习笔记(四)--Reading2.1-列表-海象之谜',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-01-20 03:06:55'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const now = new Date()
+          const hour = now.getHours()
+          const isNight = hour <= 6 || hour >= 18
+          if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+          else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/cat.css"><div id="myscoll"></div><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-double-row-display@1.00/cardlistpost.min.css"/>
+<style>#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags:before {content:"\A";
+  white-space: pre;}#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags > .article-meta__separator{display:none}</style>
+<link rel="stylesheet" href="https://unpkg.zhimg.com/hexo-butterfly-footer-beautify@1.0.0/lib/runtime.min.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/ico/avatar_1.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">20</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/diary"><i class="fa-fw fas fa-book"></i><span> 日记</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="bai的小窝"><span class="site-name">bai的小窝</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/diary"><i class="fa-fw fas fa-book"></i><span> 日记</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">CS61B学习笔记(四)--Reading2.1-列表-海象之谜</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-01-19T18:25:47.000Z" title="发表于 2024-01-20 02:25:47">2024-01-20</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-01-19T19:06:55.483Z" title="更新于 2024-01-20 03:06:55">2024-01-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/JAVA/">JAVA</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/CS%E8%87%AA%E5%AD%A6%E7%AC%94%E8%AE%B0/">CS自学笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/CS%E8%87%AA%E5%AD%A6%E7%AC%94%E8%AE%B0/CS61B/">CS61B</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>10分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="CS61B学习笔记(四)--Reading2.1-列表-海象之谜"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="什么是海象之谜"><a href="#什么是海象之谜" class="headerlink" title="什么是海象之谜?"></a>什么是海象之谜?</h1><p>尝试预测当我们运行下面的代码时会发生什么。更改为 b 会影响 a 吗，更改为 x 会影响 y 吗？提示：如果你来自 Python，Java 也有相同的行为。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">PollQuestions</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Walrus</span> <span class="variable">a</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Walrus</span>(<span class="number">1000</span>, <span class="number">8.3</span>);</span><br><span class="line">        Walrus b;</span><br><span class="line">        b = a;</span><br><span class="line">        b.weight = <span class="number">5</span>;</span><br><span class="line">        System.out.println(a);</span><br><span class="line">        System.out.println(b);</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> <span class="variable">x</span> <span class="operator">=</span> <span class="number">5</span>;</span><br><span class="line">        <span class="type">int</span> y;</span><br><span class="line">        y = x;</span><br><span class="line">        x = <span class="number">2</span>;</span><br><span class="line">        System.out.println(<span class="string">&quot;x is: &quot;</span> + x);</span><br><span class="line">        System.out.println(<span class="string">&quot;y is: &quot;</span> + y);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">Walrus</span> &#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="type">int</span> weight;</span><br><span class="line">        <span class="keyword">public</span> <span class="type">double</span> tuskSize;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="title function_">Walrus</span><span class="params">(<span class="type">int</span> w, <span class="type">double</span> ts)</span> &#123;</span><br><span class="line">            weight = w;</span><br><span class="line">            tuskSize = ts;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> String.format(<span class="string">&quot;weight: %d, tusk size: %.2f&quot;</span>, weight, tuskSize);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="答案"><a href="#答案" class="headerlink" title="答案:"></a><strong>答案:</strong></h2><p><img src="/2024/01/20/JAVA-4-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Reading2-1-%E6%95%B0%E7%BB%84/image-20240120023307369.png" alt="image-20240120023307369"></p>
+<p><img src="/2024/01/20/JAVA-4-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Reading2-1-%E6%95%B0%E7%BB%84/image-20240120024122499.png" alt="image-20240120024122499"></p>
+<h1 id="位"><a href="#位" class="headerlink" title="位"></a>位</h1><p>计算机中的所有信息都以 1 和 0 的序列形式存储在内存中。一些例子：</p>
+<ul>
+<li>72 通常存储为 01001000</li>
+<li>205.75 通常存储为 01000011 01001101 11000000 00000000</li>
+<li>字母 H 通常存储为 01001000（与 72 相同）</li>
+<li>真实值通常存储为00000001</li>
+</ul>
+<p>一个有趣的观察结果是，72 和 H 都存储为 01001000。这就提出了一个问题：一段 Java 代码如何知道如何解释 01001000？</p>
+<p>答案是<strong>通过类型</strong></p>
+<h1 id="声明变量（简体）"><a href="#声明变量（简体）" class="headerlink" title="声明变量（简体）"></a>声明变量（简体）</h1><p>您可以将计算机视为包含大量用于存储信息的内存位，每个内存位都有一个唯一的地址。现代计算机可以使用数十亿个这样的比特。</p>
+<p>当你声明某种类型的变量时，Java 会找到一个连续的块，该块的位恰好足够容纳该类型的事物。例如，如果声明一个 int，则会得到一个 32 位的块。如果声明一个字节，则会得到一个 8 位的块。Java 中的每种数据类型都包含不同数量的位。在这个类中，确切的数字对我们来说并不是很重要。</p>
+<p>为了方便的比喻，我们将其中一个块称为比特的“盒子”。</p>
+<p>除了留出内存之外，Java 解释器还在内部表中创建一个条目，该条目将每个变量名称映射到框中第一个位的位置。</p>
+<p>例如，如果声明 <code>int x</code> 了 和 <code>double y</code> ，则 Java 可能会决定使用计算机内存的 352 到 384 位来存储 x，并使用 20800 到 20864 位来存储 y。然后，解释器将记录 int x 从位 352 开始，y 从位 20800 开始。例如，在执行代码后：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> x;</span><br><span class="line"><span class="type">double</span> y;</span><br></pre></td></tr></table></figure>
+
+<p>我们最终会得到尺寸为 32 和 64 的盒子，如下图所示：</p>
+<p><img src="/2024/01/20/JAVA-4-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Reading2-1-%E6%95%B0%E7%BB%84/x_and_y_empty_bitwise.png" alt="x_and_y_empty_bitwise"></p>
+<p>声明变量时，Java 不会将任何内容写入保留框中。换句话说，没有默认值。因此，Java 编译器会阻止您使用变量，直到使用 <code>=</code> 运算符将位填充到框中。出于这个原因，我避免在上图的框中显示任何位。</p>
+<p>当您为内存盒赋值时，它将填充您指定的位。例如，如果我们执行以下行：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x = -<span class="number">1431195969</span>;</span><br><span class="line">y = <span class="number">567213.112</span>;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2024/01/20/JAVA-4-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Reading2-1-%E6%95%B0%E7%BB%84/x_and_y_empty_filled.png" alt="x_and_y_empty_filled.png"></p>
+<h2 id="简化的框表示法"><a href="#简化的框表示法" class="headerlink" title="简化的框表示法"></a>简化的框表示法</h2><p>虽然我们在上一节中使用的框表示法对于理解引擎盖下发生的事情非常有用，但它对实际目的没有用，因为我们不知道如何解释二进制位。</p>
+<p>因此，我们将用人类可读的符号来编写它们，而不是用二进制文件编写内存盒内容。我们将在课程的其余部分这样做。例如，在执行以下操作后：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> x;</span><br><span class="line"><span class="type">double</span> y;</span><br><span class="line">x = -<span class="number">1431195969</span>;</span><br><span class="line">y = <span class="number">567213.112</span>;</span><br></pre></td></tr></table></figure>
+
+<p>我们可以使用我称之为简化框表示法来表示程序环境，如下所示：</p>
+<p><img src="/2024/01/20/JAVA-4-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Reading2-1-%E6%95%B0%E7%BB%84/x_and_y_simplified_box_notation.png" alt="x_and_y_simplified_box_notation.png"></p>
+<h1 id="黄金平等法则-（GRoE）"><a href="#黄金平等法则-（GRoE）" class="headerlink" title="黄金平等法则 （GRoE）"></a>黄金平等法则 （GRoE）</h1><p>现在有了简化的盒子符号，我们终于可以开始解开海象之谜了。</p>
+<p>事实证明，我们的 Mystery 有一个简单的解决方案：当你编写 <code>y = x</code> 时，你告诉 Java 解释器将 x 中的<strong>位</strong>复制到 y 中。在理解我们的海象之谜时，这条平等的黄金法则 （GRoE） 是所有真理的根源。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">x</span> <span class="operator">=</span> <span class="number">5</span>;</span><br><span class="line"><span class="type">int</span> y;</span><br><span class="line">y = x;</span><br><span class="line">x = <span class="number">2</span>;</span><br><span class="line">System.out.println(<span class="string">&quot;x is: &quot;</span> + x);</span><br><span class="line">System.out.println(<span class="string">&quot;y is: &quot;</span> + y);</span><br></pre></td></tr></table></figure>
+
+<p>因此，Java的复制操作是复制<strong>位</strong></p>
+<h2 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h2><p>上面，我们说了 8 种原始类型：byte、short、int、long、float、double、boolean、char。其他所有内容，包括数组，都不是原始类型，而是 <code>reference type</code> .</p>
+<p>当我们使用 <code>new</code> （例如 Dog、Walrus、Planet）实例化一个 Object 时，Java 首先为类的每个实例变量分配一个框，并用默认值填充它们。然后，构造函数通常（但并非总是）用其他值填充每个框。</p>
+<blockquote>
+<p>引用类型可能都需要new，这可能意味着引用变量声明的其实是类似于cpp中的指针?</p>
+</blockquote>
+<h3 id="引用变量声明"><a href="#引用变量声明" class="headerlink" title="引用变量声明"></a>引用变量声明</h3><p>当我们声明任何引用类型（Walrus、Dog、Planet、数组等）的变量时，无论什么类型的对象，Java 都会分配一个 64 位的盒子。</p>
+<p>乍一看，这似乎导致了海象悖论。上一节中的 Walrus 需要超过 64 位来存储。此外，无论对象的类型如何，我们只能获得 64 位来存储它，这似乎很奇怪。</p>
+<p>但是，通过以下信息可以轻松解决此问题：64 位框不包含有关海象的数据，而是内存中海象的地址。</p>
+<blockquote>
+<p>类似cpp中的指针，指针变量存储的是指针指向的地址，通常只有4个字节；而指针所指向的那个地址不一定存储了4个字节。</p>
+</blockquote>
+<h3 id="框和指针表示法"><a href="#框和指针表示法" class="headerlink" title="框和指针表示法"></a>框和指针表示法</h3><p>和以前一样，很难解释引用变量中的一堆位，因此我们将为引用变量创建一个简化的框表示法，如下所示：</p>
+<ul>
+<li>如果一个地址全为零，我们将用 null 表示它。</li>
+<li>非零地址将由指向对象实例化的箭头表示。</li>
+</ul>
+<p>这有时也称为“框和指针”表示法。</p>
+<p>对于上一节中的示例，我们将有：</p>
+<p><img src="/2024/01/20/JAVA-4-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Reading2-1-%E6%95%B0%E7%BB%84/someWalrus_simplified_bit_notation.png" alt="someWalrus_simplified_bit_notation.png"></p>
+<h2 id="参数传递"><a href="#参数传递" class="headerlink" title="参数传递"></a>参数传递</h2><p>当您将参数传递给函数时，您也只是在复制位。换言之，GRoE 也适用于参数传递。复制位通常称为“按值传递”。在 Java 中，我们总是按值传递。</p>
+<p>例如，请考虑以下函数：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">double</span> <span class="title function_">average</span><span class="params">(<span class="type">double</span> a, <span class="type">double</span> b)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> (a + b) / <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>假设我们调用这个函数，如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    <span class="type">double</span> <span class="variable">x</span> <span class="operator">=</span> <span class="number">5.5</span>;</span><br><span class="line">    <span class="type">double</span> <span class="variable">y</span> <span class="operator">=</span> <span class="number">10.5</span>;</span><br><span class="line">    <span class="type">double</span> <span class="variable">avg</span> <span class="operator">=</span> average(x, y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>实际上我们是将x，y的值拷贝给了a, b。</p>
+<h1 id="列表的实例化"><a href="#列表的实例化" class="headerlink" title="列表的实例化"></a>列表的实例化</h1><p>如上所述，存储数组的变量是引用变量，就像任何其他变量一样。例如，请考虑以下声明：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span>[] x;</span><br><span class="line">Planet[] planets;</span><br></pre></td></tr></table></figure>
+
+<p>这两个声明都创建了 64 位的内存盒。 <code>x</code> 只能保存数组的地址，并且 <code>planets</code> 只能保存 <code>Planet</code> <code>int</code> 数组的地址。</p>
+<p>实例化数组与实例化对象非常相似。例如，如果我们创建一个大小为 5 的整数数组，如下所示：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x = new int[]&#123;0, 1, 2, 95, 4&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>然后，关键字 <code>new</code> 创建 5 个框，每个框 32 位，并返回整个对象的地址以分配给 x。</p>
+<h1 id="破碎的被褥法则"><a href="#破碎的被褥法则" class="headerlink" title="破碎的被褥法则"></a>破碎的被褥法则</h1><p><a target="_blank" rel="noopener" href="https://readit.site/a/9amjk">https://readit.site/a/9amjk</a></p>
+<p><a target="_blank" rel="noopener" href="https://mathwithbaddrawings.com/2015/04/08/the-math-ceiling-wheres-your-cognitive-breaking-point/">数学天花板：你的认知突破点在哪里？– 糟糕的图纸数学 — The Math Ceiling: Where’s your cognitive breaking point? – Math with Bad Drawings</a></p>
+<p>我感觉这个很有意思:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">	在大学里，我和我的室友从一些朋友那里买了一个二手被褥。他们住在一楼;我们住在四楼。他们很好心，他们帮我们抬上楼梯。</span><br><span class="line">	当他们登上三楼的平台时，他们听到了一声裂缝。一根小小的金属棒从被褥上折断了。我们都检查了一下，但甚至不知道这件作品是从哪里来的。由于被褥看起来很好，我们只是耸了耸肩。</span><br><span class="line">	在我们的房间里呆了一个星期后，被褥开始下垂。“它总是这样吗？”我们互相问。</span><br><span class="line">	一个月后，它尴尬地下垂了。坐在最后，沙发的曲率会把你（和其他人）扔进一个中央的猪堆里。</span><br><span class="line">到学期结束时，它已经倒在尘土飞扬的宿舍地板上，这是曾经繁荣的被褥的破碎骨架。</span><br><span class="line">	现在，宜家家具是客厅的果蝇：出了名的短命。毫无疑问，我们的被褥寿命是有上限的，也许是三四年。但这一个只活了八个月。</span><br><span class="line">	事后看来，很明显，破碎的碎片绝对至关重要。没有它被褥似乎很好。但日复一日，随着每一个新的屁股，重量都压在结构的某些部分上，从来都不意味着独自承受负载。框架变得扭曲。压力不可持续地增加。被褥的内部时钟默默地滴答作响，直到缺乏支持被证明是压倒性的，整个事情都崩溃了。</span><br><span class="line">	而且，可悲的是，数学课也是如此。</span><br><span class="line">	假设你正在读八年级。您可以以完美的流动性和精度绘制线性方程。您可以计算它们的斜率、识别点并生成平行线和垂直线。</span><br><span class="line">	但是，如果你缺少一个简单的理解——这些图只是满足方程的 x-y 对——那么你就是一个破碎的被褥。你错过了未来学习至关重要的一块。二次函数会困扰你;正弦曲线永远不会有意义;你可能会在微积分之后保释，安慰自己，“好吧，至少我的上限比一些人高。</span><br><span class="line">	你可能会问，“既然我现在很好，难道我不能在以后真正需要的时候添加缺失的部分吗？有时，是的。但这要困难得多。你现在已经花了好几年时间没有这个关键的部分。你已经开发了捷径和零敲碎打的方法来度过难关。这些工作了一段时间，但它们扭曲了框架，现在你来了。为了继续前进，你必须忘记你的变通方法--有效地将被褥弯曲回原来的形状--然后才能继续。但是，放弃让你走到这一步的策略几乎是不可能的。</span><br><span class="line">	稍后添加缺失的部分意味着要等到损坏已经开始，并且很难挽回。</span><br><span class="line">	我相信，这是许多学生所经历的天花板。这不是他们神经病学的固有局限性。这是我们创造的东西。我们通过言语或行动说：“你不明白也没关系。只需按照以下步骤操作，并在后面检查您的答案。我们通过说“只有聪明的人才能得到它;至于其余的，我只想确保他们能做到。我们通过说，“好吧，他们现在不明白，但他们最终会自己弄清楚。</span><br><span class="line">	这样一来，我们就可以成功地把被褥弄上楼梯。但在这个过程中会丢失一些东西。在没有关键理解的情况下将我们的学生送上前方，就像在没有替换弹药的情况下将他们送上战场一样。当然，他们会发射几发子弹，但当他们意识到缺少一些东西时，恢复为时已晚。</span><br></pre></td></tr></table></figure>
+
+<p>一时半解虽然这在短期内可能很好，但从长远来看，在没有完全理解的情况下做问题可能会注定你以后会失败。有一篇关于这个所谓的破碎被褥法则的博客文章，你可能会觉得很有趣。</p>
+<h1 id="IntLists"><a href="#IntLists" class="headerlink" title="IntLists"></a>IntLists</h1><p>事实证明，一个非常基本的列表实现起来是微不足道的，如下所示：</p>
+<p>实现起来其实类似于”链表”</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">IntList</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> first;</span><br><span class="line">    <span class="keyword">public</span> IntList rest;        </span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">IntList</span><span class="params">(<span class="type">int</span> f, IntList r)</span> &#123;</span><br><span class="line">        first = f;</span><br><span class="line">        rest = r;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/** Return the size of the list using... recursion! */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">size</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (rest == <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span> + <span class="built_in">this</span>.rest.size();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/** Return the size of the list using no recursion! */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">iterativeSize</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">IntList</span> <span class="variable">p</span> <span class="operator">=</span> <span class="built_in">this</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">totalSize</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (p != <span class="literal">null</span>) &#123;</span><br><span class="line">            totalSize += <span class="number">1</span>;</span><br><span class="line">            p = p.rest;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> totalSize;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/** Returns the ith item of this IntList*/</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">get</span><span class="params">(<span class="type">int</span> i)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (i == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> first;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> rest.get(i - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://bailog.top">xxbaizero</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://bailog.top/2024/01/20/JAVA-4-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Reading2-1-%E6%95%B0%E7%BB%84/">http://bailog.top/2024/01/20/JAVA-4-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Reading2-1-%E6%95%B0%E7%BB%84/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://bailog.top" target="_blank">bai的小窝</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/JAVA/">JAVA</a><a class="post-meta__tags" href="/tags/CS61B/">CS61B</a></div><div class="post_share"><div class="social-share" data-image="/img/background/season3.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/01/22/JAVA-5-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E9%93%BE%E8%A1%A8%E5%9F%BA%E7%A1%80%E7%9A%84%E5%88%97%E8%A1%A8-2-2-2-3/" title="CS61B学习笔记(五)--链表基础的列表(2.2,2.3)"><img class="cover" src="/img/background/dream2.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">CS61B学习笔记(五)--链表基础的列表(2.2,2.3)</div></div></a></div><div class="next-post pull-right"><a href="/2024/01/19/JAVA-3-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Junit%E6%B5%8B%E8%AF%95/" title="CS61B学习笔记(三)--Junit测试"><img class="cover" src="/img/background/season3.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">CS61B学习笔记(三)--Junit测试</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2024/01/16/JAVA-1-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-JAVA%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/" title="CS61B学习笔记(一)--JAVA快速入门"><img class="cover" src="/img/background/season1.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-01-16</div><div class="title">CS61B学习笔记(一)--JAVA快速入门</div></div></a></div><div><a href="/2024/01/18/JAVA-1-CS61B%E9%A1%B9%E7%9B%AE%E7%BB%83%E4%B9%A0%E7%AC%94%E8%AE%B0-Proj0/" title="CS61B项目练习笔记(一)--Proj0"><img class="cover" src="/img/background/dream.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-01-18</div><div class="title">CS61B项目练习笔记(一)--Proj0</div></div></a></div><div><a href="/2024/01/18/JAVA-2-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Reading-1-Introducion-to-Java/" title="CS61B学习笔记(二)--Reading.1.Introducing"><img class="cover" src="/img/background/season1.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-01-18</div><div class="title">CS61B学习笔记(二)--Reading.1.Introducing</div></div></a></div><div><a href="/2024/01/19/JAVA-3-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Junit%E6%B5%8B%E8%AF%95/" title="CS61B学习笔记(三)--Junit测试"><img class="cover" src="/img/background/season3.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-01-19</div><div class="title">CS61B学习笔记(三)--Junit测试</div></div></a></div><div><a href="/2024/01/22/JAVA-5-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E9%93%BE%E8%A1%A8%E5%9F%BA%E7%A1%80%E7%9A%84%E5%88%97%E8%A1%A8-2-2-2-3/" title="CS61B学习笔记(五)--链表基础的列表(2.2,2.3)"><img class="cover" src="/img/background/dream2.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-01-22</div><div class="title">CS61B学习笔记(五)--链表基础的列表(2.2,2.3)</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/ico/avatar_1.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">xxbaizero</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">20</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxbaizero0"><i class="fab fa-github"></i><span>中国矿业大学本科生 23级</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/xxbaizero0" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:2597453011@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到bai的小屋</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%B5%B7%E8%B1%A1%E4%B9%8B%E8%B0%9C"><span class="toc-number">1.</span> <span class="toc-text">什么是海象之谜?</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AD%94%E6%A1%88"><span class="toc-number">1.1.</span> <span class="toc-text">答案:</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BD%8D"><span class="toc-number">2.</span> <span class="toc-text">位</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A3%B0%E6%98%8E%E5%8F%98%E9%87%8F%EF%BC%88%E7%AE%80%E4%BD%93%EF%BC%89"><span class="toc-number">3.</span> <span class="toc-text">声明变量（简体）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E5%8C%96%E7%9A%84%E6%A1%86%E8%A1%A8%E7%A4%BA%E6%B3%95"><span class="toc-number">3.1.</span> <span class="toc-text">简化的框表示法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%BB%84%E9%87%91%E5%B9%B3%E7%AD%89%E6%B3%95%E5%88%99-%EF%BC%88GRoE%EF%BC%89"><span class="toc-number">4.</span> <span class="toc-text">黄金平等法则 （GRoE）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B"><span class="toc-number">4.1.</span> <span class="toc-text">引用类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%95%E7%94%A8%E5%8F%98%E9%87%8F%E5%A3%B0%E6%98%8E"><span class="toc-number">4.1.1.</span> <span class="toc-text">引用变量声明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A1%86%E5%92%8C%E6%8C%87%E9%92%88%E8%A1%A8%E7%A4%BA%E6%B3%95"><span class="toc-number">4.1.2.</span> <span class="toc-text">框和指针表示法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92"><span class="toc-number">4.2.</span> <span class="toc-text">参数传递</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%97%E8%A1%A8%E7%9A%84%E5%AE%9E%E4%BE%8B%E5%8C%96"><span class="toc-number">5.</span> <span class="toc-text">列表的实例化</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%A0%B4%E7%A2%8E%E7%9A%84%E8%A2%AB%E8%A4%A5%E6%B3%95%E5%88%99"><span class="toc-number">6.</span> <span class="toc-text">破碎的被褥法则</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#IntLists"><span class="toc-number">7.</span> <span class="toc-text">IntLists</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2024 By xxbaizero</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"></div><script defer src="https://npm.elemecdn.com/jquery@latest/dist/jquery.min.js"></script><script defer data-pjax src="/js/cat.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="20" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><!-- hexo injector body_end start --> <script data-pjax>if(document.getElementById('recent-posts') && (location.pathname ==='/'|| '/' ==='all')){
+    var parent = document.getElementById('recent-posts');
+    var child = '<div class="recent-post-item" style="width:100%;height: auto"><div id="catalog_magnet"><div class="magnet_item"><a class="magnet_link" href="http://bailog.top/categories/C/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📚 C++笔记 (3)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://bailog.top/categories/CS自学笔记/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🎮 CS自学笔记 (8)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://bailog.top/categories/Python/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🐱‍👓 Python学习笔记 (9)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item" style="visibility: hidden"></div><a class="magnet_link_more"  href="http://bailog.top/categories" style="flex:1;text-align: center;margin-bottom: 10px;">查看更多...</a></div></div>';
+    console.log('已挂载magnet')
+    parent.insertAdjacentHTML("afterbegin",child)}
+     </script><style>#catalog_magnet{flex-wrap: wrap;display: flex;width:100%;justify-content:space-between;padding: 10px 10px 0 10px;align-content: flex-start;}.magnet_item{flex-basis: calc(50% - 5px);background: #f2f2f2;margin-bottom: 10px;border-radius: 8px;transition: all 0.2s ease-in-out;}.magnet_item:hover{background: #69e8f2}.magnet_link_more{color:#555}.magnet_link{color:black}.magnet_link:hover{color:white}@media screen and (max-width: 600px) {.magnet_item {flex-basis: 100%;}}.magnet_link_context{display:flex;padding: 10px;font-size:16px;transition: all 0.2s ease-in-out;}.magnet_link_context:hover{padding: 10px 20px;}</style>
+    <style></style><script data-pjax>
+  function butterfly_footer_beautify_injector_config(){
+    var parent_div_git = document.getElementById('footer-wrap');
+    var item_html = '<div id="workboard"></div><p id="ghbdages"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px" data-title="博客框架为Hexo_v6.2.0" title=""><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&amp;logo=hexo" alt=""/></a><a class="github-badge" target="_blank" href="https://butterfly.js.org/" style="margin-inline:5px" data-title="主题版本Butterfly_v4.3.1" title=""><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&amp;logo=bitdefender" alt=""/></a><a class="github-badge" target="_blank" href="https://vercel.com/" style="margin-inline:5px" data-title="本站采用多线部署，主线路托管于Vercel" title=""><img src="https://img.shields.io/badge/Hosted-Vercel-brightgreen?style=flat&amp;logo=Vercel" alt=""/></a><a class="github-badge" target="_blank" href="https://dashboard.4everland.org/" style="margin-inline:5px" data-title="本站采用多线部署，备用线路托管于4EVERLAND" title=""><img src="https://img.shields.io/badge/Hosted-4EVERLAND-22DDDD?style=flat&amp;logo=IPFS" alt=""/></a><a class="github-badge" target="_blank" href="https://github.com/" style="margin-inline:5px" data-title="本站项目由Github托管" title=""><img src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&amp;logo=GitHub" alt=""/></a><a class="github-badge" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="margin-inline:5px" data-title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可" title=""><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&amp;logo=Claris" alt=""/></a></p>';
+    console.log('已挂载butterfly_footer_beautify')
+    parent_div_git.insertAdjacentHTML("beforeend",item_html)
+    }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_footer_beautify_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_footer_beautify_injector_config();
+  }
+  </script><script async src="https://unpkg.zhimg.com/hexo-butterfly-footer-beautify@1.0.0/lib/runtime.min.js"></script><!-- hexo injector body_end end --></body></html>
