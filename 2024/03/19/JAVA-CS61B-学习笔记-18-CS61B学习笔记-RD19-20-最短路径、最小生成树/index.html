@@ -1,0 +1,366 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>CS61B学习笔记(十八)-RD19-20-最短路径、最小生成树 | bai的小窝</title><meta name="author" content="xxbaizero"><meta name="copyright" content="xxbaizero"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="最短路径(SPT)回顾到目前为止，我们有以下方法可以完成以下任务：  找到从给定顶点 s 到图中每个可到达顶点的路径。 找到从给定顶点 s 到图中每个可到达顶点的最短路径。（…或者我们找到了吗？）  在我们回答上述神秘问题之前，让我们进一步回顾一下我们可以使用的两种搜索类型：BFS 或 DFS。 两者都始终正确吗？是的。哪一个结果更好？BFS找到了最短路径，而DFS则没有。在运行时间上，哪一个更有">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CS61B学习笔记(十八)-RD19-20-最短路径、最小生成树">
+<meta property="og:url" content="http://bailog.top/2024/03/19/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-18-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RD19-20-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E3%80%81%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/index.html">
+<meta property="og:site_name" content="bai的小窝">
+<meta property="og:description" content="最短路径(SPT)回顾到目前为止，我们有以下方法可以完成以下任务：  找到从给定顶点 s 到图中每个可到达顶点的路径。 找到从给定顶点 s 到图中每个可到达顶点的最短路径。（…或者我们找到了吗？）  在我们回答上述神秘问题之前，让我们进一步回顾一下我们可以使用的两种搜索类型：BFS 或 DFS。 两者都始终正确吗？是的。哪一个结果更好？BFS找到了最短路径，而DFS则没有。在运行时间上，哪一个更有">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://bailog.top/img/background/season4.jpg">
+<meta property="article:published_time" content="2024-03-19T15:12:09.000Z">
+<meta property="article:modified_time" content="2024-03-20T14:36:55.001Z">
+<meta property="article:author" content="xxbaizero">
+<meta property="article:tag" content="JAVA">
+<meta property="article:tag" content="CS61B">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://bailog.top/img/background/season4.jpg"><link rel="shortcut icon" href="/img/ico/%E5%9C%A3%E8%AF%9E%E6%A0%91.png"><link rel="canonical" href="http://bailog.top/2024/03/19/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-18-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RD19-20-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E3%80%81%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  noticeOutdate: {"limitDay":500,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":230},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体中文","cht_to_chs":"你已切换为简体中文","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'CS61B学习笔记(十八)-RD19-20-最短路径、最小生成树',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-03-20 22:36:55'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const now = new Date()
+          const hour = now.getHours()
+          const isNight = hour <= 6 || hour >= 18
+          if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+          else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/cat.css"><div id="myscoll"></div><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-double-row-display@1.00/cardlistpost.min.css"/>
+<style>#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags:before {content:"\A";
+  white-space: pre;}#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags > .article-meta__separator{display:none}</style>
+<link rel="stylesheet" href="https://unpkg.zhimg.com/hexo-butterfly-footer-beautify@1.0.0/lib/runtime.min.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/ico/avatar_1.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">41</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/diary"><i class="fa-fw fas fa-book"></i><span> 日记</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="bai的小窝"><span class="site-name">bai的小窝</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/diary"><i class="fa-fw fas fa-book"></i><span> 日记</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">CS61B学习笔记(十八)-RD19-20-最短路径、最小生成树</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-03-19T15:12:09.000Z" title="发表于 2024-03-19 23:12:09">2024-03-19</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-03-20T14:36:55.001Z" title="更新于 2024-03-20 22:36:55">2024-03-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/CS%E8%87%AA%E5%AD%A6%E7%AC%94%E8%AE%B0/">CS自学笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/JAVA/">JAVA</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/JAVA/CS61B/">CS61B</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/CS%E8%87%AA%E5%AD%A6%E7%AC%94%E8%AE%B0/CS61B/">CS61B</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">4.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>13分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="CS61B学习笔记(十八)-RD19-20-最短路径、最小生成树"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="最短路径-SPT"><a href="#最短路径-SPT" class="headerlink" title="最短路径(SPT)"></a>最短路径(SPT)</h1><h2 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h2><p>到目前为止，我们有以下方法可以完成以下任务：</p>
+<ul>
+<li>找到从给定顶点 <em>s</em> 到图中每个可到达顶点的路径。</li>
+<li>找到从给定顶点 <em>s</em> 到图中每个可到达顶点的<strong>最短</strong>路径。（…或者我们找到了吗？）</li>
+</ul>
+<p>在我们回答上述神秘问题之前，让我们进一步回顾一下我们可以使用的两种搜索类型：BFS 或 DFS。</p>
+<p>两者都始终正确吗？是的。哪一个结果更好？BFS找到了<strong>最短</strong>路径，而DFS则没有。在运行时间上，哪一个更有效率？都不是。在空间上，哪一个更有效率？</p>
+<ul>
+<li>对于稀疏图，DFS更糟糕。想象一下一个有10000个节点且都很稀疏的图。我们最终会进行10000次递归调用，这对空间来说是不好的。</li>
+<li>对于“树状”图，BFS更糟糕，因为我们的队列会经常被使用。</li>
+</ul>
+<h2 id="回答神秘问题"><a href="#回答神秘问题" class="headerlink" title="回答神秘问题"></a>回答神秘问题</h2><p>我们是否开发了一种算法来找到从给定顶点到每个其他可到达顶点的<strong>最短</strong>路径？嗯，有点像是。我们开发了一种在没有边标签的图上运行良好的算法。这是我们做的：我们开发了一种算法，它从给定的源顶点找到了我们最短（<strong>其中最短的意思是最少的边数</strong>）的路径。</p>
+<p>但这并不总是最短的正确定义。有时，我们的图边可能有‘权重’，如果 A-B 边的权重为5，而 A-C 边的权重只有3，那么A-B 被认为比 A-C 更远。</p>
+<p>考虑以下图像以了解问题所在。</p>
+<p><img src="/2024/03/19/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-18-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RD19-20-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E3%80%81%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/image-20240319234957049.png" alt="image-20240319234957049"></p>
+<blockquote>
+<p>右边边最少但是他并不是最短的</p>
+</blockquote>
+<h2 id="Dijkstra算法"><a href="#Dijkstra算法" class="headerlink" title="Dijkstra算法"></a>Dijkstra算法</h2>
+
+	<div class="row">
+    <embed src="CS61B-Dijkstra&#39;s-Algorithm-Demo.pdf" width="100%" height="550" type="application/pdf">
+	</div>
+
+
+
+
+<p>执行以下两项操作。</p>
+<ol>
+<li>查找从标记 0 的顶点到标记的 5 顶点的路径。</li>
+<li>F从标记为 00 的顶点中查找最短路径树。（即，找到从图中每个顶点到 00 每个顶点的最短路径。</li>
+<li>尝试想出一种算法来做到这一点。</li>
+</ol>
+<p>注意最短路径（对于带有权重的图）可能有许多许多边。我们关心的是选择路径上边的权重之和的最小化。</p>
+<p>其次，请注意从源<strong>s</strong>到达的最短路径树可以通过以下方式创建：</p>
+<ul>
+<li>对于图中的每个顶点<strong>v</strong>（不是<strong>s</strong>），找到从<strong>s</strong>到<strong>v</strong>的最短路径。</li>
+<li>“合并”所有上述找到的边。完成！</li>
+</ul>
+<p>第三，请注意“最短路径树”将<strong>始终是一棵树</strong>。为什么？嗯，让我们考虑一下我们的原始解决方案，其中我们维护了一个<code>edgeTo</code>数组。对于每个节点，在<code>edgeTo</code>数组中恰好有一个“父节点”。（这为什么意味着“最短路径树”将是一棵树？提示：一棵树有<strong>V-1</strong>条边，其中<strong>V</strong>是树中的节点数。）</p>
+<p>Dijkstra算法接受输入顶点<strong>s</strong>，并输出从<strong>s</strong>出发的最短路径树。它是如何工作的呢？</p>
+<ol>
+<li>创建一个优先队列。</li>
+<li>将<strong>s</strong>添加到优先队列，并将优先级设置为0。将所有其他顶点添加到优先队列，并将优先级设置为∞。</li>
+<li>当优先队列不为空时：弹出优先队列中的一个顶点，并<strong>释放</strong>该顶点出发的所有边。</li>
+</ol>
+<h3 id="什么是释放？"><a href="#什么是释放？" class="headerlink" title="什么是释放？"></a>什么是<strong>释放</strong>？</h3><p>假设我们刚刚从优先队列中弹出的顶点是<strong>v</strong>。我们将查看<strong>v</strong>的所有边。假设我们正在查看边(<strong>v</strong>,<strong>w</strong>)（从<strong>v</strong>到<strong>w</strong>的边）。我们将尝试对这条边进行释放。</p>
+<p>这意味着：查看您从源到<strong>w</strong>的当前最佳距离，称为<code>curBestDistToW</code>。现在，查看<code>curBestDistToV+weight(v, w)</code>（称为<code>potentialDistToWUsingV</code>）。</p>
+<p><code>potentialDistToWUsingV</code>是否<strong>更好，即更小</strong>，比<code>curBestDistToW</code>？在这种情况下，将<code>curBestDistToW=potentialDistToWUsingV</code>，更新<code>edgeTo[w]</code>为<strong>v</strong>。</p>
+<p><strong>重要说明：我们不会释放指向已访问顶点的边。</strong></p>
+<p>计算潜在距离、检查是否更好以及可能更新的整个过程称为释放。</p>
+<p>通过以下图像捕获了另一种定义。<img src="/2024/03/19/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-18-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RD19-20-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E3%80%81%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/pz1muo.jpg" alt="img"></p>
+<h3 id="伪代码"><a href="#伪代码" class="headerlink" title="伪代码"></a>伪代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">def <span class="title function_">dijkstras</span><span class="params">(source)</span>:</span><br><span class="line">    PQ.add(source, <span class="number">0</span>)</span><br><span class="line">    For all other vertices, v, PQ.add(v, infinity)</span><br><span class="line">    <span class="keyword">while</span> PQ is not empty:</span><br><span class="line">        p = PQ.removeSmallest()</span><br><span class="line">        relax(all edges from p)</span><br><span class="line">def <span class="title function_">relax</span><span class="params">(edge p,q)</span>:</span><br><span class="line">   <span class="keyword">if</span> q is <span class="title function_">visited</span> <span class="params">(i.e., q is not in PQ)</span>:</span><br><span class="line">       <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">   <span class="keyword">if</span> distTo[p] + weight(edge) &lt; distTo[q]:</span><br><span class="line">       distTo[q] = distTo[p] + w</span><br><span class="line">       edgeTo[q] = p</span><br><span class="line">       PQ.changePriority(q, distTo[q])</span><br></pre></td></tr></table></figure>
+
+<h3 id="保证"><a href="#保证" class="headerlink" title="保证"></a>保证</h3><p>只要边都是非负的，迪杰斯特拉算法就保证是最优的。</p>
+<h3 id="证明和直觉"><a href="#证明和直觉" class="headerlink" title="证明和直觉"></a>证明和直觉</h3><p>假设所有边都是非负的。</p>
+<ul>
+<li><p>在开始时，<code>distTo[source]</code> &#x3D; 0。这是最优的。</p>
+</li>
+<li><p>在从源开始释放所有边之后，让顶点<strong>v1</strong>是权重最小的顶点（即距离源最近的顶点）。</p>
+<p>声明：<code>distTo[v1]</code>是最优的，即在此时刻，<code>distTo[v1]</code>的值是从<strong>s</strong>到<strong>v1</strong>的最短距离。为什么？</p>
+<ul>
+<li>让我们尝试理解为什么<strong>必须</strong>如此。</li>
+<li>假设不是这种情况。那意味着从<strong>s</strong>到<strong>v1</strong>存在一条比直接路径(<strong>s</strong>,<strong>v1</strong>)更短的路径。好的，那么让我们考虑这条假设中更短的路径…它将会是(<strong>s</strong>,<strong>va</strong>,<strong>vb</strong>,…,<strong>v1</strong>)这样的路径。但是…(<strong>s</strong>,<strong>va</strong>)已经比(<strong>s</strong>,<strong>v1</strong>)大了。（请注意，这是因为<strong>v1</strong>是上面最接近<strong>s</strong>的顶点。）那么如何可能存在一条实际上更短的路径呢？不可能！</li>
+</ul>
+</li>
+<li><p>现在，下一个弹出的顶点将是<strong>v1</strong>。（为什么？请注意，它目前在优先队列中的优先级最低！）</p>
+</li>
+<li><p>所以现在，我们可以为<strong>v1</strong>及其进行的所有释放做出同样的论证。（这称为“归纳证明”。这有点像证明的递归。）就是这样；我们完成了。</p>
+</li>
+</ul>
+<h3 id="负边？"><a href="#负边？" class="headerlink" title="负边？"></a>负边？</h3><p>当负边出现时，情况可能会变得非常糟糕。考虑以下图像。</p>
+<p>假设您在标记为34的顶点。现在，您将尝试释放所有您的边。您只有一条从自己到标记为33的顶点的出边，权重为−67。啊，但是请注意：顶点33已经被访问（用白色标记）。所以…我们不会对其进行释放。（回顾一下relax方法的伪代码。）</p>
+<p>现在我们回家，认为到33的最短距离是82（用粉色标记）。但实际上，我们应该走<strong>通过</strong>34的路径，因为这会给我们34−67&#x3D;34的距离。糟糕。</p>
+<p><strong>对于负边，Dijkstra算法不能保证正确。它可能有效…但不能保证有效。</strong></p>
+<p>试一试：假设您的图具有负边，但所有负边都只从您传入的源顶点<strong>s</strong>出发。迪杰斯特拉算法有效吗？为什么&#x2F;为什么不？</p>
+<h3 id="一个值得注意的不变性"><a href="#一个值得注意的不变性" class="headerlink" title="一个值得注意的不变性"></a>一个值得注意的不变性</h3><p>请注意，一旦顶点从优先队列中弹出，它就永远不会被重新添加。它的距离永远不会被更新。因此，换句话说，一旦顶点从优先队列中弹出，我们<strong>知道</strong>到该顶点的真正最短距离。</p>
+<p>这个事实的一个好处是“短路”。假设…我不关心最短路径树，而只想找到从某个源到某个其他目标的最短路径。假设您想要在世界各城市上构建一个图，并找到从伯克利到奥克兰的最短路径。运行<code>dijkstra(Berkeley)</code>将意味着您无法停止这个强大的算法…您必须让它运行…直到它找到到洛杉矶、休斯顿、纽约市和所有可能的地方的最短路径！</p>
+<p>好吧。一旦算法中的<code>Oakland</code>从优先队列中弹出，我们就可以停止。我们只需返回此时的距离和路径，它将是正确的。因此，<strong>有时</strong><code>dijkstra</code>不仅接受源，还接受目标。这是为了短路的目的。</p>
+<h2 id="A-算法"><a href="#A-算法" class="headerlink" title="A*算法"></a>A*算法</h2>
+
+	<div class="row">
+    <embed src="A_" width="100%" height="550" type="application/pdf">
+	</div>
+
+
+
+
+<p>我们通过讨论一种可能的方法来结束Dijkstra算法部分，即使其在碰到给定目标后就停止。这样做足够好吗？</p>
+<p>要回答上面的问题，我们需要坐下来思考Dijkstra算法的实际工作原理。以图形方式表示，Dijkstra从源节点开始（想象源节点是圆心）。然后，Dijkstra算法围绕这一点以递增的半径绘制同心圆，并“扫描”这些圆，捕捉点。</p>
+<p>因此…Dijkstra首先访问的节点是距离源点最近的城市，然后是次最近的城市，依此类推。这听起来是个好主意。Dijkstra首先访问距离1个单位的所有城市，然后是距离2个单位的城市，依此类推，形成同心圆。</p>
+<p>现在想象一下以下情况：在美国地图上，从中心某处开始，比如丹佛。现在我想让你用Dijkstra找到一条到纽约的路径。你将按照“最接近的同心圆”的顺序遍历节点。</p>
+<p>你将首先绘制一个小圆，就在丹佛附近，访问该圆内的所有城市。最终，你的圆将变大，你将绘制一个通过拉斯维加斯的圆（到目前为止，该圆将访问所有其他位于圆内的城市）。然后，你的圆将足够大，能够覆盖洛杉矶和达拉斯…但你离纽约还差得远。所有这些努力，所有这些圆，但是…离目标还很远。短路帮助了，但只有在你快速到达目标节点时才有效。</p>
+<p>如果我们能有一种方法利用你的先验知识：纽约在东边，这样你就可以“提示”你的算法更喜欢东边的节点，而不是西边的节点。</p>
+<h3 id="引入：A"><a href="#引入：A" class="headerlink" title="引入：A*"></a>引入：A*</h3><p>不，不是太阳。这是一种叫做A*的算法。</p>
+<p>观察以下事实：Dijkstra是从源到节点的距离的“真实”（即不是估计）度量。因此，假设你访问了伊利诺伊州的一个城市，你的源是丹佛，那么在那时，你已经得到了到丹佛的距离的真实度量。我们缺少的是：从节点到目标节点纽约的距离的一些粗略估计。这将完整地呈现出整个图景。因为如果你把这两个因素相加（从源到节点的度量+从节点到目标的估计），你得到（从源到目标的估计）。当然，你原始的从节点到目标的估计越好，你从源到目标的估计就越好，你的A*算法就越好。</p>
+<p>因此，让我们稍微修改我们的Dijkstra算法。在Dijkstra中，我们使用<code>bestKnownDistToV</code>作为我们算法中的优先级。这次，我们将使用<code>bestKnownDistToV+estimateFromVToGoal</code>作为我们的启发式。</p>
+<p>这里有一个<a target="_blank" rel="noopener" href="https://docs.google.com/presentation/d/177bRUTdCa60fjExdr9eO04NHm0MRfPtCzvEup1iMccM/edit#slide=id.g771336078_0_180">演示</a>！</p>
+<h3 id="鸡和蛋"><a href="#鸡和蛋" class="headerlink" title="鸡和蛋"></a>鸡和蛋</h3><p>我们有一个问题。我们怎么知道估计值是多少？我的意思是，估计值本身是一种<strong>距离</strong>，而我们正在使用A*来<strong>找到</strong>从某个节点到另一个节点的距离。</p>
+<p>这似乎像是一个经典的鸡和蛋问题实例。“先有鸡还是先有蛋？”顺便说一下，有个Reddit用户对此有了一个<a target="_blank" rel="noopener" href="https://www.reddit.com/r/dadjokes/comments/97768x/i_ordered_a_chicken_and_an_egg_from_amazon_ill/">想法</a>。</p>
+<p>嗯，它被称为估计，因为它确实是这样。我们使用A*来得到从源到目标的<strong>真实</strong>最短路径，但估计值是我们近似的。有时候得到好的估计是困难的。</p>
+<p>但是，让我们以丹佛 - 纽约的例子来举例说明。我们可以做的是查找这些城市的GPS坐标，并计算其中的直线距离。当然，这可能不正确，因为从丹佛到纽约可能没有直线可走，但这是一个相当好的估计！</p>
+<h3 id="不好的启发式"><a href="#不好的启发式" class="headerlink" title="不好的启发式"></a>不好的启发式</h3><p>假设从丹佛到纽约的最短路径经过某个城市<em>C</em>。假设我的GPS坏了，因此我认为这个城市<em>C</em>离一切都是无限远的，所以我将从图中的每个其他节点到城市<em>C</em>的估计距离设置为∞。</p>
+<p>会发生什么？嗯，A*基本上永远不想访问这个城市。 （记住我们在优先级队列中的优先级是什么；对于这个城市，优先级将始终为∞，即使</p>
+<h1 id="最小生成树-MST"><a href="#最小生成树-MST" class="headerlink" title="最小生成树(MST)"></a>最小生成树(MST)</h1><p>最小生成树（MST）是图中可能的最轻的边集，使得所有顶点都连接在一起。由于它是一棵树，它必须是连通的且无环的。而且它被称为“生成”，因为所有顶点都包括在内。</p>
+<p><img src="/2024/03/19/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-18-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RD19-20-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E3%80%81%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/image-20240320172133841.png" alt="image-20240320172133841"></p>
+<blockquote>
+<p>条件</p>
+<ul>
+<li>连接的</li>
+<li>非闭环的</li>
+<li>包括了所有顶点</li>
+</ul>
+</blockquote>
+<p>在这一章中，我们将看两个算法，它们将帮助我们从一个图中找到一个最小生成树。</p>
+<p>在我们开始之前，让我们介绍一下割属性，这是一个有助于找到最小生成树的工具。</p>
+<h2 id="割属性"><a href="#割属性" class="headerlink" title="割属性"></a>割属性</h2><p>我们可以将一个割定义为对图的节点分配给两个非空集合（即我们将每个节点分配给第一个集合或第二个集合）。</p>
+<p>我们可以将一个横跨的边定义为连接一个集合中的节点到另一个集合中的节点的边。</p>
+<p>有了这两个定义，我们就可以理解割属性了：给定任何一个割，最小权重的横跨边都在最小生成树中。</p>
+<p>割属性的证明如下：假设（为了推导矛盾）最小横跨边 e 不在最小生成树中。由于它不是最小生成树的一部分，如果我们添加该边，就会创建一个循环。因为有一个循环，这意味着另一个边 f 也必须是一个横跨边（对于一个循环，如果 e 从一个集合穿过到另一个集合，就必须有另一条边穿过回到第一个集合）。因此，我们可以移除 f 并保留 e，这将给我们一个更低权重的生成树。但这是一个矛盾，因为我们假设开始时有一个最小生成树，但现在我们有了一个权重更小的生成树，因此原始的最小生成树实际上并不是最小的。因此，割属性必须成立。</p>
+<p>下面是一张图示，说明了上述证明的一些论点：</p>
+<p><img src="/2024/03/19/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-18-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RD19-20-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E3%80%81%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/image-20240320172407081.png" alt="image-20240320172407081"></p>
+<h2 id="Prim算法"><a href="#Prim算法" class="headerlink" title="Prim算法"></a>Prim算法</h2>
+
+	<div class="row">
+    <embed src="CS61B-Prim&#39;s-Demo.pdf" width="100%" height="550" type="application/pdf">
+	</div>
+
+
+
+
+<p>这是一种从图中找到最小生成树（MST）的算法。它的步骤如下：</p>
+<ol>
+<li>从任意起始节点开始。</li>
+<li>反复添加具有一个节点在正在构建的MST内的最短边。</li>
+<li>重复直到有$V-1$条边。</li>
+</ol>
+<p>Prim算法之所以有效，是因为在算法的所有阶段，如果我们将所有节点都作为我们正在构建的MST的一部分，而将所有其他节点视为第二个集合，那么这个算法总是添加横跨此割的最轻的边，根据割属性，这个边必然是最终MST的一部分。</p>
+<p>从本质上讲，该算法通过与Dijkstra算法相同的机制运行，但是Dijkstra算法考虑的是候选节点距离源节点的距离，而Prim算法则查看每个候选节点距离正在构建的MST的距离。</p>
+<p>因此，如果使用与Dijkstra算法相同的机制进行Prim算法，其运行时间将与Dijkstra算法相同，即 </p>
+<p>$O((|V| + |E|) \log |V|)$。请记住，这是因为我们需要为每条边添加到优先级队列中的外围，并且我们需要为每个顶点从中出队一次。</p>
+<p><img src="/2024/03/19/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-18-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RD19-20-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E3%80%81%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/2024-03-20-17-19-38.gif" alt="2024-03-20-17-19-38"></p>
+<blockquote>
+<p>区别: </p>
+<ul>
+<li>MSP: 从源顶点出发，所以在哪里开始很重要</li>
+<li>SPT: 全局属性，与源顶点无关</li>
+</ul>
+</blockquote>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><p><img src="/2024/03/19/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-18-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RD19-20-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E3%80%81%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/image-20240320172951394.png" alt="image-20240320172951394"></p>
+<p><img src="/2024/03/19/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-18-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RD19-20-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E3%80%81%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/image-20240320173004710.png" alt="image-20240320173004710"></p>
+<h2 id="Kruskal算法"><a href="#Kruskal算法" class="headerlink" title="Kruskal算法"></a>Kruskal算法</h2>
+
+	<div class="row">
+    <embed src="kruskals-realistic-implementation-demo.pdf" width="100%" height="550" type="application/pdf">
+	</div>
+
+
+
+
+<p>这是另一种从图中找到最小生成树（MST）的算法。Kruskal返回的最小生成树可能与Prim返回的不同，但是这两个算法都将始终返回一个MST；因为两者都是最小的（最优的），它们都将给出有效的最优解（它们在最小&#x2F;总权重相同的情况下一样优，而且这是尽可能低的）。</p>
+<p>该算法步骤如下：</p>
+<ol>
+<li>将所有边从最轻到最重排序。</li>
+<li>逐个考虑边（按排序顺序），如果添加该边不会形成循环，则将其添加到我们正在构建的MST中。</li>
+<li>重复直到有 $V-1$ 条边。</li>
+</ol>
+<p>Kruskal算法有效的原因是我们添加的任何边都将连接一个节点，我们可以说这个节点是一个集合的一部分，以及第二个节点，我们可以说是第二个集合的一部分。我们添加的这条边不是循环的一部分，因为我们只有在不会形成循环的情况下才会添加一条边。此外，我们按照从最轻到最重的顺序查看候选边。因此，我们要添加的这条边必须是横跨此割的最轻的边（如果存在一条更轻的边，那么它将在此之前被添加，添加这条边将导致出现循环）。因此，该算法也是通过割属性工作的。</p>
+<p>Kruskal算法运行时间为$O(|E| \log |E|)$，因为算法的瓶颈是开始时对所有边进行排序（例如，我们可以使用堆排序，其中我们将所有边插入堆中，并逐个删除最小边）。如果我们已经给出了预先排序的边并且不需要为此付出代价，那么运行时间是 $O(∣E∣log ^∗  ∣V∣)$。这是因为每当我们提出要添加的边时，我们都需要检查它是否会引入循环。我们知道如何做到这一点的一种方法是使用带路径压缩的加权快速并查集；这将有效地告诉我们两个节点是否已经连接在一起。这将花费$∣E∣$ 次调用 <code>isConnected</code>，每次调用的成本为$ O(log ^∗  ∣V∣)$，其中$log^*$是阿克曼函数。</p>
+<p><img src="/2024/03/19/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-18-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RD19-20-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E3%80%81%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/2024-03-20-17-17-07.gif" alt="2024-03-20-17-17-07"></p>
+<h3 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h3><p><img src="/2024/03/19/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-18-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RD19-20-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E3%80%81%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/image-20240320173029921.png" alt="image-20240320173029921"></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p><img src="/2024/03/19/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-18-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RD19-20-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E3%80%81%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/image-20240320173106199.png" alt="image-20240320173106199"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://bailog.top">xxbaizero</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://bailog.top/2024/03/19/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-18-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RD19-20-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E3%80%81%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/">http://bailog.top/2024/03/19/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-18-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RD19-20-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E3%80%81%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://bailog.top" target="_blank">bai的小窝</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/JAVA/">JAVA</a><a class="post-meta__tags" href="/tags/CS61B/">CS61B</a></div><div class="post_share"><div class="social-share" data-image="/img/background/season4.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/03/20/JAVA-CS61B-%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0-0-CS61B%E5%BA%93%E8%AE%BE%E7%BD%AE/" title="CS61B库设置"><img class="cover" src="/img/background/dream2.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">CS61B库设置</div></div></a></div><div class="next-post pull-right"><a href="/2024/03/17/Flutter-%E6%B8%B8%E6%88%8F-Puzzle/" title="Puzzle"><img class="cover" src="/img/background/season1.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Puzzle</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2024/01/16/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-JAVA%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/" title="CS61B学习笔记(一)--JAVA快速入门"><img class="cover" src="/img/background/dream.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-01-16</div><div class="title">CS61B学习笔记(一)--JAVA快速入门</div></div></a></div><div><a href="/2024/02/02/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-10-CS61b%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd6/" title="CS61B学习笔记(十)-Rd6-迭代器，equal方法，异常处理"><img class="cover" src="/img/background/season1.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-02-02</div><div class="title">CS61B学习笔记(十)-Rd6-迭代器，equal方法，异常处理</div></div></a></div><div><a href="/2024/02/02/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-11-CS61b%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd8-1/" title="CS61B学习笔记(十一)-Rd8.1-封装、API、ADT"><img class="cover" src="/img/background/season3.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-02-02</div><div class="title">CS61B学习笔记(十一)-Rd8.1-封装、API、ADT</div></div></a></div><div><a href="/2024/02/07/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-12-CS61b%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd8-9-%E4%B8%8D%E7%9B%B8%E4%BA%A4%E9%9B%86/" title="CS61B学习笔记(十二)-Rd8.9-不相交集"><img class="cover" src="/img/background/season2.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-02-07</div><div class="title">CS61B学习笔记(十二)-Rd8.9-不相交集</div></div></a></div><div><a href="/2024/02/09/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-14-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd11-%E5%B9%B3%E8%A1%A1%E6%A0%91/" title="CS61B学习笔记(十四)-Rd11-树"><img class="cover" src="/img/background/season1.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-02-09</div><div class="title">CS61B学习笔记(十四)-Rd11-树</div></div></a></div><div><a href="/2024/02/07/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-13-CS61b%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd10-ADP%E3%80%81%E6%A0%91/" title="CS61B学习笔记(十三)-Rd10-ADP、树"><img class="cover" src="/img/background/season1.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-02-07</div><div class="title">CS61B学习笔记(十三)-Rd10-ADP、树</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/ico/avatar_1.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">xxbaizero</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">41</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxbaizero0"><i class="fab fa-github"></i><span>中国矿业大学本科生 23级</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/xxbaizero0" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:2597453011@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到bai的小屋</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84-SPT"><span class="toc-number">1.</span> <span class="toc-text">最短路径(SPT)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9E%E9%A1%BE"><span class="toc-number">1.1.</span> <span class="toc-text">回顾</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9E%E7%AD%94%E7%A5%9E%E7%A7%98%E9%97%AE%E9%A2%98"><span class="toc-number">1.2.</span> <span class="toc-text">回答神秘问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Dijkstra%E7%AE%97%E6%B3%95"><span class="toc-number">1.3.</span> <span class="toc-text">Dijkstra算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E9%87%8A%E6%94%BE%EF%BC%9F"><span class="toc-number">1.3.1.</span> <span class="toc-text">什么是释放？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%AA%E4%BB%A3%E7%A0%81"><span class="toc-number">1.3.2.</span> <span class="toc-text">伪代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%9D%E8%AF%81"><span class="toc-number">1.3.3.</span> <span class="toc-text">保证</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%81%E6%98%8E%E5%92%8C%E7%9B%B4%E8%A7%89"><span class="toc-number">1.3.4.</span> <span class="toc-text">证明和直觉</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B4%9F%E8%BE%B9%EF%BC%9F"><span class="toc-number">1.3.5.</span> <span class="toc-text">负边？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E4%B8%AA%E5%80%BC%E5%BE%97%E6%B3%A8%E6%84%8F%E7%9A%84%E4%B8%8D%E5%8F%98%E6%80%A7"><span class="toc-number">1.3.6.</span> <span class="toc-text">一个值得注意的不变性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#A-%E7%AE%97%E6%B3%95"><span class="toc-number">1.4.</span> <span class="toc-text">A*算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%95%E5%85%A5%EF%BC%9AA"><span class="toc-number">1.4.1.</span> <span class="toc-text">引入：A*</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%B8%A1%E5%92%8C%E8%9B%8B"><span class="toc-number">1.4.2.</span> <span class="toc-text">鸡和蛋</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8D%E5%A5%BD%E7%9A%84%E5%90%AF%E5%8F%91%E5%BC%8F"><span class="toc-number">1.4.3.</span> <span class="toc-text">不好的启发式</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91-MST"><span class="toc-number">2.</span> <span class="toc-text">最小生成树(MST)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%B2%E5%B1%9E%E6%80%A7"><span class="toc-number">2.1.</span> <span class="toc-text">割属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Prim%E7%AE%97%E6%B3%95"><span class="toc-number">2.2.</span> <span class="toc-text">Prim算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-number">2.2.1.</span> <span class="toc-text">代码实现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Kruskal%E7%AE%97%E6%B3%95"><span class="toc-number">2.3.</span> <span class="toc-text">Kruskal算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0-1"><span class="toc-number">2.3.1.</span> <span class="toc-text">代码实现</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2024 By xxbaizero</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"></div><script defer src="https://npm.elemecdn.com/jquery@latest/dist/jquery.min.js"></script><script defer data-pjax src="/js/cat.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="20" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><!-- hexo injector body_end start --> <script data-pjax>if(document.getElementById('recent-posts') && (location.pathname ==='/'|| '/' ==='all')){
+    var parent = document.getElementById('recent-posts');
+    var child = '<div class="recent-post-item" style="width:100%;height: auto"><div id="catalog_magnet"><div class="magnet_item"><a class="magnet_link" href="http://bailog.top/categories/C/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📚 C++笔记 (3)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://bailog.top/categories/CS自学笔记/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🎮 CS自学笔记 (32)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://bailog.top/categories/Python/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🐱‍👓 Python学习笔记 (2)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://bailog.top/categories/JAVA/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🐱‍👓 Java学习笔记 (30)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://bailog.top/categories/有趣の文章/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📒 有趣の文章 (1)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item" style="visibility: hidden"></div><a class="magnet_link_more"  href="http://bailog.top/categories" style="flex:1;text-align: center;margin-bottom: 10px;">查看更多...</a></div></div>';
+    console.log('已挂载magnet')
+    parent.insertAdjacentHTML("afterbegin",child)}
+     </script><style>#catalog_magnet{flex-wrap: wrap;display: flex;width:100%;justify-content:space-between;padding: 10px 10px 0 10px;align-content: flex-start;}.magnet_item{flex-basis: calc(50% - 5px);background: #f2f2f2;margin-bottom: 10px;border-radius: 8px;transition: all 0.2s ease-in-out;}.magnet_item:hover{background: #69e8f2}.magnet_link_more{color:#555}.magnet_link{color:black}.magnet_link:hover{color:white}@media screen and (max-width: 600px) {.magnet_item {flex-basis: 100%;}}.magnet_link_context{display:flex;padding: 10px;font-size:16px;transition: all 0.2s ease-in-out;}.magnet_link_context:hover{padding: 10px 20px;}</style>
+    <style></style><script data-pjax>
+  function butterfly_footer_beautify_injector_config(){
+    var parent_div_git = document.getElementById('footer-wrap');
+    var item_html = '<div id="workboard"></div><p id="ghbdages"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px" data-title="博客框架为Hexo_v6.2.0" title=""><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&amp;logo=hexo" alt=""/></a><a class="github-badge" target="_blank" href="https://butterfly.js.org/" style="margin-inline:5px" data-title="主题版本Butterfly_v4.3.1" title=""><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&amp;logo=bitdefender" alt=""/></a><a class="github-badge" target="_blank" href="https://vercel.com/" style="margin-inline:5px" data-title="本站采用多线部署，主线路托管于Vercel" title=""><img src="https://img.shields.io/badge/Hosted-Vercel-brightgreen?style=flat&amp;logo=Vercel" alt=""/></a><a class="github-badge" target="_blank" href="https://dashboard.4everland.org/" style="margin-inline:5px" data-title="本站采用多线部署，备用线路托管于4EVERLAND" title=""><img src="https://img.shields.io/badge/Hosted-4EVERLAND-22DDDD?style=flat&amp;logo=IPFS" alt=""/></a><a class="github-badge" target="_blank" href="https://github.com/" style="margin-inline:5px" data-title="本站项目由Github托管" title=""><img src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&amp;logo=GitHub" alt=""/></a><a class="github-badge" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="margin-inline:5px" data-title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可" title=""><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&amp;logo=Claris" alt=""/></a></p>';
+    console.log('已挂载butterfly_footer_beautify')
+    parent_div_git.insertAdjacentHTML("beforeend",item_html)
+    }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_footer_beautify_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_footer_beautify_injector_config();
+  }
+  </script><script async src="https://unpkg.zhimg.com/hexo-butterfly-footer-beautify@1.0.0/lib/runtime.min.js"></script><!-- hexo injector body_end end --></body></html>

@@ -1,0 +1,402 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>CS61B学习笔记(二十一)-Tries | bai的小窝</title><meta name="author" content="xxbaizero"><meta name="copyright" content="xxbaizero"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="我们现在将学习一个名为 Tries 的新数据结构。这些将作为 Set 和 Map 的新实现（根据我们之前所学到的），该 Map 对某些类型的数据和信息具有一些特殊功能。 Trie的介绍回顾由于我们正在考虑 ADT Set和Map，让我们回顾一下到目前为止所学到的实现。过去，我们主要学习如何使用二叉搜索树或哈希表来实现这些 ADT。让我们回顾一下这两者的运行时：   平衡搜索树： contains(">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CS61B学习笔记(二十一)-Tries">
+<meta property="og:url" content="http://bailog.top/2024/03/21/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-21-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Tries/index.html">
+<meta property="og:site_name" content="bai的小窝">
+<meta property="og:description" content="我们现在将学习一个名为 Tries 的新数据结构。这些将作为 Set 和 Map 的新实现（根据我们之前所学到的），该 Map 对某些类型的数据和信息具有一些特殊功能。 Trie的介绍回顾由于我们正在考虑 ADT Set和Map，让我们回顾一下到目前为止所学到的实现。过去，我们主要学习如何使用二叉搜索树或哈希表来实现这些 ADT。让我们回顾一下这两者的运行时：   平衡搜索树： contains(">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://bailog.top/img/background/dream.jpg">
+<meta property="article:published_time" content="2024-03-21T14:02:48.000Z">
+<meta property="article:modified_time" content="2024-03-21T14:57:38.670Z">
+<meta property="article:author" content="xxbaizero">
+<meta property="article:tag" content="JAVA">
+<meta property="article:tag" content="CS61B">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://bailog.top/img/background/dream.jpg"><link rel="shortcut icon" href="/img/ico/%E5%9C%A3%E8%AF%9E%E6%A0%91.png"><link rel="canonical" href="http://bailog.top/2024/03/21/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-21-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Tries/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  noticeOutdate: {"limitDay":500,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":230},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体中文","cht_to_chs":"你已切换为简体中文","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'CS61B学习笔记(二十一)-Tries',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-03-21 22:57:38'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const now = new Date()
+          const hour = now.getHours()
+          const isNight = hour <= 6 || hour >= 18
+          if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+          else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/cat.css"><div id="myscoll"></div><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-double-row-display@1.00/cardlistpost.min.css"/>
+<style>#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags:before {content:"\A";
+  white-space: pre;}#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags > .article-meta__separator{display:none}</style>
+<link rel="stylesheet" href="https://unpkg.zhimg.com/hexo-butterfly-footer-beautify@1.0.0/lib/runtime.min.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/ico/avatar_1.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">41</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/diary"><i class="fa-fw fas fa-book"></i><span> 日记</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="bai的小窝"><span class="site-name">bai的小窝</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/diary"><i class="fa-fw fas fa-book"></i><span> 日记</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">CS61B学习笔记(二十一)-Tries</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-03-21T14:02:48.000Z" title="发表于 2024-03-21 22:02:48">2024-03-21</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-03-21T14:57:38.670Z" title="更新于 2024-03-21 22:57:38">2024-03-21</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/CS%E8%87%AA%E5%AD%A6%E7%AC%94%E8%AE%B0/">CS自学笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/JAVA/">JAVA</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/JAVA/CS61B/">CS61B</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/CS%E8%87%AA%E5%AD%A6%E7%AC%94%E8%AE%B0/CS61B/">CS61B</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>12分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="CS61B学习笔记(二十一)-Tries"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><p>我们现在将学习一个名为 Tries 的新数据结构。这些将作为 Set 和 Map 的新实现（根据我们之前所学到的），该 Map 对某些类型的数据和信息具有一些特殊功能。</p>
+<h1 id="Trie的介绍"><a href="#Trie的介绍" class="headerlink" title="Trie的介绍"></a>Trie的介绍</h1><h2 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h2><p>由于我们正在考虑 ADT <em>Set</em>和<em>Map</em>，让我们回顾一下到目前为止所学到的实现。过去，我们主要学习如何使用二叉搜索树或哈希表来实现这些 ADT。让我们回顾一下这两者的运行时：</p>
+<p><img src="/2024/03/21/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-21-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Tries/image-20240321221008103.png" alt="image-20240321221008103"></p>
+<ul>
+<li>平衡搜索树：<ul>
+<li><code>contains(x)</code>: $Θ(logN)$</li>
+<li><code>add(x)</code>: $Θ(logN)$</li>
+</ul>
+</li>
+<li>调整单独的链接哈希表的大小：<ul>
+<li><code>contains(x)</code> ： $Θ(1) $（假设点差均匀）</li>
+<li><code>add(x)</code> ： $Θ(1)$ （假设均匀点差和摊销）</li>
+</ul>
+</li>
+</ul>
+<p>我们可以看到，与 Sets 和 Maps 相关的操作的实现速度非常快。</p>
+<p><strong>问题</strong>：我们能做得比这更好吗？这可能取决于我们问题的性质。如果我们<strong>知道钥匙的特殊特性</strong>会怎样？</p>
+<p><strong>答：</strong>是的，例如，如果我们总是知道我们的键是 ASCII 字符，那么不要使用通用的 HashMap，只需使用一个数组，其中每个字符都是我们数组中的不同索引：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">DataIndexedCharMap</span>&lt;<span class="title">V</span>&gt; </span>&#123;</span><br><span class="line">    private V[] items;</span><br><span class="line">    public DataIndexedCharMap(<span class="built_in">int</span> R) &#123;</span><br><span class="line">        items = (V[]) <span class="keyword">new</span> <span class="built_in">Object</span>[R];</span><br><span class="line">    &#125;</span><br><span class="line">    public <span class="keyword">void</span> put(char c, V val) &#123;</span><br><span class="line">        items[c] = val;</span><br><span class="line">    &#125;</span><br><span class="line">    public V <span class="keyword">get</span>(char c) &#123;</span><br><span class="line">        <span class="keyword">return</span> items[c];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这里，我们为一个采用字符键的映射创建了一个实现。值 R 表示可能的字符数（例如，ASCII 为 128）。好！通过了解Keys的范围以及它们将是什么类型的值，我们得到了一个简单而高效的数据结构。现在我们已经为字符创建了一些东西，那么字符串呢？</p>
+<h2 id="发明-Trie"><a href="#发明-Trie" class="headerlink" title="发明 Trie"></a>发明 Trie</h2><p>Trie是一种非常有用的数据结构，用于可以将键分解为“字符”并与其他键（例如字符串）共享前缀的情况。</p>
+<p>假设我们有一个包含“sam”、“sad”、“sap”、“same”、“a”和“awls”的集合。对于现有的 Set 实现，我们有以下可视化结构。我们如何使用我们已知的其他可能的数据结构来改进这一点？我们如何利用结构字符串？</p>
+<p><img src="/2024/03/21/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-21-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Tries/image-20240321221008103.png" alt="image-20240321221008103"></p>
+<p>以下是我们将使用的一些关键想法：</p>
+<ul>
+<li>每个节点只存储一个字母</li>
+<li>节点可以由多个Keys共享</li>
+</ul>
+<p>因此，我们可以将 “sam”、“sad”、“sap”、“same”、“a” 和 “awls” 插入到包含单字符节点的树结构中。一个重要的观察结果是，这些单词中的大多数都具有相同的前缀，因此我们可以利用这些结构相似的字符串来构建我们的结构。换句话说，我们不会多次存储相同的前缀（例如“sa-”）。</p>
+<p>看看下面的图表，看看 trie 会是什么样子：</p>
+<p><img src="/2024/03/21/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-21-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Tries/image-20240321221027882.png"></p>
+<p>尝试通过将Keys的每个“字符”存储为节点来工作。共享公共前缀的Keys共享相同的节点。要检查 trie 是否包含键，请沿着正确的节点从根部向下走。</p>
+<p>由于我们要共享节点，我们必须想出某种方法来表示哪些字符串属于我们的集合，哪些不属于我们的集合。我们将通过将每个字符串的最后一个字符的颜色标记为蓝色来解决这个问题。请在下面观察我们的最终策略。</p>
+<p><img src="/2024/03/21/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-21-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Tries/image-20240321221541527.png" alt="image-20240321221541527"></p>
+<p>假设我们已经将字符串插入到我们的集合中，并且我们最终得到了上面的 trie，我们必须弄清楚搜索在我们当前的方案中将如何工作。为了搜索，我们将遍历我们的尝试，并在向下时与字符串的每个字符进行比较。因此，只有两种情况我们无法找到字符串;要么最后一个节点是白色的，要么我们从树上掉下来。</p>
+<ul>
+<li><code>contains(&quot;sam&quot;)</code> ：true，蓝色节点</li>
+<li><code>contains(&quot;sa&quot;)</code> ：false，白色节点</li>
+<li><code>contains(&quot;a&quot;)</code> ：true，蓝色节点</li>
+<li><code>contains(&quot;saq&quot;)</code> ： 假的，从树上掉下来的</li>
+</ul>
+<p>练习 15.1.2.将字符串“ants”、“zebra”、“potato”和“sadness”添加到上面的 trie 中。绘制出生成的 trie 结构。</p>
+<p>练习 15.1.3.想一想将 trie 用作地图与将 trie 用作集合之间的区别。（如果有的话）实现会有所不同吗？</p>
+<p>在<a target="_blank" rel="noopener" href="http://www.cs.princeton.edu/courses/archive/spring15/cos226/demo/52DemoTrie.mov">这里</a>查看创建 trie 地图的动画演示。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>一个关键的要点是，当我们为问题添加特异性时，我们通常可以通过添加额外的约束来改进通用数据结构。例如，我们改进了 HashMap 的实现，将键限制为只能是 ASCII 字符，从而创建了非常高效的数据结构。</p>
+<ul>
+<li>ADT 和特定实现之间是有区别的。例如，Disjoint Sets 是一个 ADT：任何 Disjoint Sets 都具有 和 <code>connect(x, y)</code> <code>isConnected(x, y)</code> 的方法。有四种不同的方法可以实现这些方法：快速查找、快速并集、加权 QU 和 WQUPC。</li>
+<li>Trie 是专门用于字符串的 Sets 和 Maps 的特定实现。<ul>
+<li>我们给每个节点一个字符，每个节点可以是 trie 中多个键的一部分。</li>
+<li>只有当我们碰到一个未标记的节点或者从树上掉下来时，搜索才会失败</li>
+<li>Re<strong>trie</strong>val tree的缩写，几乎每个人都将其发音为“try”，但爱德华·弗雷德金建议将其发音为“树”</li>
+</ul>
+</li>
+</ul>
+<h1 id="Trie的实现"><a href="#Trie的实现" class="headerlink" title="Trie的实现"></a>Trie的实现</h1><h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>让我们实际尝试构建一个Trie。我们将采用第一种方法，即每个节点存储一个字母、其子节点和一个颜色的想法。由于我们知道每个节点键是一个字符，我们可以使用之前定义的DataIndexedCharMap类来映射所有节点的子节点。请记住，每个节点最多可以有可能字符数等于其子节点数。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TrieSet</span> &#123;</span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">R</span> <span class="operator">=</span> <span class="number">128</span>; <span class="comment">// ASCII</span></span><br><span class="line">   <span class="keyword">private</span> Node root;    <span class="comment">// trie的根节点</span></span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">Node</span> &#123;</span><br><span class="line">      <span class="keyword">private</span> <span class="type">char</span> ch;  </span><br><span class="line">      <span class="keyword">private</span> <span class="type">boolean</span> isKey;   </span><br><span class="line">      <span class="keyword">private</span> DataIndexedCharMap next;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">private</span> <span class="title function_">Node</span><span class="params">(<span class="type">char</span> c, <span class="type">boolean</span> blue, <span class="type">int</span> R)</span> &#123;</span><br><span class="line">         ch = c; </span><br><span class="line">         isKey = blue;</span><br><span class="line">         next = <span class="keyword">new</span> <span class="title class_">DataIndexedCharMap</span>&lt;Node&gt;(R);</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>聚焦于具有一个子节点的单个节点，我们可以观察到它的next变量，即DataIndexedCharMap对象，如果我们树中的节点具有相对较少的子节点，则将具有大多数空链接。我们将有128个链接，其中127个等于null，1个被使用。这意味着我们浪费了大量的多余空间！我们将进一步探讨替代表示方法。</p>
+<p><img src="/2024/03/21/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-21-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Tries/image-20240321223837867.png" alt="image-20240321223837867"></p>
+<p>但我们可以做出重要观察：只有当该字符存在时，每个链接才对应一个字符。因此，我们可以删除节点的字符变量，而是根据其在父DataIndexedCharMap中的位置确定字符的值。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TrieSet</span> &#123;</span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">R</span> <span class="operator">=</span> <span class="number">128</span>; <span class="comment">// ASCII</span></span><br><span class="line">   <span class="keyword">private</span> Node root;    <span class="comment">// trie的根节点</span></span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">Node</span> &#123;</span><br><span class="line">      <span class="keyword">private</span> <span class="type">boolean</span> isKey;   </span><br><span class="line">      <span class="keyword">private</span> DataIndexedCharMap next;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">private</span> <span class="title function_">Node</span><span class="params">(<span class="type">boolean</span> blue, <span class="type">int</span> R)</span> &#123;</span><br><span class="line">         isKey = blue;</span><br><span class="line">         next = <span class="keyword">new</span> <span class="title class_">DataIndexedCharMap</span>&lt;Node&gt;(R);</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2024/03/21/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-21-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Tries/image-20240321224738151.png" alt="image-20240321224738151"></p>
+<p><strong>Exercise 15.2.1.</strong> 提出一种解决空间过度使用的解决方案。提示：尝试使用我们之前讨论过的一些实现。</p>
+<h2 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h2><p>对于具有N个键的Trie，我们的Map&#x2F;Set操作的运行时如下：</p>
+<ul>
+<li>添加：<ul>
+<li>$Θ(1)$</li>
+</ul>
+</li>
+<li>包含：<ul>
+<li>$Θ(1)$</li>
+</ul>
+</li>
+</ul>
+<p>为什么会这样？我们的trie中有多少项并不重要，运行时始终与键的数量无关。这是因为在最坏的情况下，我们只遍历一个键的长度，这与trie中的键的数量无关。因此，让我们通过可以测量的测量来查看运行时；用键的长度L表示：</p>
+<ul>
+<li>添加：<ul>
+<li>$ Θ(L) $</li>
+</ul>
+</li>
+<li>包含：<ul>
+<li>$O(L)$</li>
+</ul>
+</li>
+</ul>
+<p>我们实现了恒定的运行时，而无需担心摊销调整时间或键的均匀分布，但正如我们上面提到的那样，我们当前的设计非常浪费，因为即使该字符不存在，每个节点都包含一个数组。</p>
+<h3 id="子节点跟踪"><a href="#子节点跟踪" class="headerlink" title="子节点跟踪"></a>子节点跟踪</h3><p>我们遇到的问题是来自我们实现的DataIndexedCharMap对象的空间浪费，用于跟踪每个节点的子节点。这种方法的问题在于我们将初始化许多不包含任何子节点的空位。</p>
+<p><img src="/2024/03/21/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-21-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Tries/image-20240321224839958.png" alt="image-20240321224839958"></p>
+<p><strong>备选方案1：</strong> 基于哈希表的Trie。这不会创建128个位置的数组，而是仅在必要时初始化默认值，并根据负载因子调整数组的大小。</p>
+<p><img src="/2024/03/21/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-21-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Tries/image-20240321224852484.png" alt="image-20240321224852484"></p>
+<p><strong>备选方案2：</strong> 基于BST的Trie。同样，仅在必要时才会创建子节点指针，并且我们将在BST中存储子节点。显然，我们仍然需要担心在这个BST中搜索的运行时，但这不是一个坏的方法。</p>
+<p><img src="/2024/03/21/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-21-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Tries/image-20240321224901524.png" alt="image-20240321224901524"></p>
+<p>当我们实现Trie时，我们必须选择一个映射到我们的子节点的映射。Map是一个ADT，因此我们还必须选择映射的底层实现。这给我们重申了什么？在我们尝试创建ADT时，实现和ADT之间存在一个抽象屏障。这种抽象屏障使我们能够利用每种实现在尝试满足ADT行为时所提供的优势。让我们考虑每种优势：</p>
+<p><strong>DataIndexedCharMap</strong></p>
+<ul>
+<li>空间：每个节点128个链接</li>
+<li>运行时：$ \Theta(1) $</li>
+</ul>
+<p><strong>BST</strong></p>
+<ul>
+<li>空间：每个节点C个链接，其中C是子节点的数量</li>
+<li>运行时：$ O(\log R) $，其中R是字母表的大小</li>
+</ul>
+<p><strong>哈希表</strong></p>
+<ul>
+<li>空间：每个节点C个链接，其中C是子节点的数量</li>
+<li>运行时：$ O(R) $，其中R是字母表的大小</li>
+</ul>
+<p>注：BST和哈希表中每个链接的成本较高；R是一个固定数（这意味着我们可以将运行时视为常量）。</p>
+<p>我们可以得出一些结论。存在轻微的内存和效率折衷（与BST&#x2F;哈希表相比DataIndexedCharMap）。Trie操作的运行时仍然是常数，没有任何注意事项。Trie将特别适用于一些特殊操作。</p>
+<p><img src="/2024/03/21/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-21-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Tries/image-20240321225043141.png" alt="image-20240321225043141"></p>
+<p><img src="/2024/03/21/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-21-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Tries/image-20240321225054570.png" alt="image-20240321225054570"></p>
+<h1 id="字符串操作"><a href="#字符串操作" class="headerlink" title="字符串操作"></a>字符串操作</h1><p>回顾我们对Trie和其他数据结构之间的比较。我们可以看到，Trie提供了常数时间的查找和插入，但它们实际上是否比BST或哈希表表现得更好呢？可能不是。对于每个字符串，我们必须遍历每个字符，而在BST中，我们可以立即访问整个字符串。那么，Trie有什么好处呢？</p>
+<p><img src="/2024/03/21/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-21-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Tries/image-20240321225202653.png" alt="image-20240321225202653"></p>
+<h2 id="前缀匹配"><a href="#前缀匹配" class="headerlink" title="前缀匹配"></a>前缀匹配</h2><p>Trie的主要吸引力在于能够高效支持特定的字符串操作，比如前缀匹配。你可以想象为什么Trie使这个操作变得非常高效！假设我们要找到最长的前缀。只需取出你要查找的单词，将每个字符与trie中的字符进行比较，直到无法再继续。同样地，如果我们想要keyWithPrefix，我们可以遍历到前缀的末尾，并返回trie中所有剩余的键。</p>
+<p><img src="/2024/03/21/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-21-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Tries/image-20240321225234086.png" alt="image-20240321225234086"></p>
+<p>让我们尝试定义一个方法<code>collect</code>，它返回Trie中的所有键。伪代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">collect():</span><br><span class="line">    创建一个空结果列表x</span><br><span class="line">    对于根节点下的每个字符c：</span><br><span class="line">        调用colHelp(c, x, root.next.get(c))</span><br><span class="line">    返回x</span><br><span class="line"></span><br><span class="line">colHelp(String s, List&lt;String&gt; x, Node n):</span><br><span class="line">    如果n是键：</span><br><span class="line">        x.add(s)</span><br><span class="line">    对于n下的每个字符c：</span><br><span class="line">        调用colHelp(s + c, x, n.next.get(c))</span><br></pre></td></tr></table></figure>
+
+<p>我们首先在父函数内初始化我们的值，然后创建一个递归辅助函数，以便在递归调用过程中传递更多的参数。如果当前字符串是一个键，我们只添加当前字符串，否则我们将字符连接到当前遍历的字符串&#x2F;路径，并调用下一个子节点的辅助函数。</p>
+<p><img src="/2024/03/21/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-21-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Tries/image-20240321225326972.png" alt="image-20240321225326972"></p>
+<p><img src="/2024/03/21/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-21-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Tries/image-20240321225353364.png" alt="image-20240321225353364"></p>
+<p><img src="/2024/03/21/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-21-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Tries/image-20240321225406314.png" alt="image-20240321225406314"></p>
+<p><img src="/2024/03/21/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-21-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Tries/image-20240321225416604.png" alt="image-20240321225416604"></p>
+<p><img src="/2024/03/21/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-21-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Tries/image-20240321225427425.png" alt="image-20240321225427425"></p>
+<p>现在，我们可以尝试编写<code>keysWithPrefix</code>方法，它返回包含作为参数传入的前缀的所有键。我们将大量借鉴上面的<code>collect</code>方法。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">keysWithPrefix(String s):</span><br><span class="line">    找到前缀的末尾，命名为alpha</span><br><span class="line">    创建一个空列表x</span><br><span class="line">    对于alpha.next中的每个字符：</span><br><span class="line">        调用colHelp(&quot;sa&quot; + c, x, alpha.next.get(c))</span><br><span class="line">    返回x</span><br></pre></td></tr></table></figure>
+
+<p><strong>Exercise 15.3.1.</strong> 编写<code>longestPrefixOf</code>的伪代码。这将是一个你可以在实验室中完成的练习。确保观看关于如何实现其他方法的视频。</p>
+<h2 id="自动补全"><a href="#自动补全" class="headerlink" title="自动补全"></a>自动补全</h2><p>当你在任何搜索浏览器中输入文本时，例如Google，总会有关于你即将输入内容的建议。这非常有帮助和方便。比如，当我们搜索”How are you doing”时，如果我们只输入”how are”到google，我们会看到它建议这个确切的查询。</p>
+<p><img src="/2024/03/21/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-21-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Tries/F2kkT_BaBlTRCJFijRxrxVQ4rgn5Rph2YPB0pbN8F9WEhm2q5qeAiHqmwX6qJkSGXeEzvPQ5bdK41JDVkd8nmcW3yYlSmy_qLHe4WpQi65SzFePPEimxjqf7pRnOZ2WTbJpZPAh5f7Digianih0oOjgF=nw.png" alt="img"></p>
+<p>实现这一功能的一种方法是使用Trie！我们将建立一个从字符串到值的映射。</p>
+<ul>
+<li>值将表示Google认为该字符串有多重要（可能是频率）</li>
+<li>有效地存储数十亿个字符串，因为它们共享节点，减少了冗余</li>
+<li>当用户输入查询时，我们可以调用<code>keysWithPrefix(x)</code>方法，并返回具有最高值的10个字符串</li>
+</ul>
+<p><img src="/2024/03/21/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-21-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Tries/image-20240321225641545.png" alt="image-20240321225641545"></p>
+<p>这个系统的一个主要缺陷是如果用户输入的是长度较短的字符串。你可以想象当实际上我们只想要10个键时，以输入作为前缀的键的数量可能达到了百万级别。解决这个问题的一个可能的方法是在每个节点中存储子字符串的最佳值。然后，我们可以按照最佳值的顺序考虑子节点。</p>
+<p><img src="/2024/03/21/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-21-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Tries/image-20240321225552929.png" alt="image-20240321225552929"></p>
+<p>另一个优化是合并多余的节点。这将给我们一个”基数Trie”，它在每个节点中保存字符以及字符串。我们不会深入讨论这个问题。</p>
+<p><img src="/2024/03/21/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-21-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Tries/image-20240321225602817.png" alt="image-20240321225602817"></p>
+<p><strong>Exercise 15.3.2.</strong> 考虑将子字符串的最佳值添加到节点中将添加什么。你如何使用优先队列创建算法？</p>
+<h2 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h2><p>了解存储的数据类型可以让你在创建高效的数据结构时拥有巨大的优势。特别是对于实现Map和Set，如果我们知道所有键都是字符串，我们可以使用Trie：</p>
+<ul>
+<li>从理论上讲，Trie在搜索和插入方面的性能优于哈希表或平衡搜索树</li>
+<li>有关如何存储trie的每个节点的子节点的更多实现，特别是三种。这三种方法都不错，但哈希表是最自然的方法<ul>
+<li>DataIndexedCharMap（缺点：空间过度使用，优点：速度高效）</li>
+<li>Bushy BST（缺点：子节点搜索较慢，优点：空间高效）</li>
+<li>哈希表（缺点：每个链接的成本更高，优点：空间高效）</li>
+</ul>
+</li>
+<li>在实践中，Trie实际上可能不会更快，但它们支持其他实现不支持的特殊字符串操作</li>
+<li>由于Trie是按字符存储的，因此很容易实现<code>longestPrefixOf</code>和<code>keysWithPrefix</code></li>
+<li><code>keysWithPrefix</code>允许存在诸如自动完成之类的算法，可以通过使用优先队列进行优化。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>key type</th>
+<th><code>get(x)</code></th>
+<th><code>add(x)</code></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Balanced BST</td>
+<td>comparable</td>
+<td>Θ(log<em>N</em>)</td>
+<td>Θ(log<em>N</em>)</td>
+</tr>
+<tr>
+<td>RSC Hash Table</td>
+<td>hashable</td>
+<td>Θ(1)†</td>
+<td>Θ(1)∗†</td>
+</tr>
+<tr>
+<td>Data Indexed Array</td>
+<td>chars</td>
+<td>Θ(1)</td>
+<td>Θ(1)</td>
+</tr>
+<tr>
+<td>Tries (BST, HT, DICM)</td>
+<td>Strings</td>
+<td>Θ(1)Θ(1)</td>
+<td>Θ(1)</td>
+</tr>
+</tbody></table>
+<p>*: Indicates “on average”.</p>
+<p>†: Assuming items are evenly spread.</p>
+<p>More generally, we can sometimes take special advantage of our key type to improve our sets and maps.</p>
+<ul>
+<li><p>Example: Tries handle String keys. Allow for fast string specific operations.</p>
+</li>
+<li><p>Note: There are many other types of string sets&#x2F;maps out there. </p>
+</li>
+<li><ul>
+<li><p>Suffix Trees (<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Suffix_tree">Link</a>).</p>
+</li>
+<li><p>DAWG (<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Deterministic_acyclic_finite_state_automaton">Link</a>).</p>
+</li>
+</ul>
+</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://bailog.top">xxbaizero</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://bailog.top/2024/03/21/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-21-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Tries/">http://bailog.top/2024/03/21/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-21-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Tries/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://bailog.top" target="_blank">bai的小窝</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/JAVA/">JAVA</a><a class="post-meta__tags" href="/tags/CS61B/">CS61B</a></div><div class="post_share"><div class="social-share" data-image="/img/background/dream.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/03/21/JAVA-CS61B-%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0-7-CS61B%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0-ProJ2-complish/" title="CS61B项目笔记(八)-ProJ2-complish"><img class="cover" src="/img/background/season1.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">CS61B项目笔记(八)-ProJ2-complish</div></div></a></div><div class="next-post pull-right"><a href="/2024/03/21/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-20-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%80%BB%E7%BB%93/" title="CS61B学习笔记(二十)-数据结构总结"><img class="cover" src="/img/background/season4.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">CS61B学习笔记(二十)-数据结构总结</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2024/01/16/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-JAVA%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/" title="CS61B学习笔记(一)--JAVA快速入门"><img class="cover" src="/img/background/dream.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-01-16</div><div class="title">CS61B学习笔记(一)--JAVA快速入门</div></div></a></div><div><a href="/2024/02/02/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-10-CS61b%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd6/" title="CS61B学习笔记(十)-Rd6-迭代器，equal方法，异常处理"><img class="cover" src="/img/background/season1.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-02-02</div><div class="title">CS61B学习笔记(十)-Rd6-迭代器，equal方法，异常处理</div></div></a></div><div><a href="/2024/02/02/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-11-CS61b%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd8-1/" title="CS61B学习笔记(十一)-Rd8.1-封装、API、ADT"><img class="cover" src="/img/background/season3.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-02-02</div><div class="title">CS61B学习笔记(十一)-Rd8.1-封装、API、ADT</div></div></a></div><div><a href="/2024/02/07/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-12-CS61b%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd8-9-%E4%B8%8D%E7%9B%B8%E4%BA%A4%E9%9B%86/" title="CS61B学习笔记(十二)-Rd8.9-不相交集"><img class="cover" src="/img/background/season2.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-02-07</div><div class="title">CS61B学习笔记(十二)-Rd8.9-不相交集</div></div></a></div><div><a href="/2024/02/09/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-14-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd11-%E5%B9%B3%E8%A1%A1%E6%A0%91/" title="CS61B学习笔记(十四)-Rd11-树"><img class="cover" src="/img/background/season1.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-02-09</div><div class="title">CS61B学习笔记(十四)-Rd11-树</div></div></a></div><div><a href="/2024/02/07/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-13-CS61b%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd10-ADP%E3%80%81%E6%A0%91/" title="CS61B学习笔记(十三)-Rd10-ADP、树"><img class="cover" src="/img/background/season1.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-02-07</div><div class="title">CS61B学习笔记(十三)-Rd10-ADP、树</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/ico/avatar_1.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">xxbaizero</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">41</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxbaizero0"><i class="fab fa-github"></i><span>中国矿业大学本科生 23级</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/xxbaizero0" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:2597453011@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到bai的小屋</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Trie%E7%9A%84%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.</span> <span class="toc-text">Trie的介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9E%E9%A1%BE"><span class="toc-number">1.1.</span> <span class="toc-text">回顾</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%91%E6%98%8E-Trie"><span class="toc-number">1.2.</span> <span class="toc-text">发明 Trie</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.3.</span> <span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Trie%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-number">2.</span> <span class="toc-text">Trie的实现</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0"><span class="toc-number">2.1.</span> <span class="toc-text">实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%A7%E8%83%BD"><span class="toc-number">2.2.</span> <span class="toc-text">性能</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%90%E8%8A%82%E7%82%B9%E8%B7%9F%E8%B8%AA"><span class="toc-number">2.2.1.</span> <span class="toc-text">子节点跟踪</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%93%8D%E4%BD%9C"><span class="toc-number">3.</span> <span class="toc-text">字符串操作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E7%BC%80%E5%8C%B9%E9%85%8D"><span class="toc-number">3.1.</span> <span class="toc-text">前缀匹配</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8"><span class="toc-number">3.2.</span> <span class="toc-text">自动补全</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93-1"><span class="toc-number">3.3.</span> <span class="toc-text">总结</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2024 By xxbaizero</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"></div><script defer src="https://npm.elemecdn.com/jquery@latest/dist/jquery.min.js"></script><script defer data-pjax src="/js/cat.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="20" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><!-- hexo injector body_end start --> <script data-pjax>if(document.getElementById('recent-posts') && (location.pathname ==='/'|| '/' ==='all')){
+    var parent = document.getElementById('recent-posts');
+    var child = '<div class="recent-post-item" style="width:100%;height: auto"><div id="catalog_magnet"><div class="magnet_item"><a class="magnet_link" href="http://bailog.top/categories/C/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📚 C++笔记 (3)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://bailog.top/categories/CS自学笔记/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🎮 CS自学笔记 (32)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://bailog.top/categories/Python/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🐱‍👓 Python学习笔记 (2)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://bailog.top/categories/JAVA/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🐱‍👓 Java学习笔记 (30)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://bailog.top/categories/有趣の文章/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📒 有趣の文章 (1)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item" style="visibility: hidden"></div><a class="magnet_link_more"  href="http://bailog.top/categories" style="flex:1;text-align: center;margin-bottom: 10px;">查看更多...</a></div></div>';
+    console.log('已挂载magnet')
+    parent.insertAdjacentHTML("afterbegin",child)}
+     </script><style>#catalog_magnet{flex-wrap: wrap;display: flex;width:100%;justify-content:space-between;padding: 10px 10px 0 10px;align-content: flex-start;}.magnet_item{flex-basis: calc(50% - 5px);background: #f2f2f2;margin-bottom: 10px;border-radius: 8px;transition: all 0.2s ease-in-out;}.magnet_item:hover{background: #69e8f2}.magnet_link_more{color:#555}.magnet_link{color:black}.magnet_link:hover{color:white}@media screen and (max-width: 600px) {.magnet_item {flex-basis: 100%;}}.magnet_link_context{display:flex;padding: 10px;font-size:16px;transition: all 0.2s ease-in-out;}.magnet_link_context:hover{padding: 10px 20px;}</style>
+    <style></style><script data-pjax>
+  function butterfly_footer_beautify_injector_config(){
+    var parent_div_git = document.getElementById('footer-wrap');
+    var item_html = '<div id="workboard"></div><p id="ghbdages"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px" data-title="博客框架为Hexo_v6.2.0" title=""><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&amp;logo=hexo" alt=""/></a><a class="github-badge" target="_blank" href="https://butterfly.js.org/" style="margin-inline:5px" data-title="主题版本Butterfly_v4.3.1" title=""><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&amp;logo=bitdefender" alt=""/></a><a class="github-badge" target="_blank" href="https://vercel.com/" style="margin-inline:5px" data-title="本站采用多线部署，主线路托管于Vercel" title=""><img src="https://img.shields.io/badge/Hosted-Vercel-brightgreen?style=flat&amp;logo=Vercel" alt=""/></a><a class="github-badge" target="_blank" href="https://dashboard.4everland.org/" style="margin-inline:5px" data-title="本站采用多线部署，备用线路托管于4EVERLAND" title=""><img src="https://img.shields.io/badge/Hosted-4EVERLAND-22DDDD?style=flat&amp;logo=IPFS" alt=""/></a><a class="github-badge" target="_blank" href="https://github.com/" style="margin-inline:5px" data-title="本站项目由Github托管" title=""><img src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&amp;logo=GitHub" alt=""/></a><a class="github-badge" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="margin-inline:5px" data-title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可" title=""><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&amp;logo=Claris" alt=""/></a></p>';
+    console.log('已挂载butterfly_footer_beautify')
+    parent_div_git.insertAdjacentHTML("beforeend",item_html)
+    }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_footer_beautify_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_footer_beautify_injector_config();
+  }
+  </script><script async src="https://unpkg.zhimg.com/hexo-butterfly-footer-beautify@1.0.0/lib/runtime.min.js"></script><!-- hexo injector body_end end --></body></html>
