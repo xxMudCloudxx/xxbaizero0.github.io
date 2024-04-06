@@ -4,6 +4,39 @@
   
     
     <entry>
+      <title>CS61B学习笔记-数据结构代码实现</title>
+      <link href="/2024/04/06/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/"/>
+      <url>/2024/04/06/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> JAVA </category>
+          
+          <category> CS61B </category>
+          
+          <category> CS自学笔记 </category>
+          
+          <category> CS61B </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> JAVA </tag>
+            
+            <tag> CS61B </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>CS61B项目笔记(四)-Lab6-文件序列化</title>
       <link href="/2024/03/23/JAVA-CS61B-%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0-3-5-CS61B%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0-Lab6-%E6%96%87%E4%BB%B6%E5%BA%8F%E5%88%97%E5%8C%96/"/>
       <url>/2024/03/23/JAVA-CS61B-%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0-3-5-CS61B%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0-Lab6-%E6%96%87%E4%BB%B6%E5%BA%8F%E5%88%97%E5%8C%96/</url>
@@ -13,11 +46,11 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> JAVA </category>
           
           <category> CS61B </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -46,11 +79,11 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> JAVA </category>
           
           <category> CS61B </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -79,11 +112,11 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> JAVA </category>
           
           <category> CS61B </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -112,11 +145,11 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> JAVA </category>
           
           <category> CS61B </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -145,11 +178,11 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> JAVA </category>
           
           <category> CS61B </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -178,11 +211,11 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> JAVA </category>
           
           <category> CS61B </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -206,16 +239,16 @@
       <link href="/2024/03/19/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-18-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RD19-20-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E3%80%81%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/"/>
       <url>/2024/03/19/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-18-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RD19-20-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E3%80%81%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/</url>
       
-        <content type="html"><![CDATA[<h1 id="最短路径-SPT"><a href="#最短路径-SPT" class="headerlink" title="最短路径(SPT)"></a>最短路径(SPT)</h1><h2 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h2><p>到目前为止，我们有以下方法可以完成以下任务：</p><ul><li>找到从给定顶点 <em>s</em> 到图中每个可到达顶点的路径。</li><li>找到从给定顶点 <em>s</em> 到图中每个可到达顶点的<strong>最短</strong>路径。（…或者我们找到了吗？）</li></ul><p>在我们回答上述神秘问题之前，让我们进一步回顾一下我们可以使用的两种搜索类型：BFS 或 DFS。</p><p>两者都始终正确吗？是的。哪一个结果更好？BFS找到了<strong>最短</strong>路径，而DFS则没有。在运行时间上，哪一个更有效率？都不是。在空间上，哪一个更有效率？</p><ul><li>对于稀疏图，DFS更糟糕。想象一下一个有10000个节点且都很稀疏的图。我们最终会进行10000次递归调用，这对空间来说是不好的。</li><li>对于“树状”图，BFS更糟糕，因为我们的队列会经常被使用。</li></ul><h2 id="回答神秘问题"><a href="#回答神秘问题" class="headerlink" title="回答神秘问题"></a>回答神秘问题</h2><p>我们是否开发了一种算法来找到从给定顶点到每个其他可到达顶点的<strong>最短</strong>路径？嗯，有点像是。我们开发了一种在没有边标签的图上运行良好的算法。这是我们做的：我们开发了一种算法，它从给定的源顶点找到了我们最短（<strong>其中最短的意思是最少的边数</strong>）的路径。</p><p>但这并不总是最短的正确定义。有时，我们的图边可能有‘权重’，如果 A-B 边的权重为5，而 A-C 边的权重只有3，那么A-B 被认为比 A-C 更远。</p><p>考虑以下图像以了解问题所在。</p><p><img src="/2024/03/19/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-18-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RD19-20-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E3%80%81%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/image-20240319234957049.png" alt="image-20240319234957049"></p><blockquote><p>右边边最少但是他并不是最短的</p></blockquote><h2 id="Dijkstra算法"><a href="#Dijkstra算法" class="headerlink" title="Dijkstra算法"></a>Dijkstra算法</h2><div class="row">    <embed src="CS61B-Dijkstra&#39;s-Algorithm-Demo.pdf" width="100%" height="550" type="application/pdf"></div><p>执行以下两项操作。</p><ol><li>查找从标记 0 的顶点到标记的 5 顶点的路径。</li><li>F从标记为 00 的顶点中查找最短路径树。（即，找到从图中每个顶点到 00 每个顶点的最短路径。</li><li>尝试想出一种算法来做到这一点。</li></ol><p>注意最短路径（对于带有权重的图）可能有许多许多边。我们关心的是选择路径上边的权重之和的最小化。</p><p>其次，请注意从源<strong>s</strong>到达的最短路径树可以通过以下方式创建：</p><ul><li>对于图中的每个顶点<strong>v</strong>（不是<strong>s</strong>），找到从<strong>s</strong>到<strong>v</strong>的最短路径。</li><li>“合并”所有上述找到的边。完成！</li></ul><p>第三，请注意“最短路径树”将<strong>始终是一棵树</strong>。为什么？嗯，让我们考虑一下我们的原始解决方案，其中我们维护了一个<code>edgeTo</code>数组。对于每个节点，在<code>edgeTo</code>数组中恰好有一个“父节点”。（这为什么意味着“最短路径树”将是一棵树？提示：一棵树有<strong>V-1</strong>条边，其中<strong>V</strong>是树中的节点数。）</p><p>Dijkstra算法接受输入顶点<strong>s</strong>，并输出从<strong>s</strong>出发的最短路径树。它是如何工作的呢？</p><ol><li>创建一个优先队列。</li><li>将<strong>s</strong>添加到优先队列，并将优先级设置为0。将所有其他顶点添加到优先队列，并将优先级设置为∞。</li><li>当优先队列不为空时：弹出优先队列中的一个顶点，并<strong>释放</strong>该顶点出发的所有边。</li></ol><h3 id="什么是释放？"><a href="#什么是释放？" class="headerlink" title="什么是释放？"></a>什么是<strong>释放</strong>？</h3><p>假设我们刚刚从优先队列中弹出的顶点是<strong>v</strong>。我们将查看<strong>v</strong>的所有边。假设我们正在查看边(<strong>v</strong>,<strong>w</strong>)（从<strong>v</strong>到<strong>w</strong>的边）。我们将尝试对这条边进行释放。</p><p>这意味着：查看您从源到<strong>w</strong>的当前最佳距离，称为<code>curBestDistToW</code>。现在，查看<code>curBestDistToV+weight(v, w)</code>（称为<code>potentialDistToWUsingV</code>）。</p><p><code>potentialDistToWUsingV</code>是否<strong>更好，即更小</strong>，比<code>curBestDistToW</code>？在这种情况下，将<code>curBestDistToW=potentialDistToWUsingV</code>，更新<code>edgeTo[w]</code>为<strong>v</strong>。</p><p><strong>重要说明：我们不会释放指向已访问顶点的边。</strong></p><p>计算潜在距离、检查是否更好以及可能更新的整个过程称为释放。</p><p>通过以下图像捕获了另一种定义。<img src="/2024/03/19/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-18-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RD19-20-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E3%80%81%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/pz1muo.jpg" alt="img"></p><h3 id="伪代码"><a href="#伪代码" class="headerlink" title="伪代码"></a>伪代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">def <span class="title function_">dijkstras</span><span class="params">(source)</span>:</span><br><span class="line">    PQ.add(source, <span class="number">0</span>)</span><br><span class="line">    For all other vertices, v, PQ.add(v, infinity)</span><br><span class="line">    <span class="keyword">while</span> PQ is not empty:</span><br><span class="line">        p = PQ.removeSmallest()</span><br><span class="line">        relax(all edges from p)</span><br><span class="line">def <span class="title function_">relax</span><span class="params">(edge p,q)</span>:</span><br><span class="line">   <span class="keyword">if</span> q is <span class="title function_">visited</span> <span class="params">(i.e., q is not in PQ)</span>:</span><br><span class="line">       <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">   <span class="keyword">if</span> distTo[p] + weight(edge) &lt; distTo[q]:</span><br><span class="line">       distTo[q] = distTo[p] + w</span><br><span class="line">       edgeTo[q] = p</span><br><span class="line">       PQ.changePriority(q, distTo[q])</span><br></pre></td></tr></table></figure><h3 id="保证"><a href="#保证" class="headerlink" title="保证"></a>保证</h3><p>只要边都是非负的，迪杰斯特拉算法就保证是最优的。</p><h3 id="证明和直觉"><a href="#证明和直觉" class="headerlink" title="证明和直觉"></a>证明和直觉</h3><p>假设所有边都是非负的。</p><ul><li><p>在开始时，<code>distTo[source]</code> &#x3D; 0。这是最优的。</p></li><li><p>在从源开始释放所有边之后，让顶点<strong>v1</strong>是权重最小的顶点（即距离源最近的顶点）。</p><p>声明：<code>distTo[v1]</code>是最优的，即在此时刻，<code>distTo[v1]</code>的值是从<strong>s</strong>到<strong>v1</strong>的最短距离。为什么？</p><ul><li>让我们尝试理解为什么<strong>必须</strong>如此。</li><li>假设不是这种情况。那意味着从<strong>s</strong>到<strong>v1</strong>存在一条比直接路径(<strong>s</strong>,<strong>v1</strong>)更短的路径。好的，那么让我们考虑这条假设中更短的路径…它将会是(<strong>s</strong>,<strong>va</strong>,<strong>vb</strong>,…,<strong>v1</strong>)这样的路径。但是…(<strong>s</strong>,<strong>va</strong>)已经比(<strong>s</strong>,<strong>v1</strong>)大了。（请注意，这是因为<strong>v1</strong>是上面最接近<strong>s</strong>的顶点。）那么如何可能存在一条实际上更短的路径呢？不可能！</li></ul></li><li><p>现在，下一个弹出的顶点将是<strong>v1</strong>。（为什么？请注意，它目前在优先队列中的优先级最低！）</p></li><li><p>所以现在，我们可以为<strong>v1</strong>及其进行的所有释放做出同样的论证。（这称为“归纳证明”。这有点像证明的递归。）就是这样；我们完成了。</p></li></ul><h3 id="负边？"><a href="#负边？" class="headerlink" title="负边？"></a>负边？</h3><p>当负边出现时，情况可能会变得非常糟糕。考虑以下图像。</p><p>假设您在标记为34的顶点。现在，您将尝试释放所有您的边。您只有一条从自己到标记为33的顶点的出边，权重为−67。啊，但是请注意：顶点33已经被访问（用白色标记）。所以…我们不会对其进行释放。（回顾一下relax方法的伪代码。）</p><p>现在我们回家，认为到33的最短距离是82（用粉色标记）。但实际上，我们应该走<strong>通过</strong>34的路径，因为这会给我们34−67&#x3D;34的距离。糟糕。</p><p><strong>对于负边，Dijkstra算法不能保证正确。它可能有效…但不能保证有效。</strong></p><p>试一试：假设您的图具有负边，但所有负边都只从您传入的源顶点<strong>s</strong>出发。迪杰斯特拉算法有效吗？为什么&#x2F;为什么不？</p><h3 id="一个值得注意的不变性"><a href="#一个值得注意的不变性" class="headerlink" title="一个值得注意的不变性"></a>一个值得注意的不变性</h3><p>请注意，一旦顶点从优先队列中弹出，它就永远不会被重新添加。它的距离永远不会被更新。因此，换句话说，一旦顶点从优先队列中弹出，我们<strong>知道</strong>到该顶点的真正最短距离。</p><p>这个事实的一个好处是“短路”。假设…我不关心最短路径树，而只想找到从某个源到某个其他目标的最短路径。假设您想要在世界各城市上构建一个图，并找到从伯克利到奥克兰的最短路径。运行<code>dijkstra(Berkeley)</code>将意味着您无法停止这个强大的算法…您必须让它运行…直到它找到到洛杉矶、休斯顿、纽约市和所有可能的地方的最短路径！</p><p>好吧。一旦算法中的<code>Oakland</code>从优先队列中弹出，我们就可以停止。我们只需返回此时的距离和路径，它将是正确的。因此，<strong>有时</strong><code>dijkstra</code>不仅接受源，还接受目标。这是为了短路的目的。</p><h2 id="A-算法"><a href="#A-算法" class="headerlink" title="A*算法"></a>A*算法</h2><div class="row">    <embed src="A_" width="100%" height="550" type="application/pdf"></div><p>我们通过讨论一种可能的方法来结束Dijkstra算法部分，即使其在碰到给定目标后就停止。这样做足够好吗？</p><p>要回答上面的问题，我们需要坐下来思考Dijkstra算法的实际工作原理。以图形方式表示，Dijkstra从源节点开始（想象源节点是圆心）。然后，Dijkstra算法围绕这一点以递增的半径绘制同心圆，并“扫描”这些圆，捕捉点。</p><p>因此…Dijkstra首先访问的节点是距离源点最近的城市，然后是次最近的城市，依此类推。这听起来是个好主意。Dijkstra首先访问距离1个单位的所有城市，然后是距离2个单位的城市，依此类推，形成同心圆。</p><p>现在想象一下以下情况：在美国地图上，从中心某处开始，比如丹佛。现在我想让你用Dijkstra找到一条到纽约的路径。你将按照“最接近的同心圆”的顺序遍历节点。</p><p>你将首先绘制一个小圆，就在丹佛附近，访问该圆内的所有城市。最终，你的圆将变大，你将绘制一个通过拉斯维加斯的圆（到目前为止，该圆将访问所有其他位于圆内的城市）。然后，你的圆将足够大，能够覆盖洛杉矶和达拉斯…但你离纽约还差得远。所有这些努力，所有这些圆，但是…离目标还很远。短路帮助了，但只有在你快速到达目标节点时才有效。</p><p>如果我们能有一种方法利用你的先验知识：纽约在东边，这样你就可以“提示”你的算法更喜欢东边的节点，而不是西边的节点。</p><h3 id="引入：A"><a href="#引入：A" class="headerlink" title="引入：A*"></a>引入：A*</h3><p>不，不是太阳。这是一种叫做A*的算法。</p><p>观察以下事实：Dijkstra是从源到节点的距离的“真实”（即不是估计）度量。因此，假设你访问了伊利诺伊州的一个城市，你的源是丹佛，那么在那时，你已经得到了到丹佛的距离的真实度量。我们缺少的是：从节点到目标节点纽约的距离的一些粗略估计。这将完整地呈现出整个图景。因为如果你把这两个因素相加（从源到节点的度量+从节点到目标的估计），你得到（从源到目标的估计）。当然，你原始的从节点到目标的估计越好，你从源到目标的估计就越好，你的A*算法就越好。</p><p>因此，让我们稍微修改我们的Dijkstra算法。在Dijkstra中，我们使用<code>bestKnownDistToV</code>作为我们算法中的优先级。这次，我们将使用<code>bestKnownDistToV+estimateFromVToGoal</code>作为我们的启发式。</p><p>这里有一个<a href="https://docs.google.com/presentation/d/177bRUTdCa60fjExdr9eO04NHm0MRfPtCzvEup1iMccM/edit#slide=id.g771336078_0_180">演示</a>！</p><h3 id="鸡和蛋"><a href="#鸡和蛋" class="headerlink" title="鸡和蛋"></a>鸡和蛋</h3><p>我们有一个问题。我们怎么知道估计值是多少？我的意思是，估计值本身是一种<strong>距离</strong>，而我们正在使用A*来<strong>找到</strong>从某个节点到另一个节点的距离。</p><p>这似乎像是一个经典的鸡和蛋问题实例。“先有鸡还是先有蛋？”顺便说一下，有个Reddit用户对此有了一个<a href="https://www.reddit.com/r/dadjokes/comments/97768x/i_ordered_a_chicken_and_an_egg_from_amazon_ill/">想法</a>。</p><p>嗯，它被称为估计，因为它确实是这样。我们使用A*来得到从源到目标的<strong>真实</strong>最短路径，但估计值是我们近似的。有时候得到好的估计是困难的。</p><p>但是，让我们以丹佛 - 纽约的例子来举例说明。我们可以做的是查找这些城市的GPS坐标，并计算其中的直线距离。当然，这可能不正确，因为从丹佛到纽约可能没有直线可走，但这是一个相当好的估计！</p><h3 id="不好的启发式"><a href="#不好的启发式" class="headerlink" title="不好的启发式"></a>不好的启发式</h3><p>假设从丹佛到纽约的最短路径经过某个城市<em>C</em>。假设我的GPS坏了，因此我认为这个城市<em>C</em>离一切都是无限远的，所以我将从图中的每个其他节点到城市<em>C</em>的估计距离设置为∞。</p><p>会发生什么？嗯，A*基本上永远不想访问这个城市。 （记住我们在优先级队列中的优先级是什么；对于这个城市，优先级将始终为∞，即使</p><h1 id="最小生成树-MST"><a href="#最小生成树-MST" class="headerlink" title="最小生成树(MST)"></a>最小生成树(MST)</h1><p>最小生成树（MST）是图中可能的最轻的边集，使得所有顶点都连接在一起。由于它是一棵树，它必须是连通的且无环的。而且它被称为“生成”，因为所有顶点都包括在内。</p><p><img src="/2024/03/19/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-18-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RD19-20-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E3%80%81%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/image-20240320172133841.png" alt="image-20240320172133841"></p><blockquote><p>条件</p><ul><li>连接的</li><li>非闭环的</li><li>包括了所有顶点</li></ul></blockquote><p>在这一章中，我们将看两个算法，它们将帮助我们从一个图中找到一个最小生成树。</p><p>在我们开始之前，让我们介绍一下割属性，这是一个有助于找到最小生成树的工具。</p><h2 id="割属性"><a href="#割属性" class="headerlink" title="割属性"></a>割属性</h2><p>我们可以将一个割定义为对图的节点分配给两个非空集合（即我们将每个节点分配给第一个集合或第二个集合）。</p><p>我们可以将一个横跨的边定义为连接一个集合中的节点到另一个集合中的节点的边。</p><p>有了这两个定义，我们就可以理解割属性了：给定任何一个割，最小权重的横跨边都在最小生成树中。</p><p>割属性的证明如下：假设（为了推导矛盾）最小横跨边 e 不在最小生成树中。由于它不是最小生成树的一部分，如果我们添加该边，就会创建一个循环。因为有一个循环，这意味着另一个边 f 也必须是一个横跨边（对于一个循环，如果 e 从一个集合穿过到另一个集合，就必须有另一条边穿过回到第一个集合）。因此，我们可以移除 f 并保留 e，这将给我们一个更低权重的生成树。但这是一个矛盾，因为我们假设开始时有一个最小生成树，但现在我们有了一个权重更小的生成树，因此原始的最小生成树实际上并不是最小的。因此，割属性必须成立。</p><p>下面是一张图示，说明了上述证明的一些论点：</p><p><img src="/2024/03/19/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-18-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RD19-20-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E3%80%81%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/image-20240320172407081.png" alt="image-20240320172407081"></p><h2 id="Prim算法"><a href="#Prim算法" class="headerlink" title="Prim算法"></a>Prim算法</h2><div class="row">    <embed src="CS61B-Prim&#39;s-Demo.pdf" width="100%" height="550" type="application/pdf"></div><p>这是一种从图中找到最小生成树（MST）的算法。它的步骤如下：</p><ol><li>从任意起始节点开始。</li><li>反复添加具有一个节点在正在构建的MST内的最短边。</li><li>重复直到有$V-1$条边。</li></ol><p>Prim算法之所以有效，是因为在算法的所有阶段，如果我们将所有节点都作为我们正在构建的MST的一部分，而将所有其他节点视为第二个集合，那么这个算法总是添加横跨此割的最轻的边，根据割属性，这个边必然是最终MST的一部分。</p><p>从本质上讲，该算法通过与Dijkstra算法相同的机制运行，但是Dijkstra算法考虑的是候选节点距离源节点的距离，而Prim算法则查看每个候选节点距离正在构建的MST的距离。</p><p>因此，如果使用与Dijkstra算法相同的机制进行Prim算法，其运行时间将与Dijkstra算法相同，即 </p><p>$O((|V| + |E|) \log |V|)$。请记住，这是因为我们需要为每条边添加到优先级队列中的外围，并且我们需要为每个顶点从中出队一次。</p><p><img src="/2024/03/19/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-18-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RD19-20-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E3%80%81%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/2024-03-20-17-19-38.gif" alt="2024-03-20-17-19-38"></p><blockquote><p>区别: </p><ul><li>MSP: 从源顶点出发，所以在哪里开始很重要</li><li>SPT: 全局属性，与源顶点无关</li></ul></blockquote><h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><p><img src="/2024/03/19/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-18-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RD19-20-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E3%80%81%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/image-20240320172951394.png" alt="image-20240320172951394"></p><p><img src="/2024/03/19/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-18-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RD19-20-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E3%80%81%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/image-20240320173004710.png" alt="image-20240320173004710"></p><h2 id="Kruskal算法"><a href="#Kruskal算法" class="headerlink" title="Kruskal算法"></a>Kruskal算法</h2><div class="row">    <embed src="kruskals-realistic-implementation-demo.pdf" width="100%" height="550" type="application/pdf"></div><p>这是另一种从图中找到最小生成树（MST）的算法。Kruskal返回的最小生成树可能与Prim返回的不同，但是这两个算法都将始终返回一个MST；因为两者都是最小的（最优的），它们都将给出有效的最优解（它们在最小&#x2F;总权重相同的情况下一样优，而且这是尽可能低的）。</p><p>该算法步骤如下：</p><ol><li>将所有边从最轻到最重排序。</li><li>逐个考虑边（按排序顺序），如果添加该边不会形成循环，则将其添加到我们正在构建的MST中。</li><li>重复直到有 $V-1$ 条边。</li></ol><p>Kruskal算法有效的原因是我们添加的任何边都将连接一个节点，我们可以说这个节点是一个集合的一部分，以及第二个节点，我们可以说是第二个集合的一部分。我们添加的这条边不是循环的一部分，因为我们只有在不会形成循环的情况下才会添加一条边。此外，我们按照从最轻到最重的顺序查看候选边。因此，我们要添加的这条边必须是横跨此割的最轻的边（如果存在一条更轻的边，那么它将在此之前被添加，添加这条边将导致出现循环）。因此，该算法也是通过割属性工作的。</p><p>Kruskal算法运行时间为$O(|E| \log |E|)$，因为算法的瓶颈是开始时对所有边进行排序（例如，我们可以使用堆排序，其中我们将所有边插入堆中，并逐个删除最小边）。如果我们已经给出了预先排序的边并且不需要为此付出代价，那么运行时间是 $O(∣E∣log ^∗  ∣V∣)$。这是因为每当我们提出要添加的边时，我们都需要检查它是否会引入循环。我们知道如何做到这一点的一种方法是使用带路径压缩的加权快速并查集；这将有效地告诉我们两个节点是否已经连接在一起。这将花费$∣E∣$ 次调用 <code>isConnected</code>，每次调用的成本为$ O(log ^∗  ∣V∣)$，其中$log^*$是阿克曼函数。</p><p><img src="/2024/03/19/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-18-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RD19-20-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E3%80%81%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/2024-03-20-17-17-07.gif" alt="2024-03-20-17-17-07"></p><h3 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h3><p><img src="/2024/03/19/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-18-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RD19-20-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E3%80%81%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/image-20240320173029921.png" alt="image-20240320173029921"></p><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p><img src="/2024/03/19/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-18-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RD19-20-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E3%80%81%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/image-20240320173106199.png" alt="image-20240320173106199"></p>]]></content>
+        <content type="html"><![CDATA[<h1 id="最短路径-SPT"><a href="#最短路径-SPT" class="headerlink" title="最短路径(SPT)"></a>最短路径(SPT)</h1><h2 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h2><p>到目前为止，我们有以下方法可以完成以下任务：</p><ul><li>找到从给定顶点 <em>s</em> 到图中每个可到达顶点的路径。</li><li>找到从给定顶点 <em>s</em> 到图中每个可到达顶点的<strong>最短</strong>路径。（…或者我们找到了吗？）</li></ul><p>在我们回答上述神秘问题之前，让我们进一步回顾一下我们可以使用的两种搜索类型：BFS 或 DFS。</p><p>两者都始终正确吗？是的。哪一个结果更好？BFS找到了<strong>最短</strong>路径，而DFS则没有。在运行时间上，哪一个更有效率？都不是。在空间上，哪一个更有效率？</p><ul><li>对于稀疏图，DFS更糟糕。想象一下一个有10000个节点且都很稀疏的图。我们最终会进行10000次递归调用，这对空间来说是不好的。</li><li>对于“树状”图，BFS更糟糕，因为我们的队列会经常被使用。</li></ul><h2 id="回答神秘问题"><a href="#回答神秘问题" class="headerlink" title="回答神秘问题"></a>回答神秘问题</h2><p>我们是否开发了一种算法来找到从给定顶点到每个其他可到达顶点的<strong>最短</strong>路径？嗯，有点像是。我们开发了一种在没有边标签的图上运行良好的算法。这是我们做的：我们开发了一种算法，它从给定的源顶点找到了我们最短（<strong>其中最短的意思是最少的边数</strong>）的路径。</p><p>但这并不总是最短的正确定义。有时，我们的图边可能有‘权重’，如果 A-B 边的权重为5，而 A-C 边的权重只有3，那么A-B 被认为比 A-C 更远。</p><p>考虑以下图像以了解问题所在。</p><p><img src="/2024/03/19/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-18-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RD19-20-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E3%80%81%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/image-20240319234957049.png" alt="image-20240319234957049"></p><blockquote><p>右边边最少但是他并不是最短的</p></blockquote><h2 id="Dijkstra算法"><a href="#Dijkstra算法" class="headerlink" title="Dijkstra算法"></a>Dijkstra算法</h2><div class="row">    <embed src="CS61B-Dijkstra&#39;s-Algorithm-Demo.pdf" width="100%" height="550" type="application/pdf"></div><p>执行以下两项操作。</p><ol><li>查找从标记 0 的顶点到标记的 5 顶点的路径。</li><li>从标记为 0 的顶点中查找最短路径树。（即，找到从图中 0 到每个顶点的最短路径。</li><li>尝试想出一种算法来做到这一点。</li></ol><h3 id="观察"><a href="#观察" class="headerlink" title="观察"></a>观察</h3><p>注意最短路径（对于带有权重的图）可能有许多许多边。我们关心的是选择路径上边的权重之和的最小化。</p><p>其次，请注意从源<strong>s</strong>到达的最短路径树可以通过以下方式创建：</p><ul><li>对于图中的每个顶点<strong>v</strong>（不是<strong>s</strong>），找到从<strong>s</strong>到<strong>v</strong>的最短路径。</li><li>“合并”所有上述找到的边。完成！</li></ul><p>第三，请注意“最短路径树”将<strong>始终是一棵树</strong>。为什么？嗯，让我们考虑一下我们的原始解决方案，其中我们维护了一个<code>edgeTo</code>数组。对于每个节点，在<code>edgeTo</code>数组中恰好有一个“父节点”。（这为什么意味着“最短路径树”将是一棵树？提示：一棵树有<strong>V-1</strong>条边，其中<strong>V</strong>是树中的节点数。）</p><p>Dijkstra算法接受输入顶点<strong>s</strong>，并输出从<strong>s</strong>出发的最短路径树。它是如何工作的呢？</p><ol><li>创建一个优先队列。</li><li>将<strong>s</strong>添加到优先队列，并将优先级设置为0。将所有其他顶点添加到优先队列，并将优先级设置为∞。</li><li>当优先队列不为空时：弹出优先队列中的一个顶点，并<strong>释放</strong>该顶点出发的所有边。</li></ol><h3 id="什么是释放？"><a href="#什么是释放？" class="headerlink" title="什么是释放？"></a>什么是<strong>释放</strong>？</h3><p>假设我们刚刚从优先队列中弹出的顶点是<strong>v</strong>。我们将查看<strong>v</strong>的所有边。假设我们正在查看边(<strong>v</strong>,<strong>w</strong>)（从<strong>v</strong>到<strong>w</strong>的边）。我们将尝试对这条边进行释放。</p><p>这意味着：查看您从源到<strong>w</strong>的当前最佳距离，称为<code>curBestDistToW</code>。现在，查看<code>curBestDistToV+weight(v, w)</code>（称为<code>potentialDistToWUsingV</code>）。</p><p><code>potentialDistToWUsingV</code>是否<strong>更好，即更小</strong>，比<code>curBestDistToW</code>？在这种情况下，将<code>curBestDistToW=potentialDistToWUsingV</code>，更新<code>edgeTo[w]</code>为<strong>v</strong>。</p><p><strong>重要说明：我们不会释放指向已访问顶点的边。</strong></p><p>计算潜在距离、检查是否更好以及可能更新的整个过程称为释放。</p><p>通过以下图像捕获了另一种定义。<img src="/2024/03/19/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-18-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RD19-20-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E3%80%81%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/pz1muo.jpg" alt="img"></p><h3 id="伪代码"><a href="#伪代码" class="headerlink" title="伪代码"></a>伪代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">def <span class="title function_">dijkstras</span><span class="params">(source)</span>:</span><br><span class="line">    PQ.add(source, <span class="number">0</span>)</span><br><span class="line">    For all other vertices, v, PQ.add(v, infinity)</span><br><span class="line">    <span class="keyword">while</span> PQ is not empty:</span><br><span class="line">        p = PQ.removeSmallest()</span><br><span class="line">        relax(all edges from p)</span><br><span class="line">def <span class="title function_">relax</span><span class="params">(edge p,q)</span>:</span><br><span class="line">   <span class="keyword">if</span> q is <span class="title function_">visited</span> <span class="params">(i.e., q is not in PQ)</span>:</span><br><span class="line">       <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">   <span class="keyword">if</span> distTo[p] + weight(edge) &lt; distTo[q]:</span><br><span class="line">       distTo[q] = distTo[p] + w</span><br><span class="line">       edgeTo[q] = p</span><br><span class="line">       PQ.changePriority(q, distTo[q])</span><br></pre></td></tr></table></figure><h3 id="保证"><a href="#保证" class="headerlink" title="保证"></a>保证</h3><p>只要边都是非负的，迪杰斯特拉算法就保证是最优的。</p><h3 id="证明和直觉"><a href="#证明和直觉" class="headerlink" title="证明和直觉"></a>证明和直觉</h3><p>假设所有边都是非负的。</p><ul><li><p>在开始时，<code>distTo[source]</code> &#x3D; 0。这是最优的。</p></li><li><p>在从源开始释放所有边之后，让顶点<strong>v1</strong>是权重最小的顶点（即距离源最近的顶点）。</p><p>声明：<code>distTo[v1]</code>是最优的，即在此时刻，<code>distTo[v1]</code>的值是从<strong>s</strong>到<strong>v1</strong>的最短距离。为什么？</p><ul><li>让我们尝试理解为什么<strong>必须</strong>如此。</li><li>假设不是这种情况。那意味着从<strong>s</strong>到<strong>v1</strong>存在一条比直接路径(<strong>s</strong>,<strong>v1</strong>)更短的路径。好的，那么让我们考虑这条假设中更短的路径…它将会是(<strong>s</strong>,<strong>va</strong>,<strong>vb</strong>,…,<strong>v1</strong>)这样的路径。但是…(<strong>s</strong>,<strong>va</strong>)已经比(<strong>s</strong>,<strong>v1</strong>)大了。（请注意，这是因为<strong>v1</strong>是上面最接近<strong>s</strong>的顶点。）那么如何可能存在一条实际上更短的路径呢？不可能！</li></ul></li><li><p>现在，下一个弹出的顶点将是<strong>v1</strong>。（为什么？请注意，它目前在优先队列中的优先级最低！）</p></li><li><p>所以现在，我们可以为<strong>v1</strong>及其进行的所有释放做出同样的论证。（这称为“归纳证明”。这有点像证明的递归。）就是这样；我们完成了。</p></li></ul><h3 id="负边？"><a href="#负边？" class="headerlink" title="负边？"></a>负边？</h3><p>当负边出现时，情况可能会变得非常糟糕。考虑以下图像。</p><p>假设您在标记为34的顶点。现在，您将尝试释放所有您的边。您只有一条从自己到标记为33的顶点的出边，权重为−67。啊，但是请注意：顶点33已经被访问（用白色标记）。所以…我们不会对其进行释放。（回顾一下relax方法的伪代码。）</p><p>现在我们回家，认为到33的最短距离是82（用粉色标记）。但实际上，我们应该走<strong>通过</strong>34的路径，因为这会给我们34−67&#x3D;34的距离。糟糕。</p><p><strong>对于负边，Dijkstra算法不能保证正确。它可能有效…但不能保证有效。</strong></p><p>试一试：假设您的图具有负边，但所有负边都只从您传入的源顶点<strong>s</strong>出发。迪杰斯特拉算法有效吗？为什么&#x2F;为什么不？</p><h3 id="一个值得注意的不变性"><a href="#一个值得注意的不变性" class="headerlink" title="一个值得注意的不变性"></a>一个值得注意的不变性</h3><p>请注意，一旦顶点从优先队列中弹出，它就永远不会被重新添加。它的距离永远不会被更新。因此，换句话说，一旦顶点从优先队列中弹出，我们<strong>知道</strong>到该顶点的真正最短距离。</p><p>这个事实的一个好处是“短路”。假设…我不关心最短路径树，而只想找到从某个源到某个其他目标的最短路径。假设您想要在世界各城市上构建一个图，并找到从伯克利到奥克兰的最短路径。运行<code>dijkstra(Berkeley)</code>将意味着您无法停止这个强大的算法…您必须让它运行…直到它找到到洛杉矶、休斯顿、纽约市和所有可能的地方的最短路径！</p><p>好吧。一旦算法中的<code>Oakland</code>从优先队列中弹出，我们就可以停止。我们只需返回此时的距离和路径，它将是正确的。因此，<strong>有时</strong><code>dijkstra</code>不仅接受源，还接受目标。这是为了短路的目的。</p><h2 id="A-算法"><a href="#A-算法" class="headerlink" title="A*算法"></a>A*算法</h2><div class="row">    <embed src="A_Algorithm-Demo.pdf" width="100%" height="550" type="application/pdf"></div><p>我们通过讨论一种可能的方法来结束Dijkstra算法部分，即使其在碰到给定目标后就停止。这样做足够好吗？</p><p>要回答上面的问题，我们需要坐下来思考Dijkstra算法的实际工作原理。以图形方式表示，Dijkstra从源节点开始（想象源节点是圆心）。然后，Dijkstra算法围绕这一点以递增的半径绘制同心圆，并“扫描”这些圆，捕捉点。</p><p>因此…Dijkstra首先访问的节点是距离源点最近的城市，然后是次最近的城市，依此类推。这听起来是个好主意。Dijkstra首先访问距离1个单位的所有城市，然后是距离2个单位的城市，依此类推，形成同心圆。</p><p>现在想象一下以下情况：在美国地图上，从中心某处开始，比如丹佛。现在我想让你用Dijkstra找到一条到纽约的路径。你将按照“最接近的同心圆”的顺序遍历节点。</p><p>你将首先绘制一个小圆，就在丹佛附近，访问该圆内的所有城市。最终，你的圆将变大，你将绘制一个通过拉斯维加斯的圆（到目前为止，该圆将访问所有其他位于圆内的城市）。然后，你的圆将足够大，能够覆盖洛杉矶和达拉斯…但你离纽约还差得远。所有这些努力，所有这些圆，但是…离目标还很远。短路帮助了，但只有在你快速到达目标节点时才有效。</p><p>如果我们能有一种方法利用你的先验知识：纽约在东边，这样你就可以“提示”你的算法更喜欢东边的节点，而不是西边的节点。</p><h3 id="引入：A"><a href="#引入：A" class="headerlink" title="引入：A*"></a>引入：A*</h3><p>不，不是太阳。这是一种叫做A*的算法。</p><p>观察以下事实：Dijkstra是从源到节点的距离的“真实”（即不是估计）度量。因此，假设你访问了伊利诺伊州的一个城市，你的源是丹佛，那么在那时，你已经得到了到丹佛的距离的真实度量。我们缺少的是：从节点到目标节点纽约的距离的一些粗略估计。这将完整地呈现出整个图景。因为如果你把这两个因素相加（从源到节点的度量+从节点到目标的估计），你得到（从源到目标的估计）。当然，你原始的从节点到目标的估计越好，你从源到目标的估计就越好，你的A*算法就越好。</p><p>因此，让我们稍微修改我们的Dijkstra算法。在Dijkstra中，我们使用<code>bestKnownDistToV</code>作为我们算法中的优先级。这次，我们将使用<code>bestKnownDistToV+estimateFromVToGoal</code>作为我们的启发式。</p><p>这里有一个<a href="https://docs.google.com/presentation/d/177bRUTdCa60fjExdr9eO04NHm0MRfPtCzvEup1iMccM/edit#slide=id.g771336078_0_180">演示</a>！</p><h3 id="鸡和蛋"><a href="#鸡和蛋" class="headerlink" title="鸡和蛋"></a>鸡和蛋</h3><p>我们有一个问题。我们怎么知道估计值是多少？我的意思是，估计值本身是一种<strong>距离</strong>，而我们正在使用A*来<strong>找到</strong>从某个节点到另一个节点的距离。</p><p>这似乎像是一个经典的鸡和蛋问题实例。“先有鸡还是先有蛋？”顺便说一下，有个Reddit用户对此有了一个<a href="https://www.reddit.com/r/dadjokes/comments/97768x/i_ordered_a_chicken_and_an_egg_from_amazon_ill/">想法</a>。</p><p>嗯，它被称为估计，因为它确实是这样。我们使用A*来得到从源到目标的<strong>真实</strong>最短路径，但估计值是我们近似的。有时候得到好的估计是困难的。</p><p>但是，让我们以丹佛 - 纽约的例子来举例说明。我们可以做的是查找这些城市的GPS坐标，并计算其中的直线距离。当然，这可能不正确，因为从丹佛到纽约可能没有直线可走，但这是一个相当好的估计！</p><h3 id="不好的启发式"><a href="#不好的启发式" class="headerlink" title="不好的启发式"></a>不好的启发式</h3><p>假设从丹佛到纽约的最短路径经过某个城市<em>C</em>。假设我的GPS坏了，因此我认为这个城市<em>C</em>离一切都是无限远的，所以我将从图中的每个其他节点到城市<em>C</em>的估计距离设置为∞。</p><p>会发生什么？嗯，A*基本上永远不想访问这个城市。 （记住我们在优先级队列中的优先级是什么；对于这个城市，优先级将始终为∞，即使</p><h1 id="最小生成树-MST"><a href="#最小生成树-MST" class="headerlink" title="最小生成树(MST)"></a>最小生成树(MST)</h1><p>最小生成树（MST）是图中可能的最轻的边集，使得所有顶点都连接在一起。由于它是一棵树，它必须是连通的且无环的。而且它被称为“生成”，因为所有顶点都包括在内。</p><p><img src="/2024/03/19/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-18-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RD19-20-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E3%80%81%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/image-20240320172133841.png" alt="image-20240320172133841"></p><blockquote><p>条件</p><ul><li>连接的</li><li>非闭环的</li><li>包括了所有顶点</li></ul></blockquote><p>在这一章中，我们将看两个算法，它们将帮助我们从一个图中找到一个最小生成树。</p><p>在我们开始之前，让我们介绍一下割属性，这是一个有助于找到最小生成树的工具。</p><h2 id="割属性"><a href="#割属性" class="headerlink" title="割属性"></a>割属性</h2><p>我们可以将一个割定义为对图的节点分配给两个非空集合（即我们将每个节点分配给第一个集合或第二个集合）。</p><p>我们可以将一个横跨的边定义为连接一个集合中的节点到另一个集合中的节点的边。</p><p>有了这两个定义，我们就可以理解割属性了：给定任何一个割，最小权重的横跨边都在最小生成树中。</p><p>割属性的证明如下：假设（为了推导矛盾）最小横跨边 e 不在最小生成树中。由于它不是最小生成树的一部分，如果我们添加该边，就会创建一个循环。因为有一个循环，这意味着另一个边 f 也必须是一个横跨边（对于一个循环，如果 e 从一个集合穿过到另一个集合，就必须有另一条边穿过回到第一个集合）。因此，我们可以移除 f 并保留 e，这将给我们一个更低权重的生成树。但这是一个矛盾，因为我们假设开始时有一个最小生成树，但现在我们有了一个权重更小的生成树，因此原始的最小生成树实际上并不是最小的。因此，割属性必须成立。</p><p>下面是一张图示，说明了上述证明的一些论点：</p><p><img src="/2024/03/19/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-18-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RD19-20-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E3%80%81%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/image-20240320172407081.png" alt="image-20240320172407081"></p><h2 id="Prim算法"><a href="#Prim算法" class="headerlink" title="Prim算法"></a>Prim算法</h2><div class="row">    <embed src="CS61B-Prim&#39;s-Demo.pdf" width="100%" height="550" type="application/pdf"></div><p>这是一种从图中找到最小生成树（MST）的算法。它的步骤如下：</p><ol><li>从任意起始节点开始。</li><li>反复添加具有一个节点在正在构建的MST内的最短边。</li><li>重复直到有$V-1$条边。</li></ol><p>Prim算法之所以有效，是因为在算法的所有阶段，如果我们将所有节点都作为我们正在构建的MST的一部分，而将所有其他节点视为第二个集合，那么这个算法总是添加横跨此割的最轻的边，根据割属性，这个边必然是最终MST的一部分。</p><p>从本质上讲，该算法通过与Dijkstra算法相同的机制运行，但是Dijkstra算法考虑的是候选节点距离源节点的距离，而Prim算法则查看每个候选节点距离正在构建的MST的距离。</p><p>因此，如果使用与Dijkstra算法相同的机制进行Prim算法，其运行时间将与Dijkstra算法相同，即 </p><p>$O((|V| + |E|) \log |V|)$。请记住，这是因为我们需要为每条边添加到优先级队列中的外围，并且我们需要为每个顶点从中出队一次。</p><p><img src="/2024/03/19/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-18-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RD19-20-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E3%80%81%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/2024-03-20-17-19-38.gif" alt="2024-03-20-17-19-38"></p><blockquote><p>区别: </p><ul><li>MSP: 从源顶点出发，所以在哪里开始很重要</li><li>SPT: 全局属性，与源顶点无关</li></ul></blockquote><h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><p><img src="/2024/03/19/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-18-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RD19-20-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E3%80%81%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/image-20240320172951394.png" alt="image-20240320172951394"></p><p><img src="/2024/03/19/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-18-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RD19-20-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E3%80%81%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/image-20240320173004710.png" alt="image-20240320173004710"></p><h2 id="Kruskal算法"><a href="#Kruskal算法" class="headerlink" title="Kruskal算法"></a>Kruskal算法</h2><div class="row">    <embed src="kruskals-realistic-implementation-demo.pdf" width="100%" height="550" type="application/pdf"></div><p>这是另一种从图中找到最小生成树（MST）的算法。Kruskal返回的最小生成树可能与Prim返回的不同，但是这两个算法都将始终返回一个MST；因为两者都是最小的（最优的），它们都将给出有效的最优解（它们在最小&#x2F;总权重相同的情况下一样优，而且这是尽可能低的）。</p><p>该算法步骤如下：</p><ol><li>将所有边从最轻到最重排序。</li><li>逐个考虑边（按排序顺序），如果添加该边不会形成循环，则将其添加到我们正在构建的MST中。</li><li>重复直到有 $V-1$ 条边。</li></ol><p>Kruskal算法有效的原因是我们添加的任何边都将连接一个节点，我们可以说这个节点是一个集合的一部分，以及第二个节点，我们可以说是第二个集合的一部分。我们添加的这条边不是循环的一部分，因为我们只有在不会形成循环的情况下才会添加一条边。此外，我们按照从最轻到最重的顺序查看候选边。因此，我们要添加的这条边必须是横跨此割的最轻的边（如果存在一条更轻的边，那么它将在此之前被添加，添加这条边将导致出现循环）。因此，该算法也是通过割属性工作的。</p><p>Kruskal算法运行时间为$O(|E| \log |E|)$，因为算法的瓶颈是开始时对所有边进行排序（例如，我们可以使用堆排序，其中我们将所有边插入堆中，并逐个删除最小边）。如果我们已经给出了预先排序的边并且不需要为此付出代价，那么运行时间是 $O(∣E∣log ^∗  ∣V∣)$。这是因为每当我们提出要添加的边时，我们都需要检查它是否会引入循环。我们知道如何做到这一点的一种方法是使用带路径压缩的加权快速并查集；这将有效地告诉我们两个节点是否已经连接在一起。这将花费$∣E∣$ 次调用 <code>isConnected</code>，每次调用的成本为$ O(log ^∗  ∣V∣)$，其中$log^*$是阿克曼函数。</p><p><img src="/2024/03/19/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-18-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RD19-20-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E3%80%81%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/2024-03-20-17-17-07.gif" alt="2024-03-20-17-17-07"></p><h3 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h3><p><img src="/2024/03/19/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-18-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RD19-20-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E3%80%81%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/image-20240320173029921.png" alt="image-20240320173029921"></p><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p><img src="/2024/03/19/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-18-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RD19-20-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E3%80%81%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/image-20240320173106199.png" alt="image-20240320173106199"></p>]]></content>
       
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> JAVA </category>
           
           <category> CS61B </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -294,11 +327,11 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> JAVA </category>
           
           <category> CS61B </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -327,11 +360,11 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> JAVA </category>
           
           <category> CS61B </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -360,11 +393,11 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> JAVA </category>
           
           <category> CS61B </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -393,11 +426,11 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> JAVA </category>
           
           <category> CS61B </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -451,11 +484,11 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> JAVA </category>
           
           <category> CS61B </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -484,11 +517,11 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> JAVA </category>
           
           <category> CS61B </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -517,11 +550,11 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> JAVA </category>
           
           <category> CS61B </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -550,11 +583,11 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> JAVA </category>
           
           <category> CS61B </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -578,16 +611,16 @@
       <link href="/2024/02/07/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-12-CS61b%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd8-9-%E4%B8%8D%E7%9B%B8%E4%BA%A4%E9%9B%86/"/>
       <url>/2024/02/07/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-12-CS61b%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd8-9-%E4%B8%8D%E7%9B%B8%E4%BA%A4%E9%9B%86/</url>
       
-        <content type="html"><![CDATA[<p>slide:<a href="https://docs.google.com/presentation/d/1I9Jzt95GvxRqwGMzN7DSEIREKhMZ0qEUzPyWLl6CU5g/edit#slide=id.g5347e2c8f_210">cs61b 2020 lec14 ds1 disjoint sets - Google 幻灯片</a></p><p>Reading:<a href="https://joshhug.gitbooks.io/hug61b/content/chap9/chap91.html">9.1 Introduction · Hug61B (gitbooks.io)</a></p><p>code:<a href="https://algs4.cs.princeton.edu/15uf/">Case Study: Union-Find (princeton.edu)</a></p><h1 id="Disjoint-Sets简介"><a href="#Disjoint-Sets简介" class="headerlink" title="Disjoint Sets简介"></a>Disjoint Sets简介</h1><p>如果两个集合没有共同元素，则称它们为<em>不相交集合</em>。一个不相交集合（或者称为并查集）数据结构用于追踪固定数量的元素，这些元素被划分为多个<em>不相交集合</em>。该数据结构具有两个操作：</p><ol><li><code>connect(x, y)</code>: 连接 <code>x</code> 和 <code>y</code>。也称为 <code>union</code>。</li><li><code>isConnected(x, y)</code>: 如果 <code>x</code> 和 <code>y</code> 连接（即属于同一集合），则返回true。</li></ol><p>不相交集合数据结构有一定数量的元素，每个元素最初都位于自己的子集中。通过对某些元素 <code>x</code> 和 <code>y</code> 调用 <code>connect(x, y)</code>，我们可以将子集合并在一起。</p><p>例如，假设我们有四个元素，我们将它们称为 A、B、C、D。初始时，每个元素都在自己的集合中：</p><p><img src="/2024/02/07/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-12-CS61b%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd8-9-%E4%B8%8D%E7%9B%B8%E4%BA%A4%E9%9B%86/intro1_resized.png" alt="img"></p><p>调用 <code>connect(A, B)</code> 后：</p><p><img src="/2024/02/07/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-12-CS61b%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd8-9-%E4%B8%8D%E7%9B%B8%E4%BA%A4%E9%9B%86/intro2_resized.png" alt="img"></p><p>请注意，子集 A 和 B 被合并。让我们来检查一些 <code>isConnected</code> 调用的输出：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CodeisConnected(A, B) -&gt; <span class="literal">true</span></span><br><span class="line"><span class="title function_">isConnected</span><span class="params">(A, C)</span> -&gt; <span class="literal">false</span></span><br></pre></td></tr></table></figure><p>调用 <code>connect(A, D)</code> 后：</p><p><img src="/2024/02/07/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-12-CS61b%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd8-9-%E4%B8%8D%E7%9B%B8%E4%BA%A4%E9%9B%86/intro3_resized.png" alt="img"></p><p>我们找到了 A 所属的集合，并将其与 D 所属的集合合并，形成了一个大的 A、B、D 集合。C 保持不变。 <code>isConnected(A, D) -&gt; true</code> <code>isConnected(A, C) -&gt; false</code></p><p>有了这个直观理解，让我们正式定义一下我们的不相交集合接口是什么样子的。作为提醒，一个 <strong>接口</strong> 确定了一个数据结构应该具有的行为（但不包括实现方法）。现在，我们只处理非负整数集合。这并不是一个限制，因为在实际应用中，我们可以为我们想要表示的任何内容分配整数值。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">DisjointSets</span> &#123;</span><br><span class="line">    <span class="comment">/** 连接两个项目 P 和 Q */</span></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">connect</span><span class="params">(<span class="type">int</span> p, <span class="type">int</span> q)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** 检查两个项目是否连接 */</span></span><br><span class="line">    <span class="type">boolean</span> <span class="title function_">isConnected</span><span class="params">(<span class="type">int</span> p, <span class="type">int</span> q)</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>除了学习如何实现一个迷人的数据结构之外，这一章还将是一个了解数据结构实现如何演变的机会。我们将讨论四个不相交集合设计的迭代过程：<em>Quick Find → Quick Union → Weighted Quick Union (WQU) → WQU with Path Compression</em>。<strong>我们将看到设计决策如何极大地影响渐近运行时间和代码复杂度。</strong></p><h1 id="快速查找Quick-Find"><a href="#快速查找Quick-Find" class="headerlink" title="快速查找Quick Find"></a>快速查找Quick Find</h1><iframe width="770" height="458" src="https://www.youtube.com/embed/W6Dckcv8PIo" title="[Disjoint Sets, Video 2] - Quick Find" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe><p>现在我们来解决如何实现我们的 <code>DisjointSets</code> 接口所需的行为。我们的挑战是跟踪集合成员关系。</p><h2 id="集合列表"><a href="#集合列表" class="headerlink" title="集合列表"></a>集合列表</h2><p>直观地，我们可能首先考虑将不相交集合表示为一个集合列表，例如 <code>List&lt;Set&lt;Integer&gt;&gt;</code>。</p><p>例如，如果我们有 N&#x3D;6 个元素，并且还没有连接任何元素，我们的集合列表看起来像：<code>[&#123;0&#125;, &#123;1&#125;, &#123;2&#125;, &#123;3&#125;, &#123;4&#125;, &#123;5&#125;, &#123;6&#125;]</code>。看起来不错。然而，考虑如何完成像 <code>connect(5, 6)</code> 这样的操作。我们将不得不遍历多达 <code>N</code> 个集合来找到5，以及多达 <code>N</code> 个集合来找到6。我们的运行时间变为 <code>O(N)</code>。而且，如果你试图实现这个，代码会非常复杂。</p><blockquote><p>要记住的教训是 <strong>初始设计决策决定了我们的代码复杂度和运行时间。</strong></p></blockquote><h2 id="快速查找"><a href="#快速查找" class="headerlink" title="快速查找"></a>快速查找</h2><p>让我们考虑另一种方法，使用一个 <em>整数数组</em>。</p><ul><li>数组的<strong>索引</strong>表示我们集合的元素。</li><li>索引处的<strong>值</strong>是它所属的集合编号。</li></ul><p>例如，我们将 <code>&#123;0, 1, 2, 4&#125;, &#123;3, 5&#125;, &#123;6&#125;</code> 表示为：</p><p><img src="/2024/02/07/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-12-CS61b%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd8-9-%E4%B8%8D%E7%9B%B8%E4%BA%A4%E9%9B%86/9.2.1-1707267489271-11.png" alt="img"></p><p>数组索引（0…6）是元素。<code>id[i]</code> 处的值是它所属的集合。<em>具体的集合编号并不重要，只要同一集合中的所有元素共享相同的id。</em></p><h3 id="connect-x-y"><a href="#connect-x-y" class="headerlink" title="connect(x, y)"></a><code>connect(x, y)</code></h3><p>让我们看看连接操作如何工作。当前，<code>id[2] = 4</code> 和 <code>id[3] = 5</code>。调用 <code>connect(2, 3)</code> 后，所有id为4和5的元素应该具有相同的id。现在暂时将它们全部赋值为5：</p><p><img src="/2024/02/07/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-12-CS61b%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd8-9-%E4%B8%8D%E7%9B%B8%E4%BA%A4%E9%9B%86/9.2.2-1707267498002-14.png" alt="img"></p><h3 id="isConnected-x-y"><a href="#isConnected-x-y" class="headerlink" title="isConnected(x, y)"></a><code>isConnected(x, y)</code></h3><p>要检查 <code>isConnected(x, y)</code>，我们只需检查 <code>id[x] == id[y]</code>。请注意，这是一个常数时间操作！</p><p>我们将此实现称为 “快速查找”，因为查找元素是否相连需要常数时间。</p><h3 id="总结和代码"><a href="#总结和代码" class="headerlink" title="总结和代码"></a>总结和代码</h3><table><thead><tr><th>实现方式</th><th>构造函数</th><th><code>connect</code></th><th><code>isConnected</code></th></tr></thead><tbody><tr><td>集合列表</td><td>Θ(N)[1]</td><td>O(N)</td><td>O(N)</td></tr><tr><td>快速查找</td><td>Θ(N)</td><td>Θ(N)</td><td>Θ(1)</td></tr></tbody></table><p>N &#x3D; 不相交集合数据结构中的元素数量</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">QuickFindDS</span> <span class="keyword">implements</span> <span class="title class_">DisjointSets</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span>[] id;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* Θ(N) */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">QuickFindDS</span><span class="params">(<span class="type">int</span> N)</span>&#123;</span><br><span class="line">        id = <span class="keyword">new</span> <span class="title class_">int</span>[N];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; N; i++)&#123;</span><br><span class="line">            id[i] = i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 需要遍历数组 =&gt; Θ(N) */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">connect</span><span class="params">(<span class="type">int</span> p, <span class="type">int</span> q)</span>&#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">pid</span> <span class="operator">=</span> id[p];</span><br><span class="line">        <span class="type">int</span> <span class="variable">qid</span> <span class="operator">=</span> id[q];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; id.length; i++)&#123;</span><br><span class="line">            <span class="keyword">if</span> (id[i] == pid)&#123;</span><br><span class="line">                id[i] = qid;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* Θ(1) */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">isConnected</span><span class="params">(<span class="type">int</span> p, <span class="type">int</span> q)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (id[p] == id[q]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h1 id="快速合并Quick-Union"><a href="#快速合并Quick-Union" class="headerlink" title="快速合并Quick Union"></a>快速合并Quick Union</h1><iframe width="770" height="458" src="https://www.youtube.com/embed/RY7UCusguGg" title="[Disjoint Sets, Video 3] - Quick Union" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe><p>假设我们优先考虑使 <code>connect</code> 操作快速。我们仍然将使用数组来表示我们的集合。但是，与其使用一个id，我们将每个项目分配给其父项的索引。如果一个项目没有父项，那么它就是一个 ‘根’，我们为其分配一个负值。</p><p>这种方法使我们可以将我们的每个集合想象成一棵树。例如，我们将 <code>&#123;0, 1, 2, 4&#125;, &#123;3, 5&#125;, &#123;6&#125;</code> 表示为：</p><p><img src="/2024/02/07/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-12-CS61b%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd8-9-%E4%B8%8D%E7%9B%B8%E4%BA%A4%E9%9B%86/9.3.1-1707267897651-23.png" alt="img"></p><p>请注意，我们使用<strong>只有一个数组</strong>来表示集合。我们自己将其视为树。</p><p>对于快速合并，我们定义一个辅助函数 <code>find(int item)</code>，它返回项目所在树的根。例如，对于上面的集合，<code>find(4) == 0</code>，<code>find(1) == 0</code>，<code>find(5) == 3</code> 等。每个元素都有一个唯一的根。</p><h2 id="connect-x-y-1"><a href="#connect-x-y-1" class="headerlink" title="connect(x, y)"></a><code>connect(x, y)</code></h2><p>要连接两个项目，我们找到每个项目所属的集合（它们各自树的根），并将其中一个作为另一个的子项。例如：</p><p><code>connect(5, 2)</code>：</p><ol><li><code>find(5)</code> -&gt; 3</li><li><code>find(2)</code> -&gt; 0</li><li>设置 <code>find(5)</code> 的值为 <code>find(2)</code>，也就是 <code>parent[3] = 0</code></li></ol><p><img src="/2024/02/07/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-12-CS61b%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd8-9-%E4%B8%8D%E7%9B%B8%E4%BA%A4%E9%9B%86/9.3.2-1707267923567-26.png" alt="img"></p><p>请注意，元素3现在指向元素0，将两棵树&#x2F;集合合并为一棵树。</p><p>在最佳情况下，如果 <code>x</code> 和 <code>y</code> 都是它们树的根，那么 <code>connect(x, y)</code> 就会简单地使 <code>x</code> 指向 <code>y</code>，这是一个 Θ(1) 的操作！（因此称为快速合并）</p><h2 id="isConnected-x-y-1"><a href="#isConnected-x-y-1" class="headerlink" title="isConnected(x, y)"></a><code>isConnected(x, y)</code></h2><p>如果两个元素属于同一个集合，那么它们将在同一棵树中。因此，它们将具有相同的根。因此对于 <code>isConnected(x, y)</code>，我们只需检查 <code>find(x) == find(y)</code>。</p><h3 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h3><p>快速合并存在潜在的性能问题：树可能变得非常长。在这种情况下，找到一个项目的根 (<code>find(item)</code>) 就变得非常昂贵。考虑下面的树：</p><p>[图3]</p><p>在最坏的情况下，我们必须遍历所有项目才能到达根，这是一个 Θ(N) 的运行时间。由于我们必须对 <code>connect</code> 和 <code>isConnected</code> 都调用 <code>find</code>，所以它们的运行时间都由 O(N) 上限约束。</p><h3 id="总结和代码-1"><a href="#总结和代码-1" class="headerlink" title="总结和代码"></a>总结和代码</h3><table><thead><tr><th>实现方式</th><th>构造函数</th><th><code>connect</code></th><th><code>isConnected</code></th></tr></thead><tbody><tr><td>快速合并</td><td>Θ(N)</td><td>O(N)</td><td>O(N)</td></tr><tr><td>快速查找</td><td>Θ(N)</td><td>Θ(N)</td><td>Θ(1)</td></tr><tr><td>快速合并</td><td>Θ(N)</td><td>O(N)</td><td>O(N)</td></tr></tbody></table><p>N &#x3D; 不相交集合数据结构中的元素数量</p><p>从运行时间表中，快速合并似乎比快速查找更差！但请注意，O(N) 是一个 <strong>上限</strong>。当我们的树是平衡的时候，<code>connect</code> 和 <code>isConnected</code> 都表现得相当好。在下一节中，我们将看到如何 <em>保证</em> 它们的性能良好。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">QuickUnionDS</span> <span class="keyword">implements</span> <span class="title class_">DisjointSets</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span>[] parent;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">QuickUnionDS</span><span class="params">(<span class="type">int</span> num)</span> &#123;</span><br><span class="line">        parent = <span class="keyword">new</span> <span class="title class_">int</span>[num];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; num; i++) &#123;</span><br><span class="line">            parent[i] = i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> <span class="title function_">find</span><span class="params">(<span class="type">int</span> p)</span> &#123;</span><br><span class="line">        <span class="keyword">while</span> (parent[p] &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">            p = parent[p];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> p;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">connect</span><span class="params">(<span class="type">int</span> p, <span class="type">int</span> q)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> find(p);</span><br><span class="line">        <span class="type">int</span> j= find(q);</span><br><span class="line">        parent[i] = j;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">isConnected</span><span class="params">(<span class="type">int</span> p, <span class="type">int</span> q)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> find(p) == find(q);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h1 id="加权快速联合Weighted-Quick-Uion-WQU"><a href="#加权快速联合Weighted-Quick-Uion-WQU" class="headerlink" title="加权快速联合Weighted Quick Uion(WQU)"></a>加权快速联合Weighted Quick Uion(WQU)</h1><p>Quick Union 的改进依赖于一个关键的见解：每当我们调用 <code>find</code> 时，我们都必须爬到树的根部。因此，树越短，速度就越快！</p><p><strong>新规则</strong>：每当我们调用 <code>connect</code> 时，我们总是将<strong>较小树的根</strong>链接到<strong>较大树</strong>。</p><p>遵循此规则将为您的树提供最大高度 <code>logN</code> ，其中 N 是不相交集中的元素数量。这如何影响 <code>connect</code> 和 <code>isConnected</code> 的运行时？</p><iframe frameborder="0" allowfullscreen src="https://www.youtube.com/embed/xc9s9wdaSdU" style="box-sizing: border-box; -webkit-tap-highlight-color: transparent; text-size-adjust: none; -webkit-font-smoothing: antialiased; font-size: inherit; border: none; top: 0px; left: 0px; width: 770px; height: 458.125px;"></iframe><p>让我们通过一个例子来说明这样做的好处。考虑连接下面两组 T1 和 T2：</p><p><img src="/2024/02/07/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-12-CS61b%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd8-9-%E4%B8%8D%E7%9B%B8%E4%BA%A4%E9%9B%86/9.4.1.png" alt="img"></p><p>我们有两种连接它们的选项：</p><p><img src="/2024/02/07/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-12-CS61b%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd8-9-%E4%B8%8D%E7%9B%B8%E4%BA%A4%E9%9B%86/9.4.2.png" alt="img"> 第一个选项我们将 T1 链接到 T2。在第二个中，我们将 T2 链接到 T1。</p><p><strong>第二个选项更可取</strong>，因为它的高度只有 2，而不是 3。根据我们的新规则，我们也会选择第二个选项，因为 T2 小于 T1（尺寸为 3 与 6）。</p><p>我们根据树中的项目数量来确定更小&#x2F;更大。因此，当连接两棵树时，我们需要知道它们的大小（或重量）。我们可以通过用 <code>-(size of tree)</code> 替换 <code>-1</code> 来将此信息存储在树的根中。您将在<a href="https://sp19.datastructur.es/materials/lab/lab6/lab6">Lab 6</a>中实现这一点。</p><h2 id="最大高度：Log-N"><a href="#最大高度：Log-N" class="headerlink" title="最大高度：Log N"></a>最大高度：Log N</h2><p>遵循上述规则可确保任何树的最大高度为 θ(log N)。 N 是不相交集中的元素数量。<strong>通过扩展， <code>connect</code> 和 <code>isConnected</code> 的运行时间以 O(log N) 为界。</strong></p><p><img src="/2024/02/07/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-12-CS61b%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd8-9-%E4%B8%8D%E7%9B%B8%E4%BA%A4%E9%9B%86/image-20240207091146331.png" alt="image-20240207091146331"></p><p><img src="/2024/02/07/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-12-CS61b%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd8-9-%E4%B8%8D%E7%9B%B8%E4%BA%A4%E9%9B%86/image-20240207091744666.png" alt="image-20240207091744666"></p><p>您可能想知道为什么我们不根据高度而不是重量来链接树木。事实证明，这实现起来更复杂，并且给了我们相同的 θ(log N) 高度限制。</p><p><img src="/2024/02/07/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-12-CS61b%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd8-9-%E4%B8%8D%E7%9B%B8%E4%BA%A4%E9%9B%86/image-20240207091815565.png" alt="image-20240207091815565"></p><h2 id="总结和代码-2"><a href="#总结和代码-2" class="headerlink" title="总结和代码"></a>总结和代码</h2><table><thead><tr><th>Implementation</th><th>Constructor</th><th><code>connect</code></th><th><code>isConnected</code></th></tr></thead><tbody><tr><td>QuickUnion</td><td>Θ(N)</td><td>O(N)</td><td>O(N)</td></tr><tr><td>QuickFind</td><td>Θ(N)</td><td>Θ(N)</td><td>Θ(1)</td></tr><tr><td>QuickUnion</td><td>Θ(N)</td><td>O(N)</td><td>O(N)</td></tr><tr><td>Weighted Quick Union</td><td>Θ(N)</td><td>O(log N)</td><td>O(log N)</td></tr></tbody></table><p>N &#x3D; number of elements in our DisjointSets data structure</p><p>代码:<a href="https://sp19.datastructur.es/materials/lab/lab6/lab6">Lab 6</a>中实现 or <a href="https://algs4.cs.princeton.edu/15uf/WeightedQuickUnionUF.java.html">WeightedQuickUnionUF.java (princeton.edu)</a></p><h1 id="带路径压缩的加权快速联合WQU-with-Path-Compression"><a href="#带路径压缩的加权快速联合WQU-with-Path-Compression" class="headerlink" title="带路径压缩的加权快速联合WQU with Path Compression"></a>带路径压缩的加权快速联合WQU with Path Compression</h1><iframe width="770" height="458" src="https://www.youtube.com/embed/DZKzDebT4gU" title="[Disjoint Sets, Video 5] - Weighted Quick Union with Path Compression and Summary" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe><p>每当我们调用 <code>find(x)</code> 时，我们都必须遍历从 <code>x</code> 到 root 的路径。因此，在此过程中，我们可以将我们访问的所有项目连接到它们的根，而无需额外的渐近成本。</p><p>将沿途的所有项目连接到根将有助于每次调用 <code>find</code> 时使我们的树更短。</p><p>回想一下， <code>connect(x, y)</code> 和 <code>isConnected(x, y)</code> 总是调用 <code>find(x)</code> 和 <code>find(y)</code> 。因此，在足够多地调用 <code>connect</code> 或 <code>isConnected</code> 之后，基本上所有元素都将直接指向它们的根。</p><p>通过扩展， <code>connect</code> 和 <code>isConnected</code> 的平均运行时间从长远来看几乎保持不变！这称为摊销运行时间（来自摊销分析，第 8.4 章）。</p><p>更具体地说，对于 N 个元素上的 M 次操作，具有路径压缩的 WQU 为 <code>O(N + M (lg* N))</code>。 <code>lg* </code>是迭代对数，对于任何现实世界的输入都小于 5。</p><blockquote><p><code>lg*</code>:</p><p><img src="/2024/02/07/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-12-CS61b%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd8-9-%E4%B8%8D%E7%9B%B8%E4%BA%A4%E9%9B%86/image-20240207091913787.png" alt="image-20240207091913787"></p></blockquote><h3 id="概括"><a href="#概括" class="headerlink" title="概括"></a>概括</h3><p>N：不相交集中的元素数量</p><table><thead><tr><th>执行</th><th><code>isConnected</code></th><th><code>connect</code></th></tr></thead><tbody><tr><td>快速查找</td><td>Θ(N)</td><td>Θ(1)</td></tr><tr><td>快联</td><td>O(N)</td><td>O(N)</td></tr><tr><td>加权快速联合 (WQU)</td><td>O(log N)</td><td>O(log N)</td></tr><tr><td>带路径压缩的 WQU</td><td>O(α(N))*</td><td>O(α(N))*</td></tr></tbody></table><p>*长期表现稳定。</p><p>代码:<a href="https://algs4.cs.princeton.edu/15uf/WeightedQuickUnionPathCompressionUF.java.html">WeightedQuickUnionPathCompressionUF.java (princeton.edu)</a></p><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p><img src="/2024/02/07/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-12-CS61b%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd8-9-%E4%B8%8D%E7%9B%B8%E4%BA%A4%E9%9B%86/image-20240207091954317.png" alt="image-20240207091954317"></p>]]></content>
+        <content type="html"><![CDATA[<p>slide:<a href="https://docs.google.com/presentation/d/1I9Jzt95GvxRqwGMzN7DSEIREKhMZ0qEUzPyWLl6CU5g/edit#slide=id.g5347e2c8f_210">cs61b 2020 lec14 ds1 disjoint sets - Google 幻灯片</a></p><p>Reading:<a href="https://joshhug.gitbooks.io/hug61b/content/chap9/chap91.html">9.1 Introduction · Hug61B (gitbooks.io)</a></p><p>code:<a href="https://algs4.cs.princeton.edu/15uf/">Case Study: Union-Find (princeton.edu)</a></p><h1 id="Disjoint-Sets简介"><a href="#Disjoint-Sets简介" class="headerlink" title="Disjoint Sets简介"></a>Disjoint Sets简介</h1><p>如果两个集合没有共同元素，则称它们为<em>不相交集合</em>。一个不相交集合（或者称为并查集）数据结构用于追踪固定数量的元素，这些元素被划分为多个<em>不相交集合</em>。该数据结构具有两个操作：</p><ol><li><code>connect(x, y)</code>: 连接 <code>x</code> 和 <code>y</code>。也称为 <code>union</code>。</li><li><code>isConnected(x, y)</code>: 如果 <code>x</code> 和 <code>y</code> 连接（即属于同一集合），则返回true。</li></ol><p>不相交集合数据结构有一定数量的元素，每个元素最初都位于自己的子集中。通过对某些元素 <code>x</code> 和 <code>y</code> 调用 <code>connect(x, y)</code>，我们可以将子集合并在一起。</p><p>例如，假设我们有四个元素，我们将它们称为 A、B、C、D。初始时，每个元素都在自己的集合中：</p><p><img src="/2024/02/07/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-12-CS61b%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd8-9-%E4%B8%8D%E7%9B%B8%E4%BA%A4%E9%9B%86/intro1_resized.png" alt="img"></p><p>调用 <code>connect(A, B)</code> 后：</p><p><img src="/2024/02/07/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-12-CS61b%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd8-9-%E4%B8%8D%E7%9B%B8%E4%BA%A4%E9%9B%86/intro2_resized.png" alt="img"></p><p>请注意，子集 A 和 B 被合并。让我们来检查一些 <code>isConnected</code> 调用的输出：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CodeisConnected(A, B) -&gt; <span class="literal">true</span></span><br><span class="line"><span class="title function_">isConnected</span><span class="params">(A, C)</span> -&gt; <span class="literal">false</span></span><br></pre></td></tr></table></figure><p>调用 <code>connect(A, D)</code> 后：</p><p><img src="/2024/02/07/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-12-CS61b%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd8-9-%E4%B8%8D%E7%9B%B8%E4%BA%A4%E9%9B%86/intro3_resized.png" alt="img"></p><p>我们找到了 A 所属的集合，并将其与 D 所属的集合合并，形成了一个大的 A、B、D 集合。C 保持不变。 <code>isConnected(A, D) -&gt; true</code> <code>isConnected(A, C) -&gt; false</code></p><p>有了这个直观理解，让我们正式定义一下我们的不相交集合接口是什么样子的。作为提醒，一个 <strong>接口</strong> 确定了一个数据结构应该具有的行为（但不包括实现方法）。现在，我们只处理非负整数集合。这并不是一个限制，因为在实际应用中，我们可以为我们想要表示的任何内容分配整数值。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">DisjointSets</span> &#123;</span><br><span class="line">    <span class="comment">/** 连接两个项目 P 和 Q */</span></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">connect</span><span class="params">(<span class="type">int</span> p, <span class="type">int</span> q)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** 检查两个项目是否连接 */</span></span><br><span class="line">    <span class="type">boolean</span> <span class="title function_">isConnected</span><span class="params">(<span class="type">int</span> p, <span class="type">int</span> q)</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>除了学习如何实现一个迷人的数据结构之外，这一章还将是一个了解数据结构实现如何演变的机会。我们将讨论四个不相交集合设计的迭代过程：<em>Quick Find → Quick Union → Weighted Quick Union (WQU) → WQU with Path Compression</em>。<strong>我们将看到设计决策如何极大地影响渐近运行时间和代码复杂度。</strong></p><h1 id="快速查找Quick-Find"><a href="#快速查找Quick-Find" class="headerlink" title="快速查找Quick Find"></a>快速查找Quick Find</h1><iframe width="770" height="458" src="https://www.youtube.com/embed/W6Dckcv8PIo" title="[Disjoint Sets, Video 2] - Quick Find" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe><p>现在我们来解决如何实现我们的 <code>DisjointSets</code> 接口所需的行为。我们的挑战是跟踪集合成员关系。</p><h2 id="集合列表"><a href="#集合列表" class="headerlink" title="集合列表"></a>集合列表</h2><p>直观地，我们可能首先考虑将不相交集合表示为一个集合列表，例如 <code>List&lt;Set&lt;Integer&gt;&gt;</code>。</p><p>例如，如果我们有 N&#x3D;6 个元素，并且还没有连接任何元素，我们的集合列表看起来像：<code>[&#123;0&#125;, &#123;1&#125;, &#123;2&#125;, &#123;3&#125;, &#123;4&#125;, &#123;5&#125;, &#123;6&#125;]</code>。看起来不错。然而，考虑如何完成像 <code>connect(5, 6)</code> 这样的操作。我们将不得不遍历多达 <code>N</code> 个集合来找到5，以及多达 <code>N</code> 个集合来找到6。我们的运行时间变为 <code>O(N)</code>。而且，如果你试图实现这个，代码会非常复杂。</p><blockquote><p>要记住的教训是 <strong>初始设计决策决定了我们的代码复杂度和运行时间。</strong></p></blockquote><h2 id="快速查找"><a href="#快速查找" class="headerlink" title="快速查找"></a>快速查找</h2><p>让我们考虑另一种方法，使用一个 <em>整数数组</em>。</p><ul><li>数组的<strong>索引</strong>表示我们集合的元素。</li><li>索引处的<strong>值</strong>是它所属的集合编号。</li></ul><p>例如，我们将 <code>&#123;0, 1, 2, 4&#125;, &#123;3, 5&#125;, &#123;6&#125;</code> 表示为：</p><p><img src="/2024/02/07/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-12-CS61b%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd8-9-%E4%B8%8D%E7%9B%B8%E4%BA%A4%E9%9B%86/9.2.1-1707267489271-11.png" alt="img"></p><p>数组索引（0…6）是元素。<code>id[i]</code> 处的值是它所属的集合。<em>具体的集合编号并不重要，只要同一集合中的所有元素共享相同的id。</em></p><h3 id="connect-x-y"><a href="#connect-x-y" class="headerlink" title="connect(x, y)"></a><code>connect(x, y)</code></h3><p>让我们看看连接操作如何工作。当前，<code>id[2] = 4</code> 和 <code>id[3] = 5</code>。调用 <code>connect(2, 3)</code> 后，所有id为4和5的元素应该具有相同的id。现在暂时将它们全部赋值为5：</p><p><img src="/2024/02/07/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-12-CS61b%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd8-9-%E4%B8%8D%E7%9B%B8%E4%BA%A4%E9%9B%86/9.2.2-1707267498002-14.png" alt="img"></p><h3 id="isConnected-x-y"><a href="#isConnected-x-y" class="headerlink" title="isConnected(x, y)"></a><code>isConnected(x, y)</code></h3><p>要检查 <code>isConnected(x, y)</code>，我们只需检查 <code>id[x] == id[y]</code>。请注意，这是一个常数时间操作！</p><p>我们将此实现称为 “快速查找”，因为查找元素是否相连需要常数时间。</p><h3 id="总结和代码"><a href="#总结和代码" class="headerlink" title="总结和代码"></a>总结和代码</h3><table><thead><tr><th>实现方式</th><th>构造函数</th><th><code>connect</code></th><th><code>isConnected</code></th></tr></thead><tbody><tr><td>集合列表</td><td>Θ(N)</td><td>O(N)</td><td>O(N)</td></tr><tr><td>快速查找</td><td>Θ(N)</td><td>Θ(N)</td><td>Θ(1)</td></tr></tbody></table><p>N &#x3D; 不相交集合数据结构中的元素数量</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">QuickFindDS</span> <span class="keyword">implements</span> <span class="title class_">DisjointSets</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span>[] id;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* Θ(N) */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">QuickFindDS</span><span class="params">(<span class="type">int</span> N)</span>&#123;</span><br><span class="line">        id = <span class="keyword">new</span> <span class="title class_">int</span>[N];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; N; i++)&#123;</span><br><span class="line">            id[i] = i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 需要遍历数组 =&gt; Θ(N) */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">connect</span><span class="params">(<span class="type">int</span> p, <span class="type">int</span> q)</span>&#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">pid</span> <span class="operator">=</span> id[p];</span><br><span class="line">        <span class="type">int</span> <span class="variable">qid</span> <span class="operator">=</span> id[q];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; id.length; i++)&#123;</span><br><span class="line">            <span class="keyword">if</span> (id[i] == pid)&#123;</span><br><span class="line">                id[i] = qid;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* Θ(1) */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">isConnected</span><span class="params">(<span class="type">int</span> p, <span class="type">int</span> q)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (id[p] == id[q]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h1 id="快速合并Quick-Union"><a href="#快速合并Quick-Union" class="headerlink" title="快速合并Quick Union"></a>快速合并Quick Union</h1><iframe width="770" height="458" src="https://www.youtube.com/embed/RY7UCusguGg" title="[Disjoint Sets, Video 3] - Quick Union" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe><p>假设我们优先考虑使 <code>connect</code> 操作快速。我们仍然将使用数组来表示我们的集合。但是，与其使用一个id，我们将每个项目分配给其父项的索引。如果一个项目没有父项，那么它就是一个 ‘根’，我们为其分配一个负值。</p><p>这种方法使我们可以将我们的每个集合想象成一棵树。例如，我们将 <code>&#123;0, 1, 2, 4&#125;, &#123;3, 5&#125;, &#123;6&#125;</code> 表示为：</p><p><img src="/2024/02/07/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-12-CS61b%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd8-9-%E4%B8%8D%E7%9B%B8%E4%BA%A4%E9%9B%86/9.3.1-1707267897651-23.png" alt="img"></p><p>请注意，我们使用<strong>只有一个数组</strong>来表示集合。我们自己将其视为树。</p><p>对于快速合并，我们定义一个辅助函数 <code>find(int item)</code>，它返回项目所在树的根。例如，对于上面的集合，<code>find(4) == 0</code>，<code>find(1) == 0</code>，<code>find(5) == 3</code> 等。每个元素都有一个唯一的根。</p><h2 id="connect-x-y-1"><a href="#connect-x-y-1" class="headerlink" title="connect(x, y)"></a><code>connect(x, y)</code></h2><p>要连接两个项目，我们找到每个项目所属的集合（它们各自树的根），并将其中一个作为另一个的子项。例如：</p><p><code>connect(5, 2)</code>：</p><ol><li><code>find(5)</code> -&gt; 3</li><li><code>find(2)</code> -&gt; 0</li><li>设置 <code>find(5)</code> 的值为 <code>find(2)</code>，也就是 <code>parent[3] = 0</code></li></ol><p><img src="/2024/02/07/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-12-CS61b%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd8-9-%E4%B8%8D%E7%9B%B8%E4%BA%A4%E9%9B%86/9.3.2-1707267923567-26.png" alt="img"></p><p>请注意，元素3现在指向元素0，将两棵树&#x2F;集合合并为一棵树。</p><p>在最佳情况下，如果 <code>x</code> 和 <code>y</code> 都是它们树的根，那么 <code>connect(x, y)</code> 就会简单地使 <code>x</code> 指向 <code>y</code>，这是一个 Θ(1) 的操作！（因此称为快速合并）</p><h2 id="isConnected-x-y-1"><a href="#isConnected-x-y-1" class="headerlink" title="isConnected(x, y)"></a><code>isConnected(x, y)</code></h2><p>如果两个元素属于同一个集合，那么它们将在同一棵树中。因此，它们将具有相同的根。因此对于 <code>isConnected(x, y)</code>，我们只需检查 <code>find(x) == find(y)</code>。</p><h3 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h3><p>快速合并存在潜在的性能问题：树可能变得非常长。在这种情况下，找到一个项目的根 (<code>find(item)</code>) 就变得非常昂贵。考虑下面的树：</p><p><img src="/2024/02/07/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-12-CS61b%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd8-9-%E4%B8%8D%E7%9B%B8%E4%BA%A4%E9%9B%86/9.3.3.png" alt="9.3.3"></p><p>在最坏的情况下，我们必须遍历所有项目才能到达根，这是一个 Θ(N) 的运行时间。由于我们必须对 <code>connect</code> 和 <code>isConnected</code> 都调用 <code>find</code>，所以它们的运行时间都由 O(N) 上限约束。</p><h3 id="总结和代码-1"><a href="#总结和代码-1" class="headerlink" title="总结和代码"></a>总结和代码</h3><table><thead><tr><th>实现方式</th><th>构造函数</th><th><code>connect</code></th><th><code>isConnected</code></th></tr></thead><tbody><tr><td>集合列表</td><td>Θ(N)</td><td>O(N)</td><td>O(N)</td></tr><tr><td>快速合并</td><td>Θ(N)</td><td>O(N)</td><td>O(N)</td></tr><tr><td>快速查找</td><td>Θ(N)</td><td>Θ(N)</td><td>Θ(1)</td></tr></tbody></table><p>N &#x3D; 不相交集合数据结构中的元素数量</p><p>从运行时间表中，快速合并似乎比快速查找更差！但请注意，O(N) 是一个 <strong>上限</strong>。当我们的树是平衡的时候，<code>connect</code> 和 <code>isConnected</code> 都表现得相当好。在下一节中，我们将看到如何 <em>保证</em> 它们的性能良好。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">QuickUnionDS</span> <span class="keyword">implements</span> <span class="title class_">DisjointSets</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span>[] parent;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">QuickUnionDS</span><span class="params">(<span class="type">int</span> num)</span> &#123;</span><br><span class="line">        parent = <span class="keyword">new</span> <span class="title class_">int</span>[num];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; num; i++) &#123;</span><br><span class="line">            parent[i] = i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> <span class="title function_">find</span><span class="params">(<span class="type">int</span> p)</span> &#123;</span><br><span class="line">        <span class="keyword">while</span> (parent[p] &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">            p = parent[p];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> p;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">connect</span><span class="params">(<span class="type">int</span> p, <span class="type">int</span> q)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> find(p);</span><br><span class="line">        <span class="type">int</span> j= find(q);</span><br><span class="line">        parent[i] = j;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">isConnected</span><span class="params">(<span class="type">int</span> p, <span class="type">int</span> q)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> find(p) == find(q);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h1 id="加权快速联合Weighted-Quick-Uion-WQU"><a href="#加权快速联合Weighted-Quick-Uion-WQU" class="headerlink" title="加权快速联合Weighted Quick Uion(WQU)"></a>加权快速联合Weighted Quick Uion(WQU)</h1><p>Quick Union 的改进依赖于一个关键的见解：每当我们调用 <code>find</code> 时，我们都必须爬到树的根部。因此，树越短，速度就越快！</p><p><strong>新规则</strong>：每当我们调用 <code>connect</code> 时，我们总是将<strong>较小树的根</strong>链接到<strong>较大树</strong>。</p><p>遵循此规则将为您的树提供最大高度 <code>logN</code> ，其中 N 是不相交集中的元素数量。这如何影响 <code>connect</code> 和 <code>isConnected</code> 的运行时？</p><iframe frameborder="0" allowfullscreen src="https://www.youtube.com/embed/xc9s9wdaSdU" style="box-sizing: border-box; -webkit-tap-highlight-color: transparent; text-size-adjust: none; -webkit-font-smoothing: antialiased; font-size: inherit; border: none; top: 0px; left: 0px; width: 770px; height: 458.125px;"></iframe><p>让我们通过一个例子来说明这样做的好处。考虑连接下面两组 T1 和 T2：</p><p><img src="/2024/02/07/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-12-CS61b%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd8-9-%E4%B8%8D%E7%9B%B8%E4%BA%A4%E9%9B%86/9.4.1.png" alt="img"></p><p>我们有两种连接它们的选项：</p><p><img src="/2024/02/07/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-12-CS61b%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd8-9-%E4%B8%8D%E7%9B%B8%E4%BA%A4%E9%9B%86/9.4.2.png" alt="img"> 第一个选项我们将 T1 链接到 T2。在第二个中，我们将 T2 链接到 T1。</p><p><strong>第二个选项更可取</strong>，因为它的高度只有 2，而不是 3。根据我们的新规则，我们也会选择第二个选项，因为 T2 小于 T1（尺寸为 3 与 6）。</p><p>我们根据树中的项目数量来确定更小&#x2F;更大。因此，当连接两棵树时，我们需要知道它们的大小（或重量）。我们可以通过用 <code>-(size of tree)</code> 替换 <code>-1</code> 来将此信息存储在树的根中。您将在<a href="https://sp19.datastructur.es/materials/lab/lab6/lab6">Lab 6</a>中实现这一点。</p><h2 id="最大高度：Log-N"><a href="#最大高度：Log-N" class="headerlink" title="最大高度：Log N"></a>最大高度：Log N</h2><p>遵循上述规则可确保任何树的最大高度为 θ(log N)。 N 是不相交集中的元素数量。<strong>通过扩展， <code>connect</code> 和 <code>isConnected</code> 的运行时间以 O(log N) 为界。</strong></p><p><img src="/2024/02/07/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-12-CS61b%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd8-9-%E4%B8%8D%E7%9B%B8%E4%BA%A4%E9%9B%86/image-20240207091146331.png" alt="image-20240207091146331"></p><p><img src="/2024/02/07/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-12-CS61b%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd8-9-%E4%B8%8D%E7%9B%B8%E4%BA%A4%E9%9B%86/image-20240207091744666.png" alt="image-20240207091744666"></p><p>您可能想知道为什么我们不根据高度而是重量来链接树木。事实证明，这实现起来更复杂，并且给了我们相同的 θ(log N) 高度限制。</p><p><img src="/2024/02/07/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-12-CS61b%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd8-9-%E4%B8%8D%E7%9B%B8%E4%BA%A4%E9%9B%86/image-20240207091815565.png" alt="image-20240207091815565"></p><h2 id="总结和代码-2"><a href="#总结和代码-2" class="headerlink" title="总结和代码"></a>总结和代码</h2><table><thead><tr><th>Implementation</th><th>Constructor</th><th><code>connect</code></th><th><code>isConnected</code></th></tr></thead><tbody><tr><td>ListOfSets</td><td>Θ(N)</td><td>O(N)</td><td>O(N)</td></tr><tr><td>QuickFind</td><td>Θ(N)</td><td>Θ(N)</td><td>Θ(1)</td></tr><tr><td>QuickUnion</td><td>Θ(N)</td><td>O(N)</td><td>O(N)</td></tr><tr><td>Weighted Quick Union</td><td>Θ(N)</td><td>O(log N)</td><td>O(log N)</td></tr></tbody></table><p>N &#x3D; number of elements in our DisjointSets data structure</p><p>代码:<a href="https://sp19.datastructur.es/materials/lab/lab6/lab6">Lab 6</a>中实现 or <a href="https://algs4.cs.princeton.edu/15uf/WeightedQuickUnionUF.java.html">WeightedQuickUnionUF.java (princeton.edu)</a></p><h1 id="带路径压缩的加权快速联合WQU-with-Path-Compression"><a href="#带路径压缩的加权快速联合WQU-with-Path-Compression" class="headerlink" title="带路径压缩的加权快速联合WQU with Path Compression"></a>带路径压缩的加权快速联合WQU with Path Compression</h1><iframe width="770" height="458" src="https://www.youtube.com/embed/DZKzDebT4gU" title="[Disjoint Sets, Video 5] - Weighted Quick Union with Path Compression and Summary" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe><p>每当我们调用 <code>find(x)</code> 时，我们都必须遍历从 <code>x</code> 到 root 的路径。因此，在此过程中，我们可以将我们访问的所有项目连接到它们的根，而无需额外的渐近成本。</p><p>将沿途的所有项目连接到根将有助于每次调用 <code>find</code> 时使我们的树更短。</p><p>回想一下， <code>connect(x, y)</code> 和 <code>isConnected(x, y)</code> 总是调用 <code>find(x)</code> 和 <code>find(y)</code> 。因此，在足够多地调用 <code>connect</code> 或 <code>isConnected</code> 之后，基本上所有元素都将直接指向它们的根。</p><p>通过扩展， <code>connect</code> 和 <code>isConnected</code> 的平均运行时间从长远来看几乎保持不变！这称为摊销运行时间（来自摊销分析，第 8.4 章）。</p><p>更具体地说，对于 N 个元素上的 M 次操作，具有路径压缩的 WQU 为 <code>O(N + M (lg* N))</code>。 <code>lg* </code>是迭代对数，对于任何现实世界的输入都小于 5。</p><blockquote><p><code>lg*</code>:</p><p><img src="/2024/02/07/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-12-CS61b%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd8-9-%E4%B8%8D%E7%9B%B8%E4%BA%A4%E9%9B%86/image-20240207091913787.png" alt="image-20240207091913787"></p></blockquote><h3 id="概括"><a href="#概括" class="headerlink" title="概括"></a>概括</h3><p>N：不相交集中的元素数量</p><table><thead><tr><th>执行</th><th><code>isConnected</code></th><th><code>connect</code></th></tr></thead><tbody><tr><td>快速查找</td><td>Θ(N)</td><td>Θ(1)</td></tr><tr><td>快联</td><td>O(N)</td><td>O(N)</td></tr><tr><td>加权快速联合 (WQU)</td><td>O(log N)</td><td>O(log N)</td></tr><tr><td>带路径压缩的 WQU</td><td>O(α(N))*</td><td>O(α(N))*</td></tr></tbody></table><p>*长期表现稳定。</p><p>代码:<a href="https://algs4.cs.princeton.edu/15uf/WeightedQuickUnionPathCompressionUF.java.html">WeightedQuickUnionPathCompressionUF.java (princeton.edu)</a></p><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p><img src="/2024/02/07/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-12-CS61b%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd8-9-%E4%B8%8D%E7%9B%B8%E4%BA%A4%E9%9B%86/image-20240207091954317.png" alt="image-20240207091954317"></p>]]></content>
       
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> JAVA </category>
           
           <category> CS61B </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -616,11 +649,11 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> JAVA </category>
           
           <category> CS61B </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -649,11 +682,11 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> JAVA </category>
           
           <category> CS61B </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -682,11 +715,11 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> JAVA </category>
           
           <category> CS61B </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -715,11 +748,11 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> JAVA </category>
           
           <category> CS61B </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -748,11 +781,11 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> JAVA </category>
           
           <category> CS61B </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -781,11 +814,11 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> JAVA </category>
           
           <category> CS61B </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -827,11 +860,11 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> JAVA </category>
           
           <category> CS61B </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -860,11 +893,11 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> JAVA </category>
           
           <category> CS61B </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -893,11 +926,11 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> JAVA </category>
           
           <category> CS61B </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -926,11 +959,11 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> JAVA </category>
           
           <category> CS61B </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -959,11 +992,11 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> JAVA </category>
           
           <category> CS61B </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -992,11 +1025,11 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> JAVA </category>
           
           <category> CS61B </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -1025,11 +1058,11 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> JAVA </category>
           
           <category> CS61B </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -1058,11 +1091,11 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> JAVA </category>
           
           <category> CS61B </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -1264,22 +1297,33 @@
     
     
     <entry>
-      <title>about</title>
-      <link href="/about/index.html"/>
-      <url>/about/index.html</url>
+      <title>categories</title>
+      <link href="/categories/index.html"/>
+      <url>/categories/index.html</url>
       
-        <content type="html"><![CDATA[<p><a href="https://www.bilibili.com/video/BV1G84y1B7NH/?spm_id_from=333.1007.top_right_bar_window_default_collection.content.click&vd_source=700c4afe7cf00e2775dbed3e27760082">(博客教程视频)</a></p><p><a href="https://www.fomal.cc/posts/e593433d.html">(博客教程网站)</a></p>]]></content>
+        <content type="html"><![CDATA[]]></content>
       
     </entry>
     
     
     
     <entry>
-      <title>categories</title>
-      <link href="/categories/index.html"/>
-      <url>/categories/index.html</url>
+      <title>个人小日记</title>
+      <link href="/diary/index.html"/>
+      <url>/diary/index.html</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">  <script id="hbeData" type="hbeData" data-hmacdigest="4d1857f52c5969e98a96a8921330e0c4117efb53962c8316a4e3b98f722b2612">7a04f49168c16fa5e6499f3676d544844c6ee71d97efcd86407c182421f8c9748441467c5356d4070dfc0ec89c73cad95fbdbaa1469f3bb0c020d40d393c058e20b17f4293d3831de9ff74ea82c612d5e35d6103e70a5831c9b317c6e3a55a309ab3bc19e68dd232cf553b57a7260b23a88d53d82b1ed65716f80b6d1b6a255ad9531d838eae3db02a68e499acaeaaeec58d4adee4cb4e4a445d95a9337d75a06d8a414424e18732794b3ba843b29fdc9322bd2fe9259ce157adb88932a1ac6e7e4da9c91153a7b24822e4335479e9eda389e904766c8d746e5699d662482a465241272d23afe4785e3ccbfdffb70de24459545fef6bc9b1b2d3ffc1c69ca2f16b97e1695881fba5a3049e2dc9bc9612966cf35c7898b36311d0d7b0b3a8bdf792ba3293c5538de2fdf7c2a78cb0d24b2000a70a862a2b726d49676dee3cde9c6f53b3786172c6117a15d32690b5fad5a06bcb5f5a274f4b219d206122c42364877c4e18a93c20ca747132fbdc89fc14e0164d279f30e7d6c945e0bf40a2806923fbf700c5f07935936af5347cfed170494e9745eef4fa3687c6454adf5b873489aa8fa0a7865f40ce15b75dbaf9938d42fb591f649aa6caf10d31e5d93adc59477e05a58972e0e7dbd1d3e2571c760931c30ef691d608840c315ebc06339c56f10796c905c64e40c449d9a7ff420f7c6542193201ec66c57c07efd823f94a19ad45400ffdb1108ed09861943096078e733b1bbe858cd0f62f76c0a0043fd9ae0425c1d1e368d778b0bb96616da862282e4309cc5a5f5da962ff4a31d174e67670ec8f89d4773660f8697b4f22f7ecc5330174a907813de6a2bc0ee31421a3a3b67a97c6d88507efe9c35baec3fec73dc9abf9bc514580b69ddd7d2cb5aabd9b2f25454a59b9296a4baafd71998cacc6b9e9a96f1a332ee5e888a7101496b373f64f032fe62950a0f36e7400de3da57fb9c929ee0fdc24263a379d27a8ba67811adc97d0a507987d940847fe71f3a810f915dc67b5442fc96f6070fdfb99a47faa9702b549cb10d2ca349139197b20dd7116ed97541ddaf7a40af6e0a6e0bff78136ae24683a01cffbaf0668bcce69a225d08e8128d8043fdc1efb38953bacc858c1a40eb572556c3eed4f0c703cdd991b83b2224f3251d109feed4ad50462ea60d36dcec3ebfc05d91f2b7d1e30c0677fdac3b8d5dfc7a555b283bad498a24a53e6678b9dd79658960f2d98aec4a174ab71db5862aa1f9d64a52d293e8a91ed27b952b7538385e1e3f97f81adcd804cd4504f6e262673d13e0f965026bb32081a27aa044f83427b685b8b3484dfe4a6156b75c501bc9fbd7755259c5dd233e8b0355aaab062efa3691482798679514061e191e07d05935ce45b888c38b868d9912f21a6a4e96fb7d47a2dcd0fbf7c81a15caebc61132f0e122333edca6a7fcc7fc785420e4ffb3c4ec22f6364509cb36c58e7cc032b075c9b61360b5bddef8597449c6b412bff09adf12ed2010052cfad2674d163401b43587e525725f324c5e8a0879289bc6e8e275fadf055a8d42b46710066c641743e482164426863e105a28de30eafd03bd669860230ea3a5d95767951dc1b637726291a215aec43ec84da91a2d692e5c546809024be1ee5c4b44eb06069ab390f6276c08d43265544a394b429d30d2e719babf12cd6f1dc05069b98ddf76b30bd83b391ba98e21222c47dbcd6b221aaf7435aebd86182ec1fb48d403c0cfc620d91a945e5f768cf91a63c914326da19af8d5ffeb60d80609e53fdac73d6e99a1f9fc001c6e416efd39ee1cd570be8397dc5b4c2e199fab2c7c69e07ba3255c9063875a184c3964c46ccc9987337bc534bd80bd0c806cd9d2a010f2e1e91a5f00af5b9f1238a8673fdbadeb852dfd89b27fc60c4e6aec44f543ec006f772c80bd3881dbc8d31ea1ae52b0b2828278aac79d189bd3d506149f0c7b03da250211b9af8ecfbbd632706ff43c1055f8a4941627d3c1cb9a20c120e1f1ff9beb7f8350e0df3a5bc488a5dbeb3d003bcd65c97ad264a9e64f4f994231de8a0327cc7bf89052f0107a52d477595a0710b9bcd3c153d4717a9ca0d4ad99230bef277bdf1cda56ec90785927a11817ea6fe793b3a96ab08dead5c9a8288ad76df3c4793a82e6320c5b16b0ae5f2581927328e3e04eb4f60a6303665f58e513dc6a284cd17da735d91d397f091b4f0d25be0fd4649bdc13efa07be6bc788c7de945912e9d31d6ea20df78148ea48ecfb19295089bd0f89db43ad4479b4fab656129f43353898ca634d051155b462484b50f5df94779c26edd98df23fe2bac293022ee3c7de77264fd261b6c20bd7852e94251f70f3e9557cb4d56155c4181d97ade73b426bd715a52eb3978666dcc4f8a026f0fde26203175478f5e511a2fe363418ac8a047ed9217dc7f5636ef17a8771d074a44830f46dc9433219d9bcd0ed2ee550e03aacb1c1237f0e83ffa2de31f6ac29a5e0ee3732e486a567088d96e5e23a763dc9e12e52de84e2414aaedb388c72ca19cdcafaeb0aebd36309d8bf11b2167d00af2201b66cd3ada93ef33ba7ef6db64a1d28b96fcad0b2ceee215640c097538510afe68a0f7856c3b0bff545561c6c86fe2ecc5cfd59bc9ac6173e9010742b0ebfa61e2424f008e2fa93bc0304d1de72dfc4f384ff9ac72e4559914c9029ceaccfa9f49e4533069c529aadd927558066cd035aa395584cca219f5cdcd402ec2f80998bcc21239706306e174481df56d161e73059728a534445749dd1f25f79239299d54a61ad4e60019f0adaec99f67c3656a76e03801edf4f8f3b1cecea72bf230f334a6faa3d651f344317b489a0913415606b46df71c53646909b18fa94282fbfa31d7d650830a358e88665b3d9c4b405c1edaaa0878c5ac7585273ea22718404b2111377808a3ca12f02d9806782c058d712efecd01966829915fe2724f61459342ea1b91b7f724fa850066d6221c7e2cdeac056439c30d31df2224bb7039daaeb608d04e5b1a58fc9e45043f1378599e3fd07549aa97046b740293df142283f9d0154592666973c332b80cbf5f39aea37a32915288851b4ace1db17d947b6081da22c41d8cc91a09575400ef8f8fa25e7097c4fe90a60c9adef1195581e0477a81b322debc5e443cb09c778780a4a3cfaf03b04e019debd36e2e9377801787908c45bbd9bf7ee4d41f3114c4617d1504087901c271bc695ceb8d4d27520f65bdea93f6ad2dcd2484737467d1bd9506b51f426425b16dbad64a6098789d7eb26fa670dad41f80b0018357f633bada49a71707d4d7ea09ee3d12f6c5c792e1f745767c569051b082820381da084d41fe862ce87cc700131df68dbe74829ca652875f44cdb6af2c89c340e74cc2cd329fb3d963ab520daf1864945905e4411f58b447f692d0a3af272c16ac2aa7757e25967c6c9cb49ad98f0264fffff6d7e7ba5d0a32f38a69d5cd53d5e6d1aaa7caf4969d7e641774f9dea4a5ea25f5ecfd92127bd4685179d92588606a2f5510f7d047e61af3697f5dba58feaa6d41a737453df0043dd794a22e01f418a7c9b087895603e20bd6e7101705777d50ddf54bda6397357fd53a4e433b8cb57c9ec5a52887f41c769bc83d7c9f9b055fb4c2f2bf33fc6dd4f0351b4254288ea40c3ca0838bcd16b3f72088bbe64de517a917c16b1c45ad26478491d4621d924ed597bf47cc752f916a2bfde968d7f79feb0a7dd2346bd36c2d1d481393bf03285350d81eeb37e2da088f376745435ae07bd4297cd304f03487d655c8a432a945f18362c781900df8447514aa8183d781719c59da8be9bcac3a583cbf07198e6578f7bd855c8b824cab41a5995c90479367c4da689e53cebc4eae87cd8e5b1acc8fa918b5ace82441d00a1e7b32cd450fe5013f4c54b2662f88628ed2e0363d961ad7f6e4a32e55705e3c9e88a0ecfbc549a09eb6f7e9865d9339e0842c81af223826e92937c1317aa1d79c3f00d73447a3fd2fe0b3eee490146048ba099d4a4d0978b5c762aece1e99f45d8d64066c94161dacef104bcf72cfeba721c1c3045ec80b18c03040291a72729d12091626ada78179d4519bffdb6204fe0d8329454496093cad3a97cf55adc47d17074981e74acbc629edfe141cdc3186b744ec1ad07f5ea2cd68bc0752fe0cadf3aa181c1a91cbd04569e2866497bd53f7a57dfc8c6651a8d72a2324acd3058ffcac894bc8d8258614ba7b79f7cf0816cb5c5d1d593f2f994978c318804a255afad7f8943c3c079f9b656dacd06b96b0f0334f7d9ee69c43d1a54c673e633d6095b25d7fd9f951ab624585e63aad18e5f0aebf038e8fafc183c95f6db34aa3a769d9317211a0e86d307e872e44a3726be9b21b26940c180aae1e4438b1a41dec6058e02562860b9f842c74dcecf0c27b051f407d3045d47e39d0410abe4d9b050a1adcba3f9ae7aba6b9034240b6a33e1dfd1bcf8c10cdebe3fb3f057b4463e70e6e3429c1edbf34e7946a756c1f4896b8349f60e5cef04cbd1c6c3034485737663cbd9f1bc43f4bec39f9d4f485e35c44cec296f49d65b660c6ec96ee8f109a643f86fcd8523937a327c17d7e57c0b13f3a5cfd5ed76bfb3d477df2ef7e181b599a68bbdee8b506034f4eb5aa1cee6f165a2fafba0dc2a81c8b0bd80007266331378731f32eac65d9672ef94e19ec7b6065aad6c9067db97334e65e5a50caadff996f613abac05b8215d3c006b955ff3e2e4d334daff859f2aa36cbc48df59e59739dab6f0345daaca4bd44144fcfbebeab6f392650386731ab096bc85f289e6196915b47cc112645241e5fd806b180652462a90ef440f0d60ac9a48d7c3cc7b296ea236c5aeee502b42ca133898dea291dc7c2d7484f6a232e89da5a674b15460494ded39843c081e8051d0de5a35ac6c25ba1f0eeba158f239ffbc38c33654bbd65edbd44fa0f12386d4e9bee024cad92c5c6e465d1e0a273f7adbc7e942d9b50f8ec59990b8cec550885c50901439adb31960f384b6725391ee6daa95cda81fb05a783917ba6cce46dea3a687d949fed518f78b785ad37619330c6a6ecdebc3e798894ce7539bb6feb4029ff623cbd203c6130770bbdc78d082d3cf863ad7d5420b917c6724f414121aadda29bebd132232e07a5a5d866afcf7e2d15a27d049f1116260a0bb8f1c932307b70378d713e4934eaab25d40b50abcae9b30dbaad65f202447c6f3db6632540831af2a53411610255d92e4f3bfd3bbf7b3f41ba901c1dd6e7340da24cf2be34322b39540390077ee12f1c12accff90b666ad32c8fa6e1e9be88c5e3997b430909c22f8e1f7034c1cb4ccc184c14e8a947373762128140d1cc49c0a6c916dc93abbc3b6feb820f57fdeb774be2f26c7efe1f4b86ceb08e4141612ef535aa8301a21ca4bb0e4772fb26e0b21ccf7f72eb7918bc247d689107d67e45e4d1cff6b2ef08874323badf1ef2d1add956a387bd5ac406712869cc066b9ba785fe2510e43cc0efade960a23ea251deb7b655fc2886ae5213868c6f601a79317d0c4076cc857821aa9dcf7017a805f636541fd2a9e61b9a5945a779bec41ebf6ec038eb3c9d9785d33496331245fb9354e3c2ec6d97aa49efccee10458be6f9c7b5a9d51af0c22438c32bdc190f6f4a6c1e8463db05d5f7be649685d501c6c7a5573e9914e2eeb076317610662aa91dffa64df7fc8cf6d186e8c6e89097859bce1655658ba62bea8bdc23fc03d353fbc9c82282dce7a4f4fc73f1bcfb4afcb1d7a2a861524b7bd232fa3b178cd9dd48dd20426497c447143c8f6881b1f2010c0ee2e26700ffb45f2c71b11d12dc9fe39807a313c44d0a3c921794fd18f570e1083ba95f7cb481e795d4965c17fd54b3c1f4b8486f0c63ab1d44027ade663bd4ef66df5ef6556235f48d2d1c2783829061132f37e420dea2b1cf69fd61410f3283b7eda20797cb11d9e95d67a75598f7028f7838e41a1ed419d8171</script>  <div class="hbe hbe-content">    <div class="hbe hbe-input hbe-input-shrink">      <input class="hbe hbe-input-field hbe-input-field-shrink" type="password" id="hbePass">      <label class="hbe hbe-input-label hbe-input-label-shrink" for="hbePass">        <span class="hbe hbe-input-label-content hbe-input-label-content-shrink">别猜了别猜了</span>      </label>    </div>  </div></div><script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>about</title>
+      <link href="/about/index.html"/>
+      <url>/about/index.html</url>
+      
+        <content type="html"><![CDATA[<p><a href="https://www.bilibili.com/video/BV1G84y1B7NH/?spm_id_from=333.1007.top_right_bar_window_default_collection.content.click&vd_source=700c4afe7cf00e2775dbed3e27760082">(博客教程视频)</a></p><p><a href="https://www.fomal.cc/posts/e593433d.html">(博客教程网站)</a></p>]]></content>
       
     </entry>
     
@@ -1308,9 +1352,9 @@
     
     
     <entry>
-      <title>game</title>
-      <link href="/game/index.html"/>
-      <url>/game/index.html</url>
+      <title>音乐</title>
+      <link href="/music/index.html"/>
+      <url>/music/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -1330,20 +1374,9 @@
     
     
     <entry>
-      <title>个人小日记</title>
-      <link href="/diary/index.html"/>
-      <url>/diary/index.html</url>
-      
-        <content type="html"><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">  <script id="hbeData" type="hbeData" data-hmacdigest="4d1857f52c5969e98a96a8921330e0c4117efb53962c8316a4e3b98f722b2612">7a04f49168c16fa5e6499f3676d544844c6ee71d97efcd86407c182421f8c9748441467c5356d4070dfc0ec89c73cad95fbdbaa1469f3bb0c020d40d393c058e20b17f4293d3831de9ff74ea82c612d5e35d6103e70a5831c9b317c6e3a55a309ab3bc19e68dd232cf553b57a7260b23a88d53d82b1ed65716f80b6d1b6a255ad9531d838eae3db02a68e499acaeaaeec58d4adee4cb4e4a445d95a9337d75a06d8a414424e18732794b3ba843b29fdc9322bd2fe9259ce157adb88932a1ac6e7e4da9c91153a7b24822e4335479e9eda389e904766c8d746e5699d662482a465241272d23afe4785e3ccbfdffb70de24459545fef6bc9b1b2d3ffc1c69ca2f16b97e1695881fba5a3049e2dc9bc9612966cf35c7898b36311d0d7b0b3a8bdf792ba3293c5538de2fdf7c2a78cb0d24b2000a70a862a2b726d49676dee3cde9c6f53b3786172c6117a15d32690b5fad5a06bcb5f5a274f4b219d206122c42364877c4e18a93c20ca747132fbdc89fc14e0164d279f30e7d6c945e0bf40a2806923fbf700c5f07935936af5347cfed170494e9745eef4fa3687c6454adf5b873489aa8fa0a7865f40ce15b75dbaf9938d42fb591f649aa6caf10d31e5d93adc59477e05a58972e0e7dbd1d3e2571c760931c30ef691d608840c315ebc06339c56f10796c905c64e40c449d9a7ff420f7c6542193201ec66c57c07efd823f94a19ad45400ffdb1108ed09861943096078e733b1bbe858cd0f62f76c0a0043fd9ae0425c1d1e368d778b0bb96616da862282e4309cc5a5f5da962ff4a31d174e67670ec8f89d4773660f8697b4f22f7ecc5330174a907813de6a2bc0ee31421a3a3b67a97c6d88507efe9c35baec3fec73dc9abf9bc514580b69ddd7d2cb5aabd9b2f25454a59b9296a4baafd71998cacc6b9e9a96f1a332ee5e888a7101496b373f64f032fe62950a0f36e7400de3da57fb9c929ee0fdc24263a379d27a8ba67811adc97d0a507987d940847fe71f3a810f915dc67b5442fc96f6070fdfb99a47faa9702b549cb10d2ca349139197b20dd7116ed97541ddaf7a40af6e0a6e0bff78136ae24683a01cffbaf0668bcce69a225d08e8128d8043fdc1efb38953bacc858c1a40eb572556c3eed4f0c703cdd991b83b2224f3251d109feed4ad50462ea60d36dcec3ebfc05d91f2b7d1e30c0677fdac3b8d5dfc7a555b283bad498a24a53e6678b9dd79658960f2d98aec4a174ab71db5862aa1f9d64a52d293e8a91ed27b952b7538385e1e3f97f81adcd804cd4504f6e262673d13e0f965026bb32081a27aa044f83427b685b8b3484dfe4a6156b75c501bc9fbd7755259c5dd233e8b0355aaab062efa3691482798679514061e191e07d05935ce45b888c38b868d9912f21a6a4e96fb7d47a2dcd0fbf7c81a15caebc61132f0e122333edca6a7fcc7fc785420e4ffb3c4ec22f6364509cb36c58e7cc032b075c9b61360b5bddef8597449c6b412bff09adf12ed2010052cfad2674d163401b43587e525725f324c5e8a0879289bc6e8e275fadf055a8d42b46710066c641743e482164426863e105a28de30eafd03bd669860230ea3a5d95767951dc1b637726291a215aec43ec84da91a2d692e5c546809024be1ee5c4b44eb06069ab390f6276c08d43265544a394b429d30d2e719babf12cd6f1dc05069b98ddf76b30bd83b391ba98e21222c47dbcd6b221aaf7435aebd86182ec1fb48d403c0cfc620d91a945e5f768cf91a63c914326da19af8d5ffeb60d80609e53fdac73d6e99a1f9fc001c6e416efd39ee1cd570be8397dc5b4c2e199fab2c7c69e07ba3255c9063875a184c3964c46ccc9987337bc534bd80bd0c806cd9d2a010f2e1e91a5f00af5b9f1238a8673fdbadeb852dfd89b27fc60c4e6aec44f543ec006f772c80bd3881dbc8d31ea1ae52b0b2828278aac79d189bd3d506149f0c7b03da250211b9af8ecfbbd632706ff43c1055f8a4941627d3c1cb9a20c120e1f1ff9beb7f8350e0df3a5bc488a5dbeb3d003bcd65c97ad264a9e64f4f994231de8a0327cc7bf89052f0107a52d477595a0710b9bcd3c153d4717a9ca0d4ad99230bef277bdf1cda56ec90785927a11817ea6fe793b3a96ab08dead5c9a8288ad76df3c4793a82e6320c5b16b0ae5f2581927328e3e04eb4f60a6303665f58e513dc6a284cd17da735d91d397f091b4f0d25be0fd4649bdc13efa07be6bc788c7de945912e9d31d6ea20df78148ea48ecfb19295089bd0f89db43ad4479b4fab656129f43353898ca634d051155b462484b50f5df94779c26edd98df23fe2bac293022ee3c7de77264fd261b6c20bd7852e94251f70f3e9557cb4d56155c4181d97ade73b426bd715a52eb3978666dcc4f8a026f0fde26203175478f5e511a2fe363418ac8a047ed9217dc7f5636ef17a8771d074a44830f46dc9433219d9bcd0ed2ee550e03aacb1c1237f0e83ffa2de31f6ac29a5e0ee3732e486a567088d96e5e23a763dc9e12e52de84e2414aaedb388c72ca19cdcafaeb0aebd36309d8bf11b2167d00af2201b66cd3ada93ef33ba7ef6db64a1d28b96fcad0b2ceee215640c097538510afe68a0f7856c3b0bff545561c6c86fe2ecc5cfd59bc9ac6173e9010742b0ebfa61e2424f008e2fa93bc0304d1de72dfc4f384ff9ac72e4559914c9029ceaccfa9f49e4533069c529aadd927558066cd035aa395584cca219f5cdcd402ec2f80998bcc21239706306e174481df56d161e73059728a534445749dd1f25f79239299d54a61ad4e60019f0adaec99f67c3656a76e03801edf4f8f3b1cecea72bf230f334a6faa3d651f344317b489a0913415606b46df71c53646909b18fa94282fbfa31d7d650830a358e88665b3d9c4b405c1edaaa0878c5ac7585273ea22718404b2111377808a3ca12f02d9806782c058d712efecd01966829915fe2724f61459342ea1b91b7f724fa850066d6221c7e2cdeac056439c30d31df2224bb7039daaeb608d04e5b1a58fc9e45043f1378599e3fd07549aa97046b740293df142283f9d0154592666973c332b80cbf5f39aea37a32915288851b4ace1db17d947b6081da22c41d8cc91a09575400ef8f8fa25e7097c4fe90a60c9adef1195581e0477a81b322debc5e443cb09c778780a4a3cfaf03b04e019debd36e2e9377801787908c45bbd9bf7ee4d41f3114c4617d1504087901c271bc695ceb8d4d27520f65bdea93f6ad2dcd2484737467d1bd9506b51f426425b16dbad64a6098789d7eb26fa670dad41f80b0018357f633bada49a71707d4d7ea09ee3d12f6c5c792e1f745767c569051b082820381da084d41fe862ce87cc700131df68dbe74829ca652875f44cdb6af2c89c340e74cc2cd329fb3d963ab520daf1864945905e4411f58b447f692d0a3af272c16ac2aa7757e25967c6c9cb49ad98f0264fffff6d7e7ba5d0a32f38a69d5cd53d5e6d1aaa7caf4969d7e641774f9dea4a5ea25f5ecfd92127bd4685179d92588606a2f5510f7d047e61af3697f5dba58feaa6d41a737453df0043dd794a22e01f418a7c9b087895603e20bd6e7101705777d50ddf54bda6397357fd53a4e433b8cb57c9ec5a52887f41c769bc83d7c9f9b055fb4c2f2bf33fc6dd4f0351b4254288ea40c3ca0838bcd16b3f72088bbe64de517a917c16b1c45ad26478491d4621d924ed597bf47cc752f916a2bfde968d7f79feb0a7dd2346bd36c2d1d481393bf03285350d81eeb37e2da088f376745435ae07bd4297cd304f03487d655c8a432a945f18362c781900df8447514aa8183d781719c59da8be9bcac3a583cbf07198e6578f7bd855c8b824cab41a5995c90479367c4da689e53cebc4eae87cd8e5b1acc8fa918b5ace82441d00a1e7b32cd450fe5013f4c54b2662f88628ed2e0363d961ad7f6e4a32e55705e3c9e88a0ecfbc549a09eb6f7e9865d9339e0842c81af223826e92937c1317aa1d79c3f00d73447a3fd2fe0b3eee490146048ba099d4a4d0978b5c762aece1e99f45d8d64066c94161dacef104bcf72cfeba721c1c3045ec80b18c03040291a72729d12091626ada78179d4519bffdb6204fe0d8329454496093cad3a97cf55adc47d17074981e74acbc629edfe141cdc3186b744ec1ad07f5ea2cd68bc0752fe0cadf3aa181c1a91cbd04569e2866497bd53f7a57dfc8c6651a8d72a2324acd3058ffcac894bc8d8258614ba7b79f7cf0816cb5c5d1d593f2f994978c318804a255afad7f8943c3c079f9b656dacd06b96b0f0334f7d9ee69c43d1a54c673e633d6095b25d7fd9f951ab624585e63aad18e5f0aebf038e8fafc183c95f6db34aa3a769d9317211a0e86d307e872e44a3726be9b21b26940c180aae1e4438b1a41dec6058e02562860b9f842c74dcecf0c27b051f407d3045d47e39d0410abe4d9b050a1adcba3f9ae7aba6b9034240b6a33e1dfd1bcf8c10cdebe3fb3f057b4463e70e6e3429c1edbf34e7946a756c1f4896b8349f60e5cef04cbd1c6c3034485737663cbd9f1bc43f4bec39f9d4f485e35c44cec296f49d65b660c6ec96ee8f109a643f86fcd8523937a327c17d7e57c0b13f3a5cfd5ed76bfb3d477df2ef7e181b599a68bbdee8b506034f4eb5aa1cee6f165a2fafba0dc2a81c8b0bd80007266331378731f32eac65d9672ef94e19ec7b6065aad6c9067db97334e65e5a50caadff996f613abac05b8215d3c006b955ff3e2e4d334daff859f2aa36cbc48df59e59739dab6f0345daaca4bd44144fcfbebeab6f392650386731ab096bc85f289e6196915b47cc112645241e5fd806b180652462a90ef440f0d60ac9a48d7c3cc7b296ea236c5aeee502b42ca133898dea291dc7c2d7484f6a232e89da5a674b15460494ded39843c081e8051d0de5a35ac6c25ba1f0eeba158f239ffbc38c33654bbd65edbd44fa0f12386d4e9bee024cad92c5c6e465d1e0a273f7adbc7e942d9b50f8ec59990b8cec550885c50901439adb31960f384b6725391ee6daa95cda81fb05a783917ba6cce46dea3a687d949fed518f78b785ad37619330c6a6ecdebc3e798894ce7539bb6feb4029ff623cbd203c6130770bbdc78d082d3cf863ad7d5420b917c6724f414121aadda29bebd132232e07a5a5d866afcf7e2d15a27d049f1116260a0bb8f1c932307b70378d713e4934eaab25d40b50abcae9b30dbaad65f202447c6f3db6632540831af2a53411610255d92e4f3bfd3bbf7b3f41ba901c1dd6e7340da24cf2be34322b39540390077ee12f1c12accff90b666ad32c8fa6e1e9be88c5e3997b430909c22f8e1f7034c1cb4ccc184c14e8a947373762128140d1cc49c0a6c916dc93abbc3b6feb820f57fdeb774be2f26c7efe1f4b86ceb08e4141612ef535aa8301a21ca4bb0e4772fb26e0b21ccf7f72eb7918bc247d689107d67e45e4d1cff6b2ef08874323badf1ef2d1add956a387bd5ac406712869cc066b9ba785fe2510e43cc0efade960a23ea251deb7b655fc2886ae5213868c6f601a79317d0c4076cc857821aa9dcf7017a805f636541fd2a9e61b9a5945a779bec41ebf6ec038eb3c9d9785d33496331245fb9354e3c2ec6d97aa49efccee10458be6f9c7b5a9d51af0c22438c32bdc190f6f4a6c1e8463db05d5f7be649685d501c6c7a5573e9914e2eeb076317610662aa91dffa64df7fc8cf6d186e8c6e89097859bce1655658ba62bea8bdc23fc03d353fbc9c82282dce7a4f4fc73f1bcfb4afcb1d7a2a861524b7bd232fa3b178cd9dd48dd20426497c447143c8f6881b1f2010c0ee2e26700ffb45f2c71b11d12dc9fe39807a313c44d0a3c921794fd18f570e1083ba95f7cb481e795d4965c17fd54b3c1f4b8486f0c63ab1d44027ade663bd4ef66df5ef6556235f48d2d1c2783829061132f37e420dea2b1cf69fd61410f3283b7eda20797cb11d9e95d67a75598f7028f7838e41a1ed419d8171</script>  <div class="hbe hbe-content">    <div class="hbe hbe-input hbe-input-shrink">      <input class="hbe hbe-input-field hbe-input-field-shrink" type="password" id="hbePass">      <label class="hbe hbe-input-label hbe-input-label-shrink" for="hbePass">        <span class="hbe hbe-input-label-content hbe-input-label-content-shrink">别猜了别猜了</span>      </label>    </div>  </div></div><script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>音乐</title>
-      <link href="/music/index.html"/>
-      <url>/music/index.html</url>
+      <title>tags</title>
+      <link href="/tags/index.html"/>
+      <url>/tags/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -1352,9 +1385,9 @@
     
     
     <entry>
-      <title>tags</title>
-      <link href="/tags/index.html"/>
-      <url>/tags/index.html</url>
+      <title>game</title>
+      <link href="/game/index.html"/>
+      <url>/game/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
