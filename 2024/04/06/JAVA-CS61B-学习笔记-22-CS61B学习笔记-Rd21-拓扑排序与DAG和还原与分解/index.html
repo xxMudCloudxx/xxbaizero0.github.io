@@ -1,0 +1,397 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>22-CS61B学习笔记-Rd21-拓扑排序与DAG和还原与分解 | bai的小窝</title><meta name="author" content="xxbaizero"><meta name="copyright" content="xxbaizero"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="目前关于图的问题   Problem Problem Description Solution Efficiency    paths Find a path from s to every reachable vertex. DepthFirstPaths.javaDemo O(V+E) timeΘ(V) space   shortest paths Find the shortest path">
+<meta property="og:type" content="article">
+<meta property="og:title" content="22-CS61B学习笔记-Rd21-拓扑排序与DAG和还原与分解">
+<meta property="og:url" content="http://bailog.top/2024/04/06/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-22-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd21-%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F%E4%B8%8EDAG%E5%92%8C%E8%BF%98%E5%8E%9F%E4%B8%8E%E5%88%86%E8%A7%A3/index.html">
+<meta property="og:site_name" content="bai的小窝">
+<meta property="og:description" content="目前关于图的问题   Problem Problem Description Solution Efficiency    paths Find a path from s to every reachable vertex. DepthFirstPaths.javaDemo O(V+E) timeΘ(V) space   shortest paths Find the shortest path">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://bailog.top/img/background/season1.jpg">
+<meta property="article:published_time" content="2024-04-06T13:46:48.000Z">
+<meta property="article:modified_time" content="2024-04-06T14:16:43.304Z">
+<meta property="article:author" content="xxbaizero">
+<meta property="article:tag" content="JAVA">
+<meta property="article:tag" content="CS61B">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://bailog.top/img/background/season1.jpg"><link rel="shortcut icon" href="/img/ico/%E5%9C%A3%E8%AF%9E%E6%A0%91.png"><link rel="canonical" href="http://bailog.top/2024/04/06/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-22-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd21-%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F%E4%B8%8EDAG%E5%92%8C%E8%BF%98%E5%8E%9F%E4%B8%8E%E5%88%86%E8%A7%A3/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  noticeOutdate: {"limitDay":500,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":230},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体中文","cht_to_chs":"你已切换为简体中文","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '22-CS61B学习笔记-Rd21-拓扑排序与DAG和还原与分解',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-04-06 22:16:43'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const now = new Date()
+          const hour = now.getHours()
+          const isNight = hour <= 6 || hour >= 18
+          if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+          else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/cat.css"><div id="myscoll"></div><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-double-row-display@1.00/cardlistpost.min.css"/>
+<style>#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags:before {content:"\A";
+  white-space: pre;}#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags > .article-meta__separator{display:none}</style>
+<link rel="stylesheet" href="https://unpkg.zhimg.com/hexo-butterfly-footer-beautify@1.0.0/lib/runtime.min.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/ico/avatar_1.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">48</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">11</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">14</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/diary"><i class="fa-fw fas fa-book"></i><span> 日记</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="bai的小窝"><span class="site-name">bai的小窝</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/diary"><i class="fa-fw fas fa-book"></i><span> 日记</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">22-CS61B学习笔记-Rd21-拓扑排序与DAG和还原与分解</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-04-06T13:46:48.000Z" title="发表于 2024-04-06 21:46:48">2024-04-06</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-04-06T14:16:43.304Z" title="更新于 2024-04-06 22:16:43">2024-04-06</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/CS%E8%87%AA%E5%AD%A6%E7%AC%94%E8%AE%B0/">CS自学笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/JAVA/">JAVA</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/JAVA/CS61B/">CS61B</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/CS%E8%87%AA%E5%AD%A6%E7%AC%94%E8%AE%B0/CS61B/">CS61B</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>9分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="22-CS61B学习笔记-Rd21-拓扑排序与DAG和还原与分解"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="目前关于图的问题"><a href="#目前关于图的问题" class="headerlink" title="目前关于图的问题"></a>目前关于图的问题</h1><table>
+<thead>
+<tr>
+<th>Problem</th>
+<th>Problem Description</th>
+<th>Solution</th>
+<th>Efficiency</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>paths</td>
+<td>Find a path from s to every reachable vertex.</td>
+<td>DepthFirstPaths.java<a target="_blank" rel="noopener" href="https://docs.google.com/presentation/d/1lTo8LZUGi3XQ1VlOmBUF9KkJTW_JWsw_DOPq8VBiI3A/edit?usp=sharing">Demo</a></td>
+<td>O(V+E) timeΘ(V) space</td>
+</tr>
+<tr>
+<td>shortest paths</td>
+<td>Find the shortest path from s to every reachable vertex.</td>
+<td>BreadthFirstPaths.java<a target="_blank" rel="noopener" href="https://docs.google.com/presentation/d/1JoYCelH4YE6IkSMq_LfTJMzJ00WxDj7rEa49gYmAtc4/edit?usp=sharing">Demo</a></td>
+<td>O(V+E) timeΘ(V) space</td>
+</tr>
+<tr>
+<td>shortest weighted paths</td>
+<td>Find the shortest path, considering weights, from s to every reachable vertex.</td>
+<td>DijkstrasSP.java<a target="_blank" rel="noopener" href="https://docs.google.com/presentation/d/1_bw2z1ggUkquPdhl7gwdVBoTaoJmaZdpkV6MoAgxlJc/pub?start=false&loop=false&delayms=3000">Demo</a></td>
+<td>O(E log V) timeΘ(V) space</td>
+</tr>
+<tr>
+<td>shortest weighted path</td>
+<td>Find the shortest path, consider weights, from s to some target vertex</td>
+<td>A*: Same as Dijkstra’s but with h(v, goal) added to priority of each vertex.<a target="_blank" rel="noopener" href="https://docs.google.com/presentation/d/177bRUTdCa60fjExdr9eO04NHm0MRfPtCzvEup1iMccM/edit#slide=id.g369665031c_0_350">Demo</a></td>
+<td>Time depends on heuristic.Θ(V) space</td>
+</tr>
+<tr>
+<td>minimum spanning tree</td>
+<td>Find a minimum spanning tree.</td>
+<td>LazyPrimMST.java<a target="_blank" rel="noopener" href="https://docs.google.com/presentation/d/18leOHESniaJqqehiTR-YAL4WeEEcHJyRB9aw_S1FLG0/edit#slide=id.g772f8a8e2_0_28">Demo</a></td>
+<td>O(???) timeΘ(???) space</td>
+</tr>
+<tr>
+<td>minimum spanning tree</td>
+<td>Find a minimum spanning tree.</td>
+<td>PrimMST.java<a target="_blank" rel="noopener" href="https://docs.google.com/presentation/d/1GPizbySYMsUhnXSXKvbqV4UhPCvrt750MiqPPgU-eCY/edit#slide=id.g9a60b2f52_0_0">Demo</a></td>
+<td>O(E log V) timeΘ(V) space</td>
+</tr>
+<tr>
+<td>minimum spanning tree</td>
+<td>Find a minimum spanning tree.</td>
+<td>KruskalMST.java<a target="_blank" rel="noopener" href="https://docs.google.com/presentation/d/18leOHESniaJqqehiTR-YAL4WeEEcHJyRB9aw_S1FLG0/edit#slide=id.g5347e2c8f_2213">Demo</a></td>
+<td>O(E log E) timeΘ(E) sp</td>
+</tr>
+</tbody></table>
+<h1 id="拓扑排序与DAG"><a href="#拓扑排序与DAG" class="headerlink" title="拓扑排序与DAG"></a>拓扑排序与DAG</h1><h2 id="拓扑排序"><a href="#拓扑排序" class="headerlink" title="拓扑排序"></a>拓扑排序</h2><p>假设我们收集了不同的任务或活动，其中一些任务或活动必须在另一个任务或活动之前发生。我们如何找到对任务的排序，以便对于每个任务 <em>v</em> ，之前 <em>v</em> 发生的任务在我们的排序中更早出现？</p>
+<p>我们可以首先将任务集合视为一个图，其中每个节点代表一个任务。边<em>v</em>→<em>w</em> 表示 <em>v</em> 必须在 <em>w</em> 之前发生。现在，我们原来的问题被简化为找到一个拓扑排序。</p>
+<blockquote>
+<p>拓扑排序：对图的顶点进行排序，使得对于每个有向边 <em>u</em>→<em>v</em> ， <em>u</em> 在排序中都排在前面 <em>v</em> 。</p>
+</blockquote>
+<p><img src="/2024/04/06/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-22-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd21-%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F%E4%B8%8EDAG%E5%92%8C%E8%BF%98%E5%8E%9F%E4%B8%8E%E5%88%86%E8%A7%A3/21.1.1.jpg" alt="img"></p>
+<blockquote>
+<p><strong>问题 1.1</strong>：上图有哪些有效的拓扑顺序？<br><strong>答</strong>：[<em>D</em>,<em>B</em>,<em>A</em>,<em>E</em>,<em>C</em>,<em>F</em>], [<em>E</em>,<em>D</em>,<em>C</em>,<em>B</em>,<em>A</em>,<em>F</em>].</p>
+</blockquote>
+<p>需要注意的是，只有对某些类型的图进行拓扑排序才有意义。若要查看此内容，请考虑下图：</p>
+<p><img src="/2024/04/06/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-22-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd21-%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F%E4%B8%8EDAG%E5%92%8C%E8%BF%98%E5%8E%9F%E4%B8%8E%E5%88%86%E8%A7%A3/21.1.3.png" alt="img"></p>
+<p>什么是有效的拓扑排序？</p>
+<p>没有一个！D 在 B 之前，但 B 在 C、E、D 之前。由于我们有一个循环，因此没有定义拓扑排序。我们也不能对无向图进行拓扑排序，因为无向图中的每条边都会创建一个循环。</p>
+<p><img src="/2024/04/06/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-22-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd21-%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F%E4%B8%8EDAG%E5%92%8C%E8%BF%98%E5%8E%9F%E4%B8%8E%E5%88%86%E8%A7%A3/21.1.4.png" alt="img"><br>因此，拓扑排序仅适用于<strong>有向、无环（无周期）图或 DAG。</strong></p>
+<blockquote>
+<p>*<em>Topological Sort:*<em>：对 <strong>DAG</strong> 顶点的排序，使得对于每个有向边 u</em>→*v</em> ， <em>u</em> 在排序中排在前面 <em>v</em> 。</p>
+</blockquote>
+<p>对于任何拓扑排序，都可以重新绘制图形，使顶点全部位于一行中。因此，拓扑排序有时称为图的<strong>线性化</strong>。例如，下面是针对其中一个拓扑排序线性化的前面示例。</p>
+<p><img src="/2024/04/06/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-22-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd21-%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F%E4%B8%8EDAG%E5%92%8C%E8%BF%98%E5%8E%9F%E4%B8%8E%E5%88%86%E8%A7%A3/21.1.2.png" alt="img"></p>
+<p>请注意，上述 DAG 的拓扑排序必须以 D 或 E 开头，并且必须以 F 或 C 结尾。因此，D 和 E 称为源，F 和 C 称为接收器。</p>
+<h2 id="拓扑排序算法"><a href="#拓扑排序算法" class="headerlink" title="拓扑排序算法"></a>拓扑排序算法</h2><p>我们怎样才能找到拓扑排序？花点时间想想你已经知道的现有图算法可能有助于解决这个问题。</p>
+<p>拓扑排序算法：</p>
+<ul>
+<li>从图形中的每个顶点执行 DFS 遍历，而不是清除遍历之间的标记。</li>
+<li>在此过程中记录 DFS 的后序。</li>
+<li>拓扑顺序与后顺序相反。</li>
+</ul>
+<p><strong>工作原理</strong>：只有在考虑了给定源点的所有后代之后，每个顶点 <em>v</em> 才会被添加到后排序列表的末尾 <em>v</em> 。因此，当任何一个 <em>v</em> 被添加到后排序列表中时，它的所有后代都已经在列表中。因此，颠倒此列表会给出拓扑排序。</p>
+<p><img src="/2024/04/06/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-22-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd21-%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F%E4%B8%8EDAG%E5%92%8C%E8%BF%98%E5%8E%9F%E4%B8%8E%E5%88%86%E8%A7%A3/image-20240406221218217.png" alt="image-20240406221218217"></p>
+<p><img src="/2024/04/06/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-22-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd21-%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F%E4%B8%8EDAG%E5%92%8C%E8%BF%98%E5%8E%9F%E4%B8%8E%E5%88%86%E8%A7%A3/image-20240406221227292.png" alt="image-20240406221227292"></p>
+<p><img src="/2024/04/06/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-22-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd21-%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F%E4%B8%8EDAG%E5%92%8C%E8%BF%98%E5%8E%9F%E4%B8%8E%E5%88%86%E8%A7%A3/image-20240406221247104.png" alt="image-20240406221247104"></p>
+<p>由于我们只是使用 DFS，因此它的运行时分别是 <em>O</em>(<em>V</em>+<em>E</em>) ，<em>V</em> <em>E</em> 是图中的节点数和边数。</p>
+<h3 id="Pseudocode-伪代码"><a href="#Pseudocode-伪代码" class="headerlink" title="Pseudocode 伪代码"></a>Pseudocode 伪代码</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">topological(DAG):</span><br><span class="line">    initialize marked array</span><br><span class="line">    initialize postOrder list</span><br><span class="line">    for all vertices in DAG:</span><br><span class="line">        if vertex is not marked:</span><br><span class="line">            dfs(vertex, marked, postOrder)</span><br><span class="line">    return postOrder reversed</span><br><span class="line"></span><br><span class="line">dfs(vertex, marked, postOrder):</span><br><span class="line">    marked[vertex] = true</span><br><span class="line">    for neighbor of vertex:</span><br><span class="line">        dfs(neighbor, marked, postOrder)</span><br><span class="line">    postOrder.add(vertex)</span><br></pre></td></tr></table></figure>
+
+<p><strong>（超出范围）额外的问题</strong>：我们如何使用 BFS 实现拓扑排序？提示 1：我们肯定需要存储一些额外的信息。提示 2：考虑跟踪每个顶点的度数。</p>
+<p><strong>Solution: ：</strong></p>
+<ol>
+<li>计算所有顶点的度数。</li>
+<li>选取任何 in-degree 为 0 的顶点 <em>v</em> 。</li>
+<li>添加到 <em>v</em> 我们的拓扑排序列表。移除顶点 <em>v</em> 和从顶点出来的所有边。将顶点 <em>v</em> 的所有相邻项的度数递减 1。</li>
+<li>重复步骤 2 和 3，直到删除所有顶点。</li>
+</ol>
+<p>我们如何才能有效地完成第 2 步？我们可以使用优先级等于度数的顶点的最小优先级队列。</p>
+<h2 id="Review-回顾"><a href="#Review-回顾" class="headerlink" title="Review 回顾"></a>Review 回顾</h2><ul>
+<li><p>拓扑排序是一种线性化<strong>有向无环图(DAG)</strong> 的方法。</p>
+</li>
+<li><p>我们可以使用 DFS（或 BFS）在 O*(<em>V</em>+*E) 时间内找到任何 DAG 的拓扑类型。</p>
+</li>
+<li></li>
+<li><table>
+<thead>
+<tr>
+<th>Problem</th>
+<th>Problem Description</th>
+<th>Solution</th>
+<th>Efficiency</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>topological sort</td>
+<td>Find an ordering of vertices that respects edges of our DAG.</td>
+<td><a target="_blank" rel="noopener" href="https://docs.google.com/presentation/d/1Bvf4PooGooUCr-K9cA1kbhsNc0hXW5Jwn-QD0in-1pc/edit#slide=id.g99668982c_1_693">Demo</a>Topological.java</td>
+<td>O(V+E) timeΘ(V) space</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h1 id="DAG上的最短路径"><a href="#DAG上的最短路径" class="headerlink" title="DAG上的最短路径"></a>DAG上的最短路径</h1><p>回想一下上一节，DAG 是有向的无环图。如果我们想在 DAG 上找到最短的路径，我们可以使用 Dijkstra 的路径。但是，对于 DAG，有一个简单的最短路径算法，它也可以处理负边权重！</p>
+<h2 id="Dijkstra-的负边权重失效"><a href="#Dijkstra-的负边权重失效" class="headerlink" title="Dijkstra 的负边权重失效"></a>Dijkstra 的负边权重失效</h2><p>回想一下，如果存在负边，Dijkstra 可能会失败，因为它依赖于这样的假设，即一旦我们访问一条边，我们就找到了通往该边的最短路径。但是，如果负边权重可以存在于我们可以看到的地方之前，那么这个假设就失败了。请看以下示例：</p>
+<p><img src="/2024/04/06/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-22-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd21-%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F%E4%B8%8EDAG%E5%92%8C%E8%BF%98%E5%8E%9F%E4%B8%8E%E5%88%86%E8%A7%A3/21.2.1.png" alt="img"></p>
+<p>从 A 开始，Dijkstra 将首先访问 C，然后是 B（甚至从不考虑边缘 B<em>→</em>C* ）</p>
+<p>当然，负边缘权重并不意味着 Dijkstra 一定会失败。Dijkstra’s 通过以下示例成功：</p>
+<p><img src="/2024/04/06/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-22-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd21-%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F%E4%B8%8EDAG%E5%92%8C%E8%BF%98%E5%8E%9F%E4%B8%8E%E5%88%86%E8%A7%A3/21.2.2.png" alt="img"></p>
+<blockquote>
+<p>从技术上讲，这取决于您对 Dijkstra 的实现。如果我们确保放宽步骤只考虑仍在队列中（尚未访问）的邻居，那么确实 B<em>→</em>C* 永远不会考虑。如果你没有这个检查，那么从技术上讲，当我们从队列中弹出最后一个节点（B）时，我们会考虑B的邻居并更新C，这为我们提供了这个特定示例的正确答案。然而，在这种情况下，人们可能会争辩说该图打破了 Dijkstra 不变量，因此 Dijkstra 已经“失败”。请注意，Dijkstra 不变性：一旦从队列中删除一个节点（访问），您就找到了该节点的最短路径。</p>
+</blockquote>
+<p><img src="/2024/04/06/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-22-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd21-%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F%E4%B8%8EDAG%E5%92%8C%E8%BF%98%E5%8E%9F%E4%B8%8E%E5%88%86%E8%A7%A3/image-20240406221358930.png" alt="image-20240406221358930"></p>
+<p><img src="/2024/04/06/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-22-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd21-%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F%E4%B8%8EDAG%E5%92%8C%E8%BF%98%E5%8E%9F%E4%B8%8E%E5%88%86%E8%A7%A3/image-20240406221418601.png" alt="image-20240406221418601"></p>
+<h2 id="DAG-的最短路径算法"><a href="#DAG-的最短路径算法" class="headerlink" title="DAG 的最短路径算法"></a>DAG 的最短路径算法</h2>
+
+	<div class="row">
+    <embed src="CS61BDAGSPTDemoWithNegativeEdge.pdf" width="100%" height="550" type="application/pdf">
+	</div>
+
+
+
+
+<p>按拓扑顺序访问顶点：</p>
+<ul>
+<li>每次访问时，释放所有外向的边缘</li>
+</ul>
+<p>回想一下用重量 <em>w</em> 释放边缘<em>u</em>→<em>v</em> 的定义：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if distTo[u] + w &lt; distTo[v]:</span><br><span class="line">    distTo[v] = distTo[u] + w</span><br><span class="line">    edgeTo[v] = u</span><br></pre></td></tr></table></figure>
+
+<p>由于我们按拓扑顺序访问顶点，因此只有在考虑了有关顶点的所有可能信息后，才会访问顶点。这意味着，如果负边权重存在于通往 <em>v</em> 的路径上，那么当我们到达 <em>v</em> ！</p>
+<p>找到拓扑排序需要 <em>O</em>(<em>V</em>+<em>E</em>) 时间，而每个顶点的松弛也需要总共时间 <em>O</em>(<em>V</em>+<em>E</em>) 。因此，整个运行时为 <em>O</em>(<em>V</em>+<em>E</em>) 。回想一下，Dijkstra 需要 <em>O</em>((<em>V</em>+<em>E</em>)log<em>V</em>) 时间，因为我们的最小堆操作。</p>
+<p>如果我们想解决不是 DAG 并且可能具有负边的图上的最短路径问题，该怎么办？Dijkstra 的扩展称为 Bellman Ford 可以满足您的需求，尽管它超出了本课程的范围。</p>
+<table>
+<thead>
+<tr>
+<th>Problem</th>
+<th>Problem Description</th>
+<th>Solution</th>
+<th>Efficiency</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>topological sort</td>
+<td>Find an ordering of vertices that respects edges of our DAG.</td>
+<td><a target="_blank" rel="noopener" href="https://docs.google.com/presentation/d/1Bvf4PooGooUCr-K9cA1kbhsNc0hXW5Jwn-QD0in-1pc/edit#slide=id.g99668982c_1_693">Demo</a>Code: Topological.java</td>
+<td>O(V+E) timeΘ(V) space</td>
+</tr>
+<tr>
+<td>DAG shortest paths</td>
+<td>Find a shortest paths tree on a DAG.</td>
+<td><a target="_blank" rel="noopener" href="https://docs.google.com/presentation/d/1CfnLS3FSXV8X2sXPTravZGXeBUUkcFQv7Uf2iGWGUfs/edit#slide=id.g76e0dad85_2_380">Demo</a>Code: <a target="_blank" rel="noopener" href="https://algs4.cs.princeton.edu/44sp/AcyclicSP.java">AcyclicSP.java</a></td>
+<td>O(V+E) timeΘ(V) space</td>
+</tr>
+</tbody></table>
+<h1 id="最长路径"><a href="#最长路径" class="headerlink" title="最长路径"></a>最长路径</h1><h2 id="通常"><a href="#通常" class="headerlink" title="通常"></a>通常</h2><p>考虑查找从起始顶点到其他每个顶点的最长路径的问题。路径必须简单（不包含循环）。</p>
+<p>事实证明，最著名的算法是指数级的（不切实际的低效）。</p>
+<p>取负所有的边缘权重并找到最短路径会让我们处于一个棘手的境地，因为这样我们可能会有负循环，我们可能无限期地绕过它们。</p>
+<h3 id="DAG-上的最长路径"><a href="#DAG-上的最长路径" class="headerlink" title="DAG 上的最长路径"></a>DAG 上的最长路径</h3><p>但是，如果我们处理的是 DAG，该怎么办？在这种情况下，我们没有循环，因此我们可以按照上面的建议进行操作：</p>
+<ol>
+<li>形成图形的新副本，称为 G’，所有边权重均被否定（符号翻转）。</li>
+<li>在 G’ 上运行 DAG 最短路径，得到结果 X</li>
+<li>翻转 X.distTo 中所有值的符号。X.edgeTo 已经正确。</li>
+</ol>
+<p>或者，我们可以修改上一节中的 DAG 最短路径算法，以在松弛边时选择较大的 distTo。虽然这在实践中更有意义，但考虑第一种方法的好处是能够将现有算法用作”<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Black_box">black box</a>“来解决新问题。我们将在下一节中详细了解此类问题解决： <a target="_blank" rel="noopener" href="https://joshhug.gitbooks.io/hug61b/content/chap214.md">Reductions</a>.</p>
+<h1 id="还原和分解"><a href="#还原和分解" class="headerlink" title="还原和分解"></a>还原和分解</h1><p>回想一下在上一节中，为了解决一个问题（最长路径），我们创建了一个新的图形 G’ 并将其输入到不同的算法中，然后解释结果。</p>
+<p><img src="/2024/04/06/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-22-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd21-%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F%E4%B8%8EDAG%E5%92%8C%E8%BF%98%E5%8E%9F%E4%B8%8E%E5%88%86%E8%A7%A3/21.4.2.png" alt="img"></p>
+<p>这个过程称为<strong>reduction还原</strong>。由于 DAG-SPT 可用于求解 DAG-LPT，因此我们说“DAG-LPT 简化为 DAG-SPT”。</p>
+<p>换句话说，DAG-LPT的问题可以简化为DAG-SPT的问题。</p>
+<p>像 DAG-LPT 这样的问题可能会简化为多个其他问题。作为现实世界的类比，考虑爬山。有很多方法可以解决“爬山”的问题。</p>
+<ul>
+<li>“爬山”简化为“乘坐滑雪缆车”</li>
+<li>“爬山”沦为“被大炮射出”</li>
+<li>爬山”简化为“骑自行车上山”</li>
+</ul>
+<p>从形式上讲，<strong>如果任务 Q 的任何子程序都可以用来求解 P，我们说 P 简化为 Q。</strong></p>
+<p>此定义可视化如下：</p>
+<p><img src="/2024/04/06/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-22-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd21-%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F%E4%B8%8EDAG%E5%92%8C%E8%BF%98%E5%8E%9F%E4%B8%8E%E5%88%86%E8%A7%A3/21.4.1.png" alt="img"></p>
+<p>请注意，这只是本页第一个图形的概括。P 简化为 Q，因为 Q 用于求解 P。其工作原理是将输入 <em>x</em> 预处理成 <em>y</em> ，运行算法 Q 到 <em>y</em> ，并将输出后处理成 P 的解。这就是我们将 DAG-LPT 简化为 DAG-SPT 的方法。</p>
+<h2 id="Reflection-反射"><a href="#Reflection-反射" class="headerlink" title="Reflection 反射"></a>Reflection 反射</h2><p>可以说，我们在整个过程中一直在reduction。</p>
+<ul>
+<li>Abstract Lists reduce to arrays or linked lists<br>摘要列表简化为数组或链表</li>
+<li>Percolation reduces to Disjoint Sets<br>渗流减少到不相交集</li>
+<li>Maze generation reduces to [your solution here ;)]<br>迷宫生成减少到 [您的解决方案在这里;)]</li>
+</ul>
+<p>但是，这些并不完全是减少，因为您没有使用其他单一算法来解决您的问题。值得注意的是，在前面的约简示例中，我们使用独立集算法作为’<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Black_box">black box</a>‘来解决 3SAT。</p>
+<p>对于我们在课程前面所完成的工作来说，也许一个更好的术语是<em>decomposition分解</em> - 将复杂的任务分解成更小的部分。使用抽象使解决问题更容易。这是计算机科学的核心。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://bailog.top">xxbaizero</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://bailog.top/2024/04/06/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-22-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd21-%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F%E4%B8%8EDAG%E5%92%8C%E8%BF%98%E5%8E%9F%E4%B8%8E%E5%88%86%E8%A7%A3/">http://bailog.top/2024/04/06/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-22-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd21-%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F%E4%B8%8EDAG%E5%92%8C%E8%BF%98%E5%8E%9F%E4%B8%8E%E5%88%86%E8%A7%A3/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://bailog.top" target="_blank">bai的小窝</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/JAVA/">JAVA</a><a class="post-meta__tags" href="/tags/CS61B/">CS61B</a></div><div class="post_share"><div class="social-share" data-image="/img/background/season1.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/04/07/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%95%B0%E5%AD%97%E8%A1%A8%E7%A4%BA%E6%B3%95/" title="CS61C学习笔记(一)-数字表示法"><img class="cover" src="/img/background/dream.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">CS61C学习笔记(一)-数字表示法</div></div></a></div><div class="next-post pull-right"><a href="/2024/04/06/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/" title="CS61B学习笔记-数据结构代码实现"><img class="cover" src="/img/background/dream.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">CS61B学习笔记-数据结构代码实现</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2024/01/16/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-JAVA%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/" title="CS61B学习笔记(一)--JAVA快速入门"><img class="cover" src="/img/background/season1.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-01-16</div><div class="title">CS61B学习笔记(一)--JAVA快速入门</div></div></a></div><div><a href="/2024/02/02/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-10-CS61b%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd6/" title="CS61B学习笔记(十)-Rd6-迭代器，equal方法，异常处理"><img class="cover" src="/img/background/season1.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-02-02</div><div class="title">CS61B学习笔记(十)-Rd6-迭代器，equal方法，异常处理</div></div></a></div><div><a href="/2024/02/07/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-12-CS61b%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd8-9-%E4%B8%8D%E7%9B%B8%E4%BA%A4%E9%9B%86/" title="CS61B学习笔记(十二)-Rd8.9-不相交集"><img class="cover" src="/img/background/season4.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-02-07</div><div class="title">CS61B学习笔记(十二)-Rd8.9-不相交集</div></div></a></div><div><a href="/2024/02/07/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-13-CS61b%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd10-ADP%E3%80%81%E6%A0%91/" title="CS61B学习笔记(十三)-Rd10-ADP、树"><img class="cover" src="/img/background/season3.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-02-07</div><div class="title">CS61B学习笔记(十三)-Rd10-ADP、树</div></div></a></div><div><a href="/2024/02/02/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-11-CS61b%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd8-1/" title="CS61B学习笔记(十一)-Rd8.1-封装、API、ADT"><img class="cover" src="/img/background/season3.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-02-02</div><div class="title">CS61B学习笔记(十一)-Rd8.1-封装、API、ADT</div></div></a></div><div><a href="/2024/02/09/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-14-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd11-%E5%B9%B3%E8%A1%A1%E6%A0%91/" title="CS61B学习笔记(十四)-Rd11-树"><img class="cover" src="/img/background/dream.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-02-09</div><div class="title">CS61B学习笔记(十四)-Rd11-树</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/ico/avatar_1.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">xxbaizero</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">48</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">11</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">14</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxbaizero0"><i class="fab fa-github"></i><span>中国矿业大学本科生 23级</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/xxbaizero0" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:2597453011@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到bai的小屋</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%AE%E5%89%8D%E5%85%B3%E4%BA%8E%E5%9B%BE%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">1.</span> <span class="toc-text">目前关于图的问题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F%E4%B8%8EDAG"><span class="toc-number">2.</span> <span class="toc-text">拓扑排序与DAG</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F"><span class="toc-number">2.1.</span> <span class="toc-text">拓扑排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95"><span class="toc-number">2.2.</span> <span class="toc-text">拓扑排序算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Pseudocode-%E4%BC%AA%E4%BB%A3%E7%A0%81"><span class="toc-number">2.2.1.</span> <span class="toc-text">Pseudocode 伪代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Review-%E5%9B%9E%E9%A1%BE"><span class="toc-number">2.3.</span> <span class="toc-text">Review 回顾</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#DAG%E4%B8%8A%E7%9A%84%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84"><span class="toc-number">3.</span> <span class="toc-text">DAG上的最短路径</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Dijkstra-%E7%9A%84%E8%B4%9F%E8%BE%B9%E6%9D%83%E9%87%8D%E5%A4%B1%E6%95%88"><span class="toc-number">3.1.</span> <span class="toc-text">Dijkstra 的负边权重失效</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DAG-%E7%9A%84%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E7%AE%97%E6%B3%95"><span class="toc-number">3.2.</span> <span class="toc-text">DAG 的最短路径算法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%80%E9%95%BF%E8%B7%AF%E5%BE%84"><span class="toc-number">4.</span> <span class="toc-text">最长路径</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E5%B8%B8"><span class="toc-number">4.1.</span> <span class="toc-text">通常</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#DAG-%E4%B8%8A%E7%9A%84%E6%9C%80%E9%95%BF%E8%B7%AF%E5%BE%84"><span class="toc-number">4.1.1.</span> <span class="toc-text">DAG 上的最长路径</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%98%E5%8E%9F%E5%92%8C%E5%88%86%E8%A7%A3"><span class="toc-number">5.</span> <span class="toc-text">还原和分解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Reflection-%E5%8F%8D%E5%B0%84"><span class="toc-number">5.1.</span> <span class="toc-text">Reflection 反射</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2024 By xxbaizero</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"></div><script defer src="https://npm.elemecdn.com/jquery@latest/dist/jquery.min.js"></script><script defer data-pjax src="/js/cat.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="20" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><!-- hexo injector body_end start --> <script data-pjax>if(document.getElementById('recent-posts') && (location.pathname ==='/'|| '/' ==='all')){
+    var parent = document.getElementById('recent-posts');
+    var child = '<div class="recent-post-item" style="width:100%;height: auto"><div id="catalog_magnet"><div class="magnet_item"><a class="magnet_link" href="http://bailog.top/categories/C/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📚 C++笔记 (3)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://bailog.top/categories/CS自学笔记/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🎮 CS自学笔记 (39)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://bailog.top/categories/Python/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🐱‍👓 Python学习笔记 (2)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://bailog.top/categories/JAVA/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🐱‍👓 Java学习笔记 (32)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://bailog.top/categories/有趣の文章/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📒 有趣の文章 (1)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item" style="visibility: hidden"></div><a class="magnet_link_more"  href="http://bailog.top/categories" style="flex:1;text-align: center;margin-bottom: 10px;">查看更多...</a></div></div>';
+    console.log('已挂载magnet')
+    parent.insertAdjacentHTML("afterbegin",child)}
+     </script><style>#catalog_magnet{flex-wrap: wrap;display: flex;width:100%;justify-content:space-between;padding: 10px 10px 0 10px;align-content: flex-start;}.magnet_item{flex-basis: calc(50% - 5px);background: #f2f2f2;margin-bottom: 10px;border-radius: 8px;transition: all 0.2s ease-in-out;}.magnet_item:hover{background: #69e8f2}.magnet_link_more{color:#555}.magnet_link{color:black}.magnet_link:hover{color:white}@media screen and (max-width: 600px) {.magnet_item {flex-basis: 100%;}}.magnet_link_context{display:flex;padding: 10px;font-size:16px;transition: all 0.2s ease-in-out;}.magnet_link_context:hover{padding: 10px 20px;}</style>
+    <style></style><script data-pjax>
+  function butterfly_footer_beautify_injector_config(){
+    var parent_div_git = document.getElementById('footer-wrap');
+    var item_html = '<div id="workboard"></div><p id="ghbdages"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px" data-title="博客框架为Hexo_v6.2.0" title=""><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&amp;logo=hexo" alt=""/></a><a class="github-badge" target="_blank" href="https://butterfly.js.org/" style="margin-inline:5px" data-title="主题版本Butterfly_v4.3.1" title=""><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&amp;logo=bitdefender" alt=""/></a><a class="github-badge" target="_blank" href="https://vercel.com/" style="margin-inline:5px" data-title="本站采用多线部署，主线路托管于Vercel" title=""><img src="https://img.shields.io/badge/Hosted-Vercel-brightgreen?style=flat&amp;logo=Vercel" alt=""/></a><a class="github-badge" target="_blank" href="https://dashboard.4everland.org/" style="margin-inline:5px" data-title="本站采用多线部署，备用线路托管于4EVERLAND" title=""><img src="https://img.shields.io/badge/Hosted-4EVERLAND-22DDDD?style=flat&amp;logo=IPFS" alt=""/></a><a class="github-badge" target="_blank" href="https://github.com/" style="margin-inline:5px" data-title="本站项目由Github托管" title=""><img src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&amp;logo=GitHub" alt=""/></a><a class="github-badge" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="margin-inline:5px" data-title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可" title=""><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&amp;logo=Claris" alt=""/></a></p>';
+    console.log('已挂载butterfly_footer_beautify')
+    parent_div_git.insertAdjacentHTML("beforeend",item_html)
+    }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_footer_beautify_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_footer_beautify_injector_config();
+  }
+  </script><script async src="https://unpkg.zhimg.com/hexo-butterfly-footer-beautify@1.0.0/lib/runtime.min.js"></script><!-- hexo injector body_end end --></body></html>

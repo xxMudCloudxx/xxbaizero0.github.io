@@ -4,6 +4,204 @@
   
     
     <entry>
+      <title>CS61C学习笔记(三)-RISCV-Assembly</title>
+      <link href="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/"/>
+      <url>/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/</url>
+      
+        <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>RISC-V是基于RISC精简指令集架构开发的一个开放式指令集架构，它是由加州大学伯克利分校的计算机科学教授Krste Asanovic（克里斯蒂安·阿萨诺维奇）领导的团队开发，RISC-V是开放的，任何人都可以使用它来开发处理器芯片和其他硬件，而无需支付任何许可或使用费用。RISC-V的设计简单，易于扩展和自定义，可以在各种应用场景和市场中使用。</p><h1 id="什么是指令集架构？"><a href="#什么是指令集架构？" class="headerlink" title="什么是指令集架构？"></a>什么是指令集架构？</h1><p>指令集架构（Instruction Set Architecture，简称ISA）是计算机系统中的一个重要概念，指的是计算机中处理器的指令集和处理器的内部结构，即处理器是如何执行指令的。</p><p>ISA规定了一套<strong>指令集</strong>，包括指令的<strong>种类</strong>、指令的<strong>格式</strong>、指令的操作数、指令的<strong>执行方式</strong>等。ISA也规定了处理器的内部结构，包括处理器的<strong>寄存器</strong>、指令流水线、内存管理单元等。</p><p>不同的ISA有不同的指令集和内部结构设计，因此处理器的计算能力和性能也会有所不同。常见的ISA包括<code>ARM、x86、MIPS、PowerPC、RISC-V</code>等。ISA的选择对计算机系统的性能、功耗、软件兼容性、应用场景等都有很大的影响。</p><p>简单点比喻可以把指令集架构理解为<strong>图纸</strong>，处理器就是<strong>房子</strong>。</p><p>RISC和RISC-V的区别<br>RISC全称<code>Reduced Instruction Set Computer</code>，即精简指令计算机，它是指令集架构，它的理念在于旨在通过减少指令集的数量和复杂度，提高计算机的性能和效率。</p><p>RISC最初由加州大学伯克利分校<code>David Patterson</code>和<code>John Hennessy</code>在1980年代提出，并于1984年合著了一本名为“Computer Architecture: A Quantitative Approach”（中文译名为《计算机体系结构：量化研究方法》）的经典教材，该书详细介绍了RISC架构和量化分析方法，成为当时计算机体系结构领域的重要参考书。</p><p>RISC-V是由Krste Asanovic教授领导其团队基于RISC精简指令集架构开发的一款<strong>开源指令集架构</strong>，RISC-V具有更好的灵活性以及扩展性，同时它比RISC更加简单便于它人二次开发和扩展，并且它不需要任何授权费，可以应用于商业场景因为它遵循BSD开源协议，可以把RISC-V理解为RISC的扩展版。</p><h1 id="伟大的想法"><a href="#伟大的想法" class="headerlink" title="伟大的想法"></a>伟大的想法</h1><h2 id="抽象"><a href="#抽象" class="headerlink" title="抽象"></a>抽象</h2><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240423164306259.png" alt="image-20240423164306259"></p><h2 id="寄存器在处理器内部"><a href="#寄存器在处理器内部" class="headerlink" title="寄存器在处理器内部"></a>寄存器在处理器内部</h2><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240423165043829.png" alt="image-20240423165043829"></p><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240423165208494.png" alt="image-20240423165208494"></p><h2 id="Principle-of-Locality-Memory-Hierarchy"><a href="#Principle-of-Locality-Memory-Hierarchy" class="headerlink" title="Principle of Locality &#x2F; Memory Hierarchy"></a>Principle of Locality &#x2F; Memory Hierarchy</h2><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240423165235223.png" alt="image-20240423165235223"></p><h1 id="寄存器和存储器的速度对比"><a href="#寄存器和存储器的速度对比" class="headerlink" title="寄存器和存储器的速度对比"></a>寄存器和存储器的速度对比</h1><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240423165330636.png" alt="image-20240423165330636"></p><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240423165339134.png" alt="image-20240423165339134"></p><h1 id="指令集"><a href="#指令集" class="headerlink" title="指令集"></a>指令集</h1><h2 id="Addition-subtraction"><a href="#Addition-subtraction" class="headerlink" title="Addition&#x2F;subtraction"></a>Addition&#x2F;subtraction</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">add rd, rs1, rs2</span><br><span class="line">R[rd] = R[rs1] + R[rs2]</span><br><span class="line">sub rd, rs1, rs2</span><br><span class="line">R[rd] = R[rs1] - R[rs2]</span><br></pre></td></tr></table></figure><h2 id="Add-immediate"><a href="#Add-immediate" class="headerlink" title="Add immediate"></a>Add immediate</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">addi rd, rs1, imm</span><br><span class="line">R[rd] = R[rs1] + imm</span><br></pre></td></tr></table></figure><h2 id="Load-from-Memory-to-Register"><a href="#Load-from-Memory-to-Register" class="headerlink" title="Load from Memory to Register"></a><u>Load from</u> Memory to Register</h2><p><strong>Load Word(lw)</strong></p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> A[<span class="number">100</span>];</span><br><span class="line">g = h + A[<span class="number">3</span>];</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">lw x10, 12(x15) # Reg x10 gets A[3]</span><br><span class="line">add x11,x12,x10 # g = h + A[3</span><br></pre></td></tr></table></figure><p><strong>Note:</strong> </p><ul><li><p>x15 – base register (<strong>pointer</strong> to A[0]) </p></li><li><p>12 – <strong>offset in bytes</strong> </p></li><li><p><strong>Offset</strong> must be a constant known at assembly time</p></li></ul><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240423170306183.png" alt="image-20240423170306183"></p><h2 id="Store-from-Register-to-Memory"><a href="#Store-from-Register-to-Memory" class="headerlink" title="Store from Register to Memory"></a><u>Store</u> from Register <u>to</u> Memory</h2><p><strong>Store Word(sw)</strong></p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> A[<span class="number">100</span>];</span><br><span class="line">A[<span class="number">10</span>] = h + A[<span class="number">3</span>];</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">lw x10,12(x15) # Temp reg x10 gets A[3]</span><br><span class="line">add x10,x12,x10 # Temp reg x10 gets h + A[3]</span><br><span class="line">sw x10,40(x15) # A[10] = h + A[3]</span><br></pre></td></tr></table></figure><p><strong>Note:</strong> </p><ul><li><p>x15 – base register (<strong>pointer</strong>) </p></li><li><p>12,40 – offsets in <strong>bytes</strong></p></li><li><p><code>x15+12</code> and<code> x15+40</code> must be <strong>multiples</strong> of 4</p></li></ul><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240423170519415.png" alt="image-20240423170519415"></p><h2 id="Loading-and-Storing-Bytes"><a href="#Loading-and-Storing-Bytes" class="headerlink" title="Loading and Storing Bytes"></a>Loading and Storing Bytes</h2><ul><li><p>load byte: <code>lb</code></p></li><li><p>store byte: <code>sb</code></p></li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lb x10, 3(x11)</span><br></pre></td></tr></table></figure><blockquote><p>contents of memory location with address &#x3D; sum of “3”  + contents of register x11 is copied to the low byte  position of register x10</p></blockquote><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240423170835108.png" alt="image-20240423170835108"></p><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240423170848646.png" alt="image-20240423170848646"></p><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240423171000144.png" alt="image-20240423171000144"></p><h2 id="Branches类型"><a href="#Branches类型" class="headerlink" title="Branches类型"></a>Branches类型</h2><p><u>Branch – change of control flow</u></p><h3 id="Conditional-Branch-–-change-control-flow-depending-on-outcome-of-comparison"><a href="#Conditional-Branch-–-change-control-flow-depending-on-outcome-of-comparison" class="headerlink" title="Conditional Branch – change control flow  depending on outcome of comparison"></a>Conditional Branch – change control flow  depending on outcome of comparison</h3><ul><li><p><strong>beq: branch if equal</strong></p></li><li><p><strong>bne: branch if not equal</strong></p></li><li><p><strong>blt: branch if less than</strong></p></li><li><p><strong>bge:  branch if greater  than or equal</strong></p></li><li><p><strong>bltu: unsigned versions of blt</strong></p></li><li><p><strong>bgeu: unsigned versions of bge</strong></p></li></ul><h3 id="Unconditional-Branch-–-always-branch"><a href="#Unconditional-Branch-–-always-branch" class="headerlink" title="Unconditional Branch – always branch"></a>Unconditional Branch – always branch</h3><ul><li><strong>j: jump</strong><ul><li>j label</li></ul></li></ul><p>No <code>bgt</code> or <code>ble</code>!</p><h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">beq reg1, reg2, L1</span><br><span class="line"></span><br><span class="line"># go to statement labeled L1 </span><br><span class="line"># if (value in reg1) == (value in reg2)</span><br><span class="line"># ….otherwise, go to next statement</span><br></pre></td></tr></table></figure><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240423171733270.png" alt="image-20240423171733270"></p><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240423171742425.png" alt="image-20240423171742425"></p><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240423171750240.png" alt="image-20240423171750240"></p><h2 id="Loops"><a href="#Loops" class="headerlink" title="Loops"></a>Loops</h2><ul><li>C<ul><li>while</li><li>do…while</li><li>for</li></ul></li><li>每一个都可以被重写成另外两个之一，因此相同的分支方法也可以应用到这些循环中。</li><li>关键概念：虽然在 RISC-V 中有多种编写循环的方式，但决策的关键在于条件分支。</li></ul><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240423230114369.png" alt="image-20240423230114369"></p><h2 id="Logical-Instructions"><a href="#Logical-Instructions" class="headerlink" title="Logical Instructions"></a>Logical Instructions</h2><ul><li><p>有助于在一个字内操作位字段</p><ul><li>例如，一个字内的字符（8位）</li></ul></li><li><p>将位打包&#x2F;解包成字的操作</p></li></ul><blockquote><p>对于一个字（8个位，例如二进制数字或字符），在其中操作位字段（例如单独的字符）是很有用的。这就像在一个字母里面寻找、添加或者移除特定的位一样。这些操作可能包括将多个位打包（合并）成一个字，或者将一个字解包（拆分）成多个位。这些操作通常被称为逻辑操作。</p></blockquote><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240423230525052.png" alt="image-20240423230525052"></p><h3 id="and-andi"><a href="#and-andi" class="headerlink" title="and&#x2F;andi"></a>and&#x2F;andi</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">and x5, x6, x7 # x5 = x6 &amp; x7</span><br><span class="line">andi x5, x6, 3 # x5 = x6 &amp; 3</span><br></pre></td></tr></table></figure><ul><li><code>andi</code> with <code>0000 00FF</code><del>hex</del> isolates the <strong>least</strong> significant  byte</li><li><code>andi </code>with <code>FF00 0000</code><del>hex</del> isolates the <strong>most</strong> significant  byte</li></ul><h3 id="No-Not-in-RISC-V"><a href="#No-Not-in-RISC-V" class="headerlink" title="No Not in RISC-V"></a>No Not in RISC-V</h3><p>没有逻辑非运算在RISC-V中</p><ul><li>使用xor 1111 1111<del>two</del></li></ul><h3 id="Logical-Shifting"><a href="#Logical-Shifting" class="headerlink" title="Logical Shifting"></a>Logical Shifting</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240423231142563.png" alt="image-20240423231142563"></p><h3 id="Arithmetic-Shifting"><a href="#Arithmetic-Shifting" class="headerlink" title="Arithmetic Shifting"></a>Arithmetic Shifting</h3><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240423231149137.png" alt="image-20240423231149137"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 体系结构 </category>
+          
+          <category> CS自学笔记 </category>
+          
+          <category> CS61C </category>
+          
+          <category> CS61C </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 体系结构 </tag>
+            
+            <tag> CS61C </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>CS61C项目笔记(二)-Lab3-RISCV-Assembly</title>
+      <link href="/2024/04/23/C-%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0-2-CS61C%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0-Lab3-RISCV-Assembly/"/>
+      <url>/2024/04/23/C-%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0-2-CS61C%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0-Lab3-RISCV-Assembly/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> 体系结构 </category>
+          
+          <category> CS自学笔记 </category>
+          
+          <category> CS61C </category>
+          
+          <category> CS61C </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 体系结构 </tag>
+            
+            <tag> CS61C </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>CS61C项目笔记(一)-Lab1-编译调试初体验</title>
+      <link href="/2024/04/13/C-%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0-1-CS61C%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0-Lab1-%E7%BC%96%E8%AF%91%E8%B0%83%E8%AF%95%E5%88%9D%E4%BD%93%E9%AA%8C/"/>
+      <url>/2024/04/13/C-%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0-1-CS61C%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0-Lab1-%E7%BC%96%E8%AF%91%E8%B0%83%E8%AF%95%E5%88%9D%E4%BD%93%E9%AA%8C/</url>
+      
+        <content type="html"><![CDATA[<h1 id="C的编译和运行"><a href="#C的编译和运行" class="headerlink" title="C的编译和运行"></a>C的编译和运行</h1><p>在本实验中，我们将使用命令行程序 gcc 在 C 语言中编译程序。运行 gcc 的最简单方法如下：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gcc program.c</span><br></pre></td></tr></table></figure><p>这会将 program.c 编译为名为 a.out 的可执行文件。如果你学过 CS61B 或有 Java 经验，你可以把 gcc 看作是 Java 的 C 等价物。可以使用以下命令运行此文件：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ./a.out</span><br></pre></td></tr></table></figure><p>可执行文件是 <code>a.out</code> ，那么到底 <code>./</code> 是干什么用的呢？答：当您要执行可执行文件时，您需要在文件路径前面加上一个文件路径，以便将您的命令与 python3 等命令区分开来。该点表示“当前目录”。顺便说一句，双点 （ <code>..</code> ） 表示更高一级的目录。</p><p><code>gcc</code> 有各种命令行选项，鼓励您探索。但是，在本实验中，我们将仅使用 <code>-o</code> ，它用于指定 <code>gcc</code> 创建的可执行文件的名称。您可以使用以下命令编译 <code>program.c</code> 为名为 program 的程序，然后运行它。如果您不希望所有可执行文件都命名 <code>a.out</code> ，这将很有帮助。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ gcc -o program program.c</span><br><span class="line">$ ./program</span><br></pre></td></tr></table></figure><blockquote><p>若编译的程序需要调试，加上-g指令</p></blockquote><h1 id="C的调试器——gdb"><a href="#C的调试器——gdb" class="headerlink" title="C的调试器——gdb"></a>C的调试器——gdb</h1><p>在本练习中，您会发现 GDB 参考卡很有用。GDB 代表“GNU De-Bugger”。 <code>hello.c</code> 使用 <code>-g</code> 标志编译：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gcc -g -o hello hello.c</span><br></pre></td></tr></table></figure><p>这会导致 gcc 将信息存储在可执行程序中，以便 <code>gdb</code> 理解它。现在启动调试器 （c）gdb：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cgdb hello</span><br></pre></td></tr></table></figure><p>学习这些命令将对本实验的其余部分以及您的 C 编程生涯很有用。在名为 <code>gdb.txt</code> 的文本文件中，回答以下问题。</p><ol><li>当您处于 gdb 会话中时，如何<strong>设置在程序运行时将传递给程序的参数</strong>？<ol><li><em>set args arg1 arg2</em></li></ol></li><li>如何<strong>创建断点</strong>？<ol><li><em>break <name></name></em></li></ol></li><li>在断点处停止后，如何在程序中<strong>执行下一行 C 代码</strong>？<ol><li><em>next or n</em></li></ol></li><li>如果下一行代码是函数调用，则使用对 #3 的答案，则将立即执行整个函数调用。（如果没有，请考虑对 #3 使用不同的命令！你如何告诉GDB<strong>你想调试函数内部的代码</strong>（即单步执行函数）？（如果您将答案更改为 #3，那么该答案现在很可能适用于此处。<ol><li><em>step or s</em></li></ol></li><li><strong>在断点停止后如何继续程序</strong>？<ol><li><em>continue or c</em></li></ol></li><li>如何在 gdb 中<strong>打印变量</strong>（甚至是像 1+2 这样的表达式）的值？<ol><li><em>ptint <variable_name></variable_name></em></li><li><em>print 1+2</em></li></ol></li><li>如何配置 gdb 以便它<strong>在每个步骤后显示变量的值</strong>？<ol><li><em>display variable_name</em></li></ol></li><li>如何在当前函数中<strong>显示所有变量及其值的列表</strong>？<ol><li><em>info locals</em></li></ol></li><li>你如何<strong>退出</strong> gdb？<ol><li><em>quit or q</em></li></ol></li></ol><h1 id="重定向——使用包含你输入的文本文件来运行"><a href="#重定向——使用包含你输入的文本文件来运行" class="headerlink" title="重定向——使用包含你输入的文本文件来运行"></a>重定向——使用包含你输入的文本文件来运行</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./a.out &lt; fileName.txt</span><br></pre></td></tr></table></figure><h1 id="Valgrind’ing工具"><a href="#Valgrind’ing工具" class="headerlink" title="Valgrind’ing工具"></a>Valgrind’ing工具</h1><p>Valgrind 是一个模拟您的 CPU 并跟踪您的内存访问的程序。这会减慢您正在运行的进程（例如，这就是为什么我们并不总是在 Valgrind 中运行所有可执行文件的原因），但也可能会暴露可能仅在一组特殊情况下显示可见的错误行为的错误。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ valgrind ./segfault_ex</span><br></pre></td></tr></table></figure><p>这应该会导致 Valgrind 输出发生非法访问的位置。将这些结果与您通过打开文件确定的结果进行比较。Valgrind 如何帮助您解决未来的段错误？现在尝试在 <code>no_segfault_ex</code> 上运行 Valgrind。程序不应该崩溃，但文件仍然存在问题。Valgrind可以帮助我们找到（看似看不见的）问题。</p><p>不幸的是，在这里您会看到 Valgrind 似乎无法告诉您问题的确切位置。<strong>使用 Valgrind 提供的消息来确定哪个变量具有未定义的行为，然后尝试推断一定发生了什么</strong>（提示：什么是未初始化的值？</p><p>At this point we do not expect you to be familiar with <code>sizeof</code> (that comes next week!) so all we want 在这一点上，我们不希望您熟悉 <code>sizeof</code> （下周！），因此我们希望您从本节中得到的只是关于问题可能发生位置的一些直觉。</p><p>希望在完成此示例后，您将能够理解并回答以下问题：</p><ul><li>为什么 Valgrind 很重要，它有什么用？</li><li>你如何在 Valgrind 中运行程序？</li><li>您如何解释错误消息？不要害怕他们。尽力而为，向我们寻求帮助。</li><li>为什么未初始化的变量会导致“heisenbugs”？</li></ul><p>我们现在向您介绍 Valgrind，因为它是一个非常重要的工具，一旦您开始编写 C，您就会想要它。<strong>然而，要真正理解它，我们需要了解 C 的内存模型，我们将在下周完成。</strong>在讲座中介绍完记忆后，回到这个实验并尝试回答以下问题：</p><ul><li>为什么 <code>no_segfault_ex</code> 程序<strong>没有</strong>段错误？</li><li>为什么 <code>no_segfault_ex</code> 会产生不一致的输出？</li><li>为什么不正确 <code>sizeof</code> ？你怎么能仍然使用 <code>sizeof</code> ，但要使代码正确？</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 体系结构 </category>
+          
+          <category> CS自学笔记 </category>
+          
+          <category> CS61C </category>
+          
+          <category> CS61C </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 体系结构 </tag>
+            
+            <tag> CS61C </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>2-CS61C学习笔记-C语言介绍</title>
+      <link href="/2024/04/07/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-C%E8%AF%AD%E8%A8%80%E4%BB%8B%E7%BB%8D/"/>
+      <url>/2024/04/07/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-C%E8%AF%AD%E8%A8%80%E4%BB%8B%E7%BB%8D/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> 体系结构 </category>
+          
+          <category> CS自学笔记 </category>
+          
+          <category> CS61C </category>
+          
+          <category> CS61C </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 体系结构 </tag>
+            
+            <tag> CS61C </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>CS61C学习笔记(一)-数字表示法</title>
+      <link href="/2024/04/07/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%95%B0%E5%AD%97%E8%A1%A8%E7%A4%BA%E6%B3%95/"/>
+      <url>/2024/04/07/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%95%B0%E5%AD%97%E8%A1%A8%E7%A4%BA%E6%B3%95/</url>
+      
+        <content type="html"><![CDATA[<h1 id="位-Bits-能表示一切！"><a href="#位-Bits-能表示一切！" class="headerlink" title="位(Bits)能表示一切！"></a>位(Bits)能表示一切！</h1><p><img src="/2024/04/07/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%95%B0%E5%AD%97%E8%A1%A8%E7%A4%BA%E6%B3%95/image-20240407224529490.png" alt="image-20240407224529490"></p><h2 id="Binary、Decimal、Hex"><a href="#Binary、Decimal、Hex" class="headerlink" title="Binary、Decimal、Hex"></a>Binary、Decimal、Hex</h2><p><img src="/2024/04/07/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%95%B0%E5%AD%97%E8%A1%A8%E7%A4%BA%E6%B3%95/image-20240407224633741.png" alt="image-20240407224633741"></p><h2 id="十进制"><a href="#十进制" class="headerlink" title="十进制"></a>十进制</h2><p><img src="/2024/04/07/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%95%B0%E5%AD%97%E8%A1%A8%E7%A4%BA%E6%B3%95/image-20240407224702160.png" alt="image-20240407224702160"></p><h2 id="二转十进制"><a href="#二转十进制" class="headerlink" title="二转十进制"></a>二转十进制</h2><p><img src="/2024/04/07/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%95%B0%E5%AD%97%E8%A1%A8%E7%A4%BA%E6%B3%95/image-20240407224721049.png" alt="image-20240407224721049"></p><h2 id="十六进制"><a href="#十六进制" class="headerlink" title="十六进制"></a>十六进制</h2><p><img src="/2024/04/07/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%95%B0%E5%AD%97%E8%A1%A8%E7%A4%BA%E6%B3%95/image-20240407224736051.png" alt="image-20240407224736051"></p><h2 id="十进制到二-十六进制"><a href="#十进制到二-十六进制" class="headerlink" title="十进制到二&#x2F;十六进制"></a>十进制到二&#x2F;十六进制</h2><p>从左到右赋满</p><p><img src="/2024/04/07/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%95%B0%E5%AD%97%E8%A1%A8%E7%A4%BA%E6%B3%95/image-20240407224836619.png" alt="image-20240407224836619"></p><h2 id="二进制到十六进制"><a href="#二进制到十六进制" class="headerlink" title="二进制到十六进制"></a>二进制到十六进制</h2><p>因为十六进制是逢16进1，所以取四位作为一位十六进制</p><p><img src="/2024/04/07/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%95%B0%E5%AD%97%E8%A1%A8%E7%A4%BA%E6%B3%95/image-20240407225025480.png" alt="image-20240407225025480"></p><h1 id="数字表达法"><a href="#数字表达法" class="headerlink" title="数字表达法"></a>数字表达法</h1><h2 id="无修饰"><a href="#无修饰" class="headerlink" title="无修饰"></a>无修饰</h2><ul><li>五位bits来表达<ul><li>范围是0 ~ 2^4^-1</li></ul></li></ul><h2 id="修饰"><a href="#修饰" class="headerlink" title="修饰"></a>修饰</h2><ul><li><p>五位bits中的最高位表示正负</p><ul><li>范围 -15 ~ 15</li><li>问题: <ul><li>存在两个0 (<code>00000</code>和<code>10000</code>)</li><li>中间往两边变大</li></ul></li></ul><p><img src="/2024/04/07/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%95%B0%E5%AD%97%E8%A1%A8%E7%A4%BA%E6%B3%95/image-20240407230249723.png" alt="image-20240407230249723"></p></li></ul><h2 id><a href="#" class="headerlink" title></a></h2><h2 id="反码"><a href="#反码" class="headerlink" title="反码"></a>反码</h2><p>将修饰全部取反</p><p><img src="/2024/04/07/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%95%B0%E5%AD%97%E8%A1%A8%E7%A4%BA%E6%B3%95/image-20240407230621595.png" alt="image-20240407230621595"></p><p>但是有个问题，还是有两个重叠的0</p><p>所以我们把负往左移动一位 及 加一位，于是获得了补码</p><h2 id="补码"><a href="#补码" class="headerlink" title="补码"></a>补码</h2><p><img src="/2024/04/07/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%95%B0%E5%AD%97%E8%A1%A8%E7%A4%BA%E6%B3%95/image-20240407230830977.png" alt="image-20240407230830977"></p><p><img src="/2024/04/07/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%95%B0%E5%AD%97%E8%A1%A8%E7%A4%BA%E6%B3%95/image-20240407230952371.png" alt="image-20240407230952371"></p><h2 id="偏置"><a href="#偏置" class="headerlink" title="偏置"></a>偏置</h2><p><img src="/2024/04/07/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%95%B0%E5%AD%97%E8%A1%A8%E7%A4%BA%E6%B3%95/image-20240407230903149.png" alt="image-20240407230903149"></p><p>注意: 是 <strong>未修饰 加上 bias偏置</strong></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 体系结构 </category>
+          
+          <category> CS自学笔记 </category>
+          
+          <category> CS61C </category>
+          
+          <category> CS61C </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 体系结构 </tag>
+            
+            <tag> CS61C </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>22-CS61B学习笔记-Rd21-拓扑排序与DAG和还原与分解</title>
+      <link href="/2024/04/06/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-22-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd21-%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F%E4%B8%8EDAG%E5%92%8C%E8%BF%98%E5%8E%9F%E4%B8%8E%E5%88%86%E8%A7%A3/"/>
+      <url>/2024/04/06/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-22-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd21-%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F%E4%B8%8EDAG%E5%92%8C%E8%BF%98%E5%8E%9F%E4%B8%8E%E5%88%86%E8%A7%A3/</url>
+      
+        <content type="html"><![CDATA[<h1 id="目前关于图的问题"><a href="#目前关于图的问题" class="headerlink" title="目前关于图的问题"></a>目前关于图的问题</h1><table><thead><tr><th>Problem</th><th>Problem Description</th><th>Solution</th><th>Efficiency</th></tr></thead><tbody><tr><td>paths</td><td>Find a path from s to every reachable vertex.</td><td>DepthFirstPaths.java<a href="https://docs.google.com/presentation/d/1lTo8LZUGi3XQ1VlOmBUF9KkJTW_JWsw_DOPq8VBiI3A/edit?usp=sharing">Demo</a></td><td>O(V+E) timeΘ(V) space</td></tr><tr><td>shortest paths</td><td>Find the shortest path from s to every reachable vertex.</td><td>BreadthFirstPaths.java<a href="https://docs.google.com/presentation/d/1JoYCelH4YE6IkSMq_LfTJMzJ00WxDj7rEa49gYmAtc4/edit?usp=sharing">Demo</a></td><td>O(V+E) timeΘ(V) space</td></tr><tr><td>shortest weighted paths</td><td>Find the shortest path, considering weights, from s to every reachable vertex.</td><td>DijkstrasSP.java<a href="https://docs.google.com/presentation/d/1_bw2z1ggUkquPdhl7gwdVBoTaoJmaZdpkV6MoAgxlJc/pub?start=false&loop=false&delayms=3000">Demo</a></td><td>O(E log V) timeΘ(V) space</td></tr><tr><td>shortest weighted path</td><td>Find the shortest path, consider weights, from s to some target vertex</td><td>A*: Same as Dijkstra’s but with h(v, goal) added to priority of each vertex.<a href="https://docs.google.com/presentation/d/177bRUTdCa60fjExdr9eO04NHm0MRfPtCzvEup1iMccM/edit#slide=id.g369665031c_0_350">Demo</a></td><td>Time depends on heuristic.Θ(V) space</td></tr><tr><td>minimum spanning tree</td><td>Find a minimum spanning tree.</td><td>LazyPrimMST.java<a href="https://docs.google.com/presentation/d/18leOHESniaJqqehiTR-YAL4WeEEcHJyRB9aw_S1FLG0/edit#slide=id.g772f8a8e2_0_28">Demo</a></td><td>O(???) timeΘ(???) space</td></tr><tr><td>minimum spanning tree</td><td>Find a minimum spanning tree.</td><td>PrimMST.java<a href="https://docs.google.com/presentation/d/1GPizbySYMsUhnXSXKvbqV4UhPCvrt750MiqPPgU-eCY/edit#slide=id.g9a60b2f52_0_0">Demo</a></td><td>O(E log V) timeΘ(V) space</td></tr><tr><td>minimum spanning tree</td><td>Find a minimum spanning tree.</td><td>KruskalMST.java<a href="https://docs.google.com/presentation/d/18leOHESniaJqqehiTR-YAL4WeEEcHJyRB9aw_S1FLG0/edit#slide=id.g5347e2c8f_2213">Demo</a></td><td>O(E log E) timeΘ(E) sp</td></tr></tbody></table><h1 id="拓扑排序与DAG"><a href="#拓扑排序与DAG" class="headerlink" title="拓扑排序与DAG"></a>拓扑排序与DAG</h1><h2 id="拓扑排序"><a href="#拓扑排序" class="headerlink" title="拓扑排序"></a>拓扑排序</h2><p>假设我们收集了不同的任务或活动，其中一些任务或活动必须在另一个任务或活动之前发生。我们如何找到对任务的排序，以便对于每个任务 <em>v</em> ，之前 <em>v</em> 发生的任务在我们的排序中更早出现？</p><p>我们可以首先将任务集合视为一个图，其中每个节点代表一个任务。边<em>v</em>→<em>w</em> 表示 <em>v</em> 必须在 <em>w</em> 之前发生。现在，我们原来的问题被简化为找到一个拓扑排序。</p><blockquote><p>拓扑排序：对图的顶点进行排序，使得对于每个有向边 <em>u</em>→<em>v</em> ， <em>u</em> 在排序中都排在前面 <em>v</em> 。</p></blockquote><p><img src="/2024/04/06/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-22-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd21-%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F%E4%B8%8EDAG%E5%92%8C%E8%BF%98%E5%8E%9F%E4%B8%8E%E5%88%86%E8%A7%A3/21.1.1.jpg" alt="img"></p><blockquote><p><strong>问题 1.1</strong>：上图有哪些有效的拓扑顺序？<br><strong>答</strong>：[<em>D</em>,<em>B</em>,<em>A</em>,<em>E</em>,<em>C</em>,<em>F</em>], [<em>E</em>,<em>D</em>,<em>C</em>,<em>B</em>,<em>A</em>,<em>F</em>].</p></blockquote><p>需要注意的是，只有对某些类型的图进行拓扑排序才有意义。若要查看此内容，请考虑下图：</p><p><img src="/2024/04/06/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-22-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd21-%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F%E4%B8%8EDAG%E5%92%8C%E8%BF%98%E5%8E%9F%E4%B8%8E%E5%88%86%E8%A7%A3/21.1.3.png" alt="img"></p><p>什么是有效的拓扑排序？</p><p>没有一个！D 在 B 之前，但 B 在 C、E、D 之前。由于我们有一个循环，因此没有定义拓扑排序。我们也不能对无向图进行拓扑排序，因为无向图中的每条边都会创建一个循环。</p><p><img src="/2024/04/06/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-22-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd21-%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F%E4%B8%8EDAG%E5%92%8C%E8%BF%98%E5%8E%9F%E4%B8%8E%E5%88%86%E8%A7%A3/21.1.4.png" alt="img"><br>因此，拓扑排序仅适用于<strong>有向、无环（无周期）图或 DAG。</strong></p><blockquote><p>*<em>Topological Sort:*<em>：对 <strong>DAG</strong> 顶点的排序，使得对于每个有向边 u</em>→*v</em> ， <em>u</em> 在排序中排在前面 <em>v</em> 。</p></blockquote><p>对于任何拓扑排序，都可以重新绘制图形，使顶点全部位于一行中。因此，拓扑排序有时称为图的<strong>线性化</strong>。例如，下面是针对其中一个拓扑排序线性化的前面示例。</p><p><img src="/2024/04/06/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-22-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd21-%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F%E4%B8%8EDAG%E5%92%8C%E8%BF%98%E5%8E%9F%E4%B8%8E%E5%88%86%E8%A7%A3/21.1.2.png" alt="img"></p><p>请注意，上述 DAG 的拓扑排序必须以 D 或 E 开头，并且必须以 F 或 C 结尾。因此，D 和 E 称为源，F 和 C 称为接收器。</p><h2 id="拓扑排序算法"><a href="#拓扑排序算法" class="headerlink" title="拓扑排序算法"></a>拓扑排序算法</h2><p>我们怎样才能找到拓扑排序？花点时间想想你已经知道的现有图算法可能有助于解决这个问题。</p><p>拓扑排序算法：</p><ul><li>从图形中的每个顶点执行 DFS 遍历，而不是清除遍历之间的标记。</li><li>在此过程中记录 DFS 的后序。</li><li>拓扑顺序与后顺序相反。</li></ul><p><strong>工作原理</strong>：只有在考虑了给定源点的所有后代之后，每个顶点 <em>v</em> 才会被添加到后排序列表的末尾 <em>v</em> 。因此，当任何一个 <em>v</em> 被添加到后排序列表中时，它的所有后代都已经在列表中。因此，颠倒此列表会给出拓扑排序。</p><p><img src="/2024/04/06/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-22-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd21-%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F%E4%B8%8EDAG%E5%92%8C%E8%BF%98%E5%8E%9F%E4%B8%8E%E5%88%86%E8%A7%A3/image-20240406221218217.png" alt="image-20240406221218217"></p><p><img src="/2024/04/06/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-22-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd21-%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F%E4%B8%8EDAG%E5%92%8C%E8%BF%98%E5%8E%9F%E4%B8%8E%E5%88%86%E8%A7%A3/image-20240406221227292.png" alt="image-20240406221227292"></p><p><img src="/2024/04/06/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-22-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd21-%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F%E4%B8%8EDAG%E5%92%8C%E8%BF%98%E5%8E%9F%E4%B8%8E%E5%88%86%E8%A7%A3/image-20240406221247104.png" alt="image-20240406221247104"></p><p>由于我们只是使用 DFS，因此它的运行时分别是 <em>O</em>(<em>V</em>+<em>E</em>) ，<em>V</em> <em>E</em> 是图中的节点数和边数。</p><h3 id="Pseudocode-伪代码"><a href="#Pseudocode-伪代码" class="headerlink" title="Pseudocode 伪代码"></a>Pseudocode 伪代码</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">topological(DAG):</span><br><span class="line">    initialize marked array</span><br><span class="line">    initialize postOrder list</span><br><span class="line">    for all vertices in DAG:</span><br><span class="line">        if vertex is not marked:</span><br><span class="line">            dfs(vertex, marked, postOrder)</span><br><span class="line">    return postOrder reversed</span><br><span class="line"></span><br><span class="line">dfs(vertex, marked, postOrder):</span><br><span class="line">    marked[vertex] = true</span><br><span class="line">    for neighbor of vertex:</span><br><span class="line">        dfs(neighbor, marked, postOrder)</span><br><span class="line">    postOrder.add(vertex)</span><br></pre></td></tr></table></figure><p><strong>（超出范围）额外的问题</strong>：我们如何使用 BFS 实现拓扑排序？提示 1：我们肯定需要存储一些额外的信息。提示 2：考虑跟踪每个顶点的度数。</p><p><strong>Solution: ：</strong></p><ol><li>计算所有顶点的度数。</li><li>选取任何 in-degree 为 0 的顶点 <em>v</em> 。</li><li>添加到 <em>v</em> 我们的拓扑排序列表。移除顶点 <em>v</em> 和从顶点出来的所有边。将顶点 <em>v</em> 的所有相邻项的度数递减 1。</li><li>重复步骤 2 和 3，直到删除所有顶点。</li></ol><p>我们如何才能有效地完成第 2 步？我们可以使用优先级等于度数的顶点的最小优先级队列。</p><h2 id="Review-回顾"><a href="#Review-回顾" class="headerlink" title="Review 回顾"></a>Review 回顾</h2><ul><li><p>拓扑排序是一种线性化<strong>有向无环图(DAG)</strong> 的方法。</p></li><li><p>我们可以使用 DFS（或 BFS）在 O*(<em>V</em>+*E) 时间内找到任何 DAG 的拓扑类型。</p></li><li></li><li><table><thead><tr><th>Problem</th><th>Problem Description</th><th>Solution</th><th>Efficiency</th></tr></thead><tbody><tr><td>topological sort</td><td>Find an ordering of vertices that respects edges of our DAG.</td><td><a href="https://docs.google.com/presentation/d/1Bvf4PooGooUCr-K9cA1kbhsNc0hXW5Jwn-QD0in-1pc/edit#slide=id.g99668982c_1_693">Demo</a>Topological.java</td><td>O(V+E) timeΘ(V) space</td></tr></tbody></table></li></ul><h1 id="DAG上的最短路径"><a href="#DAG上的最短路径" class="headerlink" title="DAG上的最短路径"></a>DAG上的最短路径</h1><p>回想一下上一节，DAG 是有向的无环图。如果我们想在 DAG 上找到最短的路径，我们可以使用 Dijkstra 的路径。但是，对于 DAG，有一个简单的最短路径算法，它也可以处理负边权重！</p><h2 id="Dijkstra-的负边权重失效"><a href="#Dijkstra-的负边权重失效" class="headerlink" title="Dijkstra 的负边权重失效"></a>Dijkstra 的负边权重失效</h2><p>回想一下，如果存在负边，Dijkstra 可能会失败，因为它依赖于这样的假设，即一旦我们访问一条边，我们就找到了通往该边的最短路径。但是，如果负边权重可以存在于我们可以看到的地方之前，那么这个假设就失败了。请看以下示例：</p><p><img src="/2024/04/06/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-22-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd21-%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F%E4%B8%8EDAG%E5%92%8C%E8%BF%98%E5%8E%9F%E4%B8%8E%E5%88%86%E8%A7%A3/21.2.1.png" alt="img"></p><p>从 A 开始，Dijkstra 将首先访问 C，然后是 B（甚至从不考虑边缘 B<em>→</em>C* ）</p><p>当然，负边缘权重并不意味着 Dijkstra 一定会失败。Dijkstra’s 通过以下示例成功：</p><p><img src="/2024/04/06/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-22-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd21-%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F%E4%B8%8EDAG%E5%92%8C%E8%BF%98%E5%8E%9F%E4%B8%8E%E5%88%86%E8%A7%A3/21.2.2.png" alt="img"></p><blockquote><p>从技术上讲，这取决于您对 Dijkstra 的实现。如果我们确保放宽步骤只考虑仍在队列中（尚未访问）的邻居，那么确实 B<em>→</em>C* 永远不会考虑。如果你没有这个检查，那么从技术上讲，当我们从队列中弹出最后一个节点（B）时，我们会考虑B的邻居并更新C，这为我们提供了这个特定示例的正确答案。然而，在这种情况下，人们可能会争辩说该图打破了 Dijkstra 不变量，因此 Dijkstra 已经“失败”。请注意，Dijkstra 不变性：一旦从队列中删除一个节点（访问），您就找到了该节点的最短路径。</p></blockquote><p><img src="/2024/04/06/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-22-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd21-%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F%E4%B8%8EDAG%E5%92%8C%E8%BF%98%E5%8E%9F%E4%B8%8E%E5%88%86%E8%A7%A3/image-20240406221358930.png" alt="image-20240406221358930"></p><p><img src="/2024/04/06/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-22-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd21-%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F%E4%B8%8EDAG%E5%92%8C%E8%BF%98%E5%8E%9F%E4%B8%8E%E5%88%86%E8%A7%A3/image-20240406221418601.png" alt="image-20240406221418601"></p><h2 id="DAG-的最短路径算法"><a href="#DAG-的最短路径算法" class="headerlink" title="DAG 的最短路径算法"></a>DAG 的最短路径算法</h2><div class="row">    <embed src="CS61BDAGSPTDemoWithNegativeEdge.pdf" width="100%" height="550" type="application/pdf"></div><p>按拓扑顺序访问顶点：</p><ul><li>每次访问时，释放所有外向的边缘</li></ul><p>回想一下用重量 <em>w</em> 释放边缘<em>u</em>→<em>v</em> 的定义：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if distTo[u] + w &lt; distTo[v]:</span><br><span class="line">    distTo[v] = distTo[u] + w</span><br><span class="line">    edgeTo[v] = u</span><br></pre></td></tr></table></figure><p>由于我们按拓扑顺序访问顶点，因此只有在考虑了有关顶点的所有可能信息后，才会访问顶点。这意味着，如果负边权重存在于通往 <em>v</em> 的路径上，那么当我们到达 <em>v</em> ！</p><p>找到拓扑排序需要 <em>O</em>(<em>V</em>+<em>E</em>) 时间，而每个顶点的松弛也需要总共时间 <em>O</em>(<em>V</em>+<em>E</em>) 。因此，整个运行时为 <em>O</em>(<em>V</em>+<em>E</em>) 。回想一下，Dijkstra 需要 <em>O</em>((<em>V</em>+<em>E</em>)log<em>V</em>) 时间，因为我们的最小堆操作。</p><p>如果我们想解决不是 DAG 并且可能具有负边的图上的最短路径问题，该怎么办？Dijkstra 的扩展称为 Bellman Ford 可以满足您的需求，尽管它超出了本课程的范围。</p><table><thead><tr><th>Problem</th><th>Problem Description</th><th>Solution</th><th>Efficiency</th></tr></thead><tbody><tr><td>topological sort</td><td>Find an ordering of vertices that respects edges of our DAG.</td><td><a href="https://docs.google.com/presentation/d/1Bvf4PooGooUCr-K9cA1kbhsNc0hXW5Jwn-QD0in-1pc/edit#slide=id.g99668982c_1_693">Demo</a>Code: Topological.java</td><td>O(V+E) timeΘ(V) space</td></tr><tr><td>DAG shortest paths</td><td>Find a shortest paths tree on a DAG.</td><td><a href="https://docs.google.com/presentation/d/1CfnLS3FSXV8X2sXPTravZGXeBUUkcFQv7Uf2iGWGUfs/edit#slide=id.g76e0dad85_2_380">Demo</a>Code: <a href="https://algs4.cs.princeton.edu/44sp/AcyclicSP.java">AcyclicSP.java</a></td><td>O(V+E) timeΘ(V) space</td></tr></tbody></table><h1 id="最长路径"><a href="#最长路径" class="headerlink" title="最长路径"></a>最长路径</h1><h2 id="通常"><a href="#通常" class="headerlink" title="通常"></a>通常</h2><p>考虑查找从起始顶点到其他每个顶点的最长路径的问题。路径必须简单（不包含循环）。</p><p>事实证明，最著名的算法是指数级的（不切实际的低效）。</p><p>取负所有的边缘权重并找到最短路径会让我们处于一个棘手的境地，因为这样我们可能会有负循环，我们可能无限期地绕过它们。</p><h3 id="DAG-上的最长路径"><a href="#DAG-上的最长路径" class="headerlink" title="DAG 上的最长路径"></a>DAG 上的最长路径</h3><p>但是，如果我们处理的是 DAG，该怎么办？在这种情况下，我们没有循环，因此我们可以按照上面的建议进行操作：</p><ol><li>形成图形的新副本，称为 G’，所有边权重均被否定（符号翻转）。</li><li>在 G’ 上运行 DAG 最短路径，得到结果 X</li><li>翻转 X.distTo 中所有值的符号。X.edgeTo 已经正确。</li></ol><p>或者，我们可以修改上一节中的 DAG 最短路径算法，以在松弛边时选择较大的 distTo。虽然这在实践中更有意义，但考虑第一种方法的好处是能够将现有算法用作”<a href="https://en.wikipedia.org/wiki/Black_box">black box</a>“来解决新问题。我们将在下一节中详细了解此类问题解决： <a href="https://joshhug.gitbooks.io/hug61b/content/chap214.md">Reductions</a>.</p><h1 id="还原和分解"><a href="#还原和分解" class="headerlink" title="还原和分解"></a>还原和分解</h1><p>回想一下在上一节中，为了解决一个问题（最长路径），我们创建了一个新的图形 G’ 并将其输入到不同的算法中，然后解释结果。</p><p><img src="/2024/04/06/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-22-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd21-%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F%E4%B8%8EDAG%E5%92%8C%E8%BF%98%E5%8E%9F%E4%B8%8E%E5%88%86%E8%A7%A3/21.4.2.png" alt="img"></p><p>这个过程称为<strong>reduction还原</strong>。由于 DAG-SPT 可用于求解 DAG-LPT，因此我们说“DAG-LPT 简化为 DAG-SPT”。</p><p>换句话说，DAG-LPT的问题可以简化为DAG-SPT的问题。</p><p>像 DAG-LPT 这样的问题可能会简化为多个其他问题。作为现实世界的类比，考虑爬山。有很多方法可以解决“爬山”的问题。</p><ul><li>“爬山”简化为“乘坐滑雪缆车”</li><li>“爬山”沦为“被大炮射出”</li><li>爬山”简化为“骑自行车上山”</li></ul><p>从形式上讲，<strong>如果任务 Q 的任何子程序都可以用来求解 P，我们说 P 简化为 Q。</strong></p><p>此定义可视化如下：</p><p><img src="/2024/04/06/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-22-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Rd21-%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F%E4%B8%8EDAG%E5%92%8C%E8%BF%98%E5%8E%9F%E4%B8%8E%E5%88%86%E8%A7%A3/21.4.1.png" alt="img"></p><p>请注意，这只是本页第一个图形的概括。P 简化为 Q，因为 Q 用于求解 P。其工作原理是将输入 <em>x</em> 预处理成 <em>y</em> ，运行算法 Q 到 <em>y</em> ，并将输出后处理成 P 的解。这就是我们将 DAG-LPT 简化为 DAG-SPT 的方法。</p><h2 id="Reflection-反射"><a href="#Reflection-反射" class="headerlink" title="Reflection 反射"></a>Reflection 反射</h2><p>可以说，我们在整个过程中一直在reduction。</p><ul><li>Abstract Lists reduce to arrays or linked lists<br>摘要列表简化为数组或链表</li><li>Percolation reduces to Disjoint Sets<br>渗流减少到不相交集</li><li>Maze generation reduces to [your solution here ;)]<br>迷宫生成减少到 [您的解决方案在这里;)]</li></ul><p>但是，这些并不完全是减少，因为您没有使用其他单一算法来解决您的问题。值得注意的是，在前面的约简示例中，我们使用独立集算法作为’<a href="https://en.wikipedia.org/wiki/Black_box">black box</a>‘来解决 3SAT。</p><p>对于我们在课程前面所完成的工作来说，也许一个更好的术语是<em>decomposition分解</em> - 将复杂的任务分解成更小的部分。使用抽象使解决问题更容易。这是计算机科学的核心。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> CS自学笔记 </category>
+          
+          <category> JAVA </category>
+          
+          <category> CS61B </category>
+          
+          <category> CS61B </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> JAVA </tag>
+            
+            <tag> CS61B </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>CS61B学习笔记-数据结构代码实现</title>
       <link href="/2024/04/06/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/"/>
       <url>/2024/04/06/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/</url>
@@ -13,11 +211,11 @@
       
       <categories>
           
+          <category> CS自学笔记 </category>
+          
           <category> JAVA </category>
           
           <category> CS61B </category>
-          
-          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -46,11 +244,11 @@
       
       <categories>
           
+          <category> CS自学笔记 </category>
+          
           <category> JAVA </category>
           
           <category> CS61B </category>
-          
-          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -79,11 +277,11 @@
       
       <categories>
           
+          <category> CS自学笔记 </category>
+          
           <category> JAVA </category>
           
           <category> CS61B </category>
-          
-          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -112,11 +310,11 @@
       
       <categories>
           
+          <category> CS自学笔记 </category>
+          
           <category> JAVA </category>
           
           <category> CS61B </category>
-          
-          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -145,11 +343,11 @@
       
       <categories>
           
+          <category> CS自学笔记 </category>
+          
           <category> JAVA </category>
           
           <category> CS61B </category>
-          
-          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -178,11 +376,11 @@
       
       <categories>
           
+          <category> CS自学笔记 </category>
+          
           <category> JAVA </category>
           
           <category> CS61B </category>
-          
-          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -211,11 +409,11 @@
       
       <categories>
           
+          <category> CS自学笔记 </category>
+          
           <category> JAVA </category>
           
           <category> CS61B </category>
-          
-          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -239,16 +437,16 @@
       <link href="/2024/03/19/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-18-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RD19-20-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E3%80%81%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/"/>
       <url>/2024/03/19/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-18-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RD19-20-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E3%80%81%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/</url>
       
-        <content type="html"><![CDATA[<h1 id="最短路径-SPT"><a href="#最短路径-SPT" class="headerlink" title="最短路径(SPT)"></a>最短路径(SPT)</h1><h2 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h2><p>到目前为止，我们有以下方法可以完成以下任务：</p><ul><li>找到从给定顶点 <em>s</em> 到图中每个可到达顶点的路径。</li><li>找到从给定顶点 <em>s</em> 到图中每个可到达顶点的<strong>最短</strong>路径。（…或者我们找到了吗？）</li></ul><p>在我们回答上述神秘问题之前，让我们进一步回顾一下我们可以使用的两种搜索类型：BFS 或 DFS。</p><p>两者都始终正确吗？是的。哪一个结果更好？BFS找到了<strong>最短</strong>路径，而DFS则没有。在运行时间上，哪一个更有效率？都不是。在空间上，哪一个更有效率？</p><ul><li>对于稀疏图，DFS更糟糕。想象一下一个有10000个节点且都很稀疏的图。我们最终会进行10000次递归调用，这对空间来说是不好的。</li><li>对于“树状”图，BFS更糟糕，因为我们的队列会经常被使用。</li></ul><h2 id="回答神秘问题"><a href="#回答神秘问题" class="headerlink" title="回答神秘问题"></a>回答神秘问题</h2><p>我们是否开发了一种算法来找到从给定顶点到每个其他可到达顶点的<strong>最短</strong>路径？嗯，有点像是。我们开发了一种在没有边标签的图上运行良好的算法。这是我们做的：我们开发了一种算法，它从给定的源顶点找到了我们最短（<strong>其中最短的意思是最少的边数</strong>）的路径。</p><p>但这并不总是最短的正确定义。有时，我们的图边可能有‘权重’，如果 A-B 边的权重为5，而 A-C 边的权重只有3，那么A-B 被认为比 A-C 更远。</p><p>考虑以下图像以了解问题所在。</p><p><img src="/2024/03/19/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-18-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RD19-20-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E3%80%81%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/image-20240319234957049.png" alt="image-20240319234957049"></p><blockquote><p>右边边最少但是他并不是最短的</p></blockquote><h2 id="Dijkstra算法"><a href="#Dijkstra算法" class="headerlink" title="Dijkstra算法"></a>Dijkstra算法</h2><div class="row">    <embed src="CS61B-Dijkstra&#39;s-Algorithm-Demo.pdf" width="100%" height="550" type="application/pdf"></div><p>执行以下两项操作。</p><ol><li>查找从标记 0 的顶点到标记的 5 顶点的路径。</li><li>从标记为 0 的顶点中查找最短路径树。（即，找到从图中 0 到每个顶点的最短路径。</li><li>尝试想出一种算法来做到这一点。</li></ol><h3 id="观察"><a href="#观察" class="headerlink" title="观察"></a>观察</h3><p>注意最短路径（对于带有权重的图）可能有许多许多边。我们关心的是选择路径上边的权重之和的最小化。</p><p>其次，请注意从源<strong>s</strong>到达的最短路径树可以通过以下方式创建：</p><ul><li>对于图中的每个顶点<strong>v</strong>（不是<strong>s</strong>），找到从<strong>s</strong>到<strong>v</strong>的最短路径。</li><li>“合并”所有上述找到的边。完成！</li></ul><p>第三，请注意“最短路径树”将<strong>始终是一棵树</strong>。为什么？嗯，让我们考虑一下我们的原始解决方案，其中我们维护了一个<code>edgeTo</code>数组。对于每个节点，在<code>edgeTo</code>数组中恰好有一个“父节点”。（这为什么意味着“最短路径树”将是一棵树？提示：一棵树有<strong>V-1</strong>条边，其中<strong>V</strong>是树中的节点数。）</p><p>Dijkstra算法接受输入顶点<strong>s</strong>，并输出从<strong>s</strong>出发的最短路径树。它是如何工作的呢？</p><ol><li>创建一个优先队列。</li><li>将<strong>s</strong>添加到优先队列，并将优先级设置为0。将所有其他顶点添加到优先队列，并将优先级设置为∞。</li><li>当优先队列不为空时：弹出优先队列中的一个顶点，并<strong>释放</strong>该顶点出发的所有边。</li></ol><h3 id="什么是释放？"><a href="#什么是释放？" class="headerlink" title="什么是释放？"></a>什么是<strong>释放</strong>？</h3><p>假设我们刚刚从优先队列中弹出的顶点是<strong>v</strong>。我们将查看<strong>v</strong>的所有边。假设我们正在查看边(<strong>v</strong>,<strong>w</strong>)（从<strong>v</strong>到<strong>w</strong>的边）。我们将尝试对这条边进行释放。</p><p>这意味着：查看您从源到<strong>w</strong>的当前最佳距离，称为<code>curBestDistToW</code>。现在，查看<code>curBestDistToV+weight(v, w)</code>（称为<code>potentialDistToWUsingV</code>）。</p><p><code>potentialDistToWUsingV</code>是否<strong>更好，即更小</strong>，比<code>curBestDistToW</code>？在这种情况下，将<code>curBestDistToW=potentialDistToWUsingV</code>，更新<code>edgeTo[w]</code>为<strong>v</strong>。</p><p><strong>重要说明：我们不会释放指向已访问顶点的边。</strong></p><p>计算潜在距离、检查是否更好以及可能更新的整个过程称为释放。</p><p>通过以下图像捕获了另一种定义。<img src="/2024/03/19/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-18-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RD19-20-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E3%80%81%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/pz1muo.jpg" alt="img"></p><h3 id="伪代码"><a href="#伪代码" class="headerlink" title="伪代码"></a>伪代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">def <span class="title function_">dijkstras</span><span class="params">(source)</span>:</span><br><span class="line">    PQ.add(source, <span class="number">0</span>)</span><br><span class="line">    For all other vertices, v, PQ.add(v, infinity)</span><br><span class="line">    <span class="keyword">while</span> PQ is not empty:</span><br><span class="line">        p = PQ.removeSmallest()</span><br><span class="line">        relax(all edges from p)</span><br><span class="line">def <span class="title function_">relax</span><span class="params">(edge p,q)</span>:</span><br><span class="line">   <span class="keyword">if</span> q is <span class="title function_">visited</span> <span class="params">(i.e., q is not in PQ)</span>:</span><br><span class="line">       <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">   <span class="keyword">if</span> distTo[p] + weight(edge) &lt; distTo[q]:</span><br><span class="line">       distTo[q] = distTo[p] + w</span><br><span class="line">       edgeTo[q] = p</span><br><span class="line">       PQ.changePriority(q, distTo[q])</span><br></pre></td></tr></table></figure><h3 id="保证"><a href="#保证" class="headerlink" title="保证"></a>保证</h3><p>只要边都是非负的，迪杰斯特拉算法就保证是最优的。</p><h3 id="证明和直觉"><a href="#证明和直觉" class="headerlink" title="证明和直觉"></a>证明和直觉</h3><p>假设所有边都是非负的。</p><ul><li><p>在开始时，<code>distTo[source]</code> &#x3D; 0。这是最优的。</p></li><li><p>在从源开始释放所有边之后，让顶点<strong>v1</strong>是权重最小的顶点（即距离源最近的顶点）。</p><p>声明：<code>distTo[v1]</code>是最优的，即在此时刻，<code>distTo[v1]</code>的值是从<strong>s</strong>到<strong>v1</strong>的最短距离。为什么？</p><ul><li>让我们尝试理解为什么<strong>必须</strong>如此。</li><li>假设不是这种情况。那意味着从<strong>s</strong>到<strong>v1</strong>存在一条比直接路径(<strong>s</strong>,<strong>v1</strong>)更短的路径。好的，那么让我们考虑这条假设中更短的路径…它将会是(<strong>s</strong>,<strong>va</strong>,<strong>vb</strong>,…,<strong>v1</strong>)这样的路径。但是…(<strong>s</strong>,<strong>va</strong>)已经比(<strong>s</strong>,<strong>v1</strong>)大了。（请注意，这是因为<strong>v1</strong>是上面最接近<strong>s</strong>的顶点。）那么如何可能存在一条实际上更短的路径呢？不可能！</li></ul></li><li><p>现在，下一个弹出的顶点将是<strong>v1</strong>。（为什么？请注意，它目前在优先队列中的优先级最低！）</p></li><li><p>所以现在，我们可以为<strong>v1</strong>及其进行的所有释放做出同样的论证。（这称为“归纳证明”。这有点像证明的递归。）就是这样；我们完成了。</p></li></ul><h3 id="负边？"><a href="#负边？" class="headerlink" title="负边？"></a>负边？</h3><p>当负边出现时，情况可能会变得非常糟糕。考虑以下图像。</p><p>假设您在标记为34的顶点。现在，您将尝试释放所有您的边。您只有一条从自己到标记为33的顶点的出边，权重为−67。啊，但是请注意：顶点33已经被访问（用白色标记）。所以…我们不会对其进行释放。（回顾一下relax方法的伪代码。）</p><p>现在我们回家，认为到33的最短距离是82（用粉色标记）。但实际上，我们应该走<strong>通过</strong>34的路径，因为这会给我们34−67&#x3D;34的距离。糟糕。</p><p><strong>对于负边，Dijkstra算法不能保证正确。它可能有效…但不能保证有效。</strong></p><p>试一试：假设您的图具有负边，但所有负边都只从您传入的源顶点<strong>s</strong>出发。迪杰斯特拉算法有效吗？为什么&#x2F;为什么不？</p><h3 id="一个值得注意的不变性"><a href="#一个值得注意的不变性" class="headerlink" title="一个值得注意的不变性"></a>一个值得注意的不变性</h3><p>请注意，一旦顶点从优先队列中弹出，它就永远不会被重新添加。它的距离永远不会被更新。因此，换句话说，一旦顶点从优先队列中弹出，我们<strong>知道</strong>到该顶点的真正最短距离。</p><p>这个事实的一个好处是“短路”。假设…我不关心最短路径树，而只想找到从某个源到某个其他目标的最短路径。假设您想要在世界各城市上构建一个图，并找到从伯克利到奥克兰的最短路径。运行<code>dijkstra(Berkeley)</code>将意味着您无法停止这个强大的算法…您必须让它运行…直到它找到到洛杉矶、休斯顿、纽约市和所有可能的地方的最短路径！</p><p>好吧。一旦算法中的<code>Oakland</code>从优先队列中弹出，我们就可以停止。我们只需返回此时的距离和路径，它将是正确的。因此，<strong>有时</strong><code>dijkstra</code>不仅接受源，还接受目标。这是为了短路的目的。</p><h2 id="A-算法"><a href="#A-算法" class="headerlink" title="A*算法"></a>A*算法</h2><div class="row">    <embed src="A_Algorithm-Demo.pdf" width="100%" height="550" type="application/pdf"></div><p>我们通过讨论一种可能的方法来结束Dijkstra算法部分，即使其在碰到给定目标后就停止。这样做足够好吗？</p><p>要回答上面的问题，我们需要坐下来思考Dijkstra算法的实际工作原理。以图形方式表示，Dijkstra从源节点开始（想象源节点是圆心）。然后，Dijkstra算法围绕这一点以递增的半径绘制同心圆，并“扫描”这些圆，捕捉点。</p><p>因此…Dijkstra首先访问的节点是距离源点最近的城市，然后是次最近的城市，依此类推。这听起来是个好主意。Dijkstra首先访问距离1个单位的所有城市，然后是距离2个单位的城市，依此类推，形成同心圆。</p><p>现在想象一下以下情况：在美国地图上，从中心某处开始，比如丹佛。现在我想让你用Dijkstra找到一条到纽约的路径。你将按照“最接近的同心圆”的顺序遍历节点。</p><p>你将首先绘制一个小圆，就在丹佛附近，访问该圆内的所有城市。最终，你的圆将变大，你将绘制一个通过拉斯维加斯的圆（到目前为止，该圆将访问所有其他位于圆内的城市）。然后，你的圆将足够大，能够覆盖洛杉矶和达拉斯…但你离纽约还差得远。所有这些努力，所有这些圆，但是…离目标还很远。短路帮助了，但只有在你快速到达目标节点时才有效。</p><p>如果我们能有一种方法利用你的先验知识：纽约在东边，这样你就可以“提示”你的算法更喜欢东边的节点，而不是西边的节点。</p><h3 id="引入：A"><a href="#引入：A" class="headerlink" title="引入：A*"></a>引入：A*</h3><p>不，不是太阳。这是一种叫做A*的算法。</p><p>观察以下事实：Dijkstra是从源到节点的距离的“真实”（即不是估计）度量。因此，假设你访问了伊利诺伊州的一个城市，你的源是丹佛，那么在那时，你已经得到了到丹佛的距离的真实度量。我们缺少的是：从节点到目标节点纽约的距离的一些粗略估计。这将完整地呈现出整个图景。因为如果你把这两个因素相加（从源到节点的度量+从节点到目标的估计），你得到（从源到目标的估计）。当然，你原始的从节点到目标的估计越好，你从源到目标的估计就越好，你的A*算法就越好。</p><p>因此，让我们稍微修改我们的Dijkstra算法。在Dijkstra中，我们使用<code>bestKnownDistToV</code>作为我们算法中的优先级。这次，我们将使用<code>bestKnownDistToV+estimateFromVToGoal</code>作为我们的启发式。</p><p>这里有一个<a href="https://docs.google.com/presentation/d/177bRUTdCa60fjExdr9eO04NHm0MRfPtCzvEup1iMccM/edit#slide=id.g771336078_0_180">演示</a>！</p><h3 id="鸡和蛋"><a href="#鸡和蛋" class="headerlink" title="鸡和蛋"></a>鸡和蛋</h3><p>我们有一个问题。我们怎么知道估计值是多少？我的意思是，估计值本身是一种<strong>距离</strong>，而我们正在使用A*来<strong>找到</strong>从某个节点到另一个节点的距离。</p><p>这似乎像是一个经典的鸡和蛋问题实例。“先有鸡还是先有蛋？”顺便说一下，有个Reddit用户对此有了一个<a href="https://www.reddit.com/r/dadjokes/comments/97768x/i_ordered_a_chicken_and_an_egg_from_amazon_ill/">想法</a>。</p><p>嗯，它被称为估计，因为它确实是这样。我们使用A*来得到从源到目标的<strong>真实</strong>最短路径，但估计值是我们近似的。有时候得到好的估计是困难的。</p><p>但是，让我们以丹佛 - 纽约的例子来举例说明。我们可以做的是查找这些城市的GPS坐标，并计算其中的直线距离。当然，这可能不正确，因为从丹佛到纽约可能没有直线可走，但这是一个相当好的估计！</p><h3 id="不好的启发式"><a href="#不好的启发式" class="headerlink" title="不好的启发式"></a>不好的启发式</h3><p>假设从丹佛到纽约的最短路径经过某个城市<em>C</em>。假设我的GPS坏了，因此我认为这个城市<em>C</em>离一切都是无限远的，所以我将从图中的每个其他节点到城市<em>C</em>的估计距离设置为∞。</p><p>会发生什么？嗯，A*基本上永远不想访问这个城市。 （记住我们在优先级队列中的优先级是什么；对于这个城市，优先级将始终为∞，即使</p><h1 id="最小生成树-MST"><a href="#最小生成树-MST" class="headerlink" title="最小生成树(MST)"></a>最小生成树(MST)</h1><p>最小生成树（MST）是图中可能的最轻的边集，使得所有顶点都连接在一起。由于它是一棵树，它必须是连通的且无环的。而且它被称为“生成”，因为所有顶点都包括在内。</p><p><img src="/2024/03/19/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-18-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RD19-20-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E3%80%81%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/image-20240320172133841.png" alt="image-20240320172133841"></p><blockquote><p>条件</p><ul><li>连接的</li><li>非闭环的</li><li>包括了所有顶点</li></ul></blockquote><p>在这一章中，我们将看两个算法，它们将帮助我们从一个图中找到一个最小生成树。</p><p>在我们开始之前，让我们介绍一下割属性，这是一个有助于找到最小生成树的工具。</p><h2 id="割属性"><a href="#割属性" class="headerlink" title="割属性"></a>割属性</h2><p>我们可以将一个割定义为对图的节点分配给两个非空集合（即我们将每个节点分配给第一个集合或第二个集合）。</p><p>我们可以将一个横跨的边定义为连接一个集合中的节点到另一个集合中的节点的边。</p><p>有了这两个定义，我们就可以理解割属性了：给定任何一个割，最小权重的横跨边都在最小生成树中。</p><p>割属性的证明如下：假设（为了推导矛盾）最小横跨边 e 不在最小生成树中。由于它不是最小生成树的一部分，如果我们添加该边，就会创建一个循环。因为有一个循环，这意味着另一个边 f 也必须是一个横跨边（对于一个循环，如果 e 从一个集合穿过到另一个集合，就必须有另一条边穿过回到第一个集合）。因此，我们可以移除 f 并保留 e，这将给我们一个更低权重的生成树。但这是一个矛盾，因为我们假设开始时有一个最小生成树，但现在我们有了一个权重更小的生成树，因此原始的最小生成树实际上并不是最小的。因此，割属性必须成立。</p><p>下面是一张图示，说明了上述证明的一些论点：</p><p><img src="/2024/03/19/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-18-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RD19-20-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E3%80%81%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/image-20240320172407081.png" alt="image-20240320172407081"></p><h2 id="Prim算法"><a href="#Prim算法" class="headerlink" title="Prim算法"></a>Prim算法</h2><div class="row">    <embed src="CS61B-Prim&#39;s-Demo.pdf" width="100%" height="550" type="application/pdf"></div><p>这是一种从图中找到最小生成树（MST）的算法。它的步骤如下：</p><ol><li>从任意起始节点开始。</li><li>反复添加具有一个节点在正在构建的MST内的最短边。</li><li>重复直到有$V-1$条边。</li></ol><p>Prim算法之所以有效，是因为在算法的所有阶段，如果我们将所有节点都作为我们正在构建的MST的一部分，而将所有其他节点视为第二个集合，那么这个算法总是添加横跨此割的最轻的边，根据割属性，这个边必然是最终MST的一部分。</p><p>从本质上讲，该算法通过与Dijkstra算法相同的机制运行，但是Dijkstra算法考虑的是候选节点距离源节点的距离，而Prim算法则查看每个候选节点距离正在构建的MST的距离。</p><p>因此，如果使用与Dijkstra算法相同的机制进行Prim算法，其运行时间将与Dijkstra算法相同，即 </p><p>$O((|V| + |E|) \log |V|)$。请记住，这是因为我们需要为每条边添加到优先级队列中的外围，并且我们需要为每个顶点从中出队一次。</p><p><img src="/2024/03/19/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-18-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RD19-20-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E3%80%81%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/2024-03-20-17-19-38.gif" alt="2024-03-20-17-19-38"></p><blockquote><p>区别: </p><ul><li>MSP: 从源顶点出发，所以在哪里开始很重要</li><li>SPT: 全局属性，与源顶点无关</li></ul></blockquote><h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><p><img src="/2024/03/19/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-18-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RD19-20-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E3%80%81%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/image-20240320172951394.png" alt="image-20240320172951394"></p><p><img src="/2024/03/19/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-18-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RD19-20-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E3%80%81%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/image-20240320173004710.png" alt="image-20240320173004710"></p><h2 id="Kruskal算法"><a href="#Kruskal算法" class="headerlink" title="Kruskal算法"></a>Kruskal算法</h2><div class="row">    <embed src="kruskals-realistic-implementation-demo.pdf" width="100%" height="550" type="application/pdf"></div><p>这是另一种从图中找到最小生成树（MST）的算法。Kruskal返回的最小生成树可能与Prim返回的不同，但是这两个算法都将始终返回一个MST；因为两者都是最小的（最优的），它们都将给出有效的最优解（它们在最小&#x2F;总权重相同的情况下一样优，而且这是尽可能低的）。</p><p>该算法步骤如下：</p><ol><li>将所有边从最轻到最重排序。</li><li>逐个考虑边（按排序顺序），如果添加该边不会形成循环，则将其添加到我们正在构建的MST中。</li><li>重复直到有 $V-1$ 条边。</li></ol><p>Kruskal算法有效的原因是我们添加的任何边都将连接一个节点，我们可以说这个节点是一个集合的一部分，以及第二个节点，我们可以说是第二个集合的一部分。我们添加的这条边不是循环的一部分，因为我们只有在不会形成循环的情况下才会添加一条边。此外，我们按照从最轻到最重的顺序查看候选边。因此，我们要添加的这条边必须是横跨此割的最轻的边（如果存在一条更轻的边，那么它将在此之前被添加，添加这条边将导致出现循环）。因此，该算法也是通过割属性工作的。</p><p>Kruskal算法运行时间为$O(|E| \log |E|)$，因为算法的瓶颈是开始时对所有边进行排序（例如，我们可以使用堆排序，其中我们将所有边插入堆中，并逐个删除最小边）。如果我们已经给出了预先排序的边并且不需要为此付出代价，那么运行时间是 $O(∣E∣log ^∗  ∣V∣)$。这是因为每当我们提出要添加的边时，我们都需要检查它是否会引入循环。我们知道如何做到这一点的一种方法是使用带路径压缩的加权快速并查集；这将有效地告诉我们两个节点是否已经连接在一起。这将花费$∣E∣$ 次调用 <code>isConnected</code>，每次调用的成本为$ O(log ^∗  ∣V∣)$，其中$log^*$是阿克曼函数。</p><p><img src="/2024/03/19/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-18-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RD19-20-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E3%80%81%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/2024-03-20-17-17-07.gif" alt="2024-03-20-17-17-07"></p><h3 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h3><p><img src="/2024/03/19/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-18-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RD19-20-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E3%80%81%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/image-20240320173029921.png" alt="image-20240320173029921"></p><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p><img src="/2024/03/19/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-18-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RD19-20-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E3%80%81%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/image-20240320173106199.png" alt="image-20240320173106199"></p>]]></content>
+        <content type="html"><![CDATA[<h1 id="最短路径-SPT"><a href="#最短路径-SPT" class="headerlink" title="最短路径(SPT)"></a>最短路径(SPT)</h1><h2 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h2><p>到目前为止，我们有以下方法可以完成以下任务：</p><ul><li>找到从给定顶点 <em>s</em> 到图中每个可到达顶点的路径。</li><li>找到从给定顶点 <em>s</em> 到图中每个可到达顶点的<strong>最短</strong>路径。（…或者我们找到了吗？）</li></ul><p>在我们回答上述神秘问题之前，让我们进一步回顾一下我们可以使用的两种搜索类型：BFS 或 DFS。</p><p>两者都始终正确吗？是的。哪一个结果更好？BFS找到了<strong>最短</strong>路径，而DFS则没有。在运行时间上，哪一个更有效率？都不是。在空间上，哪一个更有效率？</p><ul><li>对于稀疏图，DFS更糟糕。想象一下一个有10000个节点且都很稀疏的图。我们最终会进行10000次递归调用，这对空间来说是不好的。</li><li>对于“树状”图，BFS更糟糕，因为我们的队列会经常被使用。</li></ul><h2 id="回答神秘问题"><a href="#回答神秘问题" class="headerlink" title="回答神秘问题"></a>回答神秘问题</h2><p>我们是否开发了一种算法来找到从给定顶点到每个其他可到达顶点的<strong>最短</strong>路径？嗯，有点像是。我们开发了一种在没有边标签的图上运行良好的算法。这是我们做的：我们开发了一种算法，它从给定的源顶点找到了我们最短（<strong>其中最短的意思是最少的边数</strong>）的路径。</p><p>但这并不总是最短的正确定义。有时，我们的图边可能有‘权重’，如果 A-B 边的权重为5，而 A-C 边的权重只有3，那么A-B 被认为比 A-C 更远。</p><p>考虑以下图像以了解问题所在。</p><p><img src="/2024/03/19/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-18-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RD19-20-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E3%80%81%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/image-20240319234957049.png" alt="image-20240319234957049"></p><blockquote><p>右边边最少但是他并不是最短的</p></blockquote><h2 id="Dijkstra算法"><a href="#Dijkstra算法" class="headerlink" title="Dijkstra算法"></a>Dijkstra算法</h2><div class="row">    <embed src="CS61B-Dijkstra&#39;s-Algorithm-Demo.pdf" width="100%" height="550" type="application/pdf"></div><p>执行以下两项操作。</p><ol><li>查找从标记 0 的顶点到标记的 5 顶点的路径。</li><li>从标记为 0 的顶点中查找最短路径树。（即，找到从图中 0 到每个顶点的最短路径。</li><li>尝试想出一种算法来做到这一点。</li></ol><h3 id="观察"><a href="#观察" class="headerlink" title="观察"></a>观察</h3><p>注意最短路径（对于带有权重的图）可能有许多许多边。我们关心的是选择路径上边的权重之和的最小化。</p><p>其次，请注意从源<strong>s</strong>到达的最短路径树可以通过以下方式创建：</p><ul><li>对于图中的每个顶点<strong>v</strong>（不是<strong>s</strong>），找到从<strong>s</strong>到<strong>v</strong>的最短路径。</li><li>“合并”所有上述找到的边。完成！</li></ul><p>第三，请注意“最短路径树”将<strong>始终是一棵树</strong>。为什么？嗯，让我们考虑一下我们的原始解决方案，其中我们维护了一个<code>edgeTo</code>数组。对于每个节点，在<code>edgeTo</code>数组中恰好有一个“父节点”。（这为什么意味着“最短路径树”将是一棵树？提示：一棵树有<strong>V-1</strong>条边，其中<strong>V</strong>是树中的节点数。）</p><p>Dijkstra算法接受输入顶点<strong>s</strong>，并输出从<strong>s</strong>出发的最短路径树。它是如何工作的呢？</p><ol><li>创建一个优先队列。</li><li>将<strong>s</strong>添加到优先队列，并将优先级设置为0。将所有其他顶点添加到优先队列，并将优先级设置为∞。</li><li>当优先队列不为空时：弹出优先队列中的一个顶点，并<strong>释放</strong>该顶点出发的所有边。</li></ol><h3 id="什么是释放？"><a href="#什么是释放？" class="headerlink" title="什么是释放？"></a>什么是<strong>释放</strong>？</h3><p>假设我们刚刚从优先队列中弹出的顶点是<strong>v</strong>。我们将查看<strong>v</strong>的所有边。假设我们正在查看边(<strong>v</strong>,<strong>w</strong>)（从<strong>v</strong>到<strong>w</strong>的边）。我们将尝试对这条边进行释放。</p><p>这意味着：查看您从源到<strong>w</strong>的当前最佳距离，称为<code>curBestDistToW</code>。现在，查看<code>curBestDistToV+weight(v, w)</code>（称为<code>potentialDistToWUsingV</code>）。</p><p><code>potentialDistToWUsingV</code>是否<strong>更好，即更小</strong>，比<code>curBestDistToW</code>？在这种情况下，将<code>curBestDistToW=potentialDistToWUsingV</code>，更新<code>edgeTo[w]</code>为<strong>v</strong>。</p><p><strong>重要说明：我们不会释放指向已访问顶点的边。</strong></p><p>计算潜在距离、检查是否更好以及可能更新的整个过程称为释放。</p><p>通过以下图像捕获了另一种定义。<img src="/2024/03/19/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-18-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RD19-20-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E3%80%81%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/pz1muo.jpg" alt="img"></p><h3 id="伪代码"><a href="#伪代码" class="headerlink" title="伪代码"></a>伪代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">def <span class="title function_">dijkstras</span><span class="params">(source)</span>:</span><br><span class="line">    PQ.add(source, <span class="number">0</span>)</span><br><span class="line">    For all other vertices, v, PQ.add(v, infinity)</span><br><span class="line">    <span class="keyword">while</span> PQ is not empty:</span><br><span class="line">        p = PQ.removeSmallest()</span><br><span class="line">        relax(all edges from p)</span><br><span class="line">def <span class="title function_">relax</span><span class="params">(edge p,q)</span>:</span><br><span class="line">   <span class="keyword">if</span> q is <span class="title function_">visited</span> <span class="params">(i.e., q is not in PQ)</span>:</span><br><span class="line">       <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">   <span class="keyword">if</span> distTo[p] + weight(edge) &lt; distTo[q]:</span><br><span class="line">       distTo[q] = distTo[p] + w</span><br><span class="line">       edgeTo[q] = p</span><br><span class="line">       PQ.changePriority(q, distTo[q])</span><br></pre></td></tr></table></figure><h3 id="保证"><a href="#保证" class="headerlink" title="保证"></a>保证</h3><p>只要边都是非负的，迪杰斯特拉算法就保证是最优的。</p><h3 id="证明和直觉"><a href="#证明和直觉" class="headerlink" title="证明和直觉"></a>证明和直觉</h3><p>假设所有边都是非负的。</p><ul><li><p>在开始时，<code>distTo[source]</code> &#x3D; 0。这是最优的。</p></li><li><p>在从源开始释放所有边之后，让顶点<strong>v1</strong>是权重最小的顶点（即距离源最近的顶点）。</p><p>声明：<code>distTo[v1]</code>是最优的，即在此时刻，<code>distTo[v1]</code>的值是从<strong>s</strong>到<strong>v1</strong>的最短距离。为什么？</p><ul><li>让我们尝试理解为什么<strong>必须</strong>如此。</li><li>假设不是这种情况。那意味着从<strong>s</strong>到<strong>v1</strong>存在一条比直接路径(<strong>s</strong>,<strong>v1</strong>)更短的路径。好的，那么让我们考虑这条假设中更短的路径…它将会是(<strong>s</strong>,<strong>va</strong>,<strong>vb</strong>,…,<strong>v1</strong>)这样的路径。但是…(<strong>s</strong>,<strong>va</strong>)已经比(<strong>s</strong>,<strong>v1</strong>)大了。（请注意，这是因为<strong>v1</strong>是上面最接近<strong>s</strong>的顶点。）那么如何可能存在一条实际上更短的路径呢？不可能！</li></ul></li><li><p>现在，下一个弹出的顶点将是<strong>v1</strong>。（为什么？请注意，它目前在优先队列中的优先级最低！）</p></li><li><p>所以现在，我们可以为<strong>v1</strong>及其进行的所有释放做出同样的论证。（这称为“归纳证明”。这有点像证明的递归。）就是这样；我们完成了。</p></li></ul><h3 id="负边？"><a href="#负边？" class="headerlink" title="负边？"></a>负边？</h3><p>当负边出现时，情况可能会变得非常糟糕。考虑以下图像。</p><p>假设您在标记为34的顶点。现在，您将尝试释放所有您的边。您只有一条从自己到标记为33的顶点的出边，权重为−67。啊，但是请注意：顶点33已经被访问（用白色标记）。所以…我们不会对其进行释放。（回顾一下relax方法的伪代码。）</p><p>现在我们回家，认为到33的最短距离是82（用粉色标记）。但实际上，我们应该走<strong>通过</strong>34的路径，因为这会给我们34−67&#x3D;34的距离。糟糕。</p><p><strong>对于负边，Dijkstra算法不能保证正确。它可能有效…但不能保证有效。</strong></p><p>试一试：假设您的图具有负边，但所有负边都只从您传入的源顶点<strong>s</strong>出发。迪杰斯特拉算法有效吗？为什么&#x2F;为什么不？</p><h3 id="一个值得注意的不变性"><a href="#一个值得注意的不变性" class="headerlink" title="一个值得注意的不变性"></a>一个值得注意的不变性</h3><p>请注意，一旦顶点从优先队列中弹出，它就永远不会被重新添加。它的距离永远不会被更新。因此，换句话说，一旦顶点从优先队列中弹出，我们<strong>知道</strong>到该顶点的真正最短距离。</p><p>这个事实的一个好处是“短路”。假设…我不关心最短路径树，而只想找到从某个源到某个其他目标的最短路径。假设您想要在世界各城市上构建一个图，并找到从伯克利到奥克兰的最短路径。运行<code>dijkstra(Berkeley)</code>将意味着您无法停止这个强大的算法…您必须让它运行…直到它找到到洛杉矶、休斯顿、纽约市和所有可能的地方的最短路径！</p><p>好吧。一旦算法中的<code>Oakland</code>从优先队列中弹出，我们就可以停止。我们只需返回此时的距离和路径，它将是正确的。因此，<strong>有时</strong><code>dijkstra</code>不仅接受源，还接受目标。这是为了短路的目的。</p><h2 id="A-算法"><a href="#A-算法" class="headerlink" title="A*算法"></a>A*算法</h2><div class="row">    <embed src="A_Algorithm-Demo.pdf" width="100%" height="550" type="application/pdf"></div><p>我们通过讨论一种可能的方法来结束Dijkstra算法部分，即使其在碰到给定目标后就停止。这样做足够好吗？</p><p>要回答上面的问题，我们需要坐下来思考Dijkstra算法的实际工作原理。以图形方式表示，Dijkstra从源节点开始（想象源节点是圆心）。然后，Dijkstra算法围绕这一点以递增的半径绘制同心圆，并“扫描”这些圆，捕捉点。</p><p>因此…Dijkstra首先访问的节点是距离源点最近的城市，然后是次最近的城市，依此类推。这听起来是个好主意。Dijkstra首先访问距离1个单位的所有城市，然后是距离2个单位的城市，依此类推，形成同心圆。</p><p>现在想象一下以下情况：在美国地图上，从中心某处开始，比如丹佛。现在我想让你用Dijkstra找到一条到纽约的路径。你将按照“最接近的同心圆”的顺序遍历节点。</p><p>你将首先绘制一个小圆，就在丹佛附近，访问该圆内的所有城市。最终，你的圆将变大，你将绘制一个通过拉斯维加斯的圆（到目前为止，该圆将访问所有其他位于圆内的城市）。然后，你的圆将足够大，能够覆盖洛杉矶和达拉斯…但你离纽约还差得远。所有这些努力，所有这些圆，但是…离目标还很远。短路帮助了，但只有在你快速到达目标节点时才有效。</p><p>如果我们能有一种方法利用你的先验知识：纽约在东边，这样你就可以“提示”你的算法更喜欢东边的节点，而不是西边的节点。</p><h3 id="引入：A"><a href="#引入：A" class="headerlink" title="引入：A*"></a>引入：A*</h3><p>不，不是太阳。这是一种叫做A*的算法。</p><p>观察以下事实：Dijkstra是从源到节点的距离的“真实”（即不是估计）度量。因此，假设你访问了伊利诺伊州的一个城市，你的源是丹佛，那么在那时，你已经得到了到丹佛的距离的真实度量。我们缺少的是：从节点到目标节点纽约的距离的一些粗略估计。这将完整地呈现出整个图景。因为如果你把这两个因素相加（从源到节点的度量+从节点到目标的估计），你得到（从源到目标的估计）。当然，你原始的从节点到目标的估计越好，你从源到目标的估计就越好，你的A*算法就越好。</p><p>因此，让我们稍微修改我们的Dijkstra算法。在Dijkstra中，我们使用<code>bestKnownDistToV</code>作为我们算法中的优先级。这次，我们将使用<code>bestKnownDistToV+estimateFromVToGoal</code>作为我们的启发式。</p><p>这里有一个<a href="https://docs.google.com/presentation/d/177bRUTdCa60fjExdr9eO04NHm0MRfPtCzvEup1iMccM/edit#slide=id.g771336078_0_180">演示</a>！</p><h3 id="鸡和蛋"><a href="#鸡和蛋" class="headerlink" title="鸡和蛋"></a>鸡和蛋</h3><p>我们有一个问题。我们怎么知道估计值是多少？我的意思是，估计值本身是一种<strong>距离</strong>，而我们正在使用A*来<strong>找到</strong>从某个节点到另一个节点的距离。</p><p>这似乎像是一个经典的鸡和蛋问题实例。“先有鸡还是先有蛋？”顺便说一下，有个Reddit用户对此有了一个<a href="https://www.reddit.com/r/dadjokes/comments/97768x/i_ordered_a_chicken_and_an_egg_from_amazon_ill/">想法</a>。</p><p>嗯，它被称为估计，因为它确实是这样。我们使用A*来得到从源到目标的<strong>真实</strong>最短路径，但估计值是我们近似的。有时候得到好的估计是困难的。</p><p>但是，让我们以丹佛 - 纽约的例子来举例说明。我们可以做的是查找这些城市的GPS坐标，并计算其中的直线距离。当然，这可能不正确，因为从丹佛到纽约可能没有直线可走，但这是一个相当好的估计！</p><h3 id="不好的启发式"><a href="#不好的启发式" class="headerlink" title="不好的启发式"></a>不好的启发式</h3><p>假设从丹佛到纽约的最短路径经过某个城市<em>C</em>。假设我的GPS坏了，因此我认为这个城市<em>C</em>离一切都是无限远的，所以我将从图中的每个其他节点到城市<em>C</em>的估计距离设置为∞。</p><p>会发生什么？嗯，A*基本上永远不想访问这个城市。 （记住我们在优先级队列中的优先级是什么；对于这个城市，优先级将始终为∞，即使</p><h1 id="最小生成树-MST"><a href="#最小生成树-MST" class="headerlink" title="最小生成树(MST)"></a>最小生成树(MST)</h1><p>最小生成树（MST）是图中可能的最轻的边集，使得所有顶点都连接在一起。由于它是一棵树，它必须是连通的且无环的。而且它被称为“生成”，因为所有顶点都包括在内。</p><p><img src="/2024/03/19/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-18-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RD19-20-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E3%80%81%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/image-20240320172133841.png" alt="image-20240320172133841"></p><blockquote><ul><li><p>条件</p><ul><li><p>连接的</p></li><li><p>非闭环的</p></li><li><p>包括了所有顶点</p></li></ul></li></ul></blockquote><p>在这一章中，我们将看两个算法，它们将帮助我们从一个图中找到一个最小生成树。</p><p>在我们开始之前，让我们介绍一下割属性，这是一个有助于找到最小生成树的工具。</p><h2 id="割属性"><a href="#割属性" class="headerlink" title="割属性"></a>割属性</h2><p>我们可以将一个割定义为对图的节点分配给两个非空集合（即我们将每个节点分配给第一个集合或第二个集合）。</p><p>我们可以将一个横跨的边定义为连接一个集合中的节点到另一个集合中的节点的边。</p><p>有了这两个定义，我们就可以理解割属性了：给定任何一个割，最小权重的横跨边都在最小生成树中。</p><p>割属性的证明如下：假设（为了推导矛盾）最小横跨边 e 不在最小生成树中。由于它不是最小生成树的一部分，如果我们添加该边，就会创建一个循环。因为有一个循环，这意味着另一个边 f 也必须是一个横跨边（对于一个循环，如果 e 从一个集合穿过到另一个集合，就必须有另一条边穿过回到第一个集合）。因此，我们可以移除 f 并保留 e，这将给我们一个更低权重的生成树。但这是一个矛盾，因为我们假设开始时有一个最小生成树，但现在我们有了一个权重更小的生成树，因此原始的最小生成树实际上并不是最小的。因此，割属性必须成立。</p><p>下面是一张图示，说明了上述证明的一些论点：</p><p><img src="/2024/03/19/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-18-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RD19-20-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E3%80%81%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/image-20240320172407081.png" alt="image-20240320172407081"></p><h2 id="Prim算法"><a href="#Prim算法" class="headerlink" title="Prim算法"></a>Prim算法</h2><div class="row">    <embed src="CS61B-Prim&#39;s-Demo.pdf" width="100%" height="550" type="application/pdf"></div><p>这是一种从图中找到最小生成树（MST）的算法。它的步骤如下：</p><ol><li>从任意起始节点开始。</li><li>反复添加具有一个节点在正在构建的MST内的最短边。</li><li>重复直到有$V-1$条边。</li></ol><p>Prim算法之所以有效，是因为在算法的所有阶段，如果我们将所有节点都作为我们正在构建的MST的一部分，而将所有其他节点视为第二个集合，那么这个算法总是添加横跨此割的最轻的边，根据割属性，这个边必然是最终MST的一部分。</p><p>从本质上讲，该算法通过与Dijkstra算法相同的机制运行，但是Dijkstra算法考虑的是候选节点距离源节点的距离，而Prim算法则查看每个候选节点距离正在构建的MST的距离。</p><p>因此，如果使用与Dijkstra算法相同的机制进行Prim算法，其运行时间将与Dijkstra算法相同，即 </p><p>$O((|V| + |E|) \log |V|)$。请记住，这是因为我们需要为每条边添加到优先级队列中的外围，并且我们需要为每个顶点从中出队一次。</p><p><img src="/2024/03/19/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-18-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RD19-20-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E3%80%81%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/2024-03-20-17-19-38.gif" alt="2024-03-20-17-19-38"></p><blockquote><ul><li><p>区别: </p><ul><li><p>SPT: 从源顶点出发，所以在哪里开始很重要</p></li><li><p>MSP: 全局属性，与源顶点无关</p></li></ul></li></ul></blockquote><h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><p><img src="/2024/03/19/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-18-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RD19-20-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E3%80%81%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/image-20240320172951394.png" alt="image-20240320172951394"></p><p><img src="/2024/03/19/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-18-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RD19-20-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E3%80%81%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/image-20240320173004710.png" alt="image-20240320173004710"></p><h2 id="Kruskal算法"><a href="#Kruskal算法" class="headerlink" title="Kruskal算法"></a>Kruskal算法</h2><div class="row">    <embed src="kruskals-realistic-implementation-demo.pdf" width="100%" height="550" type="application/pdf"></div><p>这是另一种从图中找到最小生成树（MST）的算法。Kruskal返回的最小生成树可能与Prim返回的不同，但是这两个算法都将始终返回一个MST；因为两者都是最小的（最优的），它们都将给出有效的最优解（它们在最小&#x2F;总权重相同的情况下一样优，而且这是尽可能低的）。</p><p>该算法步骤如下：</p><ol><li>将所有边从最轻到最重排序。</li><li>逐个考虑边（按排序顺序），如果添加该边不会形成循环，则将其添加到我们正在构建的MST中。</li><li>重复直到有 $V-1$ 条边。</li></ol><p>Kruskal算法有效的原因是我们添加的任何边都将连接一个节点，我们可以说这个节点是一个集合的一部分，以及第二个节点，我们可以说是第二个集合的一部分。我们添加的这条边不是循环的一部分，因为我们只有在不会形成循环的情况下才会添加一条边。此外，我们按照从最轻到最重的顺序查看候选边。因此，我们要添加的这条边必须是横跨此割的最轻的边（如果存在一条更轻的边，那么它将在此之前被添加，添加这条边将导致出现循环）。因此，该算法也是通过割属性工作的。</p><p>Kruskal算法运行时间为$O(|E| \log |E|)$，因为算法的瓶颈是开始时对所有边进行排序（例如，我们可以使用堆排序，其中我们将所有边插入堆中，并逐个删除最小边）。如果我们已经给出了预先排序的边并且不需要为此付出代价，那么运行时间是 $O(∣E∣log ^∗  ∣V∣)$。这是因为每当我们提出要添加的边时，我们都需要检查它是否会引入循环。我们知道如何做到这一点的一种方法是使用带路径压缩的加权快速并查集；这将有效地告诉我们两个节点是否已经连接在一起。这将花费$∣E∣$ 次调用 <code>isConnected</code>，每次调用的成本为$ O(log ^∗  ∣V∣)$，其中$log^*$是阿克曼函数。</p><p><img src="/2024/03/19/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-18-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RD19-20-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E3%80%81%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/2024-03-20-17-17-07.gif" alt="2024-03-20-17-17-07"></p><h3 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h3><p><img src="/2024/03/19/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-18-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RD19-20-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E3%80%81%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/image-20240320173029921.png" alt="image-20240320173029921"></p><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p><img src="/2024/03/19/JAVA-CS61B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-18-CS61B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RD19-20-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E3%80%81%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/image-20240320173106199.png" alt="image-20240320173106199"></p>]]></content>
       
       
       <categories>
           
+          <category> CS自学笔记 </category>
+          
           <category> JAVA </category>
           
           <category> CS61B </category>
-          
-          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -327,11 +525,11 @@
       
       <categories>
           
+          <category> CS自学笔记 </category>
+          
           <category> JAVA </category>
           
           <category> CS61B </category>
-          
-          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -360,11 +558,11 @@
       
       <categories>
           
+          <category> CS自学笔记 </category>
+          
           <category> JAVA </category>
           
           <category> CS61B </category>
-          
-          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -393,11 +591,11 @@
       
       <categories>
           
+          <category> CS自学笔记 </category>
+          
           <category> JAVA </category>
           
           <category> CS61B </category>
-          
-          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -426,11 +624,11 @@
       
       <categories>
           
+          <category> CS自学笔记 </category>
+          
           <category> JAVA </category>
           
           <category> CS61B </category>
-          
-          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -484,11 +682,11 @@
       
       <categories>
           
+          <category> CS自学笔记 </category>
+          
           <category> JAVA </category>
           
           <category> CS61B </category>
-          
-          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -517,11 +715,11 @@
       
       <categories>
           
+          <category> CS自学笔记 </category>
+          
           <category> JAVA </category>
           
           <category> CS61B </category>
-          
-          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -550,11 +748,11 @@
       
       <categories>
           
+          <category> CS自学笔记 </category>
+          
           <category> JAVA </category>
           
           <category> CS61B </category>
-          
-          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -583,11 +781,11 @@
       
       <categories>
           
+          <category> CS自学笔记 </category>
+          
           <category> JAVA </category>
           
           <category> CS61B </category>
-          
-          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -616,11 +814,11 @@
       
       <categories>
           
+          <category> CS自学笔记 </category>
+          
           <category> JAVA </category>
           
           <category> CS61B </category>
-          
-          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -649,11 +847,11 @@
       
       <categories>
           
+          <category> CS自学笔记 </category>
+          
           <category> JAVA </category>
           
           <category> CS61B </category>
-          
-          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -682,11 +880,11 @@
       
       <categories>
           
+          <category> CS自学笔记 </category>
+          
           <category> JAVA </category>
           
           <category> CS61B </category>
-          
-          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -715,11 +913,11 @@
       
       <categories>
           
+          <category> CS自学笔记 </category>
+          
           <category> JAVA </category>
           
           <category> CS61B </category>
-          
-          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -748,11 +946,11 @@
       
       <categories>
           
+          <category> CS自学笔记 </category>
+          
           <category> JAVA </category>
           
           <category> CS61B </category>
-          
-          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -781,11 +979,11 @@
       
       <categories>
           
+          <category> CS自学笔记 </category>
+          
           <category> JAVA </category>
           
           <category> CS61B </category>
-          
-          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -814,11 +1012,11 @@
       
       <categories>
           
+          <category> CS自学笔记 </category>
+          
           <category> JAVA </category>
           
           <category> CS61B </category>
-          
-          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -860,11 +1058,11 @@
       
       <categories>
           
+          <category> CS自学笔记 </category>
+          
           <category> JAVA </category>
           
           <category> CS61B </category>
-          
-          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -893,11 +1091,11 @@
       
       <categories>
           
+          <category> CS自学笔记 </category>
+          
           <category> JAVA </category>
           
           <category> CS61B </category>
-          
-          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -926,11 +1124,11 @@
       
       <categories>
           
+          <category> CS自学笔记 </category>
+          
           <category> JAVA </category>
           
           <category> CS61B </category>
-          
-          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -959,11 +1157,11 @@
       
       <categories>
           
+          <category> CS自学笔记 </category>
+          
           <category> JAVA </category>
           
           <category> CS61B </category>
-          
-          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -992,11 +1190,11 @@
       
       <categories>
           
+          <category> CS自学笔记 </category>
+          
           <category> JAVA </category>
           
           <category> CS61B </category>
-          
-          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -1025,11 +1223,11 @@
       
       <categories>
           
+          <category> CS自学笔记 </category>
+          
           <category> JAVA </category>
           
           <category> CS61B </category>
-          
-          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -1058,11 +1256,11 @@
       
       <categories>
           
+          <category> CS自学笔记 </category>
+          
           <category> JAVA </category>
           
           <category> CS61B </category>
-          
-          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -1091,11 +1289,11 @@
       
       <categories>
           
+          <category> CS自学笔记 </category>
+          
           <category> JAVA </category>
           
           <category> CS61B </category>
-          
-          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -1297,11 +1495,11 @@
     
     
     <entry>
-      <title>categories</title>
-      <link href="/categories/index.html"/>
-      <url>/categories/index.html</url>
+      <title>about</title>
+      <link href="/about/index.html"/>
+      <url>/about/index.html</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<p><a href="https://www.bilibili.com/video/BV1G84y1B7NH/?spm_id_from=333.1007.top_right_bar_window_default_collection.content.click&vd_source=700c4afe7cf00e2775dbed3e27760082">(博客教程视频)</a></p><p><a href="https://www.fomal.cc/posts/e593433d.html">(博客教程网站)</a></p>]]></content>
       
     </entry>
     
@@ -1319,44 +1517,11 @@
     
     
     <entry>
-      <title>about</title>
-      <link href="/about/index.html"/>
-      <url>/about/index.html</url>
-      
-        <content type="html"><![CDATA[<p><a href="https://www.bilibili.com/video/BV1G84y1B7NH/?spm_id_from=333.1007.top_right_bar_window_default_collection.content.click&vd_source=700c4afe7cf00e2775dbed3e27760082">(博客教程视频)</a></p><p><a href="https://www.fomal.cc/posts/e593433d.html">(博客教程网站)</a></p>]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title></title>
       <link href="/css/custom.css"/>
       <url>/css/custom.css</url>
       
         <content type="html"><![CDATA[/* 页脚与头图透明 */#footer {    background: transparent !important;  }  #page-header {    background: transparent !important;  }    /* 白天模式遮罩透明 */  #footer::before {    background: transparent !important;  }  #page-header::before {    background: transparent !important;  }    /* 夜间模式遮罩透明 */  [data-theme="dark"] #footer::before {    background: transparent !important;  }  [data-theme="dark"] #page-header::before {    background: transparent !important;  }  /* 小冰分类分类磁铁黑夜模式适配 *//* 一般状态 */[data-theme="dark"] .magnet_link_context {  background: #1e1e1e;  color: antiquewhite;}/* 鼠标悬浮状态 */[data-theme="dark"] .magnet_link_context:hover {  background: #3ecdf1;  color: #f2f2f2;}/* 翻页按钮居中 */#pagination {  width: 100%;  margin: auto;}]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>link</title>
-      <link href="/link/index.html"/>
-      <url>/link/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>音乐</title>
-      <link href="/music/index.html"/>
-      <url>/music/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
       
     </entry>
     
@@ -1374,9 +1539,42 @@
     
     
     <entry>
+      <title>categories</title>
+      <link href="/categories/index.html"/>
+      <url>/categories/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>link</title>
+      <link href="/link/index.html"/>
+      <url>/link/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>tags</title>
       <link href="/tags/index.html"/>
       <url>/tags/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>音乐</title>
+      <link href="/music/index.html"/>
+      <url>/music/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
