@@ -8,7 +8,7 @@
       <link href="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/"/>
       <url>/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/</url>
       
-        <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>RISC-V是基于RISC精简指令集架构开发的一个开放式指令集架构，它是由加州大学伯克利分校的计算机科学教授Krste Asanovic（克里斯蒂安·阿萨诺维奇）领导的团队开发，RISC-V是开放的，任何人都可以使用它来开发处理器芯片和其他硬件，而无需支付任何许可或使用费用。RISC-V的设计简单，易于扩展和自定义，可以在各种应用场景和市场中使用。</p><h1 id="什么是指令集架构？"><a href="#什么是指令集架构？" class="headerlink" title="什么是指令集架构？"></a>什么是指令集架构？</h1><p>指令集架构（Instruction Set Architecture，简称ISA）是计算机系统中的一个重要概念，指的是计算机中处理器的指令集和处理器的内部结构，即处理器是如何执行指令的。</p><p>ISA规定了一套<strong>指令集</strong>，包括指令的<strong>种类</strong>、指令的<strong>格式</strong>、指令的操作数、指令的<strong>执行方式</strong>等。ISA也规定了处理器的内部结构，包括处理器的<strong>寄存器</strong>、指令流水线、内存管理单元等。</p><p>不同的ISA有不同的指令集和内部结构设计，因此处理器的计算能力和性能也会有所不同。常见的ISA包括<code>ARM、x86、MIPS、PowerPC、RISC-V</code>等。ISA的选择对计算机系统的性能、功耗、软件兼容性、应用场景等都有很大的影响。</p><p>简单点比喻可以把指令集架构理解为<strong>图纸</strong>，处理器就是<strong>房子</strong>。</p><p>RISC和RISC-V的区别<br>RISC全称<code>Reduced Instruction Set Computer</code>，即精简指令计算机，它是指令集架构，它的理念在于旨在通过减少指令集的数量和复杂度，提高计算机的性能和效率。</p><p>RISC最初由加州大学伯克利分校<code>David Patterson</code>和<code>John Hennessy</code>在1980年代提出，并于1984年合著了一本名为“Computer Architecture: A Quantitative Approach”（中文译名为《计算机体系结构：量化研究方法》）的经典教材，该书详细介绍了RISC架构和量化分析方法，成为当时计算机体系结构领域的重要参考书。</p><p>RISC-V是由Krste Asanovic教授领导其团队基于RISC精简指令集架构开发的一款<strong>开源指令集架构</strong>，RISC-V具有更好的灵活性以及扩展性，同时它比RISC更加简单便于它人二次开发和扩展，并且它不需要任何授权费，可以应用于商业场景因为它遵循BSD开源协议，可以把RISC-V理解为RISC的扩展版。</p><h1 id="伟大的想法"><a href="#伟大的想法" class="headerlink" title="伟大的想法"></a>伟大的想法</h1><h2 id="抽象"><a href="#抽象" class="headerlink" title="抽象"></a>抽象</h2><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240423164306259.png" alt="image-20240423164306259"></p><h2 id="寄存器在处理器内部"><a href="#寄存器在处理器内部" class="headerlink" title="寄存器在处理器内部"></a>寄存器在处理器内部</h2><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240423165043829.png" alt="image-20240423165043829"></p><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240423165208494.png" alt="image-20240423165208494"></p><h2 id="Principle-of-Locality-Memory-Hierarchy"><a href="#Principle-of-Locality-Memory-Hierarchy" class="headerlink" title="Principle of Locality &#x2F; Memory Hierarchy"></a>Principle of Locality &#x2F; Memory Hierarchy</h2><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240423165235223.png" alt="image-20240423165235223"></p><h1 id="寄存器和存储器的速度对比"><a href="#寄存器和存储器的速度对比" class="headerlink" title="寄存器和存储器的速度对比"></a>寄存器和存储器的速度对比</h1><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240423165330636.png" alt="image-20240423165330636"></p><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240423165339134.png" alt="image-20240423165339134"></p><h1 id="指令集"><a href="#指令集" class="headerlink" title="指令集"></a>指令集</h1><h2 id="Addition-subtraction"><a href="#Addition-subtraction" class="headerlink" title="Addition&#x2F;subtraction"></a>Addition&#x2F;subtraction</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">add rd, rs1, rs2</span><br><span class="line">R[rd] = R[rs1] + R[rs2]</span><br><span class="line">sub rd, rs1, rs2</span><br><span class="line">R[rd] = R[rs1] - R[rs2]</span><br></pre></td></tr></table></figure><h2 id="Add-immediate"><a href="#Add-immediate" class="headerlink" title="Add immediate"></a>Add immediate</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">addi rd, rs1, imm</span><br><span class="line">R[rd] = R[rs1] + imm</span><br></pre></td></tr></table></figure><h2 id="Load-from-Memory-to-Register"><a href="#Load-from-Memory-to-Register" class="headerlink" title="Load from Memory to Register"></a><u>Load from</u> Memory to Register</h2><p><strong>Load Word(lw)</strong></p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> A[<span class="number">100</span>];</span><br><span class="line">g = h + A[<span class="number">3</span>];</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">lw x10, 12(x15) # Reg x10 gets A[3]</span><br><span class="line">add x11,x12,x10 # g = h + A[3</span><br></pre></td></tr></table></figure><p><strong>Note:</strong> </p><ul><li><p>x15 – base register (<strong>pointer</strong> to A[0]) </p></li><li><p>12 – <strong>offset in bytes</strong> </p></li><li><p><strong>Offset</strong> must be a constant known at assembly time</p></li></ul><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240423170306183.png" alt="image-20240423170306183"></p><h2 id="Store-from-Register-to-Memory"><a href="#Store-from-Register-to-Memory" class="headerlink" title="Store from Register to Memory"></a><u>Store</u> from Register <u>to</u> Memory</h2><p><strong>Store Word(sw)</strong></p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> A[<span class="number">100</span>];</span><br><span class="line">A[<span class="number">10</span>] = h + A[<span class="number">3</span>];</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">lw x10,12(x15) # Temp reg x10 gets A[3]</span><br><span class="line">add x10,x12,x10 # Temp reg x10 gets h + A[3]</span><br><span class="line">sw x10,40(x15) # A[10] = h + A[3]</span><br></pre></td></tr></table></figure><p><strong>Note:</strong> </p><ul><li><p>x15 – base register (<strong>pointer</strong>) </p></li><li><p>12,40 – offsets in <strong>bytes</strong></p></li><li><p><code>x15+12</code> and<code> x15+40</code> must be <strong>multiples</strong> of 4</p></li></ul><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240423170519415.png" alt="image-20240423170519415"></p><h2 id="Loading-and-Storing-Bytes"><a href="#Loading-and-Storing-Bytes" class="headerlink" title="Loading and Storing Bytes"></a>Loading and Storing Bytes</h2><ul><li><p>load byte: <code>lb</code></p></li><li><p>store byte: <code>sb</code></p></li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lb x10, 3(x11)</span><br></pre></td></tr></table></figure><blockquote><p>contents of memory location with address &#x3D; sum of “3”  + contents of register x11 is copied to the low byte  position of register x10</p></blockquote><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240423170835108.png" alt="image-20240423170835108"></p><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240423170848646.png" alt="image-20240423170848646"></p><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240423171000144.png" alt="image-20240423171000144"></p><h2 id="Branches类型"><a href="#Branches类型" class="headerlink" title="Branches类型"></a>Branches类型</h2><p><u>Branch – change of control flow</u></p><h3 id="Conditional-Branch-–-change-control-flow-depending-on-outcome-of-comparison"><a href="#Conditional-Branch-–-change-control-flow-depending-on-outcome-of-comparison" class="headerlink" title="Conditional Branch – change control flow  depending on outcome of comparison"></a>Conditional Branch – change control flow  depending on outcome of comparison</h3><ul><li><p><strong>beq: branch if equal</strong></p></li><li><p><strong>bne: branch if not equal</strong></p></li><li><p><strong>blt: branch if less than</strong></p></li><li><p><strong>bge:  branch if greater  than or equal</strong></p></li><li><p><strong>bltu: unsigned versions of blt</strong></p></li><li><p><strong>bgeu: unsigned versions of bge</strong></p></li></ul><h3 id="Unconditional-Branch-–-always-branch"><a href="#Unconditional-Branch-–-always-branch" class="headerlink" title="Unconditional Branch – always branch"></a>Unconditional Branch – always branch</h3><ul><li><strong>j: jump</strong><ul><li>j label</li></ul></li></ul><p>No <code>bgt</code> or <code>ble</code>!</p><h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">beq reg1, reg2, L1</span><br><span class="line"></span><br><span class="line"># go to statement labeled L1 </span><br><span class="line"># if (value in reg1) == (value in reg2)</span><br><span class="line"># ….otherwise, go to next statement</span><br></pre></td></tr></table></figure><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240423171733270.png" alt="image-20240423171733270"></p><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240423171742425.png" alt="image-20240423171742425"></p><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240423171750240.png" alt="image-20240423171750240"></p><h2 id="Loops"><a href="#Loops" class="headerlink" title="Loops"></a>Loops</h2><ul><li>C<ul><li>while</li><li>do…while</li><li>for</li></ul></li><li>每一个都可以被重写成另外两个之一，因此相同的分支方法也可以应用到这些循环中。</li><li>关键概念：虽然在 RISC-V 中有多种编写循环的方式，但决策的关键在于条件分支。</li></ul><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240423230114369.png" alt="image-20240423230114369"></p><h2 id="Logical-Instructions"><a href="#Logical-Instructions" class="headerlink" title="Logical Instructions"></a>Logical Instructions</h2><ul><li><p>有助于在一个字内操作位字段</p><ul><li>例如，一个字内的字符（8位）</li></ul></li><li><p>将位打包&#x2F;解包成字的操作</p></li></ul><blockquote><p>对于一个字（8个位，例如二进制数字或字符），在其中操作位字段（例如单独的字符）是很有用的。这就像在一个字母里面寻找、添加或者移除特定的位一样。这些操作可能包括将多个位打包（合并）成一个字，或者将一个字解包（拆分）成多个位。这些操作通常被称为逻辑操作。</p></blockquote><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240423230525052.png" alt="image-20240423230525052"></p><h3 id="and-andi"><a href="#and-andi" class="headerlink" title="and&#x2F;andi"></a>and&#x2F;andi</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">and x5, x6, x7 # x5 = x6 &amp; x7</span><br><span class="line">andi x5, x6, 3 # x5 = x6 &amp; 3</span><br></pre></td></tr></table></figure><ul><li><code>andi</code> with <code>0000 00FF</code><del>hex</del> isolates the <strong>least</strong> significant  byte</li><li><code>andi </code>with <code>FF00 0000</code><del>hex</del> isolates the <strong>most</strong> significant  byte</li></ul><h3 id="No-Not-in-RISC-V"><a href="#No-Not-in-RISC-V" class="headerlink" title="No Not in RISC-V"></a>No Not in RISC-V</h3><p>没有逻辑非运算在RISC-V中</p><ul><li>使用xor 1111 1111<del>two</del></li></ul><h3 id="Logical-Shifting"><a href="#Logical-Shifting" class="headerlink" title="Logical Shifting"></a>Logical Shifting</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240423231142563.png" alt="image-20240423231142563"></p><h3 id="Arithmetic-Shifting"><a href="#Arithmetic-Shifting" class="headerlink" title="Arithmetic Shifting"></a>Arithmetic Shifting</h3><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240423231149137.png" alt="image-20240423231149137"></p>]]></content>
+        <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>RISC-V是基于RISC精简指令集架构开发的一个开放式指令集架构，它是由加州大学伯克利分校的计算机科学教授Krste Asanovic（克里斯蒂安·阿萨诺维奇）领导的团队开发，RISC-V是开放的，任何人都可以使用它来开发处理器芯片和其他硬件，而无需支付任何许可或使用费用。RISC-V的设计简单，易于扩展和自定义，可以在各种应用场景和市场中使用。</p><h1 id="什么是指令集架构？"><a href="#什么是指令集架构？" class="headerlink" title="什么是指令集架构？"></a>什么是指令集架构？</h1><p>指令集架构（Instruction Set Architecture，简称ISA）是计算机系统中的一个重要概念，指的是计算机中处理器的指令集和处理器的内部结构，即处理器是如何执行指令的。</p><p>ISA规定了一套<strong>指令集</strong>，包括指令的<strong>种类</strong>、指令的<strong>格式</strong>、指令的操作数、指令的<strong>执行方式</strong>等。ISA也规定了处理器的内部结构，包括处理器的<strong>寄存器</strong>、指令流水线、内存管理单元等。</p><p>不同的ISA有不同的指令集和内部结构设计，因此处理器的计算能力和性能也会有所不同。常见的ISA包括<code>ARM、x86、MIPS、PowerPC、RISC-V</code>等。ISA的选择对计算机系统的性能、功耗、软件兼容性、应用场景等都有很大的影响。</p><p>简单点比喻可以把指令集架构理解为<strong>图纸</strong>，处理器就是<strong>房子</strong>。</p><p>RISC和RISC-V的区别<br>RISC全称<code>Reduced Instruction Set Computer</code>，即精简指令计算机，它是指令集架构，它的理念在于旨在通过减少指令集的数量和复杂度，提高计算机的性能和效率。</p><p>RISC最初由加州大学伯克利分校<code>David Patterson</code>和<code>John Hennessy</code>在1980年代提出，并于1984年合著了一本名为“Computer Architecture: A Quantitative Approach”（中文译名为《计算机体系结构：量化研究方法》）的经典教材，该书详细介绍了RISC架构和量化分析方法，成为当时计算机体系结构领域的重要参考书。</p><p>RISC-V是由Krste Asanovic教授领导其团队基于RISC精简指令集架构开发的一款<strong>开源指令集架构</strong>，RISC-V具有更好的灵活性以及扩展性，同时它比RISC更加简单便于它人二次开发和扩展，并且它不需要任何授权费，可以应用于商业场景因为它遵循BSD开源协议，可以把RISC-V理解为RISC的扩展版。</p><h1 id="伟大的想法"><a href="#伟大的想法" class="headerlink" title="伟大的想法"></a>伟大的想法</h1><h2 id="抽象"><a href="#抽象" class="headerlink" title="抽象"></a>抽象</h2><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240423164306259.png" alt="image-20240423164306259"></p><h2 id="寄存器在处理器内部"><a href="#寄存器在处理器内部" class="headerlink" title="寄存器在处理器内部"></a>寄存器在处理器内部</h2><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240423165043829.png" alt="image-20240423165043829"></p><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240423165208494.png" alt="image-20240423165208494"></p><p>##<img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240504174707526.png" alt="image-20240504174707526"></p><p>Principle of Locality &#x2F; Memory Hierarchy</p><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240423165235223.png" alt="image-20240423165235223"></p><h1 id="寄存器和存储器的速度对比"><a href="#寄存器和存储器的速度对比" class="headerlink" title="寄存器和存储器的速度对比"></a>寄存器和存储器的速度对比</h1><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240423165330636.png" alt="image-20240423165330636"></p><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240423165339134.png" alt="image-20240423165339134"></p><h1 id="32个寄存器的介绍"><a href="#32个寄存器的介绍" class="headerlink" title="32个寄存器的介绍"></a>32个寄存器的介绍</h1><ol><li><strong>x0 - x31（通用寄存器）</strong>：<ul><li>这些寄存器是通用的，可用于各种目的。</li><li>x0 通常用作零寄存器，任何写入它的值都会被忽略。</li><li>其余的通用寄存器可以用于存储数据、地址、临时值等。</li></ul></li><li><strong>pc（程序计数器）</strong>：<ul><li>用于存储当前正在执行的指令的地址。</li><li>在每次指令执行后，PC会自动增加，以指向下一条指令。</li></ul></li><li><strong>ra（返回地址寄存器）</strong>：<ul><li>用于存储函数调用返回时的地址。</li><li>在函数调用时，调用者将返回地址存储在此寄存器中。</li></ul></li><li><strong>sp（栈指针寄存器）</strong>：<ul><li>指向当前栈顶的地址。</li><li>用于管理函数调用和局部变量的内存分配。</li></ul></li><li><strong>gp（全局指针寄存器）</strong>：<ul><li>指向全局数据区域的起始地址。</li><li>用于访问全局变量和静态数据。</li></ul></li><li><strong>tp（线程指针寄存器）</strong>：<ul><li>指向线程控制块（TCB）的地址。</li><li>在多线程环境中用于管理线程的上下文信息。</li></ul></li><li><strong>t0 - t6（临时寄存器）</strong>：<ul><li>用于存储临时数据。</li><li>可以在函数调用和数据操作中使用。</li></ul></li><li><strong>s0 - s11（保存寄存器）</strong>：<ul><li>用于保存函数调用时需要保持的值。</li><li>在函数调用期间，这些寄存器的值会被保留，并在函数返回时恢复。</li></ul></li><li><strong>a0 - a7（参数寄存器）</strong>：<ul><li>用于存储函数调用的参数。</li><li>调用者将参数传递给被调用函数时，将它们存储在这些寄存器中。</li></ul></li></ol><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240504182001538.png" alt="image-20240504182001538"></p><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240504184301237.png" alt="image-20240504184301237"></p><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240504182827385.png" alt="image-20240504182827385"></p><h1 id="指令集"><a href="#指令集" class="headerlink" title="指令集"></a>指令集</h1><h2 id="Addition-subtraction"><a href="#Addition-subtraction" class="headerlink" title="Addition&#x2F;subtraction"></a>Addition&#x2F;subtraction</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">add rd, rs1, rs2</span><br><span class="line">R[rd] = R[rs1] + R[rs2]</span><br><span class="line">sub rd, rs1, rs2</span><br><span class="line">R[rd] = R[rs1] - R[rs2]</span><br></pre></td></tr></table></figure><h2 id="Add-immediate"><a href="#Add-immediate" class="headerlink" title="Add immediate"></a>Add immediate</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">addi rd, rs1, imm</span><br><span class="line">R[rd] = R[rs1] + imm</span><br></pre></td></tr></table></figure><h2 id="Load-from-Memory-to-Register"><a href="#Load-from-Memory-to-Register" class="headerlink" title="Load from Memory to Register"></a><u>Load from</u> Memory to Register</h2><p><strong>Load Word(lw)</strong></p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> A[<span class="number">100</span>];</span><br><span class="line">g = h + A[<span class="number">3</span>];</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">lw x10, 12(x15) # Reg x10 gets A[3]</span><br><span class="line">add x11,x12,x10 # g = h + A[3</span><br></pre></td></tr></table></figure><p><strong>Note:</strong> </p><ul><li><p>x15 – base register (<strong>pointer</strong> to A[0]) </p></li><li><p>12 – <strong>offset in bytes</strong> </p></li><li><p><strong>Offset</strong> must be a constant known at assembly time</p></li></ul><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240423170306183.png" alt="image-20240423170306183"></p><h2 id="Store-from-Register-to-Memory"><a href="#Store-from-Register-to-Memory" class="headerlink" title="Store from Register to Memory"></a><u>Store</u> from Register <u>to</u> Memory</h2><p><strong>Store Word(sw)</strong></p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> A[<span class="number">100</span>];</span><br><span class="line">A[<span class="number">10</span>] = h + A[<span class="number">3</span>];</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">lw x10,12(x15) # Temp reg x10 gets A[3]</span><br><span class="line">add x10,x12,x10 # Temp reg x10 gets h + A[3]</span><br><span class="line">sw x10,40(x15) # A[10] = h + A[3]</span><br></pre></td></tr></table></figure><p><strong>Note:</strong> </p><ul><li><p>x15 – base register (<strong>pointer</strong>) </p></li><li><p>12,40 – offsets in <strong>bytes</strong></p></li><li><p><code>x15+12</code> and<code> x15+40</code> must be <strong>multiples</strong> of 4</p></li></ul><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240423170519415.png" alt="image-20240423170519415"></p><h2 id="Loading-and-Storing-Bytes"><a href="#Loading-and-Storing-Bytes" class="headerlink" title="Loading and Storing Bytes"></a>Loading and Storing Bytes</h2><ul><li><p>load byte: <code>lb</code></p></li><li><p>store byte: <code>sb</code></p></li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lb x10, 3(x11)</span><br></pre></td></tr></table></figure><blockquote><p>contents of memory location with address &#x3D; sum of “3”  + contents of register x11 is copied to the low byte  position of register x10</p></blockquote><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240423170835108.png" alt="image-20240423170835108"></p><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240423170848646.png" alt="image-20240423170848646"></p><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240423171000144.png" alt="image-20240423171000144"></p><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240504180601873.png" alt="image-20240504180601873"></p><blockquote><ol><li><strong>lw</strong>：这是”Load Word”的缩写。它从内存中加载一个32位的字（word）到寄存器中。具体来说，它将内存中指定地址的32位数据加载到目标寄存器中。</li><li><strong>lb</strong>：这是”Load Byte”的缩写。它从内存中加载一个8位的字节（byte）到寄存器中。与lw不同，lb将会把加载的字节进行符号扩展，即最高位的值会被复制到目标寄存器的所有高位上，以保持字节的符号性。</li></ol><p>举个例子，如果在地址0x100处的内存中存储着0xFF123456，当你用lw指令加载0x100地址的数据时，你会得到0xFF123456；但是当你用lb指令加载同样的地址时，你会得到0xFFFFFF56，因为最高位是1，这个字节是负数。</p></blockquote><h2 id="Branches类型"><a href="#Branches类型" class="headerlink" title="Branches类型"></a>Branches类型</h2><p><u>Branch – change of control flow</u></p><h3 id="Conditional-Branch-–-change-control-flow-depending-on-outcome-of-comparison"><a href="#Conditional-Branch-–-change-control-flow-depending-on-outcome-of-comparison" class="headerlink" title="Conditional Branch – change control flow  depending on outcome of comparison"></a>Conditional Branch – change control flow  depending on outcome of comparison</h3><ul><li><p><strong>beq: branch if equal</strong></p></li><li><p><strong>bne: branch if not equal</strong></p></li><li><p><strong>blt: branch if less than</strong></p></li><li><p><strong>bge:  branch if greater  than or equal</strong></p></li><li><p><strong>bltu: unsigned versions of blt</strong></p></li><li><p><strong>bgeu: unsigned versions of bge</strong></p></li></ul><h3 id="Unconditional-Branch-–-always-branch"><a href="#Unconditional-Branch-–-always-branch" class="headerlink" title="Unconditional Branch – always branch"></a>Unconditional Branch – always branch</h3><ul><li><strong>j: jump</strong><ul><li>j label</li></ul></li></ul><p>No <code>bgt</code> or <code>ble</code>!</p><h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">beq reg1, reg2, L1</span><br><span class="line"></span><br><span class="line"># go to statement labeled L1 </span><br><span class="line"># if (value in reg1) == (value in reg2)</span><br><span class="line"># ….otherwise, go to next statement</span><br></pre></td></tr></table></figure><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240423171733270.png" alt="image-20240423171733270"></p><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240423171742425.png" alt="image-20240423171742425"></p><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240423171750240.png" alt="image-20240423171750240"></p><h2 id="Loops"><a href="#Loops" class="headerlink" title="Loops"></a>Loops</h2><ul><li>C<ul><li>while</li><li>do…while</li><li>for</li></ul></li><li>每一个都可以被重写成另外两个之一，因此相同的分支方法也可以应用到这些循环中。</li><li>关键概念：虽然在 RISC-V 中有多种编写循环的方式，但决策的关键在于条件分支。</li></ul><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240423230114369.png" alt="image-20240423230114369"></p><h2 id="Logical-Instructions"><a href="#Logical-Instructions" class="headerlink" title="Logical Instructions"></a>Logical Instructions</h2><ul><li><p>有助于在一个字内操作位字段</p><ul><li>例如，一个字内的字符（8位）</li></ul></li><li><p>将位打包&#x2F;解包成字的操作</p></li></ul><blockquote><p>对于一个字（8个位，例如二进制数字或字符），在其中操作位字段（例如单独的字符）是很有用的。这就像在一个字母里面寻找、添加或者移除特定的位一样。这些操作可能包括将多个位打包（合并）成一个字，或者将一个字解包（拆分）成多个位。这些操作通常被称为逻辑操作。</p></blockquote><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240423230525052.png" alt="image-20240423230525052"></p><h3 id="and-andi"><a href="#and-andi" class="headerlink" title="and&#x2F;andi"></a>and&#x2F;andi</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">and x5, x6, x7 # x5 = x6 &amp; x7</span><br><span class="line">andi x5, x6, 3 # x5 = x6 &amp; 3</span><br></pre></td></tr></table></figure><ul><li><code>andi</code> with <code>0000 00FF</code><del>hex</del> isolates the <strong>least</strong> significant  byte</li><li><code>andi </code>with <code>FF00 0000</code><del>hex</del> isolates the <strong>most</strong> significant  byte</li></ul><h3 id="No-Not-in-RISC-V"><a href="#No-Not-in-RISC-V" class="headerlink" title="No Not in RISC-V"></a>No Not in RISC-V</h3><p>没有逻辑非运算在RISC-V中</p><ul><li>使用xor 1111 1111<del>two</del></li></ul><h3 id="Logical-Shifting"><a href="#Logical-Shifting" class="headerlink" title="Logical Shifting"></a>Logical Shifting</h3><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240423231142563.png" alt="image-20240423231142563"></p><h3 id="Arithmetic-Shifting"><a href="#Arithmetic-Shifting" class="headerlink" title="Arithmetic Shifting"></a>Arithmetic Shifting</h3><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240423231149137.png" alt="image-20240423231149137"></p><h1 id="函数调用"><a href="#函数调用" class="headerlink" title="函数调用"></a>函数调用</h1><h2 id="函数调用的六个步骤"><a href="#函数调用的六个步骤" class="headerlink" title="函数调用的六个步骤"></a>函数调用的六个步骤</h2><ol><li>将<strong>参数</strong>放在函数能够访问的位置</li><li>转交权利给函数</li><li>请求函数所需要的内存资源</li><li>执行函数预期的任务</li><li>将<strong>返回值</strong>放在调用者可以访问的位置并恢复你用过的寄存器；释放内存空间</li><li>将控制返回调用者，因为一个函数可以被许多项目中的程序点调用</li></ol><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240504182714948.png" alt="image-20240504182714948"></p><h2 id="函数的指令支持"><a href="#函数的指令支持" class="headerlink" title="函数的指令支持"></a>函数的指令支持</h2><p>在RISC-V中，所有的指令都是4bytes，并且他们像数据一样存储在内存中</p><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240504183024465.png" alt="image-20240504183024465"></p><ul><li>问题: 为什么这里用<code>jr</code>而不是<code>j</code>?</li><li>答案: sum可能在许多地方被调用，所以我们不可能总是回到固定的位置。sum的调用过程必须能够说”回到这里”。</li></ul><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240504183415048.png" alt="image-20240504183415048"></p><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240504183500943.png" alt="image-20240504183500943"></p><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240504183558222.png" alt="image-20240504183558222"></p><h3 id="jal-Jump-and-Link"><a href="#jal-Jump-and-Link" class="headerlink" title="jal (Jump and Link)"></a>jal (Jump and Link)</h3><ul><li><p><strong>指令格式</strong>：<code>jal rd, offset</code></p></li><li><p><strong>功能</strong>：跳转到指定地址，并将下一条指令的地址存储到目标寄存器中（通常用于存储返回地址）。</p></li><li><p>操作</p><p>：</p><ul><li>将当前指令的地址（PC寄存器的值）加上偏移量作为目标地址。</li><li>将下一条指令的地址（PC+4）存储到目标寄存器中。</li></ul></li><li><p><strong>示例</strong>：<code>jal x1, 100</code> 表示跳转到地址为 PC+100 处，并将 PC+4 存储到寄存器 x1 中。</p></li></ul><h3 id="jalr-Jump-and-Link-Register"><a href="#jalr-Jump-and-Link-Register" class="headerlink" title="jalr (Jump and Link Register)"></a>jalr (Jump and Link Register)</h3><ul><li><p><strong>指令格式</strong>：<code>jalr rd, rs1, offset</code></p></li><li><p><strong>功能</strong>：跳转到指定地址（通过寄存器计算得出），并将下一条指令的地址存储到目标寄存器中（通常用于存储返回地址）。</p></li><li><p>操作</p><p>：</p><ul><li>将当前指令的地址（PC寄存器的值）加上偏移量，并将结果与 rs1 寄存器的值相加作为目标地址。</li><li>将下一条指令的地址（PC+4）存储到目标寄存器中。</li></ul></li><li><p><strong>示例</strong>：<code>jalr x1, x2, 0</code> 表示跳转到地址为 x2 的值加上偏移量 0 所指示的地址，并将 PC+4 存储到寄存器 x1 中。</p></li></ul><h3 id="用法比较"><a href="#用法比较" class="headerlink" title="用法比较"></a>用法比较</h3><ul><li><code>jal</code> 直接跳转到指定地址，适用于跳转到相对地址已知的情况。</li><li><code>jalr</code> 可以通过寄存器计算跳转地址，适用于跳转到相对地址不确定但通过寄存器存储的情况。</li></ul><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>准确来说，只有两个指令</p><ul><li><code>jal rd, Label</code> - jump-and-link</li><li><code>jalr rd, rs, imm </code>- jump -and-link register</li></ul><p><code>j</code>, <code>jr</code> 和 <code>ret</code> 是伪指令!</p><ul><li><code>j: jal x0, Label</code></li></ul><h2 id="例子-1"><a href="#例子-1" class="headerlink" title="例子"></a>例子</h2><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240504184434837.png" alt="image-20240504184434837"></p><h2 id="之前的寄存器值在函数调用之后保存在哪里以便恢复它们？"><a href="#之前的寄存器值在函数调用之后保存在哪里以便恢复它们？" class="headerlink" title="之前的寄存器值在函数调用之后保存在哪里以便恢复它们？"></a>之前的寄存器值在函数调用之后保存在哪里以便恢复它们？</h2><ul><li>在函数调用前需要一个地方去保存旧的值，以便在返回时恢复它们，然后删除。</li><li>解决方案就是使用<strong>栈</strong>-last-in-first-out (LIFO) queue<ul><li>Push: placing data onto stack</li><li>Pop: removing data from stack</li></ul></li></ul><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240504185029541.png" alt="image-20240504185029541"></p><h1 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h1><ul><li><p>栈帧包括：</p><ul><li><p>返回“指令”地址</p></li><li><p>参数（参数）</p></li><li><p>其他局部变量的空间</p></li></ul></li><li><p>栈帧是内存中连续的块；栈指针告诉我们栈帧的<strong>底部</strong>在哪里。 </p></li><li><p>当过程结束时，栈帧被从栈中移除；为未来的栈帧释放内存。</p><blockquote><p>sp从内存高到低增长</p></blockquote></li></ul><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240504185222086.png" alt="image-20240504185222086"></p><h2 id="例子-2"><a href="#例子-2" class="headerlink" title="例子"></a>例子</h2><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240504185336899.png" alt="image-20240504185336899"></p><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240504185346548.png" alt="image-20240504185346548"></p><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240504185436994.png" alt="image-20240504185436994"></p><h1 id="嵌套调用和寄存器约定"><a href="#嵌套调用和寄存器约定" class="headerlink" title="嵌套调用和寄存器约定"></a>嵌套调用和寄存器约定</h1><h2 id="嵌套调用"><a href="#嵌套调用" class="headerlink" title="嵌套调用"></a>嵌套调用</h2><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240504185906529.png" alt="image-20240504185906529"></p><ul><li>有一个叫做<code>sumSquare</code>的函数，现在<code>sumSquare</code>正在调用<code>mult</code>。</li><li>所以在<code>sumSquare</code>想要跳回的<code>ra</code>寄存器中有一个值，但是这个值将会被对<code>mult</code>的调用<strong>覆盖</strong>。</li><li><strong>嵌套过程需要在调用<code>mult</code>之前保存<code>sumSquare</code>的返回地址 - 再次使用栈。</strong></li></ul><h2 id="寄存器约定"><a href="#寄存器约定" class="headerlink" title="寄存器约定"></a>寄存器约定</h2><ul><li>Caller: 调用函数</li><li>Callee: 被调用的函数</li><li>当被调用函数执行完毕后，调用者需要知道哪些寄存器可能已经改变，哪些是保证不变的。</li><li><strong>寄存器约定</strong>：一组被广泛接受的规则，规定了在过程调用（<code>jal</code>）后哪些寄存器不会改变，哪些可能会改变。</li></ul><p>为了减少因溢出和恢复寄存器而产生的昂贵的加载和存储操作，RISC-V函数调用约定将寄存器分为两类：</p><ol><li><p>在函数调用中保留的寄存器：</p><ul><li>调用者可以依赖于其值不变</li><li>sp、gp、tp、”保存的寄存器” s0-s11（s0也是fp）</li></ul></li><li><p>在函数调用中不保留的寄存器：</p><ul><li><p>调用者不能依赖于其值不变</p></li><li><p>参数&#x2F;返回寄存器 a0-a7、ra、”临时寄存器” t0-t6</p></li></ul></li></ol><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240504190209798.png" alt="image-20240504190209798"></p><h1 id="Memory-Allocation"><a href="#Memory-Allocation" class="headerlink" title="Memory Allocation"></a>Memory Allocation</h1><h2 id="在栈中分配空间"><a href="#在栈中分配空间" class="headerlink" title="在栈中分配空间"></a>在栈中分配空间</h2><ul><li><p>C语言有两种存储类别：自动的和静态的。</p><ul><li><p><strong>自动</strong>变量是函数局部的，并在函数退出时被丢弃。</p></li><li><p><strong>静态</strong>变量存在于程序从一个过程退出到另一个过程进入的过程中。</p></li></ul></li><li><p>使用栈来存储不适合寄存器的自动（局部）变量。 </p></li><li><p><strong>过程帧</strong>或<strong>激活记录</strong>：栈中的一个段，包含保存的寄存器和局部变量。</p></li></ul><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240504191040378.png" alt="image-20240504191040378"></p><h2 id="使用栈"><a href="#使用栈" class="headerlink" title="使用栈"></a>使用栈</h2><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240504191206346.png" alt="image-20240504191206346"></p><h2 id="内存分配Memory-Allocation"><a href="#内存分配Memory-Allocation" class="headerlink" title="内存分配Memory Allocation"></a>内存分配Memory Allocation</h2><p>当运行C程序时，有三个重要的内存区域被分配：</p><ul><li><strong>静态区</strong>：一次性声明的变量，程序执行完毕后才消失 - 例如，C全局变量</li><li><strong>堆</strong>：通过malloc动态声明的变量</li><li><strong>栈</strong>：在执行过程中被过程使用的空间；这是我们可以保存寄存器值的地方</li></ul><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240504191550643.png" alt="image-20240504191550643"></p><h2 id="Where-is-the-Stack-in-Memory"><a href="#Where-is-the-Stack-in-Memory" class="headerlink" title="Where is the Stack in Memory?"></a>Where is the Stack in Memory?</h2><p>RV32约定（RV64&#x2F;RV128具有不同的内存布局）</p><ul><li><strong>栈</strong>从高地址开始并向下增长<ul><li>十六进制：bfff_fff0<del>hex</del></li><li>栈必须对齐到16字节边界（在之前的示例中不是这样）</li></ul></li><li>RV32程序（<strong>文本段</strong>）在低端<ul><li>0001_0000<del>hex</del></li></ul></li><li><strong>静态数据段</strong>（常量和其他静态变量）在文本段上方，用于存放静态变量<ul><li>RISC-V约定<strong>全局指针（gp）</strong>指向静态变量</li><li>RV32 gp &#x3D; 1000_0000<del>hex</del></li></ul></li><li><strong>堆</strong>位于静态数据段上方，用于存放增长和收缩的数据结构；堆向高地址增长</li></ul><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240504191730738.png" alt="image-20240504191730738"></p><h1 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h1><p><img src="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/image-20240504191745535.png" alt="image-20240504191745535"></p>]]></content>
       
       
       <categories>
@@ -178,9 +178,9 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> JAVA </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -211,9 +211,9 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> JAVA </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -244,9 +244,9 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> JAVA </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -277,9 +277,9 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> JAVA </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -310,9 +310,9 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> JAVA </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -343,9 +343,9 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> JAVA </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -376,9 +376,9 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> JAVA </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -409,9 +409,9 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> JAVA </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -442,9 +442,9 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> JAVA </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -525,9 +525,9 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> JAVA </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -558,9 +558,9 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> JAVA </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -591,9 +591,9 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> JAVA </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -624,9 +624,9 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> JAVA </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -682,9 +682,9 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> JAVA </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -715,9 +715,9 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> JAVA </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -748,9 +748,9 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> JAVA </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -781,9 +781,9 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> JAVA </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -814,9 +814,9 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> JAVA </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -847,9 +847,9 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> JAVA </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -880,9 +880,9 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> JAVA </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -913,9 +913,9 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> JAVA </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -946,9 +946,9 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> JAVA </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -979,9 +979,9 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> JAVA </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -1012,9 +1012,9 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> JAVA </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -1058,9 +1058,9 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> JAVA </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -1091,9 +1091,9 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> JAVA </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -1124,9 +1124,9 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> JAVA </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -1157,9 +1157,9 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> JAVA </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -1190,9 +1190,9 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> JAVA </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -1223,9 +1223,9 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> JAVA </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -1256,9 +1256,9 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> JAVA </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -1289,9 +1289,9 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> JAVA </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61B </category>
           
@@ -1506,6 +1506,17 @@
     
     
     <entry>
+      <title>categories</title>
+      <link href="/categories/index.html"/>
+      <url>/categories/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>个人小日记</title>
       <link href="/diary/index.html"/>
       <url>/diary/index.html</url>
@@ -1517,20 +1528,20 @@
     
     
     <entry>
-      <title>game</title>
-      <link href="/game/index.html"/>
-      <url>/game/index.html</url>
+      <title></title>
+      <link href="/css/custom.css"/>
+      <url>/css/custom.css</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[/* 页脚与头图透明 */#footer {    background: transparent !important;  }  #page-header {    background: transparent !important;  }    /* 白天模式遮罩透明 */  #footer::before {    background: transparent !important;  }  #page-header::before {    background: transparent !important;  }    /* 夜间模式遮罩透明 */  [data-theme="dark"] #footer::before {    background: transparent !important;  }  [data-theme="dark"] #page-header::before {    background: transparent !important;  }  /* 小冰分类分类磁铁黑夜模式适配 *//* 一般状态 */[data-theme="dark"] .magnet_link_context {  background: #1e1e1e;  color: antiquewhite;}/* 鼠标悬浮状态 */[data-theme="dark"] .magnet_link_context:hover {  background: #3ecdf1;  color: #f2f2f2;}/* 翻页按钮居中 */#pagination {  width: 100%;  margin: auto;}]]></content>
       
     </entry>
     
     
     
     <entry>
-      <title>categories</title>
-      <link href="/categories/index.html"/>
-      <url>/categories/index.html</url>
+      <title>音乐</title>
+      <link href="/music/index.html"/>
+      <url>/music/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -1550,31 +1561,9 @@
     
     
     <entry>
-      <title></title>
-      <link href="/css/custom.css"/>
-      <url>/css/custom.css</url>
-      
-        <content type="html"><![CDATA[/* 页脚与头图透明 */#footer {    background: transparent !important;  }  #page-header {    background: transparent !important;  }    /* 白天模式遮罩透明 */  #footer::before {    background: transparent !important;  }  #page-header::before {    background: transparent !important;  }    /* 夜间模式遮罩透明 */  [data-theme="dark"] #footer::before {    background: transparent !important;  }  [data-theme="dark"] #page-header::before {    background: transparent !important;  }  /* 小冰分类分类磁铁黑夜模式适配 *//* 一般状态 */[data-theme="dark"] .magnet_link_context {  background: #1e1e1e;  color: antiquewhite;}/* 鼠标悬浮状态 */[data-theme="dark"] .magnet_link_context:hover {  background: #3ecdf1;  color: #f2f2f2;}/* 翻页按钮居中 */#pagination {  width: 100%;  margin: auto;}]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>movies</title>
       <link href="/movies/index.html"/>
       <url>/movies/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>音乐</title>
-      <link href="/music/index.html"/>
-      <url>/music/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -1594,22 +1583,33 @@
     
     
     <entry>
-      <title>23·12·23</title>
-      <link href="/diary/23%C2%B712%C2%B723/index.html"/>
-      <url>/diary/23%C2%B712%C2%B723/index.html</url>
+      <title>有趣の文章</title>
+      <link href="/%E6%9C%89%E8%B6%A3%E3%81%AE%E6%96%87%E7%AB%A0/index.html"/>
+      <url>/%E6%9C%89%E8%B6%A3%E3%81%AE%E6%96%87%E7%AB%A0/index.html</url>
       
-        <content type="html"><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">  <script id="hbeData" type="hbeData" data-hmacdigest="fac6055b69e98f52462d9cdbb2fdd1ff07debe2c5f3f2f531b8cb4f1d2ae9b13">7a04f49168c16fa5e6499f3676d544847369460cb37b8a9320df2540de47878192e3229550a92ebeb8cdebaea7cb2f0f</script>  <div class="hbe hbe-content">    <div class="hbe hbe-input hbe-input-shrink">      <input class="hbe hbe-input-field hbe-input-field-shrink" type="password" id="hbePass">      <label class="hbe hbe-input-label hbe-input-label-shrink" for="hbePass">        <span class="hbe hbe-input-label-content hbe-input-label-content-shrink">别猜了别猜了</span>      </label>    </div>  </div></div><script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+        <content type="html"><![CDATA[]]></content>
       
     </entry>
     
     
     
     <entry>
-      <title>有趣の文章</title>
-      <link href="/%E6%9C%89%E8%B6%A3%E3%81%AE%E6%96%87%E7%AB%A0/index.html"/>
-      <url>/%E6%9C%89%E8%B6%A3%E3%81%AE%E6%96%87%E7%AB%A0/index.html</url>
+      <title>game</title>
+      <link href="/game/index.html"/>
+      <url>/game/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>23·12·23</title>
+      <link href="/diary/23%C2%B712%C2%B723/index.html"/>
+      <url>/diary/23%C2%B712%C2%B723/index.html</url>
+      
+        <content type="html"><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">  <script id="hbeData" type="hbeData" data-hmacdigest="fac6055b69e98f52462d9cdbb2fdd1ff07debe2c5f3f2f531b8cb4f1d2ae9b13">7a04f49168c16fa5e6499f3676d544847369460cb37b8a9320df2540de47878192e3229550a92ebeb8cdebaea7cb2f0f</script>  <div class="hbe hbe-content">    <div class="hbe hbe-input hbe-input-shrink">      <input class="hbe hbe-input-field hbe-input-field-shrink" type="password" id="hbePass">      <label class="hbe hbe-input-label hbe-input-label-shrink" for="hbePass">        <span class="hbe hbe-input-label-content hbe-input-label-content-shrink">别猜了别猜了</span>      </label>    </div>  </div></div><script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
       
     </entry>
     
