@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>离散数学复习-关系</title>
+      <link href="/2024/05/07/%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E7%A6%BB%E6%95%A3-%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0-%E5%85%B3%E7%B3%BB/"/>
+      <url>/2024/05/07/%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E7%A6%BB%E6%95%A3-%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0-%E5%85%B3%E7%B3%BB/</url>
+      
+        <content type="html"><![CDATA[<h1 id="序偶和笛卡尔积"><a href="#序偶和笛卡尔积" class="headerlink" title="序偶和笛卡尔积"></a>序偶和笛卡尔积</h1><h2 id="序偶"><a href="#序偶" class="headerlink" title="序偶"></a>序偶</h2><p>对于有序n元组，当n&#x3D;2时，我们将其称作有序二元组，也称作有序对,或序偶。</p><p>序偶的特点：</p><ul><li><p>若a≠b,则(a,b)≠(b,a)</p></li><li><p>两个有序对(a,b)和(c,d)相等当且仅当a&#x3D;c，b&#x3D;d。</p></li></ul><p><strong>特征：成对出现、具有一定的顺序。</strong></p><p>用序偶表示下列语句中的次序关系</p><p>(1)平面上点A的横坐标是x，纵坐标是y，x,y∈R；</p><p>(2)成都是四川的省会；</p><p>(3)英语课本在书桌上；</p><p>(4)左，右关系。</p><blockquote><p>(1)(x,y)</p><p>(2)(成都,四川)</p><p>(3)(英语课本,书桌)</p><p>(4)(左,右)</p></blockquote><h2 id="笛卡尔积"><a href="#笛卡尔积" class="headerlink" title="笛卡尔积"></a>笛卡尔积</h2><p>设A，B是两个集合，所有有序对(x, y)做成的集合(其中x∈A，y∈B)，称为A，B的笛卡儿积，记为A×B。A x B &#x3D; {(x，y)|x∈A且y∈B}</p><h3 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h3><ul><li>|A×B|&#x3D;|A|× |B|；</li><li>对任意集合A，有A×Ø&#x3D;Ø，Ø×A&#x3D;Ø；</li><li>笛卡儿积运算不满足交换律，即A×B≠B×A；  </li><li>笛卡儿积运算不满足结合律，即(A×B)×C≠A×(B×C) </li><li><strong>笛卡儿积运算对并和交运算满足分配律</strong>， 即:<ul><li>A×(B∪C)&#x3D;(A×B)∪(A×C)，</li><li>(B∪C)×A&#x3D;(B×A)∪(C×A)，</li><li>A×(B∩C)&#x3D;(A×B)∩(A×C)， </li><li>(B∩C)×A&#x3D;(B×A)∩(C×A)；</li></ul></li><li><strong>设A，B，C，D是集合，若A⊆C且B⊆D，则 A×B ⊆ C×D。</strong></li></ul><h1 id="二元关系"><a href="#二元关系" class="headerlink" title="二元关系"></a>二元关系</h1><p><strong>★关系是一个集合，是序偶的集合。</strong></p><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>给定任意集合A和B，若R⊆A×B，则称R为从A到B的<strong>二元关系</strong>，特别在A&#x3D;B时，称<strong>R为A上的二元关系</strong>。</p><p><strong>从集合A到集合B的一个关系R是A×B的一个子集</strong></p><ul><li>R是有序对的集合。若(x,y)∈R，则也表示为x R y，即**(x,y)∈ R ⇔ x R y。**<ul><li>若R &#x3D;Ø，则称 R 为A 到 B上<strong>空关系</strong>；</li><li>若R &#x3D;A×B，称R为A 到 B上<strong>全域关系</strong></li><li>当A &#x3D;B 时，<ul><li>称Ø为A上<strong>空关系</strong></li><li>称R &#x3D;A×A为A上的<strong>全域关系</strong></li><li>称R&#x3D;{（x,x）|x∈A}为A上的<strong>恒等关系</strong>，记为**I<del>A</del>**。</li></ul></li></ul></li></ul><p>当集合A,B都是有限集时，A×B共有2^|A|•|B|^个不同的子集，即从A到B的不同关系共有2|^A|•|B|^个。</p><h2 id="定义域、值域、域"><a href="#定义域、值域、域" class="headerlink" title="定义域、值域、域"></a>定义域、值域、域</h2><p><img src="/2024/05/07/%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E7%A6%BB%E6%95%A3-%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0-%E5%85%B3%E7%B3%BB/image-20240507194125919.png" alt="image-20240507194125919"></p><h3 id="例"><a href="#例" class="headerlink" title="例"></a>例</h3><ul><li><p>设A&#x3D;{ a , b ,甲，乙}，B&#x3D;{0，1，丙}, 关系S&#x3D;{(a,0) ,(b,0), (甲,1) ,(甲,丙) } </p><ul><li><p>则可知D(S)&#x3D;{a, b, 甲},           </p></li><li><p>R(S)&#x3D;{0, 1, 丙}</p></li></ul></li><li><p>实数集R上的”&lt;”关系可定义为：&lt;&#x3D;{(x,y)|x∈R,y∈R且X小于y}</p><ul><li>D(&lt;)&#x3D;R           R(&lt;)&#x3D;R</li></ul></li></ul><h2 id="关系矩阵"><a href="#关系矩阵" class="headerlink" title="关系矩阵"></a>关系矩阵</h2><p><img src="/2024/05/07/%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E7%A6%BB%E6%95%A3-%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0-%E5%85%B3%E7%B3%BB/image-20240507194248600.png" alt="image-20240507194248600"></p><h3 id="例-1"><a href="#例-1" class="headerlink" title="例"></a>例</h3><p>例： A&#x3D;{1,2,3,4} ，R&#x3D;{( x , y)| x, y∈A且 x &gt; y}，试求M<del>R</del>，R&#x3D;{( 4 ,1),(4,2),(4,3), (3,1),(3,2),(2,1)}</p><p><img src="/2024/05/07/%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E7%A6%BB%E6%95%A3-%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0-%E5%85%B3%E7%B3%BB/image-20240507194310411.png" alt="image-20240507194310411"></p><h2 id="关系图"><a href="#关系图" class="headerlink" title="关系图"></a>关系图</h2><p><img src="/2024/05/07/%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E7%A6%BB%E6%95%A3-%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0-%E5%85%B3%E7%B3%BB/image-20240507194403787.png" alt="image-20240507194403787"></p><h3 id="例-2"><a href="#例-2" class="headerlink" title="例"></a>例</h3><p><img src="/2024/05/07/%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E7%A6%BB%E6%95%A3-%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0-%E5%85%B3%E7%B3%BB/image-20240507194442002.png" alt="image-20240507194442002"></p><p><img src="/2024/05/07/%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E7%A6%BB%E6%95%A3-%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0-%E5%85%B3%E7%B3%BB/image-20240507194456644.png" alt="image-20240507194456644"></p><h2 id><a href="#" class="headerlink" title></a></h2><h1 id="关系运算"><a href="#关系运算" class="headerlink" title="关系运算"></a>关系运算</h1><h2 id="1-关系的交、并、补、差"><a href="#1-关系的交、并、补、差" class="headerlink" title="1. 关系的交、并、补、差"></a>1. 关系的交、并、补、差</h2><p>前已述及，关系是<strong>序偶</strong>(有序对)的集合，因此可以对关系进行运算。</p><p>若R, S⊆A×B，则R∪S，R ∩S，~R，R-S⊆A×B.</p><h2 id="2-复合关系"><a href="#2-复合关系" class="headerlink" title="2.复合关系"></a>2.复合关系</h2><p>设R是从集合X到Y的关系，S是从Y到Z的关系，把X到Z的关系定义为<strong>RoS</strong>。称<strong>RoS</strong>是关系R和S的合成关系或复合关系.</p><p><img src="/2024/05/07/%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E7%A6%BB%E6%95%A3-%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0-%E5%85%B3%E7%B3%BB/image-20240507194818051.png" alt="image-20240507194818051"></p><p><img src="/2024/05/07/%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E7%A6%BB%E6%95%A3-%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0-%E5%85%B3%E7%B3%BB/image-20240507194839433.png" alt="image-20240507194839433"></p><h3 id="分配律"><a href="#分配律" class="headerlink" title="分配律"></a>分配律</h3><p><img src="/2024/05/07/%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E7%A6%BB%E6%95%A3-%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0-%E5%85%B3%E7%B3%BB/image-20240507195230904.png" alt="image-20240507195230904"></p><h3 id="结合律"><a href="#结合律" class="headerlink" title="结合律"></a>结合律</h3><p><img src="/2024/05/07/%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E7%A6%BB%E6%95%A3-%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0-%E5%85%B3%E7%B3%BB/image-20240507194935674.png" alt="image-20240507194935674"></p><h3 id="复合的幂运算"><a href="#复合的幂运算" class="headerlink" title="复合的幂运算"></a>复合的幂运算</h3><p><img src="/2024/05/07/%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E7%A6%BB%E6%95%A3-%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0-%E5%85%B3%E7%B3%BB/image-20240507195001008.png" alt="image-20240507195001008"></p><h2 id="3-逆关系"><a href="#3-逆关系" class="headerlink" title="3.逆关系"></a>3.逆关系</h2><h3 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h3><p><img src="/2024/05/07/%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E7%A6%BB%E6%95%A3-%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0-%E5%85%B3%E7%B3%BB/image-20240507195329344.png" alt="image-20240507195329344"></p><h3 id="定理一"><a href="#定理一" class="headerlink" title="定理一"></a>定理一</h3><p><img src="/2024/05/07/%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E7%A6%BB%E6%95%A3-%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0-%E5%85%B3%E7%B3%BB/image-20240507195418936.png" alt="image-20240507195418936"></p><p><img src="/2024/05/07/%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E7%A6%BB%E6%95%A3-%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0-%E5%85%B3%E7%B3%BB/image-20240507195117515.png" alt="image-20240507195117515"></p><h3 id="定理二"><a href="#定理二" class="headerlink" title="定理二"></a>定理二</h3><p><img src="/2024/05/07/%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E7%A6%BB%E6%95%A3-%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0-%E5%85%B3%E7%B3%BB/image-20240507195445152.png" alt="image-20240507195445152"></p><h3 id="定理三"><a href="#定理三" class="headerlink" title="定理三"></a>定理三</h3><p><img src="/2024/05/07/%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E7%A6%BB%E6%95%A3-%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0-%E5%85%B3%E7%B3%BB/image-20240507195528582.png" alt="image-20240507195528582"></p><h3 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h3><ul><li>任意两个关系R和S能进行复合运算<strong>当且仅当</strong>R的后域是S的前域。<ul><li>注意RoS的前域是R的前域，后域是S的后域；如果对任意的x∈A和z∈C，不存在y∈B使得xRy和ySz同时成立，则RoS为空，从而有ΦoR &#x3D; RoΦ &#x3D; Φ。</li></ul></li><li>复合运算有三种计算方式(集合表达式、关系矩阵和关系图), 其中利用关系矩阵的计算方式是难点，RoS的关系矩阵<strong>等于</strong>R的关系矩阵和S的关系矩阵的布尔积。</li></ul><h2 id="关系运算的应用"><a href="#关系运算的应用" class="headerlink" title="关系运算的应用"></a>关系运算的应用</h2><ul><li>例设有关系R和S分别如表1和表2所示，在R中增加关系S中的所有元组，试求增加后的关系。</li></ul><p><img src="/2024/05/07/%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E7%A6%BB%E6%95%A3-%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0-%E5%85%B3%E7%B3%BB/image-20240507195806488.png" alt="image-20240507195806488"></p><blockquote><p>在关系R中增加S中的所有元组，在关系数据库中称为对关系表的<strong>插入操作</strong>(InsertOperation)，该操作可以通过关系的<strong>并运算</strong>完成，即求在R中增加关系S的所有元组等价于求R∪S。</p><table><thead><tr><th><strong>A</strong></th><th><strong>B</strong></th><th><strong>C</strong></th></tr></thead><tbody><tr><td><strong>1</strong></td><td><strong>2</strong></td><td><strong>5</strong></td></tr><tr><td><strong>2</strong></td><td><strong>1</strong></td><td><strong>3</strong></td></tr><tr><td><strong>5</strong></td><td><strong>6</strong></td><td><strong>2</strong></td></tr><tr><td><strong>4</strong></td><td><strong>6</strong></td><td><strong>2</strong></td></tr><tr><td><strong>6</strong></td><td><strong>1</strong></td><td><strong>5</strong></td></tr></tbody></table></blockquote><ul><li>设有关系R和S如表4和表5所示，现在在R中去掉关系S中所出现的元组，试求去掉S后的关系。</li></ul><blockquote><p>相当于 R - S</p></blockquote><p><img src="/2024/05/07/%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E7%A6%BB%E6%95%A3-%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0-%E5%85%B3%E7%B3%BB/image-20240507195923164.png" alt="image-20240507195923164"></p><h1 id="关系性质"><a href="#关系性质" class="headerlink" title="关系性质"></a>关系性质</h1><p><img src="/2024/05/07/%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E7%A6%BB%E6%95%A3-%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0-%E5%85%B3%E7%B3%BB/image-20240507200526843.png" alt="image-20240507200526843"></p><p><img src="/2024/05/07/%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E7%A6%BB%E6%95%A3-%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0-%E5%85%B3%E7%B3%BB/image-20240507200543946.png" alt="image-20240507200543946"></p><h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><ul><li>若A上关系R是<em>自反</em>的，则M<del>R</del>中主<strong>对角线上元素全为1</strong>，而G<del>R</del>中每个结点<strong>有</strong>有向环；反之亦然。</li><li>若A上关系R是<em>反自反</em>的，则M<del>R</del>中<strong>主对角线上元素全为0</strong>，而G<del>R</del>中每个结点<strong>无</strong>有向环；反之亦然。</li><li>若A上关系R是<em>对称</em>的，则M<del>R</del>是<strong>对称矩阵</strong>，而G<del>R</del>中任何两结点若有<strong>弧必成对</strong>出现；反之亦然。</li><li>若A上关系R是<em>反对称</em>的，则M<del>R</del>中以主对角线为对称元素<strong>不能同时为1</strong>，而G<del>R</del>中若两结点间有弧<strong>不能成对</strong>出现；反之亦然。</li><li>若A上关系R是<em>传递</em>的，则MR中若r<del>ij</del>&#x3D;r<del>jk</del>&#x3D;1，则r<del>ik</del>&#x3D;1，而GR中若有弧（x, y）和（y, z）则必有弧（x, z）；反之亦然。但不易从M<del>R</del>和G<del>R</del>中判定关系R传递性。</li></ul><h2 id="注意点-1"><a href="#注意点-1" class="headerlink" title="注意点"></a>注意点</h2><ul><li>任何集合上的<strong>相等关系</strong>是<em>自反的、对称的，反对称的和传递</em>的，但<strong>不是反自反</strong>的。</li><li>整数集合Z中，关系<strong>≤</strong>是<em>自反的、反对称的和传递</em>的，<strong>但不是反自反的和对称的</strong>。关系**&lt;<strong>是<em>反自反的，反对称的和传递</em>的，</strong>但不是自反的和对称的**。</li><li><em>非空</em>集合上的<strong>空关系</strong>是<em>反自反的，对称的，反对称的和传递</em>的，<strong>但不是自反</strong>的。</li><li><em>空</em>集合上的<strong>空关系</strong>则是<em>自反的，反自反的，对称的，反对称的和传递</em>的。</li><li>非空集合上的<strong>全域关系</strong>是自反的，对称的和传递的，<strong>但不是反自反的和反对称</strong>的。</li></ul><p><strong>定理</strong>  设R⊆A×A，若R是反自反的和传递的，则R是反对称的。</p><h1 id="闭包运算"><a href="#闭包运算" class="headerlink" title="闭包运算"></a>闭包运算</h1><p>关系的闭包运算是关系上的一元运算，是包含该关系且具有某种性质的最小关系。</p><h2 id="自反闭包"><a href="#自反闭包" class="headerlink" title="自反闭包"></a>自反闭包</h2><p>设R 是 A上的二元关系，若有另一个关系R’满足:</p><ul><li>R’是自反的</li><li>R⊆R’</li><li>对任意的自反关系R’’， R⊆R’’ ，</li></ul><p>则必有R’⊆R’’R’是R的自反闭包,记作**r(R)**。</p><p><img src="/2024/05/07/%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E7%A6%BB%E6%95%A3-%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0-%E5%85%B3%E7%B3%BB/image-20240507202150155.png" alt="image-20240507202150155"></p><h2 id="对称闭包"><a href="#对称闭包" class="headerlink" title="对称闭包"></a>对称闭包</h2><p>设R 是 A上的二元关系，若有另一个关系R’满足:</p><ul><li>R’是对称的</li><li>R⊆R’</li><li>对任意的自反关系R’’， R⊆R’’ ，</li></ul><p>则必有R’⊆R’’R’是R的自反闭包,记作**s(R)**。</p><p><img src="/2024/05/07/%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E7%A6%BB%E6%95%A3-%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0-%E5%85%B3%E7%B3%BB/image-20240507202311540.png" alt="image-20240507202311540"></p><h2 id="传递闭包"><a href="#传递闭包" class="headerlink" title="传递闭包"></a>传递闭包</h2><p>设R 是 A上的二元关系，若有另一个关系R’满足:</p><ul><li>R’是传递的</li><li>R⊆R’</li><li>对任意的自反关系R’’， R⊆R’’ ，</li></ul><p>则必有R’⊆R’’R’是R的自反闭包,记作**t(R)**。</p><p><img src="/2024/05/07/%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E7%A6%BB%E6%95%A3-%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0-%E5%85%B3%E7%B3%BB/image-20240507202340153.png" alt="image-20240507202340153"></p><h2 id="定理"><a href="#定理" class="headerlink" title="定理"></a>定理</h2><p><img src="/2024/05/07/%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E7%A6%BB%E6%95%A3-%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0-%E5%85%B3%E7%B3%BB/image-20240507202422180.png" alt="image-20240507202422180"></p><p><img src="/2024/05/07/%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E7%A6%BB%E6%95%A3-%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0-%E5%85%B3%E7%B3%BB/image-20240507202431088.png" alt="image-20240507202431088"></p><h1 id="等价关系"><a href="#等价关系" class="headerlink" title="等价关系"></a>等价关系</h1><p><strong>划分 &#x3D; 等价 &#x3D; 商集</strong></p><p><strong>划分块 &#x3D; 等价类</strong></p><h2 id="等价关系的定义"><a href="#等价关系的定义" class="headerlink" title="等价关系的定义"></a>等价关系的定义</h2><p>设R是集合X上的二元关系，如果 R是<strong>自反的、对称的、传递</strong>的，那么称R是等价关系。</p><h2 id="等价的证明"><a href="#等价的证明" class="headerlink" title="等价的证明"></a>等价的证明</h2><p>例1：X&#x3D;{1,2,3,4,5,6}，Z是整数集合</p><p>R&#x3D;{(x,y)|x,y∈X 且(x-y)&#x2F;2∈Z}</p><ul><li>证明一：R为等价关系语言描述</li><li>证法二：在其关系矩阵上证明</li><li>证法三：在其关系图上证明</li></ul><h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><p><img src="/2024/05/07/%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E7%A6%BB%E6%95%A3-%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0-%E5%85%B3%E7%B3%BB/image-20240507203031273.png" alt="image-20240507203031273"></p><h2 id="等价类"><a href="#等价类" class="headerlink" title="等价类"></a>等价类</h2><p>R是集合S上的等价关系, 对任一x∈S，均可构造一个S的非空子集[x]<del>R</del> ，叫做x关于R的等价类:</p><p><strong>[x]<del>R</del> &#x3D; { y | y∈S 且 xRy }，也可记为 [x]</strong></p><p><img src="/2024/05/07/%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E7%A6%BB%E6%95%A3-%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0-%E5%85%B3%E7%B3%BB/image-20240507203402388.png" alt="image-20240507203402388"></p><h2 id="性质-1"><a href="#性质-1" class="headerlink" title="性质"></a>性质</h2><ul><li>x∈[x]</li><li>若y∈[x],  则 [y]&#x3D;[x]</li><li>若y∉[x],  则 [y]∩[x]&#x3D;Φ</li></ul><h1 id="偏序关系"><a href="#偏序关系" class="headerlink" title="偏序关系"></a>偏序关系</h1><h2 id="定义-2"><a href="#定义-2" class="headerlink" title="定义"></a>定义</h2><p>设R是集合A中的二元关系，如果R是<strong>自反的、反对称的和可传递</strong>的，则称R是A中的偏序关系</p><p><img src="/2024/05/07/%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E7%A6%BB%E6%95%A3-%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0-%E5%85%B3%E7%B3%BB/image-20240507203910096.png" alt="image-20240507203910096"></p><blockquote><p>续R&#x3D;{(2,2),(2,6),(2,12),(2,24),(2,36), (3,3),(3,6),(3,12),(3,24),(3,36),   (6,6),(6,12),(6,24),(6,36),(12,12), (12,24),(12,36),(24,24),(36,36)}</p></blockquote><p><img src="/2024/05/07/%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E7%A6%BB%E6%95%A3-%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0-%E5%85%B3%E7%B3%BB/image-20240507203923815.png" alt="image-20240507203923815"></p><h2 id="哈斯图"><a href="#哈斯图" class="headerlink" title="哈斯图"></a>哈斯图</h2><p><img src="/2024/05/07/%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E7%A6%BB%E6%95%A3-%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0-%E5%85%B3%E7%B3%BB/image-20240507204420694.png" alt="image-20240507204420694"></p><p><img src="/2024/05/07/%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E7%A6%BB%E6%95%A3-%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0-%E5%85%B3%E7%B3%BB/image-20240507204430686.png" alt="image-20240507204430686"></p><p><img src="/2024/05/07/%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E7%A6%BB%E6%95%A3-%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0-%E5%85%B3%E7%B3%BB/image-20240507204444251.png" alt="image-20240507204444251"></p><h3 id="最大、最小元素"><a href="#最大、最小元素" class="headerlink" title="最大、最小元素"></a>最大、最小元素</h3><p><img src="/2024/05/07/%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E7%A6%BB%E6%95%A3-%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0-%E5%85%B3%E7%B3%BB/image-20240507204525060.png" alt="image-20240507204525060"></p><p><img src="/2024/05/07/%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E7%A6%BB%E6%95%A3-%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0-%E5%85%B3%E7%B3%BB/image-20240507204533274.png" alt="image-20240507204533274"></p><p><img src="/2024/05/07/%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E7%A6%BB%E6%95%A3-%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0-%E5%85%B3%E7%B3%BB/image-20240507204537722.png" alt="image-20240507204537722"></p><h3 id="极大、极小元素"><a href="#极大、极小元素" class="headerlink" title="极大、极小元素"></a>极大、极小元素</h3><p><img src="/2024/05/07/%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E7%A6%BB%E6%95%A3-%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0-%E5%85%B3%E7%B3%BB/image-20240507204550057.png" alt="image-20240507204550057"></p><p><img src="/2024/05/07/%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E7%A6%BB%E6%95%A3-%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0-%E5%85%B3%E7%B3%BB/image-20240507204603997.png" alt="image-20240507204603997"></p><h3 id="上界与下界"><a href="#上界与下界" class="headerlink" title="上界与下界"></a>上界与下界</h3><p><img src="/2024/05/07/%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E7%A6%BB%E6%95%A3-%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0-%E5%85%B3%E7%B3%BB/image-20240507204612835.png" alt="image-20240507204612835"><img src="/2024/05/07/%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E7%A6%BB%E6%95%A3-%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0-%E5%85%B3%E7%B3%BB/image-20240507204622540.png" alt="image-20240507204622540"></p><h3 id="上确界与下确界"><a href="#上确界与下确界" class="headerlink" title="上确界与下确界"></a>上确界与下确界</h3><p><img src="/2024/05/07/%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E7%A6%BB%E6%95%A3-%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0-%E5%85%B3%E7%B3%BB/image-20240507204628809.png" alt="image-20240507204628809"></p><p><img src="/2024/05/07/%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E7%A6%BB%E6%95%A3-%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0-%E5%85%B3%E7%B3%BB/image-20240507204635114.png" alt="image-20240507204635114"></p><h2 id="总结题"><a href="#总结题" class="headerlink" title="总结题"></a>总结题</h2><p><img src="/2024/05/07/%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E7%A6%BB%E6%95%A3-%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0-%E5%85%B3%E7%B3%BB/image-20240507204714411.png" alt="image-20240507204714411"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 复习笔记 </category>
+          
+          <category> 离散数学 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 离散数学 </tag>
+            
+            <tag> 复习笔记 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>CS61C学习笔记(三)-RISCV-Assembly</title>
       <link href="/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/"/>
       <url>/2024/04/23/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RISCV-Assembly/</url>
@@ -178,9 +207,9 @@
       
       <categories>
           
-          <category> JAVA </category>
-          
           <category> CS自学笔记 </category>
+          
+          <category> JAVA </category>
           
           <category> CS61B </category>
           
@@ -211,9 +240,9 @@
       
       <categories>
           
-          <category> JAVA </category>
-          
           <category> CS自学笔记 </category>
+          
+          <category> JAVA </category>
           
           <category> CS61B </category>
           
@@ -244,9 +273,9 @@
       
       <categories>
           
-          <category> JAVA </category>
-          
           <category> CS自学笔记 </category>
+          
+          <category> JAVA </category>
           
           <category> CS61B </category>
           
@@ -277,9 +306,9 @@
       
       <categories>
           
-          <category> JAVA </category>
-          
           <category> CS自学笔记 </category>
+          
+          <category> JAVA </category>
           
           <category> CS61B </category>
           
@@ -310,9 +339,9 @@
       
       <categories>
           
-          <category> JAVA </category>
-          
           <category> CS自学笔记 </category>
+          
+          <category> JAVA </category>
           
           <category> CS61B </category>
           
@@ -343,9 +372,9 @@
       
       <categories>
           
-          <category> JAVA </category>
-          
           <category> CS自学笔记 </category>
+          
+          <category> JAVA </category>
           
           <category> CS61B </category>
           
@@ -376,9 +405,9 @@
       
       <categories>
           
-          <category> JAVA </category>
-          
           <category> CS自学笔记 </category>
+          
+          <category> JAVA </category>
           
           <category> CS61B </category>
           
@@ -409,9 +438,9 @@
       
       <categories>
           
-          <category> JAVA </category>
-          
           <category> CS自学笔记 </category>
+          
+          <category> JAVA </category>
           
           <category> CS61B </category>
           
@@ -442,9 +471,9 @@
       
       <categories>
           
-          <category> JAVA </category>
-          
           <category> CS自学笔记 </category>
+          
+          <category> JAVA </category>
           
           <category> CS61B </category>
           
@@ -525,9 +554,9 @@
       
       <categories>
           
-          <category> JAVA </category>
-          
           <category> CS自学笔记 </category>
+          
+          <category> JAVA </category>
           
           <category> CS61B </category>
           
@@ -558,9 +587,9 @@
       
       <categories>
           
-          <category> JAVA </category>
-          
           <category> CS自学笔记 </category>
+          
+          <category> JAVA </category>
           
           <category> CS61B </category>
           
@@ -591,9 +620,9 @@
       
       <categories>
           
-          <category> JAVA </category>
-          
           <category> CS自学笔记 </category>
+          
+          <category> JAVA </category>
           
           <category> CS61B </category>
           
@@ -624,9 +653,9 @@
       
       <categories>
           
-          <category> JAVA </category>
-          
           <category> CS自学笔记 </category>
+          
+          <category> JAVA </category>
           
           <category> CS61B </category>
           
@@ -682,9 +711,9 @@
       
       <categories>
           
-          <category> JAVA </category>
-          
           <category> CS自学笔记 </category>
+          
+          <category> JAVA </category>
           
           <category> CS61B </category>
           
@@ -715,9 +744,9 @@
       
       <categories>
           
-          <category> JAVA </category>
-          
           <category> CS自学笔记 </category>
+          
+          <category> JAVA </category>
           
           <category> CS61B </category>
           
@@ -748,9 +777,9 @@
       
       <categories>
           
-          <category> JAVA </category>
-          
           <category> CS自学笔记 </category>
+          
+          <category> JAVA </category>
           
           <category> CS61B </category>
           
@@ -781,9 +810,9 @@
       
       <categories>
           
-          <category> JAVA </category>
-          
           <category> CS自学笔记 </category>
+          
+          <category> JAVA </category>
           
           <category> CS61B </category>
           
@@ -814,9 +843,9 @@
       
       <categories>
           
-          <category> JAVA </category>
-          
           <category> CS自学笔记 </category>
+          
+          <category> JAVA </category>
           
           <category> CS61B </category>
           
@@ -847,9 +876,9 @@
       
       <categories>
           
-          <category> JAVA </category>
-          
           <category> CS自学笔记 </category>
+          
+          <category> JAVA </category>
           
           <category> CS61B </category>
           
@@ -880,9 +909,9 @@
       
       <categories>
           
-          <category> JAVA </category>
-          
           <category> CS自学笔记 </category>
+          
+          <category> JAVA </category>
           
           <category> CS61B </category>
           
@@ -913,9 +942,9 @@
       
       <categories>
           
-          <category> JAVA </category>
-          
           <category> CS自学笔记 </category>
+          
+          <category> JAVA </category>
           
           <category> CS61B </category>
           
@@ -946,9 +975,9 @@
       
       <categories>
           
-          <category> JAVA </category>
-          
           <category> CS自学笔记 </category>
+          
+          <category> JAVA </category>
           
           <category> CS61B </category>
           
@@ -979,9 +1008,9 @@
       
       <categories>
           
-          <category> JAVA </category>
-          
           <category> CS自学笔记 </category>
+          
+          <category> JAVA </category>
           
           <category> CS61B </category>
           
@@ -1012,9 +1041,9 @@
       
       <categories>
           
-          <category> JAVA </category>
-          
           <category> CS自学笔记 </category>
+          
+          <category> JAVA </category>
           
           <category> CS61B </category>
           
@@ -1058,9 +1087,9 @@
       
       <categories>
           
-          <category> JAVA </category>
-          
           <category> CS自学笔记 </category>
+          
+          <category> JAVA </category>
           
           <category> CS61B </category>
           
@@ -1091,9 +1120,9 @@
       
       <categories>
           
-          <category> JAVA </category>
-          
           <category> CS自学笔记 </category>
+          
+          <category> JAVA </category>
           
           <category> CS61B </category>
           
@@ -1124,9 +1153,9 @@
       
       <categories>
           
-          <category> JAVA </category>
-          
           <category> CS自学笔记 </category>
+          
+          <category> JAVA </category>
           
           <category> CS61B </category>
           
@@ -1157,9 +1186,9 @@
       
       <categories>
           
-          <category> JAVA </category>
-          
           <category> CS自学笔记 </category>
+          
+          <category> JAVA </category>
           
           <category> CS61B </category>
           
@@ -1190,9 +1219,9 @@
       
       <categories>
           
-          <category> JAVA </category>
-          
           <category> CS自学笔记 </category>
+          
+          <category> JAVA </category>
           
           <category> CS61B </category>
           
@@ -1223,9 +1252,9 @@
       
       <categories>
           
-          <category> JAVA </category>
-          
           <category> CS自学笔记 </category>
+          
+          <category> JAVA </category>
           
           <category> CS61B </category>
           
@@ -1256,9 +1285,9 @@
       
       <categories>
           
-          <category> JAVA </category>
-          
           <category> CS自学笔记 </category>
+          
+          <category> JAVA </category>
           
           <category> CS61B </category>
           
@@ -1289,9 +1318,9 @@
       
       <categories>
           
-          <category> JAVA </category>
-          
           <category> CS自学笔记 </category>
+          
+          <category> JAVA </category>
           
           <category> CS61B </category>
           
@@ -1495,11 +1524,33 @@
     
     
     <entry>
+      <title></title>
+      <link href="/css/custom.css"/>
+      <url>/css/custom.css</url>
+      
+        <content type="html"><![CDATA[/* 页脚与头图透明 */#footer {    background: transparent !important;  }  #page-header {    background: transparent !important;  }    /* 白天模式遮罩透明 */  #footer::before {    background: transparent !important;  }  #page-header::before {    background: transparent !important;  }    /* 夜间模式遮罩透明 */  [data-theme="dark"] #footer::before {    background: transparent !important;  }  [data-theme="dark"] #page-header::before {    background: transparent !important;  }  /* 小冰分类分类磁铁黑夜模式适配 *//* 一般状态 */[data-theme="dark"] .magnet_link_context {  background: #1e1e1e;  color: antiquewhite;}/* 鼠标悬浮状态 */[data-theme="dark"] .magnet_link_context:hover {  background: #3ecdf1;  color: #f2f2f2;}/* 翻页按钮居中 */#pagination {  width: 100%;  margin: auto;}]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>about</title>
       <link href="/about/index.html"/>
       <url>/about/index.html</url>
       
         <content type="html"><![CDATA[<p><a href="https://www.bilibili.com/video/BV1G84y1B7NH/?spm_id_from=333.1007.top_right_bar_window_default_collection.content.click&vd_source=700c4afe7cf00e2775dbed3e27760082">(博客教程视频)</a></p><p><a href="https://www.fomal.cc/posts/e593433d.html">(博客教程网站)</a></p>]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>movies</title>
+      <link href="/movies/index.html"/>
+      <url>/movies/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
       
     </entry>
     
@@ -1517,11 +1568,11 @@
     
     
     <entry>
-      <title></title>
-      <link href="/css/custom.css"/>
-      <url>/css/custom.css</url>
+      <title>game</title>
+      <link href="/game/index.html"/>
+      <url>/game/index.html</url>
       
-        <content type="html"><![CDATA[/* 页脚与头图透明 */#footer {    background: transparent !important;  }  #page-header {    background: transparent !important;  }    /* 白天模式遮罩透明 */  #footer::before {    background: transparent !important;  }  #page-header::before {    background: transparent !important;  }    /* 夜间模式遮罩透明 */  [data-theme="dark"] #footer::before {    background: transparent !important;  }  [data-theme="dark"] #page-header::before {    background: transparent !important;  }  /* 小冰分类分类磁铁黑夜模式适配 *//* 一般状态 */[data-theme="dark"] .magnet_link_context {  background: #1e1e1e;  color: antiquewhite;}/* 鼠标悬浮状态 */[data-theme="dark"] .magnet_link_context:hover {  background: #3ecdf1;  color: #f2f2f2;}/* 翻页按钮居中 */#pagination {  width: 100%;  margin: auto;}]]></content>
+        <content type="html"><![CDATA[]]></content>
       
     </entry>
     
@@ -1550,28 +1601,6 @@
     
     
     <entry>
-      <title>movies</title>
-      <link href="/movies/index.html"/>
-      <url>/movies/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>音乐</title>
-      <link href="/music/index.html"/>
-      <url>/music/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>tags</title>
       <link href="/tags/index.html"/>
       <url>/tags/index.html</url>
@@ -1583,9 +1612,9 @@
     
     
     <entry>
-      <title>game</title>
-      <link href="/game/index.html"/>
-      <url>/game/index.html</url>
+      <title>音乐</title>
+      <link href="/music/index.html"/>
+      <url>/music/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
