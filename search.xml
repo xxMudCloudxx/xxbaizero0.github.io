@@ -70,106 +70,6 @@
     
     
     <entry>
-      <title>1.数据结构-线性表</title>
-      <link href="/2024/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-2-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E7%BA%BF%E6%80%A7%E8%A1%A8/"/>
-      <url>/2024/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-2-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E7%BA%BF%E6%80%A7%E8%A1%A8/</url>
-      
-        <content type="html"><![CDATA[<h1 id="线性表的定义"><a href="#线性表的定义" class="headerlink" title="线性表的定义"></a>线性表的定义</h1><p>顾名思义,线性表就是数据元素的排列像一条线一样的表。严格来说线性表是具有相同特性的数据元素的一个有限序列。其特征有三:所有数据元素类型相同;线性表是由有限个数据元素构成的;线性表中的数据元素与位置相关,即每个数据元素有唯一的序号(或索引)。在线性表中可以出现值相同的数据元素(它们的序号不同)。</p><h2 id="逻辑结构"><a href="#逻辑结构" class="headerlink" title="逻辑结构"></a>逻辑结构</h2><p>线性表的逻辑结构一般表示为(ao,a1,…,a;,a;+1,…,a„-1),用图形表示的逻辑结构如图2.1所示。其中,用n(n&gt;0)表示线性表的长度(即线性表中数据元素的个数)。当n&#x3D;0时表示线性表是一个空表,不包含任何数据元素。</p><p><img src="/2024/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-2-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E7%BA%BF%E6%80%A7%E8%A1%A8/image-20240519210938125.png" alt="image-20240519210938125"></p><h2 id="逻辑特征"><a href="#逻辑特征" class="headerlink" title="逻辑特征"></a>逻辑特征</h2><p>对于非空线性表,除开始元素a。(也称为首元素)没有前驱元素外,其他每个元素a:(1&lt;i&lt;n一1)有且仅有一个前驱元素 a:-1;除终端元素a-1(也称为尾元素)没有后继元素外,其他元素 a:(0&lt;i&lt;n-2)有且仅有一个后继元素a:+1。也就是说,在线性表中每个元素最多只有一个前驱元素、最多只有一个后继元素,这便是线性表的逻辑特征。</p><h1 id="线性表的抽象数据类型描述"><a href="#线性表的抽象数据类型描述" class="headerlink" title="线性表的抽象数据类型描述"></a>线性表的抽象数据类型描述</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">ADT List &#123;</span><br><span class="line">    <span class="comment">// 由整数数组a中的全部n个元素建立线性表的相应存储结构</span></span><br><span class="line">    <span class="built_in">CreateList</span>(T a[], <span class="type">int</span> n);</span><br><span class="line">    <span class="comment">// 将元素e添加到线性表末尾</span></span><br><span class="line">    <span class="built_in">Add</span>(T e);</span><br><span class="line">    <span class="comment">// 返回线性表的长度</span></span><br><span class="line">    <span class="built_in">Getlength</span>();</span><br><span class="line">    <span class="comment">// 求线性表中序号为i的元素值e</span></span><br><span class="line">    <span class="built_in">GetElem</span>(<span class="type">int</span> i, T&amp; e);</span><br><span class="line">    <span class="comment">// 设置线性表中序号为i的元素值为e</span></span><br><span class="line">    <span class="built_in">SetElem</span>(<span class="type">int</span> i, T e);</span><br><span class="line">    <span class="comment">// 求信息表中递归值为e的元素的序号</span></span><br><span class="line">    <span class="built_in">GetNo</span>(T e);</span><br><span class="line">    <span class="comment">// 在线性表中插入数据元素e做完序号为i的元素</span></span><br><span class="line">    <span class="built_in">Insert</span>(<span class="type">int</span> i, T e);</span><br><span class="line">    <span class="comment">// 在线性表中删除序号为i的元素</span></span><br><span class="line">    <span class="built_in">Delete</span>(<span class="type">int</span> i);</span><br><span class="line">    <span class="comment">// 输出信息表中的所有元素</span></span><br><span class="line">    <span class="built_in">DispList</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h1 id="线性表的顺序存储结构——顺序表"><a href="#线性表的顺序存储结构——顺序表" class="headerlink" title="线性表的顺序存储结构——顺序表"></a>线性表的顺序存储结构——顺序表</h1><h2 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> initcap = <span class="number">5</span>;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="keyword">class</span> <span class="title class_">SqList</span> &#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      
-      
-      <categories>
-          
-          <category> 数据结构 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 数据结构 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>1.数据结构-数据结构绪论</title>
-      <link href="/2024/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-1-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%BB%AA%E8%AE%BA/"/>
-      <url>/2024/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-1-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%BB%AA%E8%AE%BA/</url>
-      
-        <content type="html"><![CDATA[<h1 id="基本概念和术语"><a href="#基本概念和术语" class="headerlink" title="基本概念和术语"></a>基本概念和术语</h1><h2 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h2><p>数据是所有能被输入计算机中且<strong>能被计算机处理</strong>的符号的集合。它是计算机操作的对象的总称,也是计算机处理的信息的某种特定的符号表示形式(例如,A班学生数据包含了该班全体学生记录)。</p><h2 id="数据元素"><a href="#数据元素" class="headerlink" title="数据元素"></a>数据元素</h2><p><strong>是数据的基本单位</strong>(例如,A班中的每个学生记录都是一个数据元素),数据元素在计算机中通常作为整体处理,数据元素也称为元素、结点、记录等。有时候，一个数据元素可以由若干个数据项组成。</p><h2 id="数据项"><a href="#数据项" class="headerlink" title="数据项"></a>数据项</h2><p>具有独立含义的<strong>数据最小单位</strong>,也称为成员或域(例如,A班中的每个数据元素(即学生记录)是由学号、姓名、性别和班号等数据项组成)。</p><h2 id="数据对象"><a href="#数据对象" class="headerlink" title="数据对象"></a>数据对象</h2><p><strong>性质相同</strong>的有限个数据元素的集合,它是<strong>数据的一个子集</strong>,例如大写字母数据对象是集合 C&#x3D;{‘A’,’B’,’C’,…，Z’};1~100的整数数据对象是集合 N&#x3D;{1,2,…，100}。在默认情况下,数据结构中的数据都是指数据对象。</p><h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><p>指所涉及的数据元素的集合以及数据元素之间的关系,由数据元素之间的关系构成结构,因此可以把数据结构看成是带结构的数据元素的集合。数据结构包括以下三方面:</p><ul><li><p>数据逻辑结构</p><ul><li>数据逻辑结构由数据元素之间的逻辑关系构成,是数据结构在用户面前呈现的形式。</li><li>数据的逻辑结构是从逻辑关系(主要是指数据元素的相邻关系)上描述数据的,它与数据的存储无关,是独立于计算机的。因此,数据的逻辑结构可以看作是从具体问题抽象出来的数学模型。</li></ul></li><li><p>数据存储结构</p><ul><li>数据存储结构指数据元素及其关系在计算机内存中的存储方式，也称为数据的物理结构。</li><li>数据的存储结构是逻辑结构用计算机语言的实现或在计算机中的表示(也称为映像)，也就是逻辑结构在计算机中的存储方式,它是依赖于计算机语言的。一般在高级语言(例如C&#x2F;C++和Java等语言)的层次上讨论存储结构。</li></ul></li><li><p>数据运算</p><ul><li>数据运算指施加在该数据上的操作。</li><li>数据运算是定义在数据的逻辑结构之上的,每种逻辑结构都有一组相应的运算,最常用的运算有查找、插入、删除、更新和排序等。数据运算最终需在对应的存储结构上用算法实现。</li></ul><p>因此,数据结构是一门讨论“描述现实世界实体的数据模型及其之上的运算在计算机中如何表示和实现”的学科。</p></li></ul><h1 id="逻辑结构与物理结构"><a href="#逻辑结构与物理结构" class="headerlink" title="逻辑结构与物理结构"></a>逻辑结构与物理结构</h1><h2 id="逻辑结构"><a href="#逻辑结构" class="headerlink" title="逻辑结构"></a>逻辑结构</h2><p>逻辑结构:是指数据对象中数据元素之间的相互关系。</p><h3 id="集合结构"><a href="#集合结构" class="headerlink" title="集合结构"></a>集合结构</h3><p>集合结构:集合结构中的数据元素除了同属于个集合外’它们之间没有具他关系。各个数据元素是 “平等”的,它们的共同属性是“同属于—个集合’’。 数据结构中的集合关系就类似于数学中的集合。如右图 所示。</p><p><img src="/2024/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-1-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%BB%AA%E8%AE%BA/image-20240519194704075.png" alt="image-20240519194704075"></p><h3 id="线性结构"><a href="#线性结构" class="headerlink" title="线性结构"></a>线性结构</h3><p>线性结构:线性结构中的数据元素之间是一对一的关系。如右图所示。</p><p><img src="/2024/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-1-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%BB%AA%E8%AE%BA/image-20240519194732765.png" alt="image-20240519194732765"></p><h3 id="树形结构"><a href="#树形结构" class="headerlink" title="树形结构"></a>树形结构</h3><p>树形结构:树形结构中的数据元素之间存在 一种一对多的层次关系°如右图所示。</p><p><img src="/2024/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-1-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%BB%AA%E8%AE%BA/image-20240519194747586.png" alt="image-20240519194747586"></p><h3 id="图形结构"><a href="#图形结构" class="headerlink" title="图形结构"></a>图形结构</h3><p>图形结构:图形结构的数据元素是多对多的关系。如右图所示。<br>我们在用示意图表示数据的逻辑结构时，要注意两点:</p><ul><li>将每一个数据元素看作一个结点，用圆圈表示</li><li>元素之间的逻辑关系用结点之间的连线表示，如果这个关系是有方向的，那么用带箭头的连线表示。</li></ul><p>从之前的例子也可以看出，逻辑结构是针对具体问题的，是为了解决某个问题，在对问题理解的基础上，选择一个合适的数据结构表示数据元素之间的逻辑关系，</p><p><img src="/2024/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-1-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%BB%AA%E8%AE%BA/image-20240519194842953.png" alt="image-20240519194842953"></p><h2 id="物理结构"><a href="#物理结构" class="headerlink" title="物理结构"></a>物理结构</h2><p>物理结构:是指数据的逻辑结构在计算机中的存储形式。</p><h2 id="顺序存储结构"><a href="#顺序存储结构" class="headerlink" title="顺序存储结构"></a>顺序存储结构</h2><p>​<strong>顺序存储结构是把逻辑上相邻的元素存储在物理位置上相邻的存储单元中,元素之间的逻辑关系由存储单元的邻接关系体现(称为直接映射)。</strong>通常顺序存储结构借助于计算机程序设计语言的数组(例如C&#x2F;C++、Java语言等)或者列表(例如Python语言等)实现。</p><p>​<strong>主要优点</strong>是<strong>节省存储空间</strong>,因为分配给数据的存储单元全部用于存放元素值,元素之间的逻辑关系没有占用额外的存储空间。在采用这种方法时可实现对元素的随机存取,即每个元素对应有一个序号,由该序号可直接计算出元素的存储地址;顺序存储方法的主要缺点是初始空间难以确定,插入和删除操作需要移动较多的元素。</p><h2 id="链式存储结构"><a href="#链式存储结构" class="headerlink" title="链式存储结构"></a>链式存储结构</h2><p>​<strong>在链式存储结构中每个逻辑元素用一个结点存储,不要求逻辑上相邻的元素在物理位置上也相邻,元素间的逻辑关系用附加域表示,通常链式存储结构借助于计算机程序设计语言的指针(或者引用)实现。</strong></p><p>​主要优点是<strong>便于插入和删除操作</strong>,实现这些操作仅需修改相应结点的指针域,不必移动结点。</p><p>​与顺序存储方法相比,链式存储方法的主要缺点是<strong>存储空间的利用率较低</strong>,因为分配给数据的存储单元有一部分被用来存储元素之间的逻辑关系。另外,由于逻辑上相邻的元素在存储空间中不一定相邻,所以不能对元素进行随机存取。</p><h2 id="索引存储结构"><a href="#索引存储结构" class="headerlink" title="索引存储结构"></a>索引存储结构</h2><p>​<strong>索引存储结构通常是在存储元素信息的同时还建立附加的索引表。</strong>索引表中的每一项称为索引项,索引项的一般形式是(关键字,地址),关键字唯一标识一个元素,索引表按关键字有序排序,地址作为指向元素的指针。这种带有索引表的存储结构可以大大提高数据查找的速度。<br>​线性结构的数据采用索引存储方法后可以对元素进行随机访问,在进行插入、删除运算时只需移动存储在索引表中对应元素的存储地址,而不必移动存放在元素表中的元素的数据,所以仍<strong>保持较高的数据修改、运算效率</strong>;索引存储方法的缺点是<strong>增加了索引表,降低了存储空间的利用率。</strong></p><h2 id="哈希-散列-存储结构"><a href="#哈希-散列-存储结构" class="headerlink" title="哈希(散列)存储结构"></a>哈希(散列)存储结构</h2><p>​哈希存储结构的基本思想是根据元素的关键字通过哈希(或散列)函数直接计算出一个值,并将这个值作为该元素的存储地址。<br>​哈希存储方法的优点是<strong>查找速度快,只要给出待查元素的关键字就可以立即计算出该元素的存储地址。</strong>与前3种存储方法不同的是,哈希存储方法<strong>只存储元素的数据</strong>,<strong>不存储</strong>元素之间的逻辑关系。哈希存储方法一般只适合数据<strong>快速查找和插入</strong>的场合。</p><h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><div class="gallery-container" data-type="data" data-button>      <div class="gallery-data">[{"url":"https://www.bailog.top/2024/02/02/JAVA-CS61B-学习笔记-11-CS61b学习笔记-Rd8-1/","alt":"CS61B学习笔记(十一)-Rd8.1-封装、API、ADT | 云泥小窝 (bailog.top)"}]</div>      <div class="gallery-items">      </div>    </div>]]></content>
-      
-      
-      <categories>
-          
-          <category> 数据结构 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 数据结构 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>设计原理</title>
-      <link href="/2024/05/18/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E8%AE%BE%E8%AE%A1%E5%8E%9F%E7%90%86/"/>
-      <url>/2024/05/18/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E8%AE%BE%E8%AE%A1%E5%8E%9F%E7%90%86/</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-      
-      <categories>
-          
-          <category> 设计模式 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 设计模式 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Head First设计模式</title>
-      <link href="/2024/05/18/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-HeadFirst%E8%AE%BE%E8%AE%A1%E7%90%86%E8%AE%BA/"/>
-      <url>/2024/05/18/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-HeadFirst%E8%AE%BE%E8%AE%A1%E7%90%86%E8%AE%BA/</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-      
-      <categories>
-          
-          <category> 设计模式 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 设计模式 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>离散数学复习-谓词逻辑</title>
       <link href="/2024/05/11/%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E7%A6%BB%E6%95%A3-%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0-%E8%B0%93%E8%AF%8D%E9%80%BB%E8%BE%91/"/>
       <url>/2024/05/11/%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E7%A6%BB%E6%95%A3-%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0-%E8%B0%93%E8%AF%8D%E9%80%BB%E8%BE%91/</url>
@@ -1719,6 +1619,17 @@
     
     
     <entry>
+      <title></title>
+      <link href="/css/custom.css"/>
+      <url>/css/custom.css</url>
+      
+        <content type="html"><![CDATA[/* 页脚与头图透明 */#footer {    background: transparent !important;  }  #page-header {    background: transparent !important;  }    /* 白天模式遮罩透明 */  #footer::before {    background: transparent !important;  }  #page-header::before {    background: transparent !important;  }    /* 夜间模式遮罩透明 */  [data-theme="dark"] #footer::before {    background: transparent !important;  }  [data-theme="dark"] #page-header::before {    background: transparent !important;  }  /* 小冰分类分类磁铁黑夜模式适配 *//* 一般状态 */[data-theme="dark"] .magnet_link_context {  background: #1e1e1e;  color: antiquewhite;}/* 鼠标悬浮状态 */[data-theme="dark"] .magnet_link_context:hover {  background: #3ecdf1;  color: #f2f2f2;}/* 翻页按钮居中 */#pagination {  width: 100%;  margin: auto;}]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>about</title>
       <link href="/about/index.html"/>
       <url>/about/index.html</url>
@@ -1741,11 +1652,11 @@
     
     
     <entry>
-      <title></title>
-      <link href="/css/custom.css"/>
-      <url>/css/custom.css</url>
+      <title>categories</title>
+      <link href="/categories/index.html"/>
+      <url>/categories/index.html</url>
       
-        <content type="html"><![CDATA[/* 页脚与头图透明 */#footer {    background: transparent !important;  }  #page-header {    background: transparent !important;  }    /* 白天模式遮罩透明 */  #footer::before {    background: transparent !important;  }  #page-header::before {    background: transparent !important;  }    /* 夜间模式遮罩透明 */  [data-theme="dark"] #footer::before {    background: transparent !important;  }  [data-theme="dark"] #page-header::before {    background: transparent !important;  }  /* 小冰分类分类磁铁黑夜模式适配 *//* 一般状态 */[data-theme="dark"] .magnet_link_context {  background: #1e1e1e;  color: antiquewhite;}/* 鼠标悬浮状态 */[data-theme="dark"] .magnet_link_context:hover {  background: #3ecdf1;  color: #f2f2f2;}/* 翻页按钮居中 */#pagination {  width: 100%;  margin: auto;}]]></content>
+        <content type="html"><![CDATA[]]></content>
       
     </entry>
     
@@ -1763,20 +1674,9 @@
     
     
     <entry>
-      <title>categories</title>
-      <link href="/categories/index.html"/>
-      <url>/categories/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>movies</title>
-      <link href="/movies/index.html"/>
-      <url>/movies/index.html</url>
+      <title>音乐</title>
+      <link href="/music/index.html"/>
+      <url>/music/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -1796,9 +1696,9 @@
     
     
     <entry>
-      <title>音乐</title>
-      <link href="/music/index.html"/>
-      <url>/music/index.html</url>
+      <title>movies</title>
+      <link href="/movies/index.html"/>
+      <url>/movies/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
