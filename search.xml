@@ -37,11 +37,11 @@
     
     
     <entry>
-      <title>CS61C学习笔记(九)-Combinational_Logic_Blocks</title>
+      <title>CS61C学习笔记(九)-组合逻辑模块</title>
       <link href="/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-9-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic-Blocks/"/>
       <url>/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-9-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic-Blocks/</url>
       
-        <content type="html"><![CDATA[<h1 id="数据多路复用器-Data-Multiplexor"><a href="#数据多路复用器-Data-Multiplexor" class="headerlink" title="数据多路复用器(Data Multiplexor)"></a>数据多路复用器(Data Multiplexor)</h1><h2 id="Data-Multiplexor-here-2-to-1-n-bit-wide"><a href="#Data-Multiplexor-here-2-to-1-n-bit-wide" class="headerlink" title="Data Multiplexor (here 2-to-1, n-bit-wide)"></a>Data Multiplexor (here 2-to-1, n-bit-wide)</h2><p><img src="/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-9-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic-Blocks/image-20240730215149640.png" alt="image-20240730215149640"></p><ul><li>当S &#x3D; 0，C的值为A的值</li><li>当S &#x3D; 1，C的值为B的值</li></ul><h1 id="N-instances-of-1-bit-wide-mux"><a href="#N-instances-of-1-bit-wide-mux" class="headerlink" title="N instances of 1-bit-wide mux"></a>N instances of 1-bit-wide mux</h1><p><img src="/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-9-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic-Blocks/image-20240730215219759.png" alt="image-20240730215219759"></p><h2 id="如何构建1位宽的mux"><a href="#如何构建1位宽的mux" class="headerlink" title="如何构建1位宽的mux?"></a>如何构建1位宽的mux?</h2><p><img src="/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-9-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic-Blocks/image-20240730215234361.png" alt="image-20240730215234361"></p><h2 id="4-to-1-Multiplexor"><a href="#4-to-1-Multiplexor" class="headerlink" title="4-to-1 Multiplexor"></a>4-to-1 Multiplexor</h2><p><img src="/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-9-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic-Blocks/image-20240730215317634.png" alt="image-20240730215317634"></p><h2 id="Mux：是否有其他方法可以做到这一点"><a href="#Mux：是否有其他方法可以做到这一点" class="headerlink" title="Mux：是否有其他方法可以做到这一点?"></a>Mux：是否有其他方法可以做到这一点?</h2><p><img src="/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-9-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic-Blocks/image-20240730215331054.png" alt="image-20240730215331054"></p><h1 id="运算和逻辑单元-Arithmetic-and-Logic-Unit-ALU"><a href="#运算和逻辑单元-Arithmetic-and-Logic-Unit-ALU" class="headerlink" title="运算和逻辑单元(Arithmetic and Logic Unit\ALU)"></a>运算和逻辑单元(Arithmetic and Logic Unit\ALU)</h1><p><img src="/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-9-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic-Blocks/image-20240730215403358.png" alt="image-20240730215403358"></p><h2 id="Our-simple-ALU"><a href="#Our-simple-ALU" class="headerlink" title="Our simple ALU"></a>Our simple ALU</h2><p><img src="/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-9-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic-Blocks/image-20240730215420329.png" alt="image-20240730215420329"></p><h1 id="加法器-减法器-Adder-subtracter"><a href="#加法器-减法器-Adder-subtracter" class="headerlink" title="加法器&#x2F;减法器(Adder&#x2F;subtracter)"></a>加法器&#x2F;减法器(Adder&#x2F;subtracter)</h1><h2 id="如何构建"><a href="#如何构建" class="headerlink" title="如何构建"></a>如何构建</h2><ul><li>真值表，然后确定标准式，然后最小化并实现如我们所见</li><li>看看把问题分解成更小的片断，我们可以级联或分层</li></ul><h2 id="Adder-Subtractor-–-One-bit-adder-LSB…"><a href="#Adder-Subtractor-–-One-bit-adder-LSB…" class="headerlink" title="Adder &#x2F; Subtractor – One-bit adder LSB…"></a>Adder &#x2F; Subtractor – One-bit adder LSB…</h2><p><img src="/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-9-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic-Blocks/image-20240730215621377.png" alt="image-20240730215621377"></p><p><img src="/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-9-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic-Blocks/image-20240730215641647.png" alt="image-20240730215641647"></p><p><img src="/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-9-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic-Blocks/image-20240730215648535.png" alt="image-20240730215648535"></p><h2 id="N-1-bit-adders-1-N-bit-adder"><a href="#N-1-bit-adders-1-N-bit-adder" class="headerlink" title="N 1-bit adders -&gt; 1 N-bit adder"></a>N 1-bit adders -&gt; 1 N-bit adder</h2><p><img src="/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-9-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic-Blocks/image-20240730215705289.png" alt="image-20240730215705289"></p><p>将N个1-bit adders串联起来后就变成了1个N-bit的加法器了！</p><p>接下来我们来考虑溢出问题</p><h2 id="两个2-bit数之和"><a href="#两个2-bit数之和" class="headerlink" title="两个2 - bit数之和.. .."></a>两个2 - bit数之和.. ..</h2><p><img src="/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-9-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic-Blocks/image-20240730215723811.png" alt="image-20240730215723811"></p><h1 id="减法器设计"><a href="#减法器设计" class="headerlink" title="减法器设计"></a>减法器设计</h1><h2 id="极巧减法：A-B-A-B"><a href="#极巧减法：A-B-A-B" class="headerlink" title="极巧减法：A-B &#x3D; A + ( - B )"></a>极巧减法：A-B &#x3D; A + ( - B )</h2><p><img src="/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-9-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic-Blocks/image-20240730215754602.png" alt="image-20240730215754602"></p><ul><li><p>A-B &#x3D; A + ( - B )，因此我们只需要将B的只在输入加法器前变为-B即可，我们可以考虑补码：</p><ul><li>B取反后加一</li></ul></li><li><p>在取反这个步骤中，我们可以想到我们的XOR逻辑门来实现，然后将C<del>0</del>设为1，即可实现减法器！</p></li></ul><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ul><li><p>使用muxes在输入中进行选择</p><ul><li>S个输入位选择2^S^个输入</li><li>每个输入可以是n位宽，indep为S</li></ul></li><li><p>可以分层实施muxes</p></li><li><p>ALU可以使用mux实现</p><ul><li>与基本块体单元耦合</li></ul></li><li><p>N位加减器是使用N个1位加法器在输入端使用异或门完成的</p><ul><li>XOR作为条件反相器</li></ul></li></ul>]]></content>
+        <content type="html"><![CDATA[<p>组合逻辑模块-Combinational_Logic_Blocks</p><h1 id="数据多路复用器-Data-Multiplexor"><a href="#数据多路复用器-Data-Multiplexor" class="headerlink" title="数据多路复用器(Data Multiplexor)"></a>数据多路复用器(Data Multiplexor)</h1><h2 id="Data-Multiplexor-here-2-to-1-n-bit-wide"><a href="#Data-Multiplexor-here-2-to-1-n-bit-wide" class="headerlink" title="Data Multiplexor (here 2-to-1, n-bit-wide)"></a>Data Multiplexor (here 2-to-1, n-bit-wide)</h2><p><img src="/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-9-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic-Blocks/image-20240730215149640.png" alt="image-20240730215149640"></p><ul><li>当S &#x3D; 0，C的值为A的值</li><li>当S &#x3D; 1，C的值为B的值</li></ul><h1 id="N-instances-of-1-bit-wide-mux"><a href="#N-instances-of-1-bit-wide-mux" class="headerlink" title="N instances of 1-bit-wide mux"></a>N instances of 1-bit-wide mux</h1><p><img src="/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-9-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic-Blocks/image-20240730215219759.png" alt="image-20240730215219759"></p><h2 id="如何构建1位宽的mux"><a href="#如何构建1位宽的mux" class="headerlink" title="如何构建1位宽的mux?"></a>如何构建1位宽的mux?</h2><p><img src="/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-9-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic-Blocks/image-20240730215234361.png" alt="image-20240730215234361"></p><h2 id="4-to-1-Multiplexor"><a href="#4-to-1-Multiplexor" class="headerlink" title="4-to-1 Multiplexor"></a>4-to-1 Multiplexor</h2><p><img src="/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-9-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic-Blocks/image-20240730215317634.png" alt="image-20240730215317634"></p><h2 id="Mux：是否有其他方法可以做到这一点"><a href="#Mux：是否有其他方法可以做到这一点" class="headerlink" title="Mux：是否有其他方法可以做到这一点?"></a>Mux：是否有其他方法可以做到这一点?</h2><p><img src="/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-9-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic-Blocks/image-20240730215331054.png" alt="image-20240730215331054"></p><h1 id="运算和逻辑单元-Arithmetic-and-Logic-Unit-ALU"><a href="#运算和逻辑单元-Arithmetic-and-Logic-Unit-ALU" class="headerlink" title="运算和逻辑单元(Arithmetic and Logic Unit\ALU)"></a>运算和逻辑单元(Arithmetic and Logic Unit\ALU)</h1><p><img src="/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-9-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic-Blocks/image-20240730215403358.png" alt="image-20240730215403358"></p><h2 id="Our-simple-ALU"><a href="#Our-simple-ALU" class="headerlink" title="Our simple ALU"></a>Our simple ALU</h2><p><img src="/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-9-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic-Blocks/image-20240730215420329.png" alt="image-20240730215420329"></p><h1 id="加法器-减法器-Adder-subtracter"><a href="#加法器-减法器-Adder-subtracter" class="headerlink" title="加法器&#x2F;减法器(Adder&#x2F;subtracter)"></a>加法器&#x2F;减法器(Adder&#x2F;subtracter)</h1><h2 id="如何构建"><a href="#如何构建" class="headerlink" title="如何构建"></a>如何构建</h2><ul><li>真值表，然后确定标准式，然后最小化并实现如我们所见</li><li>看看把问题分解成更小的片断，我们可以级联或分层</li></ul><h2 id="Adder-Subtractor-–-One-bit-adder-LSB…"><a href="#Adder-Subtractor-–-One-bit-adder-LSB…" class="headerlink" title="Adder &#x2F; Subtractor – One-bit adder LSB…"></a>Adder &#x2F; Subtractor – One-bit adder LSB…</h2><p><img src="/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-9-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic-Blocks/image-20240730215621377.png" alt="image-20240730215621377"></p><p><img src="/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-9-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic-Blocks/image-20240730215641647.png" alt="image-20240730215641647"></p><p><img src="/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-9-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic-Blocks/image-20240730215648535.png" alt="image-20240730215648535"></p><h2 id="N-1-bit-adders-1-N-bit-adder"><a href="#N-1-bit-adders-1-N-bit-adder" class="headerlink" title="N 1-bit adders -&gt; 1 N-bit adder"></a>N 1-bit adders -&gt; 1 N-bit adder</h2><p><img src="/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-9-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic-Blocks/image-20240730215705289.png" alt="image-20240730215705289"></p><p>将N个1-bit adders串联起来后就变成了1个N-bit的加法器了！</p><p>接下来我们来考虑溢出问题</p><h2 id="两个2-bit数之和"><a href="#两个2-bit数之和" class="headerlink" title="两个2 - bit数之和.. .."></a>两个2 - bit数之和.. ..</h2><p><img src="/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-9-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic-Blocks/image-20240730215723811.png" alt="image-20240730215723811"></p><h1 id="减法器设计"><a href="#减法器设计" class="headerlink" title="减法器设计"></a>减法器设计</h1><h2 id="极巧减法：A-B-A-B"><a href="#极巧减法：A-B-A-B" class="headerlink" title="极巧减法：A-B &#x3D; A + ( - B )"></a>极巧减法：A-B &#x3D; A + ( - B )</h2><p><img src="/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-9-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic-Blocks/image-20240730215754602.png" alt="image-20240730215754602"></p><ul><li><p>A-B &#x3D; A + ( - B )，因此我们只需要将B的只在输入加法器前变为-B即可，我们可以考虑补码：</p><ul><li>B取反后加一</li></ul></li><li><p>在取反这个步骤中，我们可以想到我们的XOR逻辑门来实现，然后将C<del>0</del>设为1，即可实现减法器！</p></li></ul><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ul><li><p>使用muxes在输入中进行选择</p><ul><li>S个输入位选择2^S^个输入</li><li>每个输入可以是n位宽，indep为S</li></ul></li><li><p>可以分层实施muxes</p></li><li><p>ALU可以使用mux实现</p><ul><li>与基本块体单元耦合</li></ul></li><li><p>N位加减器是使用N个1位加法器在输入端使用异或门完成的</p><ul><li>XOR作为条件反相器</li></ul></li></ul>]]></content>
       
       
       <categories>
@@ -70,11 +70,11 @@
     
     
     <entry>
-      <title>CS61C学习笔记(八)-Combinational_Logic</title>
+      <title>CS61C学习笔记(八)-组合逻辑</title>
       <link href="/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-8-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic/"/>
       <url>/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-8-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic/</url>
       
-        <content type="html"><![CDATA[<p>组合逻辑电路没有状态和记忆，某些输入集的输出总是相同。</p><h1 id="真值表-Truth-Tables-TT"><a href="#真值表-Truth-Tables-TT" class="headerlink" title="真值表(Truth Tables&#x2F;TT)"></a>真值表(Truth Tables&#x2F;TT)</h1><p><img src="/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-8-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic/image-20240730212102555.png" alt="image-20240730212102555"></p><h2 id="TT-Example-1-1-iff-one-not-both-a-b-1"><a href="#TT-Example-1-1-iff-one-not-both-a-b-1" class="headerlink" title="TT Example #1: 1 iff one (not both) a,b&#x3D;1"></a>TT Example #1: 1 iff one (not both) a,b&#x3D;1</h2><p><img src="/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-8-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic/image-20240730212141287.png" alt="image-20240730212141287"></p><p>这个也是后面会说到的<strong>XOR</strong>，trick xor treat!</p><p>使用a和b的关系简化真值表：</p><ul><li>当a为0时，输出y等于b。</li><li>当a为1时，输出y等于not b。</li></ul><h2 id="TT-Example-2-2-bit-adder"><a href="#TT-Example-2-2-bit-adder" class="headerlink" title="TT Example #2: 2-bit adder"></a>TT Example #2: 2-bit adder</h2><p><img src="/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-8-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic/image-20240730212241135.png" alt="image-20240730212241135"></p><p>输入A和B分别有两位，输出C有三位（包括进位）。</p><p>总共需要16行（4位输入）。</p><h2 id="TT-Example-3-32-bit-unsigned-adder"><a href="#TT-Example-3-32-bit-unsigned-adder" class="headerlink" title="TT Example #3: 32-bit unsigned adder"></a>TT Example #3: 32-bit unsigned adder</h2><p><img src="/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-8-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic/image-20240730212250551.png" alt="image-20240730212250551"></p><p>输入A和B分别有32位，输出C需要33位（包括进位）。</p><p>真值表的方法在这种情况下可能不适用，需考虑其他构建方法。</p><h2 id="TT-Example-4-3-input-majority-circuit"><a href="#TT-Example-4-3-input-majority-circuit" class="headerlink" title="TT Example #4: 3-input majority circuit"></a>TT Example #4: 3-input majority circuit</h2><p><img src="/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-8-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic/image-20240730212302805.png" alt="image-20240730212302805"></p><h1 id="逻辑门"><a href="#逻辑门" class="headerlink" title="逻辑门"></a>逻辑门</h1><p><img src="/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-8-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic/image-20240730213128404.png" alt="image-20240730213128404"></p><p><img src="/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-8-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic/image-20240730213117887.png" alt="image-20240730213117887"></p><blockquote><p>如何记忆：<img src="/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-8-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic/image-20240730213100760.png" alt="image-20240730213100760"></p></blockquote><h2 id="2-input-gates-extend-to-n-inputs"><a href="#2-input-gates-extend-to-n-inputs" class="headerlink" title="2-input gates extend to n-inputs"></a>2-input gates extend to n-inputs</h2><p><img src="/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-8-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic/image-20240730213307305.png" alt="image-20240730213307305"></p><p>对于XOR的N-input数abc中有多少个1，奇数个1最终结果就是1</p><h2 id="Truth-Table-Gates-e-g-majority-circ"><a href="#Truth-Table-Gates-e-g-majority-circ" class="headerlink" title="Truth Table -&gt; Gates (e.g., majority circ.)"></a>Truth Table -&gt; Gates (e.g., majority circ.)</h2><p><img src="/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-8-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic/image-20240730213406554.png" alt="image-20240730213406554"></p><h2 id="Truth-Table-Gates-e-g-FSM-circuit"><a href="#Truth-Table-Gates-e-g-FSM-circuit" class="headerlink" title="Truth Table -&gt; Gates (e.g., FSM circuit)"></a>Truth Table -&gt; Gates (e.g., FSM circuit)</h2><p><img src="/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-8-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic/image-20240730213449047.png" alt="image-20240730213449047"></p><h1 id="布尔代数"><a href="#布尔代数" class="headerlink" title="布尔代数"></a>布尔代数</h1><p><img src="/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-8-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic/image-20240730213504382.png" alt="image-20240730213504382"></p><ul><li><code>+</code> &#x3D; <code>OR</code></li><li><code>·</code> &#x3D; <code>AND</code></li><li>$\bar{x}$ &#x3D; <code>NOT</code></li></ul><h2 id="Boolean-Algebra-e-g-for-majority-fun"><a href="#Boolean-Algebra-e-g-for-majority-fun" class="headerlink" title="Boolean Algebra (e.g., for majority fun.)"></a>Boolean Algebra (e.g., for majority fun.)</h2><p><img src="/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-8-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic/image-20240730213934732.png" alt="image-20240730213934732"></p><h2 id="Boolean-Algebra-e-g-for-FSM"><a href="#Boolean-Algebra-e-g-for-FSM" class="headerlink" title="Boolean Algebra (e.g., for FSM)"></a>Boolean Algebra (e.g., for FSM)</h2><p><img src="/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-8-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic/image-20240730213951120.png" alt="image-20240730213951120"></p><h2 id="电路-代数简化"><a href="#电路-代数简化" class="headerlink" title="电路&amp;代数简化"></a>电路&amp;代数简化</h2><p><img src="/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-8-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic/image-20240730214021676.png" alt="image-20240730214021676"></p><h1 id="布尔代数的规则"><a href="#布尔代数的规则" class="headerlink" title="布尔代数的规则"></a>布尔代数的规则</h1><p><img src="/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-8-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic/image-20240730214032704.png" alt="image-20240730214032704"></p><h1 id="标准型-Canonical-forms"><a href="#标准型-Canonical-forms" class="headerlink" title="标准型(Canonical forms)"></a>标准型(Canonical forms)</h1><p><img src="/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-8-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic/image-20240730214050410.png" alt="image-20240730214050410"></p><p><img src="/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-8-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic/image-20240730214056207.png" alt="image-20240730214056207"></p><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p><img src="/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-8-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic/image-20240730214125385.png" alt="image-20240730214125385"></p><p>我们可以互相转化，除了TT转成GD</p>]]></content>
+        <content type="html"><![CDATA[<p>组合逻辑(Combinational_Logic)电路没有状态和记忆，某些输入集的输出总是相同。</p><h1 id="真值表-Truth-Tables-TT"><a href="#真值表-Truth-Tables-TT" class="headerlink" title="真值表(Truth Tables&#x2F;TT)"></a>真值表(Truth Tables&#x2F;TT)</h1><p><img src="/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-8-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic/image-20240730212102555.png" alt="image-20240730212102555"></p><h2 id="TT-Example-1-1-iff-one-not-both-a-b-1"><a href="#TT-Example-1-1-iff-one-not-both-a-b-1" class="headerlink" title="TT Example #1: 1 iff one (not both) a,b&#x3D;1"></a>TT Example #1: 1 iff one (not both) a,b&#x3D;1</h2><p><img src="/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-8-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic/image-20240730212141287.png" alt="image-20240730212141287"></p><p>这个也是后面会说到的<strong>XOR</strong>，trick xor treat!</p><p>使用a和b的关系简化真值表：</p><ul><li>当a为0时，输出y等于b。</li><li>当a为1时，输出y等于not b。</li></ul><h2 id="TT-Example-2-2-bit-adder"><a href="#TT-Example-2-2-bit-adder" class="headerlink" title="TT Example #2: 2-bit adder"></a>TT Example #2: 2-bit adder</h2><p><img src="/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-8-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic/image-20240730212241135.png" alt="image-20240730212241135"></p><p>输入A和B分别有两位，输出C有三位（包括进位）。</p><p>总共需要16行（4位输入）。</p><h2 id="TT-Example-3-32-bit-unsigned-adder"><a href="#TT-Example-3-32-bit-unsigned-adder" class="headerlink" title="TT Example #3: 32-bit unsigned adder"></a>TT Example #3: 32-bit unsigned adder</h2><p><img src="/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-8-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic/image-20240730212250551.png" alt="image-20240730212250551"></p><p>输入A和B分别有32位，输出C需要33位（包括进位）。</p><p>真值表的方法在这种情况下可能不适用，需考虑其他构建方法。</p><h2 id="TT-Example-4-3-input-majority-circuit"><a href="#TT-Example-4-3-input-majority-circuit" class="headerlink" title="TT Example #4: 3-input majority circuit"></a>TT Example #4: 3-input majority circuit</h2><p><img src="/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-8-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic/image-20240730212302805.png" alt="image-20240730212302805"></p><h1 id="逻辑门"><a href="#逻辑门" class="headerlink" title="逻辑门"></a>逻辑门</h1><p><img src="/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-8-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic/image-20240730213128404.png" alt="image-20240730213128404"></p><p><img src="/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-8-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic/image-20240730213117887.png" alt="image-20240730213117887"></p><blockquote><p>如何记忆：<img src="/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-8-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic/image-20240730213100760.png" alt="image-20240730213100760"></p></blockquote><h2 id="2-input-gates-extend-to-n-inputs"><a href="#2-input-gates-extend-to-n-inputs" class="headerlink" title="2-input gates extend to n-inputs"></a>2-input gates extend to n-inputs</h2><p><img src="/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-8-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic/image-20240730213307305.png" alt="image-20240730213307305"></p><p>对于XOR的N-input数abc中有多少个1，奇数个1最终结果就是1</p><h2 id="Truth-Table-Gates-e-g-majority-circ"><a href="#Truth-Table-Gates-e-g-majority-circ" class="headerlink" title="Truth Table -&gt; Gates (e.g., majority circ.)"></a>Truth Table -&gt; Gates (e.g., majority circ.)</h2><p><img src="/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-8-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic/image-20240730213406554.png" alt="image-20240730213406554"></p><h2 id="Truth-Table-Gates-e-g-FSM-circuit"><a href="#Truth-Table-Gates-e-g-FSM-circuit" class="headerlink" title="Truth Table -&gt; Gates (e.g., FSM circuit)"></a>Truth Table -&gt; Gates (e.g., FSM circuit)</h2><p><img src="/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-8-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic/image-20240730213449047.png" alt="image-20240730213449047"></p><h1 id="布尔代数"><a href="#布尔代数" class="headerlink" title="布尔代数"></a>布尔代数</h1><p><img src="/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-8-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic/image-20240730213504382.png" alt="image-20240730213504382"></p><ul><li><code>+</code> &#x3D; <code>OR</code></li><li><code>·</code> &#x3D; <code>AND</code></li><li>$\bar{x}$ &#x3D; <code>NOT</code></li></ul><h2 id="Boolean-Algebra-e-g-for-majority-fun"><a href="#Boolean-Algebra-e-g-for-majority-fun" class="headerlink" title="Boolean Algebra (e.g., for majority fun.)"></a>Boolean Algebra (e.g., for majority fun.)</h2><p><img src="/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-8-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic/image-20240730213934732.png" alt="image-20240730213934732"></p><h2 id="Boolean-Algebra-e-g-for-FSM"><a href="#Boolean-Algebra-e-g-for-FSM" class="headerlink" title="Boolean Algebra (e.g., for FSM)"></a>Boolean Algebra (e.g., for FSM)</h2><p><img src="/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-8-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic/image-20240730213951120.png" alt="image-20240730213951120"></p><h2 id="电路-代数简化"><a href="#电路-代数简化" class="headerlink" title="电路&amp;代数简化"></a>电路&amp;代数简化</h2><p><img src="/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-8-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic/image-20240730214021676.png" alt="image-20240730214021676"></p><h1 id="布尔代数的规则"><a href="#布尔代数的规则" class="headerlink" title="布尔代数的规则"></a>布尔代数的规则</h1><p><img src="/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-8-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic/image-20240730214032704.png" alt="image-20240730214032704"></p><h1 id="标准型-Canonical-forms"><a href="#标准型-Canonical-forms" class="headerlink" title="标准型(Canonical forms)"></a>标准型(Canonical forms)</h1><p><img src="/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-8-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic/image-20240730214050410.png" alt="image-20240730214050410"></p><p><img src="/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-8-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic/image-20240730214056207.png" alt="image-20240730214056207"></p><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p><img src="/2024/07/29/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-8-CS61C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Combinational-Logic/image-20240730214125385.png" alt="image-20240730214125385"></p><p>我们可以互相转化，除了TT转成GD</p>]]></content>
       
       
       <categories>
@@ -1695,9 +1695,9 @@
       
       <categories>
           
-          <category> Python </category>
-          
           <category> CS自学笔记 </category>
+          
+          <category> Python </category>
           
           <category> CS61A </category>
           
@@ -1751,9 +1751,9 @@
       
       <categories>
           
-          <category> Python </category>
-          
           <category> CS自学笔记 </category>
+          
+          <category> Python </category>
           
           <category> CS61A </category>
           
@@ -1789,17 +1789,6 @@
     
     
     <entry>
-      <title>categories</title>
-      <link href="/categories/index.html"/>
-      <url>/categories/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>about</title>
       <link href="/about/index.html"/>
       <url>/about/index.html</url>
@@ -1811,9 +1800,42 @@
     
     
     <entry>
+      <title>categories</title>
+      <link href="/categories/index.html"/>
+      <url>/categories/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
+      <link href="/css/custom.css"/>
+      <url>/css/custom.css</url>
+      
+        <content type="html"><![CDATA[/* 页脚与头图透明 */#footer {    background: transparent !important;  }  #page-header {    background: transparent !important;  }    /* 白天模式遮罩透明 */  #footer::before {    background: transparent !important;  }  #page-header::before {    background: transparent !important;  }    /* 夜间模式遮罩透明 */  [data-theme="dark"] #footer::before {    background: transparent !important;  }  [data-theme="dark"] #page-header::before {    background: transparent !important;  }  /* 小冰分类分类磁铁黑夜模式适配 *//* 一般状态 */[data-theme="dark"] .magnet_link_context {  background: #1e1e1e;  color: antiquewhite;}/* 鼠标悬浮状态 */[data-theme="dark"] .magnet_link_context:hover {  background: #3ecdf1;  color: #f2f2f2;}/* 翻页按钮居中 */#pagination {  width: 100%;  margin: auto;}]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>game</title>
       <link href="/game/index.html"/>
       <url>/game/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>link</title>
+      <link href="/link/index.html"/>
+      <url>/link/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -1833,20 +1855,20 @@
     
     
     <entry>
-      <title></title>
-      <link href="/css/custom.css"/>
-      <url>/css/custom.css</url>
+      <title>音乐</title>
+      <link href="/music/index.html"/>
+      <url>/music/index.html</url>
       
-        <content type="html"><![CDATA[/* 页脚与头图透明 */#footer {    background: transparent !important;  }  #page-header {    background: transparent !important;  }    /* 白天模式遮罩透明 */  #footer::before {    background: transparent !important;  }  #page-header::before {    background: transparent !important;  }    /* 夜间模式遮罩透明 */  [data-theme="dark"] #footer::before {    background: transparent !important;  }  [data-theme="dark"] #page-header::before {    background: transparent !important;  }  /* 小冰分类分类磁铁黑夜模式适配 *//* 一般状态 */[data-theme="dark"] .magnet_link_context {  background: #1e1e1e;  color: antiquewhite;}/* 鼠标悬浮状态 */[data-theme="dark"] .magnet_link_context:hover {  background: #3ecdf1;  color: #f2f2f2;}/* 翻页按钮居中 */#pagination {  width: 100%;  margin: auto;}]]></content>
+        <content type="html"><![CDATA[]]></content>
       
     </entry>
     
     
     
     <entry>
-      <title>link</title>
-      <link href="/link/index.html"/>
-      <url>/link/index.html</url>
+      <title>tags</title>
+      <link href="/tags/index.html"/>
+      <url>/tags/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -1866,31 +1888,9 @@
     
     
     <entry>
-      <title>音乐</title>
-      <link href="/music/index.html"/>
-      <url>/music/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>有趣の文章</title>
       <link href="/%E6%9C%89%E8%B6%A3%E3%81%AE%E6%96%87%E7%AB%A0/index.html"/>
       <url>/%E6%9C%89%E8%B6%A3%E3%81%AE%E6%96%87%E7%AB%A0/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>tags</title>
-      <link href="/tags/index.html"/>
-      <url>/tags/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
