@@ -4,6 +4,85 @@
   
     
     <entry>
+      <title>中科大计网(二)-第一章-互联网及结构</title>
+      <link href="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/"/>
+      <url>/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/</url>
+      
+        <content type="html"><![CDATA[<p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250118152806245.png" alt="image-20250118152806245"></p><h1 id="什么是Internet"><a href="#什么是Internet" class="headerlink" title="什么是Internet"></a>什么是Internet</h1><p>三大角度</p><ul><li>构成角度</li><li>网络角度</li><li>分布式应用角度</li></ul><h2 id="网络、计算机网络和互联网"><a href="#网络、计算机网络和互联网" class="headerlink" title="网络、计算机网络和互联网"></a>网络、计算机网络和互联网</h2><h3 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h3><p>由<strong>节点</strong>和边构成的拓扑结构</p><h3 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h3><p>联网的由节点和边构成的计算机系统</p><h3 id="互联网"><a href="#互联网" class="headerlink" title="互联网"></a>互联网</h3><p>由<strong>tcp协议</strong>和ip协议为主支撑工作的网络叫互联网</p><p>若不与别人相连，自己用，叫internet，企业网，不叫Internet</p><h2 id="Internet构成角度"><a href="#Internet构成角度" class="headerlink" title="Internet构成角度"></a>Internet构成角度</h2><p>联网的计算机系统由节点和边构成的这样的系统叫计算机网络</p><ul><li><strong>节点</strong>：host&#x2F;end system<ul><li>主机及其上运行的应用程序<ul><li>节点的目标或源（方形表示）</li></ul></li><li>路由器、交换机等网络交换设备<ul><li>做数据转发，不是源和目标(圆形表示)</li><li>路由器在网络层</li><li>交换机在链路层</li></ul></li></ul></li><li><strong>边</strong>：通信链路（把节点连接在一起）<ul><li><strong>接入网链路</strong>(access)：主机连接到互联网的链路</li><li><strong>主干链路</strong>（backbone)：路由器间的链路</li></ul></li><li>协议<ul><li>对等层的实体在通讯过程中应该遵守的规则的集合，包括了语法、语义和时序</li></ul></li></ul><p>​</p><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250118144912977.png" alt="image-20250118144912977"></p><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250118145623603.png" alt="image-20250118145623603"></p><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250118145632290.png" alt="image-20250118145632290"></p><h2 id="网络角度"><a href="#网络角度" class="headerlink" title="网络角度"></a>网络角度</h2><p>一堆的网络，通过网络互联设备（路由器）将他们连接在一起，这叫互联网</p><h2 id="分布式应用角度"><a href="#分布式应用角度" class="headerlink" title="分布式应用角度"></a>分布式应用角度</h2><p>互联网是分布式的应用进程以及为分布式应用进程提供服务的基础设施所构成的</p><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250118152433987.png" alt="image-20250118152433987"></p><ul><li>面向连接的可靠服务——TCP</li><li>无连接不可控服务——UDP</li></ul><h1 id="网络结构"><a href="#网络结构" class="headerlink" title="网络结构"></a>网络结构</h1><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250118151028722.png" alt="image-20250118151028722"></p><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250118151051820.png" alt="image-20250118151051820"></p><ul><li>边缘系统上面的网络应用是网络存在的理由</li><li>access是把边缘接入网络核心</li><li>网络核心的作用是数据交换<ul><li>源系统和目标系统之间有个瞬间的切换开关连在一起</li><li>“瞬间的切换开关”是比喻在数据传输过程中，源系统和目标系统之间建立的一种临时连接（可以是物理连接，也可以是逻辑连接）。</li></ul></li></ul><h1 id="网络边缘"><a href="#网络边缘" class="headerlink" title="网络边缘"></a>网络边缘</h1><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250118151938278.png" alt="image-20250118151938278"></p><h2 id="CS模式"><a href="#CS模式" class="headerlink" title="CS模式"></a>CS模式</h2><p>客户端&#x2F;服务器模式</p><p>弊端：可扩展性差</p><p>当挂载的客户端太多超过某个阈值，能力会断崖式下降</p><h2 id="P2P模式"><a href="#P2P模式" class="headerlink" title="P2P模式"></a>P2P模式</h2><p>某个分布式应用进程既可以是客户端也可以是服务端</p><h2 id="基础设施为网络应用提供的两种通讯服务方式"><a href="#基础设施为网络应用提供的两种通讯服务方式" class="headerlink" title="基础设施为网络应用提供的两种通讯服务方式"></a>基础设施为网络应用提供的两种通讯服务方式</h2><h2 id="采用网络设施的面向连接访问"><a href="#采用网络设施的面向连接访问" class="headerlink" title="采用网络设施的面向连接访问"></a>采用网络设施的面向连接访问</h2><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250118152647701.png" alt="image-20250118152647701"></p><blockquote><p>面向连接 ≠ 有连接</p><ul><li>面向连接是端和端之间的应用进程和基础设施知道，但是中间的连接节点不知道，仅仅是端系统维持连接状态</li><li>有连接是中间所有路径上的的节点都知道</li></ul></blockquote><h3 id="采用基础设施的无连接服务"><a href="#采用基础设施的无连接服务" class="headerlink" title="采用基础设施的无连接服务"></a>采用基础设施的无连接服务</h3><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250118152718240.png" alt="image-20250118152718240"></p><h1 id="网络核心"><a href="#网络核心" class="headerlink" title="网络核心"></a>网络核心</h1><p>由两种方法实现数据的传输</p><ul><li>电路交换</li><li>分组交换</li></ul><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250119151123505.png" alt="image-20250119151123505"></p><h2 id="电路交换"><a href="#电路交换" class="headerlink" title="电路交换"></a>电路交换</h2><p>通常是电话网</p><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250119151152677.png" alt="image-20250119151152677"></p><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250119151217623.png" alt="image-20250119151217623"></p><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250119151235995.png" alt="image-20250119151235995"></p><blockquote><ul><li><p>FDM</p></li><li><p>TDM</p></li><li><p>WDM</p></li></ul></blockquote><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250119151507317.png" alt="image-20250119151507317"></p><h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><p>在一个电路交换网络上，从主机A到主机B发送一个640,000比特的文件需要多长时间？</p><ul><li><p>所有的链路速率为1.536 Mbps</p></li><li><p>每条链路使用时隙数为24的TDM</p></li><li><p>建立端-端的电路需500 ms</p></li></ul><blockquote><p>时分，每条链路: 1.536Mbps&#x2F;24 &#x3D; 64 kbps</p><p>传输时间：640kb&#x2F;64kps &#x3D; 10s</p><p>共用时间 传输时间＋建立时间 &#x3D; 10.5s</p><p>(传完不代表送达B，需要光传播)</p><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250119152152966.png" alt="image-20250119152152966"></p><ul><li>图中斜率代表光速，多的时间叫传播延迟</li><li>一个比特传播持续的时间是1&#x2F;64kps，传播的长度为1&#x2F;64  x 光速<ul><li>在64 kbps的链路下，传播一个比特的时间是1&#x2F;64,000秒，而在这个时间内，数据能传播的距离大约是4.7公里。</li></ul></li><li>发送10s，接送10s，但是计算只能算一次10s</li></ul></blockquote><h3 id="电路交换不适合计算机之间的通信"><a href="#电路交换不适合计算机之间的通信" class="headerlink" title="电路交换不适合计算机之间的通信"></a>电路交换不适合计算机之间的通信</h3><ul><li>连接建立时间长</li><li>计算机通信有突发性，如果用线路交换，浪费太多片了，且占据的片不能被别的呼叫使用</li><li>不可靠</li></ul><h2 id="分组交换"><a href="#分组交换" class="headerlink" title="分组交换"></a>分组交换</h2><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250119153132478.png" alt="image-20250119153132478"></p><h3 id="为什么要存储转发"><a href="#为什么要存储转发" class="headerlink" title="为什么要存储转发"></a>为什么要存储转发</h3><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250119153149929.png" alt="image-20250119153149929"></p><p>存储转发的意义在于，不会同时占用多个节点</p><p>但是多了排队延迟和存储延迟，换来共享性</p><h3 id="存储转发的延迟"><a href="#存储转发的延迟" class="headerlink" title="存储转发的延迟"></a>存储转发的延迟</h3><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250119153621632.png" alt="image-20250119153621632"></p><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250119153915770.png" alt="image-20250119153915770"></p><blockquote><ul><li><p>蓝色是接收角度</p></li><li><p>红色是发送角度</p></li></ul></blockquote><h3 id="排队延迟和丢失"><a href="#排队延迟和丢失" class="headerlink" title="排队延迟和丢失"></a>排队延迟和丢失</h3><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250119153957107.png" alt="image-20250119153957107"></p><h3 id="网络核心功能"><a href="#网络核心功能" class="headerlink" title="网络核心功能"></a>网络核心功能</h3><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250119154614499.png" alt="image-20250119154614499"></p><h3 id="统计多路复用"><a href="#统计多路复用" class="headerlink" title="统计多路复用"></a>统计多路复用</h3><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250119154816265.png" alt="image-20250119154816265"></p><blockquote><p>特殊的时分</p></blockquote><h3 id="分组交换vs电路交换"><a href="#分组交换vs电路交换" class="headerlink" title="分组交换vs电路交换"></a>分组交换vs电路交换</h3><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250119155552636.png" alt="image-20250119155552636"></p><blockquote><p>这里n取到9的原因是，如果是10个同时使用，流量强度等于1，这个网络会挂掉</p></blockquote><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250119155828327.png" alt="image-20250119155828327"></p><h3 id="两种分组交换的方式"><a href="#两种分组交换的方式" class="headerlink" title="两种分组交换的方式"></a>两种分组交换的方式</h3><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250119160339523.png" alt="image-20250119160339523"></p><ul><li>数据报网络不需要维护通讯的状态，即每个分组都携带了目标的完整地址，两个主机通讯前不需要握手</li><li>虚电路网络需要维护通讯状态，两个主机通信前需要握手来保持他们之间通信的状态，建立一条虚拟的线路，每个分组都携带了虚电路号(而不是目标主机的完整地址)<ul><li>和打电话一样</li></ul></li></ul><h4 id="数据报"><a href="#数据报" class="headerlink" title="数据报"></a>数据报</h4><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250119160817344.png" alt="image-20250119160817344"></p><ul><li>无状态路由器，查路由表转走，不维护主机和主机间的关系</li></ul><h4 id="虚电路"><a href="#虚电路" class="headerlink" title="虚电路"></a>虚电路</h4><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250119160853058.png" alt="image-20250119160853058"></p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250119161229741.png" alt="image-20250119161229741"></p><h1 id="接入网"><a href="#接入网" class="headerlink" title="接入网"></a>接入网</h1><p>怎样将端系统和边缘路由器连接？</p><ul><li>住宅接入网络</li><li>单位接入网络(学校、公司)</li><li>无线接入网络</li></ul><blockquote><p>主要看</p><ul><li>接入网络的带宽(bits per second)</li><li>共享还是专用？</li></ul></blockquote><h2 id="住宅接入网络"><a href="#住宅接入网络" class="headerlink" title="住宅接入网络"></a>住宅接入网络</h2><h3 id="modem"><a href="#modem" class="headerlink" title="modem"></a>modem</h3><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250120031649681.png" alt="image-20250120031649681"></p><p>假设为用户电话线分配4khz用来传音频，当我要传输数据的时候可以改振幅、频率等来规定0,1。这样子我就在音频的载波信号上加载了我要传输的上网数据。</p><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250120031927156.png" alt="image-20250120031927156"></p><h3 id="DSL-digital-subscriber-line"><a href="#DSL-digital-subscriber-line" class="headerlink" title="DSL(digital subscriber line)"></a>DSL(digital subscriber line)</h3><p><strong>ads modem</strong></p><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250120032216620.png" alt="image-20250120032216620"></p><p>同样是调频解频，但是假如音频带宽是0-4kHz，那我把上行频率和下行频率设置在4k以上</p><h3 id="线缆网络"><a href="#线缆网络" class="headerlink" title="线缆网络"></a>线缆网络</h3><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250120032701325.png" alt="image-20250120032701325"></p><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250120032903255.png" alt="image-20250120032903255"></p><p>电视台公司把线缆<strong>单向下行</strong>改双向</p><h3 id="电缆模式"><a href="#电缆模式" class="headerlink" title="电缆模式"></a>电缆模式</h3><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250120033659843.png" alt="image-20250120033659843"></p><p>越往上是光纤，越往下是电缆</p><h3 id="家庭网络"><a href="#家庭网络" class="headerlink" title="家庭网络"></a>家庭网络</h3><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250120033748852.png" alt="image-20250120033748852"></p><p>一个路由器把家里的无线和有线设备都通信起来</p><blockquote><ul><li><p><strong>无线设备 (Wireless devices)</strong><br>这些设备包括手机、笔记本电脑等，它们通过无线方式连接到网络。</p></li><li><p><strong>无线接入点 (Wireless access point, 54 Mbps)</strong><br>这是无线网络的关键设备，提供 Wi-Fi 接入，速率为 54 Mbps。<br>无线接入点通常与路由器、NAT、防火墙等功能集成在一个设备中（如图中标注的 “often combined in single box”）。</p></li><li><p><strong>有线以太网 (Wired Ethernet, 100 Mbps)</strong><br>有线连接的设备通过以太网线连接到网络，提供更高的稳定性和速度（速率为100 Mbps）。</p></li><li><p><strong>路由器、防火墙、NAT</strong><br>路由器负责将家庭网络内的流量引导到正确的设备；<br>防火墙用于保护网络免受外部威胁；<br>NAT（网络地址转换）使多个设备可以共享一个公共 IP 地址访问互联网。</p></li><li><p><strong>DSL 或有线调制解调器 (Cable or DSL modem)</strong><br>这是连接家庭网络与 ISP（互联网服务提供商）之间的设备。调制解调器将家庭网络连接到上游的互联网基础设施（如 headend 或 central office）。</p></li></ul></blockquote><h2 id="单位接入网络"><a href="#单位接入网络" class="headerlink" title="单位接入网络"></a>单位接入网络</h2><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250120034105451.png" alt="image-20250120034105451"></p><ul><li><strong>无线设备 (无线接入点)</strong><br>图中上方显示了一些无线设备（如笔记本电脑），它们通过无线接入点（wireless access point）接入网络。</li><li><strong>Ethernet Switch（以太网交换机）</strong><br>图中间部分的交换机负责在内部网络中转发数据包。它连接了有线设备（如台式机）和服务器。</li><li><strong>Institutional Router（机构路由器）</strong><br>路由器是连接内部网络与外部网络（ISP）的设备。它负责将本地网络中的流量引导到互联网，并从外部网络接收数据。</li><li><strong>Institutional Mail, Web Servers（机构邮件与Web服务器）</strong><br>图的右下方展示了服务器，通常用于托管企业的邮件服务、网站、文件存储等内部资源。</li><li><strong>Institutional Link to ISP（到ISP的机构链接）</strong><br>路由器通过这一链路连接到互联网服务提供商（ISP）。这是企业访问互联网的关键出口。</li></ul><h2 id="无线接入网络"><a href="#无线接入网络" class="headerlink" title="无线接入网络"></a>无线接入网络</h2><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250120034140358.png" alt="image-20250120034140358"></p><h1 id="物理媒体"><a href="#物理媒体" class="headerlink" title="物理媒体"></a>物理媒体</h1><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250120034528729.png" alt="image-20250120034528729"></p><blockquote><ul><li><p>看得见的叫导引型媒体</p><ul><li>衰减少</li></ul></li><li><p>看不见的是非导引型媒体</p><ul><li>衰减快</li></ul></li></ul></blockquote><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250120034532632.png" alt="image-20250120034532632"></p><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250120034543356.png" alt="image-20250120034543356"></p><h1 id="互联网络结构：网络的网络"><a href="#互联网络结构：网络的网络" class="headerlink" title="互联网络结构：网络的网络"></a>互联网络结构：网络的网络</h1><ul><li>端系统通过接入**ISPs(Internet Service Providers)**连接到互联网<ul><li>住宅，公司和大小的ISPs</li></ul></li><li>接入的ISPs相应的必须是互联的<ul><li>因此任何2个端系统可相互发送分组到对方</li></ul></li><li>导致的“网络的网络”非常复制<ul><li>发展和演化是通过经济的和国家的政策来驱动的</li></ul></li></ul><h2 id="如何连接"><a href="#如何连接" class="headerlink" title="如何连接"></a>如何连接</h2><p>两两连接？</p><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250120161507357.png" alt="image-20250120161507357"></p><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250120161518344.png" alt="image-20250120161518344"></p><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250120161526105.png" alt="image-20250120161526105"></p><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250120161535983.png" alt="image-20250120161535983"></p><h2 id="全球接入和区域接入"><a href="#全球接入和区域接入" class="headerlink" title="全球接入和区域接入"></a>全球接入和区域接入</h2><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250120161621509.png" alt="image-20250120161621509"></p><h3 id="内容提供商网络-ICP"><a href="#内容提供商网络-ICP" class="headerlink" title="内容提供商网络(ICP)"></a>内容提供商网络(ICP)</h3><p>Internet Content Providers</p><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250120161818842.png" alt="image-20250120161818842"></p><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250120162600583.png" alt="image-20250120162600583"></p><blockquote><p>ICP的用户需要接入ISP，所以ISP会收取高额费用，同时对于全球的用户无法提供高质量的服务，因此ICP通常自己部署专用线缆和数据中心机房</p></blockquote><h2 id="层级结构"><a href="#层级结构" class="headerlink" title="层级结构"></a>层级结构</h2><h3 id="ISP间的连接"><a href="#ISP间的连接" class="headerlink" title="ISP间的连接"></a>ISP间的连接</h3><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250120162418641.png" alt="image-20250120162418641"></p><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250120162634484.png" alt="image-20250120162634484"></p><blockquote><p><strong>IXP（Internet Exchange Point，互联网交换中心）</strong>是互联网基础设施中的一个重要组成部分，它是不同网络（通常是不同的ISP、内容提供商或者企业网络）之间进行数据交换的物理地点。</p></blockquote><h3 id="第一层"><a href="#第一层" class="headerlink" title="第一层"></a>第一层</h3><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250120162509983.png" alt="image-20250120162509983"></p><h3 id="第二层"><a href="#第二层" class="headerlink" title="第二层"></a>第二层</h3><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250120162524089.png" alt="image-20250120162524089"></p><h3 id="第三层"><a href="#第三层" class="headerlink" title="第三层"></a>第三层</h3><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250120162533544.png" alt="image-20250120162533544"></p><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250120162612216.png" alt="image-20250120162612216"></p><h1 id="分组延时、丢失、吞吐量"><a href="#分组延时、丢失、吞吐量" class="headerlink" title="分组延时、丢失、吞吐量"></a>分组延时、丢失、吞吐量</h1><h2 id="分组丢失和延时的发生"><a href="#分组丢失和延时的发生" class="headerlink" title="分组丢失和延时的发生"></a>分组丢失和延时的发生</h2><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250120163331379.png" alt="image-20250120163331379"></p><h2 id="分组延时"><a href="#分组延时" class="headerlink" title="分组延时"></a>分组延时</h2><p>四种</p><ul><li><p>节点处理延时</p><ul><li>检查bit级差错</li><li>检查分组首部和决定将分组导向何处</li></ul></li><li><p>排队延时</p><ul><li>在输出链路上等待传输的时间</li><li>依赖于路由器的拥塞程度</li></ul></li><li><p>传输延时</p><ul><li>R &#x3D; 链路带宽(bps)</li><li>L &#x3D; 分组长度(bits)</li><li>将分组发送到链路上的时间 &#x3D; L&#x2F;R<ul><li>传输一个比特需要时间为：1&#x2F;R，那么传输L个比特需要L&#x2F;R</li></ul></li><li>存储转发延时</li></ul></li><li><p>传播延时</p><ul><li>d &#x3D; 物理链路的长度</li><li>s &#x3D; 在媒体上的传播速度(~2x10八次方m&#x2F;sec)</li><li>传播延时 &#x3D; d &#x2F; s</li></ul><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250120164204994.png" alt="image-20250120164204994"></p></li></ul><h3 id="类比"><a href="#类比" class="headerlink" title="类比"></a>类比</h3><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250120163737476.png" alt="image-20250120163737476"></p><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250120163744807.png" alt="image-20250120163744807"></p><h3 id="信道容量"><a href="#信道容量" class="headerlink" title="信道容量"></a>信道容量</h3><blockquote><p>容量有时候说的是容纳的分组，有时候说的是带宽，这里说的是可以容纳的分支</p></blockquote><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250120170549752.png" alt="image-20250120170549752"></p><ul><li>左边的叫做LAN(Local Area Network)<ul><li>LAN 是指在一个相对较小的地理范围内（如家庭、办公室、学校或工厂等）连接的计算机和其他设备的网络。局域网的特点是覆盖范围小，通常只限于一栋建筑或一个校园。</li><li>局域网几乎没有容量</li></ul></li><li>右边的叫做WAN(Wide Area Network)<ul><li>WAN 是指覆盖较广地理范围的计算机网络，它可以跨越城市、国家甚至全球。WAN通常由多个LAN通过路由器、卫星、光纤或无线链路连接而成。</li><li>可以传很多个分组，所以信道容量大</li></ul></li></ul><h3 id="节点延时"><a href="#节点延时" class="headerlink" title="节点延时"></a>节点延时</h3><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250120164333480.png" alt="image-20250120164333480"></p><h3 id="排队延时"><a href="#排队延时" class="headerlink" title="排队延时"></a>排队延时</h3><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250120164409350.png" alt="image-20250120164409350"></p><h3 id="Internet延时和路由"><a href="#Internet延时和路由" class="headerlink" title="Internet延时和路由"></a>Internet延时和路由</h3><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250120164424439.png" alt="image-20250120164424439"></p><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250121032031956.png" alt="image-20250121032031956"></p><blockquote><p>分组到路由器,TTL减1，若TTL减为0则汇报ICMP(互联网控制报文协议 有很多类型数据包，其中一种是下面那个IP头IP邮报)给源IP。</p><p>所以Tracert是用来返回每一跳路由器延时的(往返延迟，RTT(Round Trip Time))</p></blockquote><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250121032835402.png" alt="image-20250121032835402"></p><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250120164434733.png" alt="image-20250120164434733"></p><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250120164440252.png" alt="image-20250120164440252"></p><h2 id="分组丢失"><a href="#分组丢失" class="headerlink" title="分组丢失"></a>分组丢失</h2><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250120164455458.png" alt="image-20250120164455458"></p><ul><li>如果链路可靠<ul><li>上一个核心重传</li></ul></li><li>如不可靠<ul><li>源主机重传或丢就丢了</li></ul></li></ul><h2 id="吞吐量"><a href="#吞吐量" class="headerlink" title="吞吐量"></a>吞吐量</h2><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250120164509439.png" alt="image-20250120164509439"></p><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250120164532936.png" alt="image-20250120164532936"></p><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250120164539893.png" alt="image-20250120164539893"></p><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250120164547035.png" alt="image-20250120164547035"></p><h1 id="协议层次及服务模型"><a href="#协议层次及服务模型" class="headerlink" title="协议层次及服务模型"></a>协议层次及服务模型</h1><h2 id="协议层次"><a href="#协议层次" class="headerlink" title="协议层次"></a>协议层次</h2><p>采用层次化方式来实现网络功能</p><ul><li><p>将网络复杂的功能分层功能明确的<strong>层次</strong>，每一层实现了其中一个或一组<strong>功能</strong>，功能中有其上层可以使用的功能：<strong>服务</strong> </p></li><li><p>本层协议实体相互交互执行本层的<strong>协议动作</strong>，目的是实现本层功能，通过接口为上层提供更好的服务 </p></li><li><p>在实现本层协议的时候，直接<strong>利用了下层所提供的服务</strong> </p></li><li><p>本层的服务：借助下层服务实现的本层协议实体之间交互带来的新功能（上层可以利用的）**+** 更下层所提供的服务</p></li></ul><h3 id="例子-1"><a href="#例子-1" class="headerlink" title="例子"></a>例子</h3><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250122003520886.png" alt="image-20250122003520886"></p><p>两个哲学家交流，可以利用三层的功能分层，每个层次功能单一且独立</p><p> <strong>第3层：应用层（Philosopher 哲学家）</strong></p><ul><li><strong>协议动作</strong>：<ul><li>哲学家希望表达一个想法，比如“<strong>I like rabbits</strong>”（我喜欢兔子）。</li><li>这个想法被组织为一句可理解的消息，通过协议规定的格式准备好交给下一层。</li></ul></li><li><strong>服务</strong>：<ul><li>提供<strong>思想和语义表达的服务</strong>，让哲学家能够生成并传递高层语义的消息。</li><li>哲学家不需要关心具体如何传递这条消息，只需要负责<strong>思想和语义的准确性</strong>。</li></ul></li></ul><p><strong>第2层：数据链路层（Translator 翻译人员）</strong></p><ul><li>协议动作：<ul><li>翻译人员将哲学家提供的消息（英文：“I like rabbits”）翻译成荷兰语：“Ik vind konijnen leuk”。</li><li>翻译人员确保消息的语义在不同语言之间保持一致（相当于数据的“格式转换”）。</li></ul></li><li>服务：<ul><li>提供<strong>语言转换服务</strong>，确保不同语言环境中的通信双方都能理解消息。</li><li>翻译人员只负责消息的语言转换，不关心具体怎么传递消息。</li></ul></li></ul><p><strong>第1层：物理传输层（Secretary 秘书）</strong></p><ul><li>协议动作：<ul><li>秘书将翻译后的消息通过传真发送到另一端（“Location B”）。</li><li>秘书确保信息按照协议规定的物理方式（传真格式）传输到目标位置。</li></ul></li><li>服务：<ul><li>提供<strong>消息的物理传输服务</strong>，确保信息从<strong>Location A</strong>的秘书正确传递到<strong>Location B</strong>的秘书。</li><li>这一层只负责将数据通过传真网络发送，不关心数据的内容或语言。</li></ul></li></ul><p><strong>总结：从顶层到底层的解释</strong></p><ol><li><strong>应用层（哲学家）</strong>：负责生成高层语义的消息，例如“我喜欢兔子”。</li><li><strong>数据链路层（翻译人员）</strong>：负责将消息翻译成目标语言，确保语义一致性。</li><li><strong>物理传输层（秘书）</strong>：负责将消息通过传真传输到远端。</li></ol><hr><p><strong>每层的重点</strong>：</p><ul><li>上层专注于语义表达；</li><li>中层负责语言转换；</li><li>下层负责消息的物理传输。</li></ul><p>整个过程是逐层递交消息，每一层依赖下一层的服务才能完成自身任务。</p><h2 id="服务和访问访问点"><a href="#服务和访问访问点" class="headerlink" title="服务和访问访问点"></a>服务和访问访问点</h2><ul><li><p>服务( Service)：低层实体向上层实体提供它们之间的通信的能力</p><ul><li>服务用户(service user)</li><li>服务提供者(service provider )</li></ul></li><li><p>原语(primitive)：上层使用下层服务的形式，高层使用低层提供的服务，以及低层向高层提供服务都是通过服务访问原语来进行交互的—形式</p><ul><li>上层通过SAP告诉下层要访问什么服务<ul><li>去物流公司要告诉其你是要寄信还是寄什么</li></ul></li><li>下层要通过原语来告诉上层提供什么服务</li></ul></li><li><p>服务访问点 SAP (Services Access Point) ：上层使用下层提供的服务通过层间的接口—地点； </p><ul><li>例子:邮箱 </li><li>地址(address)：下层的一个实体支撑着上层的多个实体，SAP有标志不同上层实体的作用 </li><li>可以有不同的实现，队列 </li><li>例子:传输层的SAP: 端口(port)</li><li><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250122013205562.png" alt="image-20250122013205562">层间的点，用来区分不同的上层用户</li><li>套接字(socket)<ul><li>传下来的时候加以标记，传到对方的时候加以区分，这样子就能知道谁传给谁的了</li><li>socket api <ul><li>应用层使用传输层的形式</li></ul></li></ul></li></ul></li></ul><h2 id="服务的类型"><a href="#服务的类型" class="headerlink" title="服务的类型"></a>服务的类型</h2><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250122014249713.png" alt="image-20250122014249713"></p><p>两个实体可以交互pdu然后向上层提供服务，上层的应用通过下层提供服务的时候分为<strong>面向连接</strong>和无连接的访问</p><h3 id="面向连接的服务"><a href="#面向连接的服务" class="headerlink" title="面向连接的服务"></a>面向连接的服务</h3><ul><li>面向连接的服务( Connection-oriented Service)<ul><li>连接(Connection)：两个通信实体为进行通信而建立的一种结合</li><li>面向连接的服务通信的过程：建立连接，通信，拆除连接</li><li>面向连接的服务的例子：网络层的连接被成为虚电路</li><li>适用范围：对于大的数据块要传输; 不适合小的零星报文</li><li>特点：保序</li><li>服务类型: <ul><li>可靠的信息流 传送页面(可靠的获得,通过接收方的确认) </li><li>可靠的字节流 远程登录 </li><li>不可靠的连接 数字化声音</li></ul></li></ul></li></ul><h3 id="无连接的服务"><a href="#无连接的服务" class="headerlink" title="无连接的服务"></a>无连接的服务</h3><ul><li>无连接的服务(Connectionless Service)<ul><li>无连接服务：两个对等层实体在通信前不需要建立一个连接，不预留资源；不需要通信双方都是活跃；(例：寄信)</li><li>特点：不可靠、可能重复、可能失序</li><li>IP分组，数据包；</li><li>适用范围：适合传送零星数据；</li><li>服务类型： <ul><li>不可靠的数据报 电子方式的函件 </li><li>有确认的数据报 挂号信 </li><li>请求回答 信息查询</li></ul></li></ul></li></ul><h2 id="服务和协议的区别联系"><a href="#服务和协议的区别联系" class="headerlink" title="服务和协议的区别联系"></a>服务和协议的区别联系</h2><h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><ul><li>服务(Service)：低层实体向上层实体提供它们之间的通信的能力，是通过原语(primitive)来操作的，垂直</li><li>协议(protocol) ：对等层实体(peer entity)之间在相互通信的过程中，需要遵循的规则的集合，水平</li></ul><h3 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h3><ul><li>本层<strong>协议的实现</strong>要靠下层提供的服务来实现</li><li>本层实体通过协议为上层提供<strong>更高级的服务</strong></li></ul><h2 id="数据单元-DU"><a href="#数据单元-DU" class="headerlink" title="数据单元(DU)"></a>数据单元(DU)</h2><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250122005723075.png" alt="image-20250122005723075"></p><ul><li><p>PDU：协议数据单元</p><ul><li>每一层都有自己特殊的称呼<ul><li>应用层：应用报文message</li><li>传输层：报文段</li><li>网络层<ul><li>有连接：分组</li><li>无连接：数据报</li></ul></li><li>链路层：帧</li></ul></li></ul></li><li><p>上层来的数据SDU + 本层的控制信息(Header)&#x3D;本层的PDU</p><ul><li>Header &#x3D; 上层的ICI + 本身附加上去的</li></ul></li><li><p>对等层协议实体交换的过程中都是由第n层pdu来交换的</p></li><li><p>如果传下来的SDU太大的话，分解成个个小SDU，然后每块都加上控制信息</p><ul><li><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250122015538722.png" alt="image-20250122015538722"></li></ul></li><li><p>如果传下来的SDU太小了，合成一块合适大小的SDU后再加上头部信息</p><ul><li><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250122015646777.png" alt="image-20250122015646777"></li></ul></li></ul><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250122005740595.png" alt="image-20250122005740595"></p><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250122005819401.png" alt="image-20250122005819401"></p><h2 id="Internet协议栈"><a href="#Internet协议栈" class="headerlink" title="Internet协议栈"></a>Internet协议栈</h2><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250122010022563.png" alt="image-20250122010022563"></p><ul><li>物理层<ul><li>完成相应两点之间比特的传输</li></ul></li><li>链路层<ul><li>相邻两点之间，在物理层所提供的这个服务的基础之上传输以帧为单位的数据</li><li>链路层和物理层的协议一般封在同一张网卡中</li></ul></li><li>网络层<ul><li>在链路层所提供的相邻两点之间的数据传输的基础上传输以分组为单位的端到端的数据传输</li><li>主要功能：<ul><li>转发</li><li>路由</li></ul></li></ul></li><li>传输层<ul><li>第一个进程到进程的区分<ul><li>在主机到主机的传输的基础上完成进程到进程的区分：从a主机上的一个进程到b组上的某个特定的应用进程之间有通信，不能乱</li></ul></li><li>把网络层的不可靠通讯服务变成可靠的通讯服务</li></ul></li><li>应用层<ul><li>应用进程可以在传输层所提供的服务基础之上完成应用报文和应用报文之间的交互<ul><li>交换应用报文：提交天猫的订单、查询天猫的商品，需要向数据库服务器发出一个查询</li></ul></li></ul></li></ul><h3 id="ISO-OSI-参考模型"><a href="#ISO-OSI-参考模型" class="headerlink" title="ISO&#x2F;OSI 参考模型"></a>ISO&#x2F;OSI 参考模型</h3><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250122010735622.png" alt="image-20250122010735622"></p><h3 id="封装和解封装"><a href="#封装和解封装" class="headerlink" title="封装和解封装"></a>封装和解封装</h3><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250122010831983.png" alt="image-20250122010831983"></p><p>每一跳网络层都拿出来链路层的帧区分出分组，然后封装回链路层，通过物理层再转发出去(交换机两重接封装，路由器三重)</p><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250122022539308.png" alt="image-20250122022539308"></p><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250122010839485.png" alt="image-20250122010839485"></p><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-2-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD/image-20250122010847229.png" alt="image-20250122010847229"></p><h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><ul><li><p>Internet</p></li><li><p>什么是协议</p></li><li><p>网络边缘，核心，接入网络</p></li><li><p>分组交换 vs. 电路交换</p></li><li><p>Internet&#x2F;ISP 结构</p></li><li><p>性能: 丢失，延时，吞吐量</p></li><li><p>层次模型和服务模型</p></li><li><p>历史</p></li></ul><h2 id="小结1"><a href="#小结1" class="headerlink" title="小结1"></a>小结1</h2><ul><li><p>组成角度看 什么是互联网 </p><ul><li><p>边缘：端系统（包括应用）+接入网 </p></li><li><p>核心：网络交换设备+通信链路 </p></li><li><p>协议：对等层实体通信过程中遵守的规则的集合 </p><ul><li>语法，语义，时序</li></ul></li></ul></li><li><p>为了实现复杂的网络功能，采用分层方式设计、实现和调试 </p><ul><li><p>应用层，传输层，网络层，数据链路层，物理层 </p></li><li><p>协议数据单位： </p><ul><li>报文，报文段，分组，帧，位</li></ul></li></ul></li><li><p>从 服务角度看互联网 </p><ul><li><p>通信服务基础设施 </p><ul><li>提供的通信服务：面向连接 无连接</li></ul></li><li><p>应用</p></li></ul></li><li><p>应用之间的交互 </p></li><li><p>C&#x2F;S模式 </p></li><li><p>P2P模式</p></li></ul><h2 id="小结2"><a href="#小结2" class="headerlink" title="小结2"></a>小结2</h2><ul><li><p>数据交换 </p><ul><li>分组数据交换 </li><li>线路交换</li></ul></li><li><p>比较 线路交换和分组交换</p></li><li><p>分组交换的2种方式 </p><ul><li><p>虚电路 </p></li><li><p>数据报</p></li></ul></li><li><p>接入网和物理媒介 </p><ul><li><p>接入网技术： </p><ul><li>住宅：ADSL，拨号，cable modem </li><li>单位：以太网 </li><li>无线接入方式</li></ul></li><li><p>物理媒介 </p><ul><li>光纤，同轴电缆，以太网，双绞线</li></ul></li></ul></li><li><p>ISP层次结构</p></li></ul><h2 id="小结3"><a href="#小结3" class="headerlink" title="小结3"></a>小结3</h2><ul><li><p>分组交换网络中延迟和丢失是如何发生的</p><ul><li>延迟的组成：处理、传输、传播、排队</li></ul></li><li><p>网络的分层体系结构</p><ul><li><p>分层体系结构</p></li><li><p>服务</p></li><li><p>协议数据单元</p></li><li><p>封装与解封装</p></li></ul></li><li><p>历史</p></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 计算机网络 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 计算机网络 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>中科大计网(一)-序言</title>
+      <link href="/2025/01/18/%E8%AE%A1%E7%BD%91-1-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E5%BA%8F%E8%A8%80/"/>
+      <url>/2025/01/18/%E8%AE%A1%E7%BD%91-1-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E5%BA%8F%E8%A8%80/</url>
+      
+        <content type="html"><![CDATA[<h1 id="往后课程主要内容"><a href="#往后课程主要内容" class="headerlink" title="往后课程主要内容"></a>往后课程主要内容</h1><ul><li>应用层</li><li>传输层</li><li>网络层<ul><li>数据平面</li><li>控制平面</li></ul></li><li>数据链路层和局域网</li></ul><h1 id="协议"><a href="#协议" class="headerlink" title="协议"></a>协议</h1><ul><li><p>协议是保证各设备间可以互操作的统一标准</p><ul><li>应用层协议：直接提供给应用进程使用的协议，DNS、HTTP</li><li>传输层协议：进程到进程之间使用，TCP（面向可靠连接），UDP（面向不可靠连接）</li><li>网络层协议：主机到主机（E2E），分为传统协议（IP和路由协议，路由器将IP报文分组，然后查路由表转发）和SDN（数据定义网络，分为数据平面（交换机）和控制平面（网络操作系统））</li><li>数据链路层协议：点到点（P2P）</li><li>物理层协议：数字信号转化为物理信号</li><li>第0层，介质</li></ul><p><img src="/2025/01/18/%E8%AE%A1%E7%BD%91-1-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E5%BA%8F%E8%A8%80/mermaid-diagram-2025-01-18-132547.png" alt="mermaid-diagram-2025-01-18-132547"></p></li></ul><h1 id="传输层协议"><a href="#传输层协议" class="headerlink" title="传输层协议"></a>传输层协议</h1><ul><li><p>TCP协议</p></li><li><p>UDP协议</p></li><li><p>可靠性：TCP协议</p><ul><li>不出错</li><li>不乱序</li><li>不重复</li><li>不丢失</li></ul></li><li><p>实时性：UDP协议</p><ul><li>多媒体点播</li><li>事务性</li></ul></li></ul><h1 id="网络层"><a href="#网络层" class="headerlink" title="网络层"></a>网络层</h1><h2 id="传统"><a href="#传统" class="headerlink" title="传统"></a>传统</h2><ul><li><p><strong>IP</strong>：提供逻辑地址，支持分组交换。</p></li><li><p><strong>路由</strong>：决定分组的传输路径</p><ul><li>路由器通过查路由表来确定分组的转发方向。</li></ul></li></ul><blockquote><p>路由器写死的，来了分组查路由表找表象然后转发。</p></blockquote><h3 id="基本功能"><a href="#基本功能" class="headerlink" title="基本功能"></a>基本功能</h3><ul><li><strong>路由</strong><ul><li>路由协议（如 RIP、OSPF）：交换路由信息<ul><li>路由信息：我到哪个子网，我有多少延迟</li></ul></li><li>路由算法（如 Dijkstra 算法）：计算路由表<ul><li>路由表包含<ul><li>IP子网</li><li>子网如何走</li></ul></li></ul></li></ul></li><li><strong>转发</strong><ul><li>IP协议用路由表根据目标IP对到来的分组做转发处理<ul><li>转发处理<ul><li>接收到IP分组后，确定该分组的下一跳网卡方向。</li></ul></li></ul></li></ul></li></ul><h2 id="软件定义网络SDN"><a href="#软件定义网络SDN" class="headerlink" title="软件定义网络SDN"></a>软件定义网络SDN</h2><p>不同点</p><ul><li><strong>字段类型的细化</strong><ul><li>流表<ul><li>包含目标IP、源IP、目标MAC、源MAC等多个字段。</li></ul></li></ul></li><li><strong>网络应用</strong><ul><li>通过运算生成多种流标，并下发给交换机。</li></ul></li><li><strong>交换机根据流标所做的动作多样化</strong><ul><li>动作包括：<ul><li>阻止。</li><li>修改字段。</li><li>转发等。</li></ul></li></ul></li></ul><h3 id="控制平面：网络操作系统"><a href="#控制平面：网络操作系统" class="headerlink" title="控制平面：网络操作系统"></a>控制平面：网络操作系统</h3><ul><li><p>包含网络应用。</p></li><li><p>负责计算流标，并将其下发到交换机。</p></li></ul><h3 id="数据平面：交换机"><a href="#数据平面：交换机" class="headerlink" title="数据平面：交换机"></a>数据平面：交换机</h3><ul><li><p>通过南向接口接收流标。</p><ul><li>南向接口（如 OpenFlow）是控制平面与数据平面的通信接口。</li><li>它不仅用来“上载流标”，还可以上传未匹配分组、拓扑信息等内容。</li></ul></li><li><p>根据多个字段匹配流标。</p></li><li><p>按照流标定义的动作对分组进行处理。</p></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 计算机网络 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 计算机网络 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>前端端栈之灵光乍现-DrumHero</title>
+      <link href="/2024/12/27/%E5%89%8D%E7%AB%AF-%E7%81%B5%E5%85%89%E4%B9%8D%E7%8E%B0-%E5%89%8D%E7%AB%AF%E7%AB%AF%E6%A0%88%E4%B9%8B%E7%81%B5%E5%85%89%E4%B9%8D%E7%8E%B0-DrumHero/"/>
+      <url>/2024/12/27/%E5%89%8D%E7%AB%AF-%E7%81%B5%E5%85%89%E4%B9%8D%E7%8E%B0-%E5%89%8D%E7%AB%AF%E7%AB%AF%E6%A0%88%E4%B9%8B%E7%81%B5%E5%85%89%E4%B9%8D%E7%8E%B0-DrumHero/</url>
+      
+        <content type="html"><![CDATA[<h1 id="前序"><a href="#前序" class="headerlink" title="前序"></a>前序</h1><p>在写<a href="https://soyaine.github.io/JavaScript30/">JavaScript30</a>的第一个项目[JS Drum Kit](<a href="https://soyaine.github.io/JavaScript30/01">https://soyaine.github.io/JavaScript30/01</a> - JavaScript Drum Kit&#x2F;index-SOYAINE.html)的时候突然灵光乍现，如果把一个歌曲解析成鼓点，然后套用这个项目的音乐打击。</p><h1 id="难点"><a href="#难点" class="headerlink" title="难点"></a>难点</h1><ul><li>如何把歌曲解析成鼓点</li><li>如何根据鼓点实现自动敲打</li><li>如何实现用户自定义上传</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 前端 </category>
+          
+          <category> 灵光乍现 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 前端 </tag>
+            
+            <tag> 灵光乍现 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>19-前端栈学习-MIT_Web终篇-Game实战</title>
       <link href="/2024/12/25/%E5%89%8D%E7%AB%AF-MIT-Web-19-%E5%89%8D%E7%AB%AF%E6%A0%88%E5%AD%A6%E4%B9%A0-MIT-Web%E7%BB%88%E7%AF%87-Game%E5%AE%9E%E6%88%98/"/>
       <url>/2024/12/25/%E5%89%8D%E7%AB%AF-MIT-Web-19-%E5%89%8D%E7%AB%AF%E6%A0%88%E5%AD%A6%E4%B9%A0-MIT-Web%E7%BB%88%E7%AF%87-Game%E5%AE%9E%E6%88%98/</url>
@@ -693,11 +772,11 @@
       
       <categories>
           
+          <category> CS自学笔记 </category>
+          
           <category> 体系结构 </category>
           
           <category> CS61C </category>
-          
-          <category> CS自学笔记 </category>
           
           <category> CS61C </category>
           
@@ -726,11 +805,11 @@
       
       <categories>
           
+          <category> CS自学笔记 </category>
+          
           <category> 体系结构 </category>
           
           <category> CS61C </category>
-          
-          <category> CS自学笔记 </category>
           
           <category> CS61C </category>
           
@@ -759,11 +838,11 @@
       
       <categories>
           
+          <category> CS自学笔记 </category>
+          
           <category> 体系结构 </category>
           
           <category> CS61C </category>
-          
-          <category> CS自学笔记 </category>
           
           <category> CS61C </category>
           
@@ -792,11 +871,11 @@
       
       <categories>
           
+          <category> CS自学笔记 </category>
+          
           <category> 体系结构 </category>
           
           <category> CS61C </category>
-          
-          <category> CS自学笔记 </category>
           
           <category> CS61C </category>
           
@@ -856,11 +935,11 @@
       
       <categories>
           
+          <category> CS自学笔记 </category>
+          
           <category> 体系结构 </category>
           
           <category> CS61C </category>
-          
-          <category> CS自学笔记 </category>
           
           <category> CS61C </category>
           
@@ -889,11 +968,11 @@
       
       <categories>
           
+          <category> CS自学笔记 </category>
+          
           <category> 体系结构 </category>
           
           <category> CS61C </category>
-          
-          <category> CS自学笔记 </category>
           
           <category> CS61C </category>
           
@@ -922,11 +1001,11 @@
       
       <categories>
           
+          <category> CS自学笔记 </category>
+          
           <category> 体系结构 </category>
           
           <category> CS61C </category>
-          
-          <category> CS自学笔记 </category>
           
           <category> CS61C </category>
           
@@ -955,11 +1034,11 @@
       
       <categories>
           
+          <category> CS自学笔记 </category>
+          
           <category> 体系结构 </category>
           
           <category> CS61C </category>
-          
-          <category> CS自学笔记 </category>
           
           <category> CS61C </category>
           
@@ -1026,11 +1105,11 @@
       
       <categories>
           
+          <category> CS自学笔记 </category>
+          
           <category> 体系结构 </category>
           
           <category> CS61C </category>
-          
-          <category> CS自学笔记 </category>
           
           <category> CS61C </category>
           
@@ -1059,11 +1138,11 @@
       
       <categories>
           
+          <category> CS自学笔记 </category>
+          
           <category> 体系结构 </category>
           
           <category> CS61C </category>
-          
-          <category> CS自学笔记 </category>
           
           <category> CS61C </category>
           
@@ -1150,11 +1229,11 @@
       
       <categories>
           
+          <category> CS自学笔记 </category>
+          
           <category> 体系结构 </category>
           
           <category> CS61C </category>
-          
-          <category> CS自学笔记 </category>
           
           <category> CS61C </category>
           
@@ -1183,11 +1262,11 @@
       
       <categories>
           
+          <category> CS自学笔记 </category>
+          
           <category> 体系结构 </category>
           
           <category> CS61C </category>
-          
-          <category> CS自学笔记 </category>
           
           <category> CS61C </category>
           
@@ -1216,11 +1295,11 @@
       
       <categories>
           
+          <category> CS自学笔记 </category>
+          
           <category> 体系结构 </category>
           
           <category> CS61C </category>
-          
-          <category> CS自学笔记 </category>
           
           <category> CS61C </category>
           
@@ -1249,11 +1328,11 @@
       
       <categories>
           
+          <category> CS自学笔记 </category>
+          
           <category> 体系结构 </category>
           
           <category> CS61C </category>
-          
-          <category> CS自学笔记 </category>
           
           <category> CS61C </category>
           
@@ -1282,11 +1361,11 @@
       
       <categories>
           
+          <category> CS自学笔记 </category>
+          
           <category> 体系结构 </category>
           
           <category> CS61C </category>
-          
-          <category> CS自学笔记 </category>
           
           <category> CS61C </category>
           
@@ -1315,9 +1394,9 @@
       
       <categories>
           
-          <category> JAVA </category>
-          
           <category> CS自学笔记 </category>
+          
+          <category> JAVA </category>
           
           <category> CS61B </category>
           
@@ -1348,9 +1427,9 @@
       
       <categories>
           
-          <category> JAVA </category>
-          
           <category> CS自学笔记 </category>
+          
+          <category> JAVA </category>
           
           <category> CS61B </category>
           
@@ -1381,9 +1460,9 @@
       
       <categories>
           
-          <category> JAVA </category>
-          
           <category> CS自学笔记 </category>
+          
+          <category> JAVA </category>
           
           <category> CS61B </category>
           
@@ -1414,9 +1493,9 @@
       
       <categories>
           
-          <category> JAVA </category>
-          
           <category> CS自学笔记 </category>
+          
+          <category> JAVA </category>
           
           <category> CS61B </category>
           
@@ -1447,9 +1526,9 @@
       
       <categories>
           
-          <category> JAVA </category>
-          
           <category> CS自学笔记 </category>
+          
+          <category> JAVA </category>
           
           <category> CS61B </category>
           
@@ -1480,9 +1559,9 @@
       
       <categories>
           
-          <category> JAVA </category>
-          
           <category> CS自学笔记 </category>
+          
+          <category> JAVA </category>
           
           <category> CS61B </category>
           
@@ -1513,9 +1592,9 @@
       
       <categories>
           
-          <category> JAVA </category>
-          
           <category> CS自学笔记 </category>
+          
+          <category> JAVA </category>
           
           <category> CS61B </category>
           
@@ -1546,9 +1625,9 @@
       
       <categories>
           
-          <category> JAVA </category>
-          
           <category> CS自学笔记 </category>
+          
+          <category> JAVA </category>
           
           <category> CS61B </category>
           
@@ -1579,9 +1658,9 @@
       
       <categories>
           
-          <category> JAVA </category>
-          
           <category> CS自学笔记 </category>
+          
+          <category> JAVA </category>
           
           <category> CS61B </category>
           
@@ -1662,9 +1741,9 @@
       
       <categories>
           
-          <category> JAVA </category>
-          
           <category> CS自学笔记 </category>
+          
+          <category> JAVA </category>
           
           <category> CS61B </category>
           
@@ -1695,9 +1774,9 @@
       
       <categories>
           
-          <category> JAVA </category>
-          
           <category> CS自学笔记 </category>
+          
+          <category> JAVA </category>
           
           <category> CS61B </category>
           
@@ -1728,9 +1807,9 @@
       
       <categories>
           
-          <category> JAVA </category>
-          
           <category> CS自学笔记 </category>
+          
+          <category> JAVA </category>
           
           <category> CS61B </category>
           
@@ -1761,9 +1840,9 @@
       
       <categories>
           
-          <category> JAVA </category>
-          
           <category> CS自学笔记 </category>
+          
+          <category> JAVA </category>
           
           <category> CS61B </category>
           
@@ -1819,9 +1898,9 @@
       
       <categories>
           
-          <category> JAVA </category>
-          
           <category> CS自学笔记 </category>
+          
+          <category> JAVA </category>
           
           <category> CS61B </category>
           
@@ -1852,9 +1931,9 @@
       
       <categories>
           
-          <category> JAVA </category>
-          
           <category> CS自学笔记 </category>
+          
+          <category> JAVA </category>
           
           <category> CS61B </category>
           
@@ -1885,9 +1964,9 @@
       
       <categories>
           
-          <category> JAVA </category>
-          
           <category> CS自学笔记 </category>
+          
+          <category> JAVA </category>
           
           <category> CS61B </category>
           
@@ -1918,9 +1997,9 @@
       
       <categories>
           
-          <category> JAVA </category>
-          
           <category> CS自学笔记 </category>
+          
+          <category> JAVA </category>
           
           <category> CS61B </category>
           
@@ -1951,9 +2030,9 @@
       
       <categories>
           
-          <category> JAVA </category>
-          
           <category> CS自学笔记 </category>
+          
+          <category> JAVA </category>
           
           <category> CS61B </category>
           
@@ -1984,9 +2063,9 @@
       
       <categories>
           
-          <category> JAVA </category>
-          
           <category> CS自学笔记 </category>
+          
+          <category> JAVA </category>
           
           <category> CS61B </category>
           
@@ -2017,9 +2096,9 @@
       
       <categories>
           
-          <category> JAVA </category>
-          
           <category> CS自学笔记 </category>
+          
+          <category> JAVA </category>
           
           <category> CS61B </category>
           
@@ -2050,9 +2129,9 @@
       
       <categories>
           
-          <category> JAVA </category>
-          
           <category> CS自学笔记 </category>
+          
+          <category> JAVA </category>
           
           <category> CS61B </category>
           
@@ -2083,9 +2162,9 @@
       
       <categories>
           
-          <category> JAVA </category>
-          
           <category> CS自学笔记 </category>
+          
+          <category> JAVA </category>
           
           <category> CS61B </category>
           
@@ -2116,9 +2195,9 @@
       
       <categories>
           
-          <category> JAVA </category>
-          
           <category> CS自学笔记 </category>
+          
+          <category> JAVA </category>
           
           <category> CS61B </category>
           
@@ -2149,9 +2228,9 @@
       
       <categories>
           
-          <category> JAVA </category>
-          
           <category> CS自学笔记 </category>
+          
+          <category> JAVA </category>
           
           <category> CS61B </category>
           
@@ -2195,9 +2274,9 @@
       
       <categories>
           
-          <category> JAVA </category>
-          
           <category> CS自学笔记 </category>
+          
+          <category> JAVA </category>
           
           <category> CS61B </category>
           
@@ -2228,9 +2307,9 @@
       
       <categories>
           
-          <category> JAVA </category>
-          
           <category> CS自学笔记 </category>
+          
+          <category> JAVA </category>
           
           <category> CS61B </category>
           
@@ -2261,9 +2340,9 @@
       
       <categories>
           
-          <category> JAVA </category>
-          
           <category> CS自学笔记 </category>
+          
+          <category> JAVA </category>
           
           <category> CS61B </category>
           
@@ -2294,9 +2373,9 @@
       
       <categories>
           
-          <category> JAVA </category>
-          
           <category> CS自学笔记 </category>
+          
+          <category> JAVA </category>
           
           <category> CS61B </category>
           
@@ -2327,9 +2406,9 @@
       
       <categories>
           
-          <category> JAVA </category>
-          
           <category> CS自学笔记 </category>
+          
+          <category> JAVA </category>
           
           <category> CS61B </category>
           
@@ -2360,9 +2439,9 @@
       
       <categories>
           
-          <category> JAVA </category>
-          
           <category> CS自学笔记 </category>
+          
+          <category> JAVA </category>
           
           <category> CS61B </category>
           
@@ -2393,9 +2472,9 @@
       
       <categories>
           
-          <category> JAVA </category>
-          
           <category> CS自学笔记 </category>
+          
+          <category> JAVA </category>
           
           <category> CS61B </category>
           
@@ -2426,9 +2505,9 @@
       
       <categories>
           
-          <category> JAVA </category>
-          
           <category> CS自学笔记 </category>
+          
+          <category> JAVA </category>
           
           <category> CS61B </category>
           
@@ -2632,66 +2711,11 @@
     
     
     <entry>
-      <title>categories</title>
-      <link href="/categories/index.html"/>
-      <url>/categories/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title></title>
-      <link href="/css/custom.css"/>
-      <url>/css/custom.css</url>
-      
-        <content type="html"><![CDATA[/* 页脚与头图透明 */#footer {  background: transparent !important;}#page-header {  background: transparent !important;}/* 白天模式遮罩透明 */#footer::before {  background: transparent !important;}#page-header::before {  background: transparent !important;}/* 夜间模式遮罩透明 */[data-theme="dark"] #footer::before {  background: transparent !important;}[data-theme="dark"] #page-header::before {  background: transparent !important;}/* 小冰分类分类磁铁黑夜模式适配 *//* 一般状态 */[data-theme="dark"] .magnet_link_context {  background: #1e1e1e;  color: antiquewhite;}/* 鼠标悬浮状态 */[data-theme="dark"] .magnet_link_context:hover {  background: #3ecdf1;  color: #f2f2f2;}/* 翻页按钮居中 */#pagination {  width: 100%;  margin: auto;}/*哔哩哔哩视频适配*/.aspect-ratio {  position: relative;  width: 90%;  height: auto;  padding-bottom: 75%;  margin: 3% auto;  text-align: center;}.aspect-ratio iframe {  position: absolute;  width: 100%;  height: 86%;  left: 0;  top: 0;}]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>about</title>
-      <link href="/about/index.html"/>
-      <url>/about/index.html</url>
-      
-        <content type="html"><![CDATA[<p><a href="https://www.bilibili.com/video/BV1G84y1B7NH/?spm_id_from=333.1007.top_right_bar_window_default_collection.content.click&vd_source=700c4afe7cf00e2775dbed3e27760082">(博客教程视频)</a></p><p><a href="https://www.fomal.cc/posts/e593433d.html">(博客教程网站)</a></p>]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>game</title>
-      <link href="/game/index.html"/>
-      <url>/game/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>个人小日记</title>
       <link href="/diary/index.html"/>
       <url>/diary/index.html</url>
       
         <content type="html"><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">  <script id="hbeData" type="hbeData" data-hmacdigest="4d1857f52c5969e98a96a8921330e0c4117efb53962c8316a4e3b98f722b2612">7a04f49168c16fa5e6499f3676d544844c6ee71d97efcd86407c182421f8c9748441467c5356d4070dfc0ec89c73cad95fbdbaa1469f3bb0c020d40d393c058e20b17f4293d3831de9ff74ea82c612d5e35d6103e70a5831c9b317c6e3a55a309ab3bc19e68dd232cf553b57a7260b23a88d53d82b1ed65716f80b6d1b6a255ad9531d838eae3db02a68e499acaeaaeec58d4adee4cb4e4a445d95a9337d75a06d8a414424e18732794b3ba843b29fdc9322bd2fe9259ce157adb88932a1ac6e7e4da9c91153a7b24822e4335479e9eda389e904766c8d746e5699d662482a465241272d23afe4785e3ccbfdffb70de24459545fef6bc9b1b2d3ffc1c69ca2f16b97e1695881fba5a3049e2dc9bc9612966cf35c7898b36311d0d7b0b3a8bdf792ba3293c5538de2fdf7c2a78cb0d24b2000a70a862a2b726d49676dee3cde9c6f53b3786172c6117a15d32690b5fad5a06bcb5f5a274f4b219d206122c42364877c4e18a93c20ca747132fbdc89fc14e0164d279f30e7d6c945e0bf40a2806923fbf700c5f07935936af5347cfed170494e9745eef4fa3687c6454adf5b873489aa8fa0a7865f40ce15b75dbaf9938d42fb591f649aa6caf10d31e5d93adc59477e05a58972e0e7dbd1d3e2571c760931c30ef691d608840c315ebc06339c56f10796c905c64e40c449d9a7ff420f7c6542193201ec66c57c07efd823f94a19ad45400ffdb1108ed09861943096078e733b1bbe858cd0f62f76c0a0043fd9ae0425c1d1e368d778b0bb96616da862282e4309cc5a5f5da962ff4a31d174e67670ec8f89d4773660f8697b4f22f7ecc5330174a907813de6a2bc0ee31421a3a3b67a97c6d88507efe9c35baec3fec73dc9abf9bc514580b69ddd7d2cb5aabd9b2f25454a59b9296a4baafd71998cacc6b9e9a96f1a332ee5e888a7101496b373f64f032fe62950a0f36e7400de3da57fb9c929ee0fdc24263a379d27a8ba67811adc97d0a507987d940847fe71f3a810f915dc67b5442fc96f6070fdfb99a47faa9702b549cb10d2ca349139197b20dd7116ed97541ddaf7a40af6e0a6e0bff78136ae24683a01cffbaf0668bcce69a225d08e8128d8043fdc1efb38953bacc858c1a40eb572556c3eed4f0c703cdd991b83b2224f3251d109feed4ad50462ea60d36dcec3ebfc05d91f2b7d1e30c0677fdac3b8d5dfc7a555b283bad498a24a53e6678b9dd79658960f2d98aec4a174ab71db5862aa1f9d64a52d293e8a91ed27b952b7538385e1e3f97f81adcd804cd4504f6e262673d13e0f965026bb32081a27aa044f83427b685b8b3484dfe4a6156b75c501bc9fbd7755259c5dd233e8b0355aaab062efa3691482798679514061e191e07d05935ce45b888c38b868d9912f21a6a4e96fb7d47a2dcd0fbf7c81a15caebc61132f0e122333edca6a7fcc7fc785420e4ffb3c4ec22f6364509cb36c58e7cc032b075c9b61360b5bddef8597449c6b412bff09adf12ed2010052cfad2674d163401b43587e525725f324c5e8a0879289bc6e8e275fadf055a8d42b46710066c641743e482164426863e105a28de30eafd03bd669860230ea3a5d95767951dc1b637726291a215aec43ec84da91a2d692e5c546809024be1ee5c4b44eb06069ab390f6276c08d43265544a394b429d30d2e719babf12cd6f1dc05069b98ddf76b30bd83b391ba98e21222c47dbcd6b221aaf7435aebd86182ec1fb48d403c0cfc620d91a945e5f768cf91a63c914326da19af8d5ffeb60d80609e53fdac73d6e99a1f9fc001c6e416efd39ee1cd570be8397dc5b4c2e199fab2c7c69e07ba3255c9063875a184c3964c46ccc9987337bc534bd80bd0c806cd9d2a010f2e1e91a5f00af5b9f1238a8673fdbadeb852dfd89b27fc60c4e6aec44f543ec006f772c80bd3881dbc8d31ea1ae52b0b2828278aac79d189bd3d506149f0c7b03da250211b9af8ecfbbd632706ff43c1055f8a4941627d3c1cb9a20c120e1f1ff9beb7f8350e0df3a5bc488a5dbeb3d003bcd65c97ad264a9e64f4f994231de8a0327cc7bf89052f0107a52d477595a0710b9bcd3c153d4717a9ca0d4ad99230bef277bdf1cda56ec90785927a11817ea6fe793b3a96ab08dead5c9a8288ad76df3c4793a82e6320c5b16b0ae5f2581927328e3e04eb4f60a6303665f58e513dc6a284cd17da735d91d397f091b4f0d25be0fd4649bdc13efa07be6bc788c7de945912e9d31d6ea20df78148ea48ecfb19295089bd0f89db43ad4479b4fab656129f43353898ca634d051155b462484b50f5df94779c26edd98df23fe2bac293022ee3c7de77264fd261b6c20bd7852e94251f70f3e9557cb4d56155c4181d97ade73b426bd715a52eb3978666dcc4f8a026f0fde26203175478f5e511a2fe363418ac8a047ed9217dc7f5636ef17a8771d074a44830f46dc9433219d9bcd0ed2ee550e03aacb1c1237f0e83ffa2de31f6ac29a5e0ee3732e486a567088d96e5e23a763dc9e12e52de84e2414aaedb388c72ca19cdcafaeb0aebd36309d8bf11b2167d00af2201b66cd3ada93ef33ba7ef6db64a1d28b96fcad0b2ceee215640c097538510afe68a0f7856c3b0bff545561c6c86fe2ecc5cfd59bc9ac6173e9010742b0ebfa61e2424f008e2fa93bc0304d1de72dfc4f384ff9ac72e4559914c9029ceaccfa9f49e4533069c529aadd927558066cd035aa395584cca219f5cdcd402ec2f80998bcc21239706306e174481df56d161e73059728a534445749dd1f25f79239299d54a61ad4e60019f0adaec99f67c3656a76e03801edf4f8f3b1cecea72bf230f334a6faa3d651f344317b489a0913415606b46df71c53646909b18fa94282fbfa31d7d650830a358e88665b3d9c4b405c1edaaa0878c5ac7585273ea22718404b2111377808a3ca12f02d9806782c058d712efecd01966829915fe2724f61459342ea1b91b7f724fa850066d6221c7e2cdeac056439c30d31df2224bb7039daaeb608d04e5b1a58fc9e45043f1378599e3fd07549aa97046b740293df142283f9d0154592666973c332b80cbf5f39aea37a32915288851b4ace1db17d947b6081da22c41d8cc91a09575400ef8f8fa25e7097c4fe90a60c9adef1195581e0477a81b322debc5e443cb09c778780a4a3cfaf03b04e019debd36e2e9377801787908c45bbd9bf7ee4d41f3114c4617d1504087901c271bc695ceb8d4d27520f65bdea93f6ad2dcd2484737467d1bd9506b51f426425b16dbad64a6098789d7eb26fa670dad41f80b0018357f633bada49a71707d4d7ea09ee3d12f6c5c792e1f745767c569051b082820381da084d41fe862ce87cc700131df68dbe74829ca652875f44cdb6af2c89c340e74cc2cd329fb3d963ab520daf1864945905e4411f58b447f692d0a3af272c16ac2aa7757e25967c6c9cb49ad98f0264fffff6d7e7ba5d0a32f38a69d5cd53d5e6d1aaa7caf4969d7e641774f9dea4a5ea25f5ecfd92127bd4685179d92588606a2f5510f7d047e61af3697f5dba58feaa6d41a737453df0043dd794a22e01f418a7c9b087895603e20bd6e7101705777d50ddf54bda6397357fd53a4e433b8cb57c9ec5a52887f41c769bc83d7c9f9b055fb4c2f2bf33fc6dd4f0351b4254288ea40c3ca0838bcd16b3f72088bbe64de517a917c16b1c45ad26478491d4621d924ed597bf47cc752f916a2bfde968d7f79feb0a7dd2346bd36c2d1d481393bf03285350d81eeb37e2da088f376745435ae07bd4297cd304f03487d655c8a432a945f18362c781900df8447514aa8183d781719c59da8be9bcac3a583cbf07198e6578f7bd855c8b824cab41a5995c90479367c4da689e53cebc4eae87cd8e5b1acc8fa918b5ace82441d00a1e7b32cd450fe5013f4c54b2662f88628ed2e0363d961ad7f6e4a32e55705e3c9e88a0ecfbc549a09eb6f7e9865d9339e0842c81af223826e92937c1317aa1d79c3f00d73447a3fd2fe0b3eee490146048ba099d4a4d0978b5c762aece1e99f45d8d64066c94161dacef104bcf72cfeba721c1c3045ec80b18c03040291a72729d12091626ada78179d4519bffdb6204fe0d8329454496093cad3a97cf55adc47d17074981e74acbc629edfe141cdc3186b744ec1ad07f5ea2cd68bc0752fe0cadf3aa181c1a91cbd04569e2866497bd53f7a57dfc8c6651a8d72a2324acd3058ffcac894bc8d8258614ba7b79f7cf0816cb5c5d1d593f2f994978c318804a255afad7f8943c3c079f9b656dacd06b96b0f0334f7d9ee69c43d1a54c673e633d6095b25d7fd9f951ab624585e63aad18e5f0aebf038e8fafc183c95f6db34aa3a769d9317211a0e86d307e872e44a3726be9b21b26940c180aae1e4438b1a41dec6058e02562860b9f842c74dcecf0c27b051f407d3045d47e39d0410abe4d9b050a1adcba3f9ae7aba6b9034240b6a33e1dfd1bcf8c10cdebe3fb3f057b4463e70e6e3429c1edbf34e7946a756c1f4896b8349f60e5cef04cbd1c6c3034485737663cbd9f1bc43f4bec39f9d4f485e35c44cec296f49d65b660c6ec96ee8f109a643f86fcd8523937a327c17d7e57c0b13f3a5cfd5ed76bfb3d477df2ef7e181b599a68bbdee8b506034f4eb5aa1cee6f165a2fafba0dc2a81c8b0bd80007266331378731f32eac65d9672ef94e19ec7b6065aad6c9067db97334e65e5a50caadff996f613abac05b8215d3c006b955ff3e2e4d334daff859f2aa36cbc48df59e59739dab6f0345daaca4bd44144fcfbebeab6f392650386731ab096bc85f289e6196915b47cc112645241e5fd806b180652462a90ef440f0d60ac9a48d7c3cc7b296ea236c5aeee502b42ca133898dea291dc7c2d7484f6a232e89da5a674b15460494ded39843c081e8051d0de5a35ac6c25ba1f0eeba158f239ffbc38c33654bbd65edbd44fa0f12386d4e9bee024cad92c5c6e465d1e0a273f7adbc7e942d9b50f8ec59990b8cec550885c50901439adb31960f384b6725391ee6daa95cda81fb05a783917ba6cce46dea3a687d949fed518f78b785ad37619330c6a6ecdebc3e798894ce7539bb6feb4029ff623cbd203c6130770bbdc78d082d3cf863ad7d5420b917c6724f414121aadda29bebd132232e07a5a5d866afcf7e2d15a27d049f1116260a0bb8f1c932307b70378d713e4934eaab25d40b50abcae9b30dbaad65f202447c6f3db6632540831af2a53411610255d92e4f3bfd3bbf7b3f41ba901c1dd6e7340da24cf2be34322b39540390077ee12f1c12accff90b666ad32c8fa6e1e9be88c5e3997b430909c22f8e1f7034c1cb4ccc184c14e8a947373762128140d1cc49c0a6c916dc93abbc3b6feb820f57fdeb774be2f26c7efe1f4b86ceb08e4141612ef535aa8301a21ca4bb0e4772fb26e0b21ccf7f72eb7918bc247d689107d67e45e4d1cff6b2ef08874323badf1ef2d1add956a387bd5ac406712869cc066b9ba785fe2510e43cc0efade960a23ea251deb7b655fc2886ae5213868c6f601a79317d0c4076cc857821aa9dcf7017a805f636541fd2a9e61b9a5945a779bec41ebf6ec038eb3c9d9785d33496331245fb9354e3c2ec6d97aa49efccee10458be6f9c7b5a9d51af0c22438c32bdc190f6f4a6c1e8463db05d5f7be649685d501c6c7a5573e9914e2eeb076317610662aa91dffa64df7fc8cf6d186e8c6e89097859bce1655658ba62bea8bdc23fc03d353fbc9c82282dce7a4f4fc73f1bcfb4afcb1d7a2a861524b7bd232fa3b178cd9dd48dd20426497c447143c8f6881b1f2010c0ee2e26700ffb45f2c71b11d12dc9fe39807a313c44d0a3c921794fd18f570e1083ba95f7cb481e795d4965c17fd54b3c1f4b8486f0c63ab1d44027ade663bd4ef66df5ef6556235f48d2d1c2783829061132f37e420dea2b1cf69fd61410f3283b7eda20797cb11d9e95d67a75598f7028f7838e41a1ed419d8171</script>  <div class="hbe hbe-content">    <div class="hbe hbe-input hbe-input-shrink">      <input class="hbe hbe-input-field hbe-input-field-shrink" type="password" id="hbePass">      <label class="hbe hbe-input-label hbe-input-label-shrink" for="hbePass">        <span class="hbe hbe-input-label-content hbe-input-label-content-shrink">别猜了别猜了</span>      </label>    </div>  </div></div><script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>link</title>
-      <link href="/link/index.html"/>
-      <url>/link/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
       
     </entry>
     
@@ -2720,9 +2744,64 @@
     
     
     <entry>
+      <title>link</title>
+      <link href="/link/index.html"/>
+      <url>/link/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>about</title>
+      <link href="/about/index.html"/>
+      <url>/about/index.html</url>
+      
+        <content type="html"><![CDATA[<p><a href="https://www.bilibili.com/video/BV1G84y1B7NH/?spm_id_from=333.1007.top_right_bar_window_default_collection.content.click&vd_source=700c4afe7cf00e2775dbed3e27760082">(博客教程视频)</a></p><p><a href="https://www.fomal.cc/posts/e593433d.html">(博客教程网站)</a></p>]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
+      <link href="/css/custom.css"/>
+      <url>/css/custom.css</url>
+      
+        <content type="html"><![CDATA[/* 页脚与头图透明 */#footer {  background: transparent !important;}#page-header {  background: transparent !important;}/* 白天模式遮罩透明 */#footer::before {  background: transparent !important;}#page-header::before {  background: transparent !important;}/* 夜间模式遮罩透明 */[data-theme="dark"] #footer::before {  background: transparent !important;}[data-theme="dark"] #page-header::before {  background: transparent !important;}/* 小冰分类分类磁铁黑夜模式适配 *//* 一般状态 */[data-theme="dark"] .magnet_link_context {  background: #1e1e1e;  color: antiquewhite;}/* 鼠标悬浮状态 */[data-theme="dark"] .magnet_link_context:hover {  background: #3ecdf1;  color: #f2f2f2;}/* 翻页按钮居中 */#pagination {  width: 100%;  margin: auto;}/*哔哩哔哩视频适配*/.aspect-ratio {  position: relative;  width: 90%;  height: auto;  padding-bottom: 75%;  margin: 3% auto;  text-align: center;}.aspect-ratio iframe {  position: absolute;  width: 100%;  height: 86%;  left: 0;  top: 0;}]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>categories</title>
+      <link href="/categories/index.html"/>
+      <url>/categories/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>tags</title>
       <link href="/tags/index.html"/>
       <url>/tags/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>game</title>
+      <link href="/game/index.html"/>
+      <url>/game/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
