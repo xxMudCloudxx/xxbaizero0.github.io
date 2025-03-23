@@ -884,11 +884,11 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> 体系结构 </category>
           
           <category> CS61C </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61C </category>
           
@@ -917,11 +917,11 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> 体系结构 </category>
           
           <category> CS61C </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61C </category>
           
@@ -950,11 +950,11 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> 体系结构 </category>
           
           <category> CS61C </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61C </category>
           
@@ -983,11 +983,11 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> 体系结构 </category>
           
           <category> CS61C </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61C </category>
           
@@ -1047,11 +1047,11 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> 体系结构 </category>
           
           <category> CS61C </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61C </category>
           
@@ -1080,11 +1080,11 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> 体系结构 </category>
           
           <category> CS61C </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61C </category>
           
@@ -1113,11 +1113,11 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> 体系结构 </category>
           
           <category> CS61C </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61C </category>
           
@@ -1146,11 +1146,11 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> 体系结构 </category>
           
           <category> CS61C </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61C </category>
           
@@ -1217,11 +1217,11 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> 体系结构 </category>
           
           <category> CS61C </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61C </category>
           
@@ -1250,11 +1250,11 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> 体系结构 </category>
           
           <category> CS61C </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61C </category>
           
@@ -1341,11 +1341,11 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> 体系结构 </category>
           
           <category> CS61C </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61C </category>
           
@@ -1374,11 +1374,11 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> 体系结构 </category>
           
           <category> CS61C </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61C </category>
           
@@ -1407,11 +1407,11 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> 体系结构 </category>
           
           <category> CS61C </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61C </category>
           
@@ -1440,11 +1440,11 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> 体系结构 </category>
           
           <category> CS61C </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61C </category>
           
@@ -1473,11 +1473,11 @@
       
       <categories>
           
-          <category> CS自学笔记 </category>
-          
           <category> 体系结构 </category>
           
           <category> CS61C </category>
+          
+          <category> CS自学笔记 </category>
           
           <category> CS61C </category>
           
@@ -2823,6 +2823,17 @@
     
     
     <entry>
+      <title></title>
+      <link href="/css/custom.css"/>
+      <url>/css/custom.css</url>
+      
+        <content type="html"><![CDATA[/* 页脚与头图透明 */#footer {  background: transparent !important;}#page-header {  background: transparent !important;}/* 白天模式遮罩透明 */#footer::before {  background: transparent !important;}#page-header::before {  background: transparent !important;}/* 夜间模式遮罩透明 */[data-theme="dark"] #footer::before {  background: transparent !important;}[data-theme="dark"] #page-header::before {  background: transparent !important;}/* 小冰分类分类磁铁黑夜模式适配 *//* 一般状态 */[data-theme="dark"] .magnet_link_context {  background: #1e1e1e;  color: antiquewhite;}/* 鼠标悬浮状态 */[data-theme="dark"] .magnet_link_context:hover {  background: #3ecdf1;  color: #f2f2f2;}/* 翻页按钮居中 */#pagination {  width: 100%;  margin: auto;}/*哔哩哔哩视频适配*/.aspect-ratio {  position: relative;  width: 90%;  height: auto;  padding-bottom: 75%;  margin: 3% auto;  text-align: center;}.aspect-ratio iframe {  position: absolute;  width: 100%;  height: 86%;  left: 0;  top: 0;}]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>about</title>
       <link href="/about/index.html"/>
       <url>/about/index.html</url>
@@ -2845,11 +2856,11 @@
     
     
     <entry>
-      <title></title>
-      <link href="/css/custom.css"/>
-      <url>/css/custom.css</url>
+      <title>game</title>
+      <link href="/game/index.html"/>
+      <url>/game/index.html</url>
       
-        <content type="html"><![CDATA[/* 页脚与头图透明 */#footer {  background: transparent !important;}#page-header {  background: transparent !important;}/* 白天模式遮罩透明 */#footer::before {  background: transparent !important;}#page-header::before {  background: transparent !important;}/* 夜间模式遮罩透明 */[data-theme="dark"] #footer::before {  background: transparent !important;}[data-theme="dark"] #page-header::before {  background: transparent !important;}/* 小冰分类分类磁铁黑夜模式适配 *//* 一般状态 */[data-theme="dark"] .magnet_link_context {  background: #1e1e1e;  color: antiquewhite;}/* 鼠标悬浮状态 */[data-theme="dark"] .magnet_link_context:hover {  background: #3ecdf1;  color: #f2f2f2;}/* 翻页按钮居中 */#pagination {  width: 100%;  margin: auto;}/*哔哩哔哩视频适配*/.aspect-ratio {  position: relative;  width: 90%;  height: auto;  padding-bottom: 75%;  margin: 3% auto;  text-align: center;}.aspect-ratio iframe {  position: absolute;  width: 100%;  height: 86%;  left: 0;  top: 0;}]]></content>
+        <content type="html"><![CDATA[]]></content>
       
     </entry>
     
@@ -2892,17 +2903,6 @@
       <title>音乐</title>
       <link href="/music/index.html"/>
       <url>/music/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>game</title>
-      <link href="/game/index.html"/>
-      <url>/game/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
