@@ -1,0 +1,626 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Node+React实战-记账本—后端 | 云泥小窝</title><meta name="author" content="xxMudCloudxx"><meta name="copyright" content="xxMudCloudxx"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="本博客基于掘金小册子《Node + React 实战：从 0 到 1 实现记账本》的内容进行整合与编写，旨在构建一个系统的知识网络。 本项目使用的Node框架是Egg 本项目github链接xxMudCloudxx&#x2F;TallyBook: React+Eggjs+MySql Eggjs项目结构1234567891011121314151617181920212223242526272829">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node+React实战-记账本—后端">
+<meta property="og:url" content="http://mudcloud.fun/2025/03/15/%E5%89%8D%E7%AB%AF-%E9%A1%B9%E7%9B%AE%E7%BB%83%E4%B9%A0-%E8%AE%B0%E8%B4%A6%E6%9C%AC-Node-React%E5%AE%9E%E6%88%98-%E8%AE%B0%E8%B4%A6%E6%9C%AC%E2%80%94%E5%90%8E%E7%AB%AF/index.html">
+<meta property="og:site_name" content="云泥小窝">
+<meta property="og:description" content="本博客基于掘金小册子《Node + React 实战：从 0 到 1 实现记账本》的内容进行整合与编写，旨在构建一个系统的知识网络。 本项目使用的Node框架是Egg 本项目github链接xxMudCloudxx&#x2F;TallyBook: React+Eggjs+MySql Eggjs项目结构1234567891011121314151617181920212223242526272829">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://mudcloud.fun/img/but/011.jpg">
+<meta property="article:published_time" content="2025-03-15T13:48:49.000Z">
+<meta property="article:modified_time" content="2025-03-15T15:44:02.255Z">
+<meta property="article:author" content="xxMudCloudxx">
+<meta property="article:tag" content="前端">
+<meta property="article:tag" content="react">
+<meta property="article:tag" content="eggjs">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://mudcloud.fun/img/but/011.jpg"><link rel="shortcut icon" href="/img/ico/%E5%9C%A3%E8%AF%9E%E6%A0%91.png"><link rel="canonical" href="http://mudcloud.fun/2025/03/15/%E5%89%8D%E7%AB%AF-%E9%A1%B9%E7%9B%AE%E7%BB%83%E4%B9%A0-%E8%AE%B0%E8%B4%A6%E6%9C%AC-Node-React%E5%AE%9E%E6%88%98-%E8%AE%B0%E8%B4%A6%E6%9C%AC%E2%80%94%E5%90%8E%E7%AB%AF/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  noticeOutdate: {"limitDay":500,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":230},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体中文","cht_to_chs":"你已切换为简体中文","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Node+React实战-记账本—后端',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-03-15 23:44:02'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const now = new Date()
+          const hour = now.getHours()
+          const isNight = hour <= 6 || hour >= 18
+          if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+          else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/cat.css"><div id="myscoll"></div><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-double-row-display@1.00/cardlistpost.min.css"/>
+<style>#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags:before {content:"\A";
+  white-space: pre;}#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags > .article-meta__separator{display:none}</style>
+<link rel="stylesheet" href="https://unpkg.zhimg.com/hexo-butterfly-footer-beautify@1.0.0/lib/runtime.min.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/ico/avatar_1.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">94</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">26</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/diary"><i class="fa-fw fas fa-book"></i><span> 日记</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="云泥小窝"><span class="site-name">云泥小窝</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/diary"><i class="fa-fw fas fa-book"></i><span> 日记</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">Node+React实战-记账本—后端</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-03-15T13:48:49.000Z" title="发表于 2025-03-15 21:48:49">2025-03-15</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-03-15T15:44:02.255Z" title="更新于 2025-03-15 23:44:02">2025-03-15</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">5.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>21分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Node+React实战-记账本—后端"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><p>本博客基于掘金小册子《<a target="_blank" rel="noopener" href="https://juejin.cn/book/6966551262766563328?utm_source=course_list">Node + React 实战：从 0 到 1 实现记账本</a>》的内容进行整合与编写，旨在构建一个系统的知识网络。</p>
+<p>本项目使用的Node框架是<a target="_blank" rel="noopener" href="https://www.eggjs.org/zh-CN/basics/structure">Egg</a></p>
+<p>本项目github链接<a target="_blank" rel="noopener" href="https://github.com/xxMudCloudxx/TallyBook">xxMudCloudxx&#x2F;TallyBook: React+Eggjs+MySql</a></p>
+<h1 id="Eggjs项目结构"><a href="#Eggjs项目结构" class="headerlink" title="Eggjs项目结构"></a>Eggjs项目结构</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">egg-project</span><br><span class="line">├── package.json</span><br><span class="line">├── app.js（可选）</span><br><span class="line">├── agent.js（可选）</span><br><span class="line">├── app</span><br><span class="line">|   ├── router.js</span><br><span class="line">│   ├── controller</span><br><span class="line">│   │   └── home.js</span><br><span class="line">│   ├── service（可选）</span><br><span class="line">│   │   └── user.js</span><br><span class="line">│   ├── middleware（可选）</span><br><span class="line">│   │   └── response_time.js</span><br><span class="line">│   ├── schedule（可选）</span><br><span class="line">│   │   └── my_task.js</span><br><span class="line">│   ├── public（可选）</span><br><span class="line">│   │   └── reset.css</span><br><span class="line">│   ├── view（可选）</span><br><span class="line">│   │   └── home.tpl</span><br><span class="line">│   └── extend（可选）</span><br><span class="line">│       ├── helper.js（可选）</span><br><span class="line">│       ├── request.js（可选）</span><br><span class="line">│       ├── response.js（可选）</span><br><span class="line">│       ├── context.js（可选）</span><br><span class="line">│       ├── application.js（可选）</span><br><span class="line">│       └── agent.js（可选）</span><br><span class="line">├── config</span><br><span class="line">|   ├── plugin.js</span><br><span class="line">|   ├── config.default.js</span><br><span class="line">│   ├── config.prod.js</span><br><span class="line">|   ├── config.test.js（可选）</span><br><span class="line">|   ├── config.local.js（可选）</span><br><span class="line">|   └── config.unittest.js（可选）</span><br><span class="line">└── <span class="built_in">test</span></span><br><span class="line">    ├── middleware</span><br><span class="line">    |   └── response_time.test.js</span><br><span class="line">    └── controller</span><br><span class="line">        └── home.test.js</span><br></pre></td></tr></table></figure>
+
+<p>如上，由框架约定的目录：</p>
+<ul>
+<li><code>app/router.js</code> 用于配置 URL 路由规则，具体参见 <a target="_blank" rel="noopener" href="https://www.eggjs.org/zh-CN/basics/router">Router</a>。</li>
+<li><code>app/controller/**</code> 用于解析用户的输入，处理后返回相应的结果，具体参见 <a target="_blank" rel="noopener" href="https://www.eggjs.org/zh-CN/basics/controller">Controller</a>。</li>
+<li><code>app/service/**</code> 用于编写业务逻辑层，建议使用，具体参见 <a target="_blank" rel="noopener" href="https://www.eggjs.org/zh-CN/basics/service">Service</a>。</li>
+<li><code>app/middleware/**</code> 用于编写中间件，具体参见 <a target="_blank" rel="noopener" href="https://www.eggjs.org/zh-CN/basics/middleware">Middleware</a>。</li>
+<li><code>app/public/**</code> 用于放置静态资源，具体参见内置插件 <a target="_blank" rel="noopener" href="https://github.com/eggjs/egg-static">egg-static</a>。</li>
+<li><code>app/extend/**</code> 用于框架的扩展，具体参见 <a target="_blank" rel="noopener" href="https://www.eggjs.org/zh-CN/basics/extend">框架扩展</a>。</li>
+<li><code>config/config.&#123;env&#125;.js</code> 用于编写配置文件，具体参见 <a target="_blank" rel="noopener" href="https://www.eggjs.org/zh-CN/basics/config">配置</a>。</li>
+<li><code>config/plugin.js</code> 用于配置需要加载的插件，具体参见 <a target="_blank" rel="noopener" href="https://www.eggjs.org/zh-CN/basics/plugin">插件</a>。</li>
+<li><code>test/**</code> 用于单元测试，具体参见 <a target="_blank" rel="noopener" href="https://www.eggjs.org/zh-CN/core/unittest">单元测试</a>。</li>
+<li><code>app.js</code> 和 <code>agent.js</code> 用于自定义启动时的初始化工作，具体参见 <a target="_blank" rel="noopener" href="https://www.eggjs.org/zh-CN/basics/app-start">启动自定义</a>。关于 <code>agent.js</code> 的作用，参见 <a target="_blank" rel="noopener" href="https://www.eggjs.org/zh-CN/core/cluster-and-ipc#agent-%E6%9C%BA%E5%88%B6">Agent 机制</a>。</li>
+</ul>
+<p>由内置插件约定的目录：</p>
+<ul>
+<li><code>app/public/**</code> 用于放置静态资源，具体参见内置插件 <a target="_blank" rel="noopener" href="https://github.com/eggjs/egg-static">egg-static</a>。</li>
+<li><code>app/schedule/**</code> 用于定时任务，具体参见 <a target="_blank" rel="noopener" href="https://www.eggjs.org/zh-CN/basics/schedule">定时任务</a>。</li>
+</ul>
+<p><strong>若需自定义自己的目录规范，参见 <a target="_blank" rel="noopener" href="https://eggjs.org/zh-cn/advanced/loader.html">Loader API</a></strong></p>
+<ul>
+<li><code>app/view/**</code> 用于放置模板文件，具体参见 <a target="_blank" rel="noopener" href="https://www.eggjs.org/zh-CN/core/view">模板渲染</a>。</li>
+<li><code>app/model/**</code> 用于放置领域模型，如 <a target="_blank" rel="noopener" href="https://github.com/eggjs/egg-sequelize"><code>egg-sequelize</code></a> 等领域类相关插件。</li>
+</ul>
+<h2 id="略讲"><a href="#略讲" class="headerlink" title="略讲"></a>略讲</h2><p>本项目的后端接口编写的过程中会频繁地和<strong>controller</strong>，middleware，<strong>service</strong>和config文件夹打交道</p>
+<h3 id="app-router-js"><a href="#app-router-js" class="headerlink" title="app&#x2F;router.js"></a><strong>app&#x2F;router.js</strong></h3><p>用于配置 URL 路由规则，比如上述初始化代码中的 <code>get</code> 请求，<code>npm run dev</code> 启动项目之后，你可以直接在浏览器中访问启动的<code>端口 + 路径</code>，默认是 <code>http://localhost:7001/</code>，你将会拿到 <code>app/controller</code> 文件夹下，<code>home.js</code> 脚本中 <code>index</code> 方法返回的内容。</p>
+<h3 id="app-controller-xx"><a href="#app-controller-xx" class="headerlink" title="app&#x2F;controller&#x2F;xx"></a><strong>app&#x2F;controller&#x2F;xx</strong></h3><p>用于解析用户的输入，处理后返回相应的结果。上述我们也提到了，通过请求路径将用户的请求基于 <code>method</code> 和 <code>URL</code> 分发到对应的 <code>Controller</code> 上，而 <code>Controller</code> 要做的事情就是响应用户的诉求。举个例子，我想拿到 A 用户的个人信息，于是我们要在控制器（Controller）里，通过请求携带的 A 用户的 id 参数，从数据库里获取指定用户的个人信息。我画了一个简易流程图如下：</p>
+<p><img src="/2025/03/15/%E5%89%8D%E7%AB%AF-%E9%A1%B9%E7%9B%AE%E7%BB%83%E4%B9%A0-%E8%AE%B0%E8%B4%A6%E6%9C%AC-Node-React%E5%AE%9E%E6%88%98-%E8%AE%B0%E8%B4%A6%E6%9C%AC%E2%80%94%E5%90%8E%E7%AB%AF/8a6e2954b379440d87573dbe452e5cc2_tplv-k3u1fbpfcp-zoom-in-crop-mark_3024_0_0_0.awebp" alt="img"></p>
+<h3 id="app-service-xx"><a href="#app-service-xx" class="headerlink" title="app&#x2F;service&#x2F;xx"></a><strong>app&#x2F;service&#x2F;xx</strong></h3><p>简单来说，<code>Service</code> 就是在复杂业务场景下用于做业务逻辑封装的一个抽象层。上述初始化项目中未声明 <code>service</code> 文件夹，它是可选项，但是官方建议我们操作业务逻辑最好做一层封装。我们换一种理解方式，<code>Service</code> 层就是用于数据库的查询，我们尽量将粒度细化，这样以便多个 <code>Controller</code> 共同调用同一个 <code>Service</code>。后续我们链接数据库操作的时候，再进行详细分析。更加详细的描述请移步至 <a href="https://link.juejin.cn/?target=https://eggjs.org/zh-cn/basics/service.html">Service 文档</a>。</p>
+<h3 id="app-middleware-xx"><a href="#app-middleware-xx" class="headerlink" title="app&#x2F;middleware&#x2F;xx"></a><strong>app&#x2F;middleware&#x2F;xx</strong></h3><p>用于编写中间件，中间件的概念就是在路由配置里设置了中间件的路由，每次请求命中后，都要过一层中间件。在我们后续的开发中，也会利用到这个中间件的原理做用户鉴权。当用户未登录的情况下，是不能调用某些接口的。</p>
+<p>当然，你可以每次都在 <code>Controller</code> 判断，当前请求是否携带有效的用户认证信息。接口一多，到处都是这样的判断，逻辑重复。所以，中间件在某种程度上，也算是优化代码结构的一种方式。更加详细的描述请移步至 <a href="https://link.juejin.cn/?target=https://eggjs.org/zh-cn/basics/middleware.html">Middleware 文档</a>。</p>
+<h3 id="简而言之"><a href="#简而言之" class="headerlink" title="简而言之"></a>简而言之</h3><p>我们每次编写好接口后都需要在<code>router.js</code>文件中添加对应的<code>get</code>和<code>post</code>路由:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="function">(<span class="params">app</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; router, controller, middleware &#125; = app;</span><br><span class="line">  <span class="keyword">const</span> _jwt = middleware.<span class="title function_">jwtErr</span>(app.<span class="property">config</span>.<span class="property">jwt</span>.<span class="property">secret</span>);</span><br><span class="line">  router.<span class="title function_">post</span>(<span class="string">&quot;/api/user/register&quot;</span>, controller.<span class="property">user</span>.<span class="property">register</span>);</span><br><span class="line">  router.<span class="title function_">post</span>(<span class="string">&quot;/api/user/login&quot;</span>, controller.<span class="property">user</span>.<span class="property">login</span>);</span><br><span class="line">  router.<span class="title function_">post</span>(<span class="string">&quot;/api/user/edit_userinfo&quot;</span>, _jwt, controller.<span class="property">user</span>.<span class="property">editUserInfo</span>);</span><br><span class="line">  router.<span class="title function_">post</span>(<span class="string">&quot;/api/upload&quot;</span>, controller.<span class="property">upload</span>.<span class="property">upload</span>);</span><br><span class="line">  router.<span class="title function_">post</span>(<span class="string">&quot;/api/bill/add&quot;</span>, _jwt, controller.<span class="property">bill</span>.<span class="property">add</span>);</span><br><span class="line">  router.<span class="title function_">post</span>(<span class="string">&quot;/api/bill/update&quot;</span>, _jwt, controller.<span class="property">bill</span>.<span class="property">update</span>);</span><br><span class="line">  router.<span class="title function_">post</span>(<span class="string">&quot;/api/bill/delete&quot;</span>, _jwt, controller.<span class="property">bill</span>.<span class="property">delete</span>);</span><br><span class="line"></span><br><span class="line">  router.<span class="title function_">get</span>(<span class="string">&quot;/api/user/get_userinfo&quot;</span>, _jwt, controller.<span class="property">user</span>.<span class="property">getUserInfo</span>);</span><br><span class="line">  router.<span class="title function_">get</span>(<span class="string">&quot;/api/user/test&quot;</span>, _jwt, controller.<span class="property">user</span>.<span class="property">test</span>);</span><br><span class="line">  router.<span class="title function_">get</span>(<span class="string">&quot;/api/user/upload&quot;</span>, controller.<span class="property">user</span>.<span class="property">upload</span>);</span><br><span class="line">  router.<span class="title function_">get</span>(<span class="string">&quot;/api/bill/list&quot;</span>, _jwt, controller.<span class="property">bill</span>.<span class="property">list</span>);</span><br><span class="line">  router.<span class="title function_">get</span>(<span class="string">&quot;/api/bill/detail&quot;</span>, _jwt, controller.<span class="property">bill</span>.<span class="property">detail</span>);</span><br><span class="line">  router.<span class="title function_">get</span>(<span class="string">&quot;/api/bill/data&quot;</span>, _jwt, controller.<span class="property">bill</span>.<span class="property">data</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>而<code>Controller</code>文件里编写的是我们接口所调用的函数，它会解析用户输入，然后处理后返回对应的结果:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&#x27;use strict&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">Controller</span> = <span class="built_in">require</span>(<span class="string">&#x27;egg&#x27;</span>).<span class="property">Controller</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">HomeController</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Controller</span> &#123;</span><br><span class="line">  <span class="keyword">async</span> <span class="title function_">index</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; ctx &#125; = <span class="variable language_">this</span>;</span><br><span class="line">    <span class="keyword">const</span> &#123; id &#125; = ctx.<span class="property">query</span>;</span><br><span class="line">    ctx.<span class="property">body</span> = id;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="title class_">HomeController</span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>get</code>方法一般用<code>ctx.query</code>来获取输入</li>
+<li><code>post</code>方法一般用<code>ctx.request.body</code>或<code>ctx.request.header</code>来获取输入</li>
+<li><code>ctx.body</code>则是我们服务器的响应</li>
+</ul>
+<p>而<code>service</code>文件则是用来编写<code>Controller</code>获取数据库数据的方法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// app/service/home.js</span></span><br><span class="line"><span class="meta">&#x27;use strict&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">Service</span> = <span class="built_in">require</span>(<span class="string">&#x27;egg&#x27;</span>).<span class="property">Service</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">HomeService</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Service</span> &#123;</span><br><span class="line">  <span class="keyword">async</span> <span class="title function_">user</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// 假设从数据库获取的用户信息</span></span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      <span class="attr">name</span>: <span class="string">&#x27;嘎子&#x27;</span>,</span><br><span class="line">      <span class="attr">slogen</span>: <span class="string">&#x27;网络的世界太虚拟,你把握不住&#x27;</span></span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="title class_">HomeService</span>;</span><br></pre></td></tr></table></figure>
+
+<p>我们可以在 <code>Controller</code> 内拿到上述方法，如下所示：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//  app/controller/home.js</span></span><br><span class="line"><span class="comment">// 获取用户信息</span></span><br><span class="line"><span class="keyword">async</span> <span class="title function_">user</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; ctx &#125; = <span class="variable language_">this</span>;</span><br><span class="line">  <span class="keyword">const</span> &#123; name, slogen &#125; = <span class="keyword">await</span> ctx.<span class="property">service</span>.<span class="property">home</span>.<span class="title function_">user</span>();</span><br><span class="line">  ctx.<span class="property">body</span> = &#123;</span><br><span class="line">    name,</span><br><span class="line">    slogen</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="该项目的知识点"><a href="#该项目的知识点" class="headerlink" title="该项目的知识点"></a>该项目的知识点</h1><ul>
+<li>token鉴权</li>
+<li>egg 中间件编写</li>
+<li>数据库的资源获取</li>
+<li><code>Egg</code> 文件资源处理</li>
+<li>一套增删改查</li>
+<li><code>egg-mysql</code>的多种使用</li>
+</ul>
+<h1 id="该项目实现的功能"><a href="#该项目实现的功能" class="headerlink" title="该项目实现的功能"></a>该项目实现的功能</h1><ul>
+<li>用户的登录注册</li>
+<li>用户的信息获取及其更改</li>
+<li>用户资源的上传及获取</li>
+<li>账单的增删查改</li>
+<li>账单详细及其数据的获取</li>
+</ul>
+<h1 id="登录注册"><a href="#登录注册" class="headerlink" title="登录注册"></a>登录注册</h1><p>用户鉴权，一种用于在通信网络中对试图访问来自服务提供商的服务的用户进行鉴权的方法。用于用户登陆到DSMP或使用数据业务时，业务网关或Portal发送此消息到DSMP，对该用户使用数据业务的合法性和有效性（状态是否为激活）进行检查。</p>
+<p>鉴权的机制，分为四种：</p>
+<ul>
+<li>HTTP Basic Authentication</li>
+<li>session-cookie</li>
+<li>Token 令牌</li>
+<li>OAuth(开放授权)</li>
+</ul>
+<p>本项目用的鉴权模式是 <code>token</code> 令牌模式，出于多端考虑，<code>token</code> 可以运用在如网页、客户端、小程序、浏览器插件等等领域。如果选用 <code>cookie</code> 的形式鉴权，在客户端和小程序就无法使用这套接口，因为它们没有域的概念，而 <code>cookie</code> 是需要存在某个域下。</p>
+<p>登录注册的流程如下</p>
+<p><img src="/2025/03/15/%E5%89%8D%E7%AB%AF-%E9%A1%B9%E7%9B%AE%E7%BB%83%E4%B9%A0-%E8%AE%B0%E8%B4%A6%E6%9C%AC-Node-React%E5%AE%9E%E6%88%98-%E8%AE%B0%E8%B4%A6%E6%9C%AC%E2%80%94%E5%90%8E%E7%AB%AF/14f50febe2c749b486f7cb2fb4491809_tplv-k3u1fbpfcp-zoom-in-crop-mark_3024_0_0_0.awebp" alt="img"></p>
+<p><img src="/2025/03/15/%E5%89%8D%E7%AB%AF-%E9%A1%B9%E7%9B%AE%E7%BB%83%E4%B9%A0-%E8%AE%B0%E8%B4%A6%E6%9C%AC-Node-React%E5%AE%9E%E6%88%98-%E8%AE%B0%E8%B4%A6%E6%9C%AC%E2%80%94%E5%90%8E%E7%AB%AF/090527aa47c444f0bcf03f1a7cdb7cdd_tplv-k3u1fbpfcp-zoom-in-crop-mark_3024_0_0_0.awebp" alt="img"></p>
+<h2 id="注册"><a href="#注册" class="headerlink" title="注册"></a>注册</h2><ul>
+<li><code>UserController</code>通过<code>ctx.request.body</code>获取传入的名字和密码</li>
+<li>将获得的信息传入<code>UserService</code>，<code>UserService</code>使用<code>get</code>方法获取数据库中的用户信息<ul>
+<li>若存在信息，则响应返回<strong>账户名已被注册</strong></li>
+</ul>
+</li>
+<li>将用户的名字，密码及其默认头像默认签名传入<code>UserService</code>进行注册，<code>UserService</code>使用<code>insert</code>方法将信息插入数据库中</li>
+<li>编写<code>response</code>的消息体<ul>
+<li>返回状态码</li>
+<li>注册成功与否</li>
+</ul>
+</li>
+</ul>
+<h2 id="登录"><a href="#登录" class="headerlink" title="登录"></a>登录</h2><ul>
+<li><p><code>UserController</code>通过<code>ctx.request.body</code>获取传入的名字和密码</p>
+</li>
+<li><p>将获得的信息传入<code>UserService</code>，<code>UserService</code>使用<code>get</code>方法获取数据库中的用户信息</p>
+<ul>
+<li>若不存在信息，则返回<strong>账户不存在</strong></li>
+<li>若账号密码不对，则返回<strong>账号密码错误</strong></li>
+</ul>
+</li>
+<li><p>使用<code>app.jwt.sign</code>方法配置<code>token</code></p>
+</li>
+<li><p>编写<code>response</code>的消息体</p>
+<ul>
+<li><p>返回状态码</p>
+</li>
+<li><p>登录成功</p>
+</li>
+<li><p><code>token</code></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="登录的中间件"><a href="#登录的中间件" class="headerlink" title="登录的中间件"></a>登录的中间件</h2><p>在<code>app\middleware\jwtErr.js</code>中编写如下代码</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&#x27;use strict&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="function">(<span class="params">secret</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">jwtErr</span>(<span class="params">ctx, next</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> token = ctx.<span class="property">request</span>.<span class="property">header</span>.<span class="property">authorization</span>; <span class="comment">// 若是没有 token，返回的是 null 字符串</span></span><br><span class="line">    <span class="keyword">let</span> decode</span><br><span class="line">    <span class="keyword">if</span>(token != <span class="string">&#x27;null&#x27;</span> &amp;&amp; token) &#123;</span><br><span class="line">      <span class="keyword">try</span> &#123;</span><br><span class="line">        decode = ctx.<span class="property">app</span>.<span class="property">jwt</span>.<span class="title function_">verify</span>(token, secret); <span class="comment">// 验证token</span></span><br><span class="line">        <span class="keyword">await</span> <span class="title function_">next</span>();</span><br><span class="line">      &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;error&#x27;</span>, error)</span><br><span class="line">        ctx.<span class="property">status</span> = <span class="number">200</span>;</span><br><span class="line">        ctx.<span class="property">body</span> = &#123;</span><br><span class="line">          <span class="attr">msg</span>: <span class="string">&#x27;token已过期，请重新登录&#x27;</span>,</span><br><span class="line">          <span class="attr">code</span>: <span class="number">401</span>,</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      ctx.<span class="property">status</span> = <span class="number">200</span>;</span><br><span class="line">      ctx.<span class="property">body</span> = &#123;</span><br><span class="line">        <span class="attr">code</span>: <span class="number">401</span>,</span><br><span class="line">        <span class="attr">msg</span>: <span class="string">&#x27;token不存在&#x27;</span>,</span><br><span class="line">      &#125;;</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在<code>router.js</code>路由中使用</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="function"><span class="params">app</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; router, controller, middleware &#125; = app;</span><br><span class="line">  <span class="keyword">const</span> _jwt = middleware.<span class="title function_">jwtErr</span>(app.<span class="property">config</span>.<span class="property">jwt</span>.<span class="property">secret</span>); <span class="comment">// 传入加密字符串</span></span><br><span class="line">  router.<span class="title function_">get</span>(<span class="string">&#x27;/api/user/test&#x27;</span>, _jwt, controller.<span class="property">user</span>.<span class="property">test</span>); <span class="comment">// 放入第二个参数，作为中间件过滤项</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>_jwt</code>虽然 <strong>只传了一个参数（<code>app.config.jwt.secret</code>）</strong>，但它实际上 <strong>返回了一个函数</strong>，而这个返回的函数才是真正的中间件。</p>
+<p><code>get</code>展开实际上是:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">router.<span class="title function_">get</span>(<span class="string">&quot;/api/user/test&quot;</span>, <span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">jwtErr</span>(<span class="params">ctx, next</span>) &#123; ... &#125;, controller.<span class="property">user</span>.<span class="property">test</span>);</span><br></pre></td></tr></table></figure>
+
+<p>Egg.js 在执行 <code>GET /api/user/test</code> 这个请求时：</p>
+<ol>
+<li>先执行 <code>jwtErr(ctx, next)</code><ul>
+<li>解析 <code>token</code>，如果 <code>token</code> 不存在或无效，返回 <code>401</code></li>
+<li>如果 <code>token</code> 有效，继续执行 <code>next()</code></li>
+</ul>
+</li>
+<li>执行 <code>controller.user.test(ctx)</code><ul>
+<li><code>next()</code> 允许请求进入 <code>controller.user.test</code></li>
+<li>这样，只有通过 JWT 验证的请求，才能进入 <code>test</code> 方法</li>
+</ul>
+</li>
+</ol>
+</blockquote>
+<p>后续所有的接口都需要<code>_jwt</code>这个中间件来验证登录</p>
+<h1 id="信息获取及其更改"><a href="#信息获取及其更改" class="headerlink" title="信息获取及其更改"></a>信息获取及其更改</h1><h2 id="信息获取"><a href="#信息获取" class="headerlink" title="信息获取"></a>信息获取</h2><ul>
+<li>先获取<strong>消息头</strong>中的<code>token</code></li>
+<li>将<code>token</code>传入<code>app.jwt</code>中进行解密</li>
+<li>将解密后的用户名字传入<code>UserService</code>中，<code>UserService</code>通过<code>get</code>方法获取数据库中的信息</li>
+<li>编写响应的消息体<ul>
+<li>状态码</li>
+<li>请求成功消息</li>
+<li>用户数据</li>
+</ul>
+</li>
+</ul>
+<h2 id="信息更改"><a href="#信息更改" class="headerlink" title="信息更改"></a>信息更改</h2><ul>
+<li><p>因为是<code>post</code>方法，通过<code>ctx.request.body</code>获取需要更改的信息</p>
+</li>
+<li><p>获取<strong>消息头</strong>中的<code>token</code></p>
+</li>
+<li><p>将<code>token</code>传入<code>app.jwt</code>中进行解密</p>
+</li>
+<li><p>将解密后的用户名字传入<code>UserService</code>中，<code>UserService</code>通过<code>get</code>方法获取数据库中的信息</p>
+</li>
+<li><p>使用<code>&#123;...userInfo, signature, avatar&#125;</code>将原本的签名和头像覆盖掉，并传入<code>UserService</code>，<code>UserService</code>使用<code>update</code>方法更新数据库中的信息</p>
+<ul>
+<li><h3 id="app-mysql-update-bill-params-id-params-id-user-id-params-user-id"><a href="#app-mysql-update-bill-params-id-params-id-user-id-params-user-id" class="headerlink" title="app.mysql.update(&quot;bill&quot;, { ...params }, { id: params.id, user_id: params.user_id })"></a><code>app.mysql.update(&quot;bill&quot;, &#123; ...params &#125;, &#123; id: params.id, user_id: params.user_id &#125;)</code></h3><ul>
+<li><strong>功能</strong>：更新表中的记录。</li>
+<li>API：<code>app.mysql.update(table, values, conditions)</code>其中：<ul>
+<li><code>table</code> 是表名。</li>
+<li><code>values</code> 是一个对象，包含要更新的字段和值。</li>
+<li><code>conditions</code> 是一个对象，包含更新条件。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>使用</p>
+<ul>
+<li><pre><code class="js">let result = await app.mysql.update(
+        &quot;user&quot;,
+        &#123;
+          ...params,
+        &#125;,
+        &#123;
+          id: params.id,
+        &#125;
+      );
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 返回响应的消息体</span><br><span class="line">  - 状态码</span><br><span class="line">  - 请求成功与否</span><br><span class="line">  - 更改后的信息</span><br><span class="line"></span><br><span class="line"># 资源的上传及获取</span><br><span class="line"></span><br><span class="line">图片地址的结构是 `host + IP + 图片名称 + 后缀`</span><br><span class="line"></span><br><span class="line">```js</span><br><span class="line">// Controller/upload.js</span><br><span class="line">async upload() &#123;</span><br><span class="line">    const &#123; ctx &#125; = this;</span><br><span class="line">    // ✅ 确保 request.files 不为空</span><br><span class="line">    if (!ctx.request.files || ctx.request.files.length === 0) &#123;</span><br><span class="line">      ctx.body = &#123; code: 400, msg: &quot;没有上传文件&quot; &#125;;</span><br><span class="line">      return;</span><br><span class="line">    &#125;</span><br><span class="line">    // 需要前往 config/config.default.js 设置 config.multipart 的 mode 属性为 file</span><br><span class="line">    let file = ctx.request.files[0];</span><br><span class="line"></span><br><span class="line">    // 声明存放资源的路径</span><br><span class="line">    let uploadDir = &quot;&quot;;</span><br><span class="line"></span><br><span class="line">    try &#123;</span><br><span class="line">      // ctx.request.files[0] 表示获取第一个文件，若前端上传多个文件则可以遍历这个数组对象</span><br><span class="line">      let f = fs.readFileSync(file.filepath);</span><br><span class="line">        </span><br><span class="line">      // &lt;-----创建保存文件夹------&gt;</span><br><span class="line">      // 1.获取当前日期</span><br><span class="line">      let day = moment(new Date()).format(&quot;YYYYMMDD&quot;);</span><br><span class="line">      // 2.创建图片保存的路径</span><br><span class="line">      let dir = path.join(this.config.uploadDir, day);</span><br><span class="line">      //  this.config.uploadDir: &#x27;app/public/upload&#x27;</span><br><span class="line">      // ↓↓↓↓↓↓↓↓↓↓↓↓↓↓</span><br><span class="line">      mkdirp.sync(dir);	// 新版本的mkdirp要这样子写</span><br><span class="line">      // ↑↑↑↑↑↑↑↑↑↑↑↑↑↑</span><br><span class="line">      // 旧写法 await mkdirp(dir);</span><br><span class="line">      // &lt;-----创建保存文件夹------&gt;</span><br><span class="line">        </span><br><span class="line">      let date = Date.now(); // 毫秒数  </span><br><span class="line">      // 返回图片保存的路径</span><br><span class="line">      uploadDir = path.join(dir, date + path.extname(file.filename));</span><br><span class="line">      // 写入文件夹</span><br><span class="line">      fs.writeFileSync(uploadDir, f);</span><br><span class="line">    &#125; finally &#123;</span><br><span class="line">      // 清除临时文件</span><br><span class="line">      ctx.cleanupRequestFiles();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ctx.body = &#123;</span><br><span class="line">      code: 200,</span><br><span class="line">      msg: &quot;上传成功&quot;,</span><br><span class="line">      data: uploadDir.replace(/app/g, &quot;&quot;),</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>这里要注意的是，需要将 <code>app</code> 去除，因为我们在前端访问路径的时候，是不需要 <code>app</code> 这个路径的，比如我们项目启动的是 7001 端口，最后我们访问的文件路径是这样的 <code>http://localhost:7001/public/upload/20250315/1741973858632.jpg</code>。</p>
+</blockquote>
+<h1 id="账单的增删查改"><a href="#账单的增删查改" class="headerlink" title="账单的增删查改"></a>账单的增删查改</h1><p><img src="/2025/03/15/%E5%89%8D%E7%AB%AF-%E9%A1%B9%E7%9B%AE%E7%BB%83%E4%B9%A0-%E8%AE%B0%E8%B4%A6%E6%9C%AC-Node-React%E5%AE%9E%E6%88%98-%E8%AE%B0%E8%B4%A6%E6%9C%AC%E2%80%94%E5%90%8E%E7%AB%AF/image-20250315231626163.png" alt="image-20250315231626163"></p>
+<h2 id="增"><a href="#增" class="headerlink" title="增"></a>增</h2><ul>
+<li>根据数据库的<code>bill</code>表的属性可知我们要从<code>ctx.request.body</code>获取6个属性</li>
+<li>先获取<strong>消息头</strong>中的<code>token</code></li>
+<li>将<code>token</code>传入<code>app.jwt</code>中进行解密</li>
+<li>将解密的id同获取的<strong>六个属性</strong>一同传入<code>BillService</code>中, <code>BillService</code>使用<code>insert</code>将数据插入数据库中</li>
+<li>返回响应</li>
+</ul>
+<h2 id="删"><a href="#删" class="headerlink" title="删"></a>删</h2><ul>
+<li><p>获取<code>ctx.request.body</code>的<code>id</code>即我们要删除表的<code>id</code></p>
+</li>
+<li><p>鉴权操作获取<code>user_id</code></p>
+</li>
+<li><p>将<code>id</code>和<code>user_id</code>传入<code>BillService</code>中，<code>BillService</code>使用<code>delete</code>方法删除对应数据</p>
+<ul>
+<li><h3 id="app-mysql-delete-bill-id-user-id"><a href="#app-mysql-delete-bill-id-user-id" class="headerlink" title="app.mysql.delete(&quot;bill&quot;, { id, user_id })"></a><code>app.mysql.delete(&quot;bill&quot;, &#123; id, user_id &#125;)</code></h3><ul>
+<li><strong>功能</strong>：删除表中的记录。</li>
+<li>API：<code>app.mysql.delete(table, conditions)</code>其中：<ul>
+<li><code>table</code> 是表名。</li>
+<li><code>conditions</code> 是一个对象，表示删除条件。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>返回响应</p>
+</li>
+</ul>
+<h2 id="查"><a href="#查" class="headerlink" title="查"></a>查</h2><ul>
+<li><p>获取<code>ctx.query</code>的<code>id</code>即我们要查表的<code>id</code></p>
+<ul>
+<li><code>get</code>方法用<code>query</code></li>
+</ul>
+</li>
+<li><p>鉴权操作获取<code>user_id</code></p>
+</li>
+<li><p>将<code>id</code>和<code>user_id</code>传入<code>BillService</code>中，<code>BillService</code>使用<code>get</code>方法删除对应数据</p>
+<ul>
+<li><h3 id="app-mysql-get-bill-id-user-id"><a href="#app-mysql-get-bill-id-user-id" class="headerlink" title="app.mysql.get(&quot;bill&quot;, { id, user_id })"></a><code>app.mysql.get(&quot;bill&quot;, &#123; id, user_id &#125;)</code></h3><ul>
+<li><strong>功能</strong>：根据条件获取表中的单条记录。</li>
+<li>API：<code>app.mysql.get(table, conditions)</code>其中：<ul>
+<li><code>table</code> 是表名。</li>
+<li><code>conditions</code> 是一个对象，表示查询条件。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>返回响应</p>
+</li>
+</ul>
+<h2 id="改"><a href="#改" class="headerlink" title="改"></a>改</h2><ul>
+<li><p>通过<code>ctx.request.body</code>获取账单的所有属性</p>
+</li>
+<li><p>鉴权操作获取<code>user_id</code></p>
+</li>
+<li><p>将<strong>所有属性</strong>及其<code>user_id</code>传入<code>BillService</code>中，<code>BillService</code>通过<code>update</code>方法更新数据</p>
+<ul>
+<li><h3 id="app-mysql-update-bill-params-id-params-id-user-id-params-user-id-1"><a href="#app-mysql-update-bill-params-id-params-id-user-id-params-user-id-1" class="headerlink" title="app.mysql.update(&quot;bill&quot;, { ...params }, { id: params.id, user_id: params.user_id })"></a><code>app.mysql.update(&quot;bill&quot;, &#123; ...params &#125;, &#123; id: params.id, user_id: params.user_id &#125;)</code></h3><ul>
+<li><strong>功能</strong>：更新表中的记录。</li>
+<li>API：<code>app.mysql.update(table, values, conditions)</code>其中：<ul>
+<li><code>table</code> 是表名。</li>
+<li><code>values</code> 是一个对象，包含要更新的字段和值。</li>
+<li><code>conditions</code> 是一个对象，包含更新条件。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>返回响应</p>
+</li>
+</ul>
+<h1 id="账单详细及其数据获取"><a href="#账单详细及其数据获取" class="headerlink" title="账单详细及其数据获取"></a>账单详细及其数据获取</h1><h2 id="账单列表获取"><a href="#账单列表获取" class="headerlink" title="账单列表获取"></a>账单列表获取</h2><p>我们需要的数据类型是</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  &#123;</span><br><span class="line">    date: &#x27;2020-1-1&#x27;,</span><br><span class="line">    bills: [</span><br><span class="line">      &#123;</span><br><span class="line">        // bill 数据表中的每一项账单</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        // bill 数据表中的每一项账单</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    date: &#x27;2020-1-2&#x27;,</span><br><span class="line">    bills: [</span><br><span class="line">      &#123;</span><br><span class="line">        // bill 数据表中的每一项账单</span><br><span class="line">      &#125;,</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>并且我们前端还需要做滚动加载更多，所以服务端是需要给分页的。于是就需要在获取 <code>bill</code> 表里的数据之后，进行一系列的操作，将数据整合成上述格式。</p>
+<p>当然，获取的时间维度以月为单位，并且可以根据账单类型进行筛选。上图左上角有当月的总支出和总收入情况，我们也在列表数据中给出，因为它和账单数据是强相关的。</p>
+<p>于是，我们打开 <code>/controller/bill.js</code> 添加一个 <code>list</code> 方法，来处理账单数据列表：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="title function_">list</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; ctx, app &#125; = <span class="variable language_">this</span>;</span><br><span class="line">  <span class="comment">// 获取前端传递的参数，包括日期、分页信息、以及账单类型</span></span><br><span class="line">  <span class="keyword">const</span> &#123; date, page = <span class="number">1</span>, page_size = <span class="number">5</span>, type_id = <span class="string">&quot;all&quot;</span> &#125; = ctx.<span class="property">query</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="comment">// 解析 token，获取 user_id</span></span><br><span class="line">    <span class="keyword">const</span> token = ctx.<span class="property">request</span>.<span class="property">header</span>.<span class="property">authorization</span>;</span><br><span class="line">    <span class="keyword">const</span> decode = <span class="keyword">await</span> app.<span class="property">jwt</span>.<span class="title function_">verify</span>(token, app.<span class="property">config</span>.<span class="property">jwt</span>.<span class="property">secret</span>);</span><br><span class="line">    <span class="keyword">if</span> (!decode) <span class="keyword">return</span>; <span class="comment">// token 解析失败则直接返回</span></span><br><span class="line">    <span class="keyword">const</span> user_id = decode.<span class="property">id</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 查询数据库，获取当前用户的所有账单数据</span></span><br><span class="line">    <span class="keyword">const</span> list = <span class="keyword">await</span> ctx.<span class="property">service</span>.<span class="property">bill</span>.<span class="title function_">list</span>(user_id);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 过滤符合日期和类型的账单，并使用 reduce 进行数据归类和收支统计</span></span><br><span class="line">    <span class="keyword">const</span> &#123; listMap, totalExpense, totalIncome &#125; = list</span><br><span class="line">      .<span class="title function_">filter</span>(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="comment">// 格式化账单日期（年月）</span></span><br><span class="line">        <span class="keyword">const</span> itemDate = <span class="title function_">moment</span>(<span class="title class_">Number</span>(item.<span class="property">date</span>)).<span class="title function_">format</span>(<span class="string">&quot;YYYY-MM&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> itemDate === date &amp;&amp; (type_id === <span class="string">&quot;all&quot;</span> || item.<span class="property">type_id</span> == type_id);</span><br><span class="line">      &#125;)</span><br><span class="line">      .<span class="title function_">reduce</span>(</span><br><span class="line">        <span class="function">(<span class="params">acc, item</span>) =&gt;</span> &#123;</span><br><span class="line">          <span class="comment">// 格式化账单日期（年月日）</span></span><br><span class="line">          <span class="keyword">const</span> formattedDate = <span class="title function_">moment</span>(<span class="title class_">Number</span>(item.<span class="property">date</span>)).<span class="title function_">format</span>(<span class="string">&quot;YYYY-MM-DD&quot;</span>);</span><br><span class="line"></span><br><span class="line">          <span class="comment">// 计算收支总额</span></span><br><span class="line">          <span class="keyword">if</span> (item.<span class="property">pay_type</span> == <span class="number">1</span>) acc.<span class="property">totalExpense</span> += <span class="title class_">Number</span>(item.<span class="property">amount</span>); <span class="comment">// 支出</span></span><br><span class="line">          <span class="keyword">if</span> (item.<span class="property">pay_type</span> == <span class="number">2</span>) acc.<span class="property">totalIncome</span> += <span class="title class_">Number</span>(item.<span class="property">amount</span>); <span class="comment">// 收入</span></span><br><span class="line"></span><br><span class="line">          <span class="comment">// 查找当前日期是否已经存在于 listMap 数组中</span></span><br><span class="line">          <span class="keyword">const</span> index = acc.<span class="property">listMap</span>.<span class="title function_">findIndex</span>(<span class="function"><span class="params">i</span> =&gt;</span> i.<span class="property">date</span> === formattedDate);</span><br><span class="line"></span><br><span class="line">          <span class="keyword">if</span> (index &gt; -<span class="number">1</span>) &#123;</span><br><span class="line">            <span class="comment">// 如果已有该日期的数据，则直接往该日期的 bills 数组中追加</span></span><br><span class="line">            acc.<span class="property">listMap</span>[index].<span class="property">bills</span>.<span class="title function_">push</span>(item);</span><br><span class="line">          &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 否则，新建一个对象，包含该日期的账单</span></span><br><span class="line">            acc.<span class="property">listMap</span>.<span class="title function_">push</span>(&#123; <span class="attr">date</span>: formattedDate, <span class="attr">bills</span>: [item] &#125;);</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">          <span class="keyword">return</span> acc; <span class="comment">// 返回累积对象</span></span><br><span class="line">        &#125;,</span><br><span class="line">        &#123; <span class="attr">listMap</span>: [], <span class="attr">totalExpense</span>: <span class="number">0</span>, <span class="attr">totalIncome</span>: <span class="number">0</span> &#125; <span class="comment">// reduce 的初始值</span></span><br><span class="line">      );</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 按日期倒序排序，让最新的账单排在最前</span></span><br><span class="line">    listMap.<span class="title function_">sort</span>(<span class="function">(<span class="params">a, b</span>) =&gt;</span> <span class="title function_">moment</span>(b.<span class="property">date</span>) - <span class="title function_">moment</span>(a.<span class="property">date</span>));</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 分页处理，获取当前页的数据</span></span><br><span class="line">    <span class="keyword">const</span> filterListMap = listMap.<span class="title function_">slice</span>((page - <span class="number">1</span>) * page_size, page * page_size);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 返回数据</span></span><br><span class="line">    ctx.<span class="property">body</span> = &#123;</span><br><span class="line">      <span class="attr">code</span>: <span class="number">200</span>,</span><br><span class="line">      <span class="attr">msg</span>: <span class="string">&quot;请求成功&quot;</span>,</span><br><span class="line">      <span class="attr">data</span>: &#123;</span><br><span class="line">        totalExpense, <span class="comment">// 当月总支出</span></span><br><span class="line">        totalIncome, <span class="comment">// 当月总收入</span></span><br><span class="line">        <span class="attr">totalPage</span>: <span class="title class_">Math</span>.<span class="title function_">ceil</span>(listMap.<span class="property">length</span> / page_size), <span class="comment">// 总页数</span></span><br><span class="line">        <span class="attr">list</span>: filterListMap <span class="comment">// 经过分页处理后的数据</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">error</span>(error); <span class="comment">// 捕获异常，打印错误信息</span></span><br><span class="line">    ctx.<span class="property">body</span> = &#123;</span><br><span class="line">      <span class="attr">code</span>: <span class="number">500</span>,</span><br><span class="line">      <span class="attr">msg</span>: <span class="string">&quot;系统错误&quot;</span>,</span><br><span class="line">      <span class="attr">data</span>: <span class="literal">null</span></span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>需要注意的是我们在数据库中的<strong>date</strong>是时间戳，其单位是毫秒，所以对于<code>2025-03-15 23:30:03</code>，我们在数据库中存储的是<code>1742052603000</code>多了3个0</p>
+</blockquote>
+<blockquote>
+</blockquote>
+<h2 id="账单数据"><a href="#账单数据" class="headerlink" title="账单数据"></a>账单数据</h2><p><strong>我们最终要返回的数据机构如下：</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">total_data</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">number</span>: <span class="number">137.84</span>, <span class="comment">// 支出或收入数量</span></span><br><span class="line">      <span class="attr">pay_type</span>: <span class="number">1</span>, <span class="comment">// 支出或消费类型值</span></span><br><span class="line">      <span class="attr">type_id</span>: <span class="number">1</span>, <span class="comment">// 消费类型id</span></span><br><span class="line">      <span class="attr">type_name</span>: <span class="string">&quot;餐饮&quot;</span> <span class="comment">// 消费类型名称</span></span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">total_expense</span>: <span class="number">3123.54</span>, <span class="comment">// 总消费</span></span><br><span class="line">  <span class="attr">total_income</span>: <span class="number">6555.80</span> <span class="comment">// 总收入</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="title function_">data</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; ctx, app &#125; = <span class="variable language_">this</span>;</span><br><span class="line">    <span class="keyword">const</span> &#123; date = <span class="string">&quot;&quot;</span> &#125; = ctx.<span class="property">query</span>;</span><br><span class="line">    <span class="keyword">const</span> token = ctx.<span class="property">request</span>.<span class="property">header</span>.<span class="property">authorization</span>;</span><br><span class="line">    <span class="keyword">const</span> decode = app.<span class="property">jwt</span>.<span class="title function_">verify</span>(token, app.<span class="property">config</span>.<span class="property">jwt</span>.<span class="property">secret</span>);</span><br><span class="line">    <span class="keyword">const</span> user_id = decode.<span class="property">id</span>;</span><br><span class="line">    <span class="keyword">if</span> (!decode) <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="keyword">const</span> result = <span class="keyword">await</span> ctx.<span class="property">service</span>.<span class="property">bill</span>.<span class="title function_">list</span>(user_id);</span><br><span class="line">      <span class="keyword">const</span> start = <span class="title function_">moment</span>(date).<span class="title function_">startOf</span>(<span class="string">&quot;month&quot;</span>).<span class="title function_">unix</span>() * <span class="number">1000</span>;</span><br><span class="line">      <span class="keyword">const</span> end = <span class="title function_">moment</span>(date).<span class="title function_">endOf</span>(<span class="string">&quot;month&quot;</span>).<span class="title function_">unix</span>() * <span class="number">1000</span>;</span><br><span class="line">      <span class="keyword">const</span> _data = result.<span class="title function_">filter</span>(</span><br><span class="line">        <span class="function">(<span class="params">item</span>) =&gt;</span> <span class="title class_">Number</span>(item.<span class="property">date</span>) &gt; start &amp;&amp; <span class="title class_">Number</span>(item.<span class="property">date</span>) &lt; end</span><br><span class="line">      );</span><br><span class="line">      <span class="keyword">const</span> total_expense = _data.<span class="title function_">reduce</span>(<span class="function">(<span class="params">arr, cur</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (cur.<span class="property">pay_type</span> == <span class="number">1</span>) &#123;</span><br><span class="line">          arr += <span class="title class_">Number</span>(cur.<span class="property">amount</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> arr;</span><br><span class="line">      &#125;, <span class="number">0</span>);</span><br><span class="line">      <span class="keyword">const</span> total_income = _data.<span class="title function_">reduce</span>(<span class="function">(<span class="params">arr, cur</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (cur.<span class="property">pay_type</span> == <span class="number">2</span>) &#123;</span><br><span class="line">          arr += <span class="title class_">Number</span>(cur.<span class="property">amount</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> arr;</span><br><span class="line">      &#125;, <span class="number">0</span>);</span><br><span class="line">      <span class="keyword">let</span> total_data = _data.<span class="title function_">reduce</span>(<span class="function">(<span class="params">arr, cur</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> index = arr.<span class="title function_">findIndex</span>(<span class="function">(<span class="params">item</span>) =&gt;</span> item.<span class="property">type_id</span> == cur.<span class="property">type_id</span>);</span><br><span class="line">        <span class="keyword">if</span> (index == -<span class="number">1</span>) &#123;</span><br><span class="line">          arr.<span class="title function_">push</span>(&#123;</span><br><span class="line">            <span class="attr">type_id</span>: cur.<span class="property">type_id</span>,</span><br><span class="line">            <span class="attr">type_name</span>: cur.<span class="property">type_name</span>,</span><br><span class="line">            <span class="attr">pay_type</span>: cur.<span class="property">pay_type</span>,</span><br><span class="line">            <span class="attr">number</span>: <span class="title class_">Number</span>(cur.<span class="property">amount</span>),</span><br><span class="line">          &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (index &gt; -<span class="number">1</span>) &#123;</span><br><span class="line">          arr[index].<span class="property">number</span> += <span class="title class_">Number</span>(cur.<span class="property">amount</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> arr;</span><br><span class="line">      &#125;, []);</span><br><span class="line">      total_data = total_data.<span class="title function_">map</span>(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">        item.<span class="property">number</span> = <span class="title class_">Number</span>(<span class="title class_">Number</span>(item.<span class="property">number</span>).<span class="title function_">toFixed</span>(<span class="number">2</span>));</span><br><span class="line">        <span class="keyword">return</span> item;</span><br><span class="line">      &#125;);</span><br><span class="line">      ctx.<span class="property">body</span> = &#123;</span><br><span class="line">        <span class="attr">code</span>: <span class="number">200</span>,</span><br><span class="line">        <span class="attr">msg</span>: <span class="string">&quot;请求成功&quot;</span>,</span><br><span class="line">        <span class="attr">data</span>: &#123;</span><br><span class="line">          <span class="attr">total_expense</span>: <span class="title class_">Number</span>(total_expense).<span class="title function_">toFixed</span>(<span class="number">2</span>),</span><br><span class="line">          <span class="attr">total_income</span>: <span class="title class_">Number</span>(total_income).<span class="title function_">toFixed</span>(<span class="number">2</span>),</span><br><span class="line">          <span class="attr">total_data</span>: total_data || [],</span><br><span class="line">        &#125;,</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(error);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h1><h2 id="reduce-方法详解"><a href="#reduce-方法详解" class="headerlink" title="reduce() 方法详解"></a><strong><code>reduce()</code> 方法详解</strong></h2><p><code>reduce()</code> 是 <strong>JavaScript 数组的高阶方法</strong>，用于对数组中的元素进行 <strong>累加、归纳、合并</strong>，最终返回一个 <strong>累积计算的结果</strong>。</p>
+<hr>
+<h3 id="📌-语法"><a href="#📌-语法" class="headerlink" title="📌 语法"></a><strong>📌 语法</strong></h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">array.<span class="title function_">reduce</span>(<span class="function">(<span class="params">accumulator, currentValue, currentIndex, array</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 处理逻辑</span></span><br><span class="line">&#125;, initialValue);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><code>accumulator</code>（累加器）：保存上一次 <code>reduce</code> 迭代的返回值。</p>
+</li>
+<li><p><code>currentValue</code>（当前值）：当前正在处理的数组元素。</p>
+</li>
+<li><p><code>currentIndex</code>（当前索引）：当前元素的索引（可选）。</p>
+</li>
+<li><p><code>array</code>（原数组）：正在被遍历的数组（可选）。</p>
+</li>
+<li><p><code> initialValue（初始值）</code>：<code>accumulator</code> 的初始值（可选）。</p>
+<ul>
+<li>如果提供了 <code>initialValue</code>，则 <code>accumulator</code> 的初始值就是 <code>initialValue</code>，并从 <code>array[0]</code> 开始迭代。</li>
+<li>如果 **未提供 <code>initialValue</code>**，则 <code>accumulator</code> 默认等于 <code>array[0]</code>，并从 <code>array[1]</code> 开始迭代。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="🔍-reduce-的基本用法"><a href="#🔍-reduce-的基本用法" class="headerlink" title="🔍 reduce() 的基本用法"></a><strong>🔍 <code>reduce()</code> 的基本用法</strong></h3><h4 id="1️⃣-计算数组总和"><a href="#1️⃣-计算数组总和" class="headerlink" title="1️⃣ 计算数组总和"></a><strong>1️⃣ 计算数组总和</strong></h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"><span class="keyword">const</span> sum = numbers.<span class="title function_">reduce</span>(<span class="function">(<span class="params">acc, cur</span>) =&gt;</span> acc + cur, <span class="number">0</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(sum); <span class="comment">// 15</span></span><br></pre></td></tr></table></figure>
+
+<p><code>acc</code> 初始值是 <code>0</code>，每次累加当前 <code>cur</code>。</p>
+<ul>
+<li><p>计算过程：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(<span class="number">0</span> + <span class="number">1</span>) -&gt; <span class="number">1</span></span><br><span class="line">(<span class="number">1</span> + <span class="number">2</span>) -&gt; <span class="number">3</span></span><br><span class="line">(<span class="number">3</span> + <span class="number">3</span>) -&gt; <span class="number">6</span></span><br><span class="line">(<span class="number">6</span> + <span class="number">4</span>) -&gt; <span class="number">10</span></span><br><span class="line">(<span class="number">10</span> + <span class="number">5</span>) -&gt; <span class="number">15</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<h4 id="2️⃣-找最大值"><a href="#2️⃣-找最大值" class="headerlink" title="2️⃣ 找最大值"></a><strong>2️⃣ 找最大值</strong></h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> numbers = [<span class="number">10</span>, <span class="number">25</span>, <span class="number">88</span>, <span class="number">3</span>, <span class="number">50</span>];</span><br><span class="line"><span class="keyword">const</span> max = numbers.<span class="title function_">reduce</span>(<span class="function">(<span class="params">acc, cur</span>) =&gt;</span> <span class="title class_">Math</span>.<span class="title function_">max</span>(acc, cur));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(max); <span class="comment">// 88</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>计算过程：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Math</span>.<span class="title function_">max</span>(<span class="number">10</span>, <span class="number">25</span>) -&gt; <span class="number">25</span></span><br><span class="line"><span class="title class_">Math</span>.<span class="title function_">max</span>(<span class="number">25</span>, <span class="number">88</span>) -&gt; <span class="number">88</span></span><br><span class="line"><span class="title class_">Math</span>.<span class="title function_">max</span>(<span class="number">88</span>, <span class="number">3</span>) -&gt; <span class="number">88</span></span><br><span class="line"><span class="title class_">Math</span>.<span class="title function_">max</span>(<span class="number">88</span>, <span class="number">50</span>) -&gt; <span class="number">88</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<h4 id="3️⃣-统计元素出现次数"><a href="#3️⃣-统计元素出现次数" class="headerlink" title="3️⃣ 统计元素出现次数"></a><strong>3️⃣ 统计元素出现次数</strong></h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fruits = [<span class="string">&#x27;apple&#x27;</span>, <span class="string">&#x27;banana&#x27;</span>, <span class="string">&#x27;apple&#x27;</span>, <span class="string">&#x27;orange&#x27;</span>, <span class="string">&#x27;banana&#x27;</span>, <span class="string">&#x27;apple&#x27;</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> count = fruits.<span class="title function_">reduce</span>(<span class="function">(<span class="params">acc, cur</span>) =&gt;</span> &#123;</span><br><span class="line">  acc[cur] = (acc[cur] || <span class="number">0</span>) + <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">return</span> acc;</span><br><span class="line">&#125;, &#123;&#125;);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(count);</span><br><span class="line"><span class="comment">// &#123; apple: 3, banana: 2, orange: 1 &#125;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>acc[cur]</code> 记录当前水果出现的次数，如果不存在则默认为 <code>0</code>。</li>
+</ul>
+<hr>
+<h4 id="4️⃣-数组对象按属性归类"><a href="#4️⃣-数组对象按属性归类" class="headerlink" title="4️⃣ 数组对象按属性归类"></a><strong>4️⃣ 数组对象按属性归类</strong></h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> people = [</span><br><span class="line">  &#123; <span class="attr">name</span>: <span class="string">&#x27;Alice&#x27;</span>, <span class="attr">age</span>: <span class="number">25</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">name</span>: <span class="string">&#x27;Bob&#x27;</span>, <span class="attr">age</span>: <span class="number">30</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">name</span>: <span class="string">&#x27;Charlie&#x27;</span>, <span class="attr">age</span>: <span class="number">25</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">name</span>: <span class="string">&#x27;David&#x27;</span>, <span class="attr">age</span>: <span class="number">30</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">name</span>: <span class="string">&#x27;Eve&#x27;</span>, <span class="attr">age</span>: <span class="number">35</span> &#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> groupedByAge = people.<span class="title function_">reduce</span>(<span class="function">(<span class="params">acc, person</span>) =&gt;</span> &#123;</span><br><span class="line">  (acc[person.<span class="property">age</span>] = acc[person.<span class="property">age</span>] || []).<span class="title function_">push</span>(person);</span><br><span class="line">  <span class="keyword">return</span> acc;</span><br><span class="line">&#125;, &#123;&#125;);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(groupedByAge);</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">&#123;</span></span><br><span class="line"><span class="comment">  25: [&#123; name: &#x27;Alice&#x27;, age: 25 &#125;, &#123; name: &#x27;Charlie&#x27;, age: 25 &#125;],</span></span><br><span class="line"><span class="comment">  30: [&#123; name: &#x27;Bob&#x27;, age: 30 &#125;, &#123; name: &#x27;David&#x27;, age: 30 &#125;],</span></span><br><span class="line"><span class="comment">  35: [&#123; name: &#x27;Eve&#x27;, age: 35 &#125;]</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>作用：</strong> 把相同 <code>age</code> 的人归类到同一个数组。</li>
+</ul>
+<hr>
+<h3 id="🚀-在你的-Egg-js-代码中的-reduce-作用"><a href="#🚀-在你的-Egg-js-代码中的-reduce-作用" class="headerlink" title="🚀 在你的 Egg.js 代码中的 reduce() 作用"></a><strong>🚀 在你的 Egg.js 代码中的 <code>reduce()</code> 作用</strong></h3><p>你的代码里用 <code>reduce()</code> <strong>按照 <code>YYYY-MM-DD</code> 归类账单</strong>：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> listMap = _list.<span class="title function_">reduce</span>(<span class="function">(<span class="params">curr, item</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> date = <span class="title function_">moment</span>(<span class="title class_">Number</span>(item.<span class="property">date</span>)).<span class="title function_">format</span>(<span class="string">&#x27;YYYY-MM-DD&#x27;</span>);</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 查找是否已有相同日期的分组</span></span><br><span class="line">  <span class="keyword">if</span> (curr.<span class="property">length</span> &amp;&amp; curr.<span class="title function_">findIndex</span>(<span class="function"><span class="params">item</span> =&gt;</span> item.<span class="property">date</span> == date) &gt; -<span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> index = curr.<span class="title function_">findIndex</span>(<span class="function"><span class="params">item</span> =&gt;</span> item.<span class="property">date</span> == date);</span><br><span class="line">    curr[index].<span class="property">bills</span>.<span class="title function_">push</span>(item);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    curr.<span class="title function_">push</span>(&#123; date, <span class="attr">bills</span>: [item] &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> curr;</span><br><span class="line">&#125;, []).<span class="title function_">sort</span>(<span class="function">(<span class="params">a, b</span>) =&gt;</span> <span class="title function_">moment</span>(b.<span class="property">date</span>) - <span class="title function_">moment</span>(a.<span class="property">date</span>));</span><br></pre></td></tr></table></figure>
+
+<h3 id="👀-它在干什么？"><a href="#👀-它在干什么？" class="headerlink" title="👀 它在干什么？"></a><strong>👀 它在干什么？</strong></h3><ol>
+<li><p><code>reduce()</code> 遍历账单列表 <code>_list</code></p>
+<p>：</p>
+<ul>
+<li><code>curr</code>：存储已归类的账单数据。</li>
+<li><code>item</code>：当前账单项。</li>
+</ul>
+</li>
+<li><p>按 <code>YYYY-MM-DD</code> 归类账单</p>
+<p>：</p>
+<ul>
+<li><strong>如果 <code>curr</code> 里已经存在该日期</strong>，就把 <code>item</code> 加入已有的 <code>bills</code>。</li>
+<li><strong>如果 <code>curr</code> 里没有该日期</strong>，新建 <code>&#123; date, bills: [item] &#125;</code>。</li>
+</ul>
+</li>
+<li><p><strong>最后按时间倒序排序</strong>。</p>
+</li>
+</ol>
+<hr>
+<h3 id="🎯-reduce-vs-map-vs-forEach"><a href="#🎯-reduce-vs-map-vs-forEach" class="headerlink" title="🎯 reduce() vs map() vs forEach()"></a><strong>🎯 <code>reduce()</code> vs <code>map()</code> vs <code>forEach()</code></strong></h3><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>作用</th>
+<th>是否返回新数组</th>
+<th>主要用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>reduce()</code></td>
+<td>归纳 &amp; 计算</td>
+<td>❌ 需要手动返回</td>
+<td>统计、分组、累加</td>
+</tr>
+<tr>
+<td><code>map()</code></td>
+<td>映射转换</td>
+<td>✅ 返回新数组</td>
+<td>对数组元素进行转换</td>
+</tr>
+<tr>
+<td><code>forEach()</code></td>
+<td>仅遍历</td>
+<td>❌ 无返回值</td>
+<td>仅执行操作，无返回值</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>📝 结论</strong>：如果你要 <strong>累加、归类、统计</strong>，<code>reduce()</code> 是最合适的选择！</p>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://mudcloud.fun">xxMudCloudxx</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://mudcloud.fun/2025/03/15/%E5%89%8D%E7%AB%AF-%E9%A1%B9%E7%9B%AE%E7%BB%83%E4%B9%A0-%E8%AE%B0%E8%B4%A6%E6%9C%AC-Node-React%E5%AE%9E%E6%88%98-%E8%AE%B0%E8%B4%A6%E6%9C%AC%E2%80%94%E5%90%8E%E7%AB%AF/">http://mudcloud.fun/2025/03/15/%E5%89%8D%E7%AB%AF-%E9%A1%B9%E7%9B%AE%E7%BB%83%E4%B9%A0-%E8%AE%B0%E8%B4%A6%E6%9C%AC-Node-React%E5%AE%9E%E6%88%98-%E8%AE%B0%E8%B4%A6%E6%9C%AC%E2%80%94%E5%90%8E%E7%AB%AF/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://mudcloud.fun" target="_blank">云泥小窝</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%89%8D%E7%AB%AF/">前端</a><a class="post-meta__tags" href="/tags/react/">react</a><a class="post-meta__tags" href="/tags/eggjs/">eggjs</a></div><div class="post_share"><div class="social-share" data-image="/img/but/011.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2025/03/15/%E5%89%8D%E7%AB%AF-%E9%A1%B9%E7%9B%AE%E7%BB%83%E4%B9%A0-%E8%AE%B0%E8%B4%A6%E6%9C%AC-Node-React%E5%AE%9E%E6%88%98-%E8%AE%B0%E8%B4%A6%E6%9C%AC%E2%80%94%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" title="Node+React实战-记账本—环境搭建"><img class="cover" src="/img/but/016.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Node+React实战-记账本—环境搭建</div></div></a></div><div class="next-post pull-right"><a href="/2025/01/22/%E8%AE%A1%E7%BD%91-3-%E4%B8%AD%E7%A7%91%E5%A4%A7%E8%AE%A1%E7%BD%91-%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%BA%94%E7%94%A8%E5%B1%82/" title="3-中科大计网-第二章-应用层"><img class="cover" src="/img/but/016.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">3-中科大计网-第二章-应用层</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2025/03/15/%E5%89%8D%E7%AB%AF-%E9%A1%B9%E7%9B%AE%E7%BB%83%E4%B9%A0-%E8%AE%B0%E8%B4%A6%E6%9C%AC-Node-React%E5%AE%9E%E6%88%98-%E8%AE%B0%E8%B4%A6%E6%9C%AC%E2%80%94%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" title="Node+React实战-记账本—环境搭建"><img class="cover" src="/img/but/016.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-03-15</div><div class="title">Node+React实战-记账本—环境搭建</div></div></a></div><div><a href="/2025/03/23/%E5%89%8D%E7%AB%AF-%E5%91%A8%E6%8A%A5-%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5-1/" title="前端学习周报-1"><img class="cover" src="/img/but/006.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-03-23</div><div class="title">前端学习周报-1</div></div></a></div><div><a href="/2024/11/01/%E5%89%8D%E7%AB%AF-MIT-Web-1-%E5%89%8D%E7%AB%AF%E6%A0%88%E5%AD%A6%E4%B9%A0-%E5%88%9D%E8%AF%86HTML%E3%80%81CSS%E3%80%81JS%E4%B8%89%E5%A4%A7%E4%BB%B6/" title="前端栈学习(一)-初识HTML、CSS、JS三大件"><img class="cover" src="/img/but/020.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-11-01</div><div class="title">前端栈学习(一)-初识HTML、CSS、JS三大件</div></div></a></div><div><a href="/2024/11/30/%E5%89%8D%E7%AB%AF-MIT-Web-12-%E5%89%8D%E7%AB%AF%E6%A0%88%E5%AD%A6%E4%B9%A0-%E5%BC%82%E6%AD%A5%E6%8E%A7%E5%88%B6%E6%B5%81/" title="前端栈学习(十二)-异步控制流"><img class="cover" src="/img/background/dream2.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-11-30</div><div class="title">前端栈学习(十二)-异步控制流</div></div></a></div><div><a href="/2024/11/30/%E5%89%8D%E7%AB%AF-MIT-Web-10-%E5%89%8D%E7%AB%AF%E6%A0%88%E5%AD%A6%E4%B9%A0-%E5%BB%BAAPI%E5%AE%9E%E6%88%98/" title="前端栈学习(十)-建API实战"><img class="cover" src="/img/but/009.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-11-30</div><div class="title">前端栈学习(十)-建API实战</div></div></a></div><div><a href="/2024/12/10/%E5%89%8D%E7%AB%AF-MIT-Web-13-%E5%89%8D%E7%AB%AF%E6%A0%88%E5%AD%A6%E4%B9%A0-%E5%88%9D%E8%AF%86%E6%95%B0%E6%8D%AE%E5%BA%93/" title="前端栈学习(十三)-初识数据库"><img class="cover" src="/img/but/009.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-12-10</div><div class="title">前端栈学习(十三)-初识数据库</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/ico/avatar_1.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">xxMudCloudxx</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">94</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">26</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxMudCloudxx"><i class="fab fa-github"></i><span>中国矿业大学本科生 23级</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/xxMudCloudxx" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:2597453011@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到云泥的小屋</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Eggjs%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84"><span class="toc-number">1.</span> <span class="toc-text">Eggjs项目结构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%95%A5%E8%AE%B2"><span class="toc-number">1.1.</span> <span class="toc-text">略讲</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#app-router-js"><span class="toc-number">1.1.1.</span> <span class="toc-text">app&#x2F;router.js</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#app-controller-xx"><span class="toc-number">1.1.2.</span> <span class="toc-text">app&#x2F;controller&#x2F;xx</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#app-service-xx"><span class="toc-number">1.1.3.</span> <span class="toc-text">app&#x2F;service&#x2F;xx</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#app-middleware-xx"><span class="toc-number">1.1.4.</span> <span class="toc-text">app&#x2F;middleware&#x2F;xx</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E8%80%8C%E8%A8%80%E4%B9%8B"><span class="toc-number">1.1.5.</span> <span class="toc-text">简而言之</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AF%A5%E9%A1%B9%E7%9B%AE%E7%9A%84%E7%9F%A5%E8%AF%86%E7%82%B9"><span class="toc-number">2.</span> <span class="toc-text">该项目的知识点</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AF%A5%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%8E%B0%E7%9A%84%E5%8A%9F%E8%83%BD"><span class="toc-number">3.</span> <span class="toc-text">该项目实现的功能</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C"><span class="toc-number">4.</span> <span class="toc-text">登录注册</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A8%E5%86%8C"><span class="toc-number">4.1.</span> <span class="toc-text">注册</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%99%BB%E5%BD%95"><span class="toc-number">4.2.</span> <span class="toc-text">登录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%99%BB%E5%BD%95%E7%9A%84%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="toc-number">4.3.</span> <span class="toc-text">登录的中间件</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E8%8E%B7%E5%8F%96%E5%8F%8A%E5%85%B6%E6%9B%B4%E6%94%B9"><span class="toc-number">5.</span> <span class="toc-text">信息获取及其更改</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E8%8E%B7%E5%8F%96"><span class="toc-number">5.1.</span> <span class="toc-text">信息获取</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E6%9B%B4%E6%94%B9"><span class="toc-number">5.2.</span> <span class="toc-text">信息更改</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#app-mysql-update-bill-params-id-params-id-user-id-params-user-id"><span class="toc-number">5.2.1.</span> <span class="toc-text">app.mysql.update(&quot;bill&quot;, { ...params }, { id: params.id, user_id: params.user_id })</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B4%A6%E5%8D%95%E7%9A%84%E5%A2%9E%E5%88%A0%E6%9F%A5%E6%94%B9"><span class="toc-number">6.</span> <span class="toc-text">账单的增删查改</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A2%9E"><span class="toc-number">6.1.</span> <span class="toc-text">增</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0"><span class="toc-number">6.2.</span> <span class="toc-text">删</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#app-mysql-delete-bill-id-user-id"><span class="toc-number">6.2.1.</span> <span class="toc-text">app.mysql.delete(&quot;bill&quot;, { id, user_id })</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5"><span class="toc-number">6.3.</span> <span class="toc-text">查</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#app-mysql-get-bill-id-user-id"><span class="toc-number">6.3.1.</span> <span class="toc-text">app.mysql.get(&quot;bill&quot;, { id, user_id })</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%B9"><span class="toc-number">6.4.</span> <span class="toc-text">改</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#app-mysql-update-bill-params-id-params-id-user-id-params-user-id-1"><span class="toc-number">6.4.1.</span> <span class="toc-text">app.mysql.update(&quot;bill&quot;, { ...params }, { id: params.id, user_id: params.user_id })</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B4%A6%E5%8D%95%E8%AF%A6%E7%BB%86%E5%8F%8A%E5%85%B6%E6%95%B0%E6%8D%AE%E8%8E%B7%E5%8F%96"><span class="toc-number">7.</span> <span class="toc-text">账单详细及其数据获取</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B4%A6%E5%8D%95%E5%88%97%E8%A1%A8%E8%8E%B7%E5%8F%96"><span class="toc-number">7.1.</span> <span class="toc-text">账单列表获取</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B4%A6%E5%8D%95%E6%95%B0%E6%8D%AE"><span class="toc-number">7.2.</span> <span class="toc-text">账单数据</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95"><span class="toc-number">8.</span> <span class="toc-text">语法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#reduce-%E6%96%B9%E6%B3%95%E8%AF%A6%E8%A7%A3"><span class="toc-number">8.1.</span> <span class="toc-text">reduce() 方法详解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%93%8C-%E8%AF%AD%E6%B3%95"><span class="toc-number">8.1.1.</span> <span class="toc-text">📌 语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%94%8D-reduce-%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95"><span class="toc-number">8.1.2.</span> <span class="toc-text">🔍 reduce() 的基本用法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%EF%B8%8F%E2%83%A3-%E8%AE%A1%E7%AE%97%E6%95%B0%E7%BB%84%E6%80%BB%E5%92%8C"><span class="toc-number">8.1.2.1.</span> <span class="toc-text">1️⃣ 计算数组总和</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%EF%B8%8F%E2%83%A3-%E6%89%BE%E6%9C%80%E5%A4%A7%E5%80%BC"><span class="toc-number">8.1.2.2.</span> <span class="toc-text">2️⃣ 找最大值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%EF%B8%8F%E2%83%A3-%E7%BB%9F%E8%AE%A1%E5%85%83%E7%B4%A0%E5%87%BA%E7%8E%B0%E6%AC%A1%E6%95%B0"><span class="toc-number">8.1.2.3.</span> <span class="toc-text">3️⃣ 统计元素出现次数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4%EF%B8%8F%E2%83%A3-%E6%95%B0%E7%BB%84%E5%AF%B9%E8%B1%A1%E6%8C%89%E5%B1%9E%E6%80%A7%E5%BD%92%E7%B1%BB"><span class="toc-number">8.1.2.4.</span> <span class="toc-text">4️⃣ 数组对象按属性归类</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%9A%80-%E5%9C%A8%E4%BD%A0%E7%9A%84-Egg-js-%E4%BB%A3%E7%A0%81%E4%B8%AD%E7%9A%84-reduce-%E4%BD%9C%E7%94%A8"><span class="toc-number">8.1.3.</span> <span class="toc-text">🚀 在你的 Egg.js 代码中的 reduce() 作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%91%80-%E5%AE%83%E5%9C%A8%E5%B9%B2%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">8.1.4.</span> <span class="toc-text">👀 它在干什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%8E%AF-reduce-vs-map-vs-forEach"><span class="toc-number">8.1.5.</span> <span class="toc-text">🎯 reduce() vs map() vs forEach()</span></a></li></ol></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2025 By xxMudCloudxx</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://commentsection-xxbaizeros-projects.vercel.app',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(init)
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://commentsection-xxbaizeros-projects.vercel.app',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else {
+      loadTwikoo()
+      GLOBAL_CONFIG_SITE.isPost && getCount()
+    }
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script defer src="https://npm.elemecdn.com/jquery@latest/dist/jquery.min.js"></script><script defer data-pjax src="/js/cat.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="20" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><!-- hexo injector body_end start --> <script data-pjax>if(document.getElementById('recent-posts') && (location.pathname ==='/'|| '/' ==='all')){
+    var parent = document.getElementById('recent-posts');
+    var child = '<div class="recent-post-item" style="width:100%;height: auto"><div id="catalog_magnet"><div class="magnet_item"><a class="magnet_link" href="http://mudcloud.fun/categories/C/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📚 C++笔记 (3)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://mudcloud.fun/categories/CS自学笔记/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🎮 CS自学笔记 (49)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://mudcloud.fun/categories/体系结构/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🐱‍👓 体系结构学习笔记 (15)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://mudcloud.fun/categories/JAVA/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🐱‍👓 Java学习笔记 (32)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://mudcloud.fun/categories/有趣の文章/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📒 有趣の文章 (1)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://mudcloud.fun/categories/前端/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">👩‍💻 前端 (25)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><a class="magnet_link_more"  href="http://mudcloud.fun/categories" style="flex:1;text-align: center;margin-bottom: 10px;">查看更多...</a></div></div>';
+    console.log('已挂载magnet')
+    parent.insertAdjacentHTML("afterbegin",child)}
+     </script><style>#catalog_magnet{flex-wrap: wrap;display: flex;width:100%;justify-content:space-between;padding: 10px 10px 0 10px;align-content: flex-start;}.magnet_item{flex-basis: calc(50% - 5px);background: #f2f2f2;margin-bottom: 10px;border-radius: 8px;transition: all 0.2s ease-in-out;}.magnet_item:hover{background: #69e8f2}.magnet_link_more{color:#555}.magnet_link{color:black}.magnet_link:hover{color:white}@media screen and (max-width: 600px) {.magnet_item {flex-basis: 100%;}}.magnet_link_context{display:flex;padding: 10px;font-size:16px;transition: all 0.2s ease-in-out;}.magnet_link_context:hover{padding: 10px 20px;}</style>
+    <style></style><script data-pjax>
+  function butterfly_footer_beautify_injector_config(){
+    var parent_div_git = document.getElementById('footer-wrap');
+    var item_html = '<div id="workboard"></div><p id="ghbdages"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px" data-title="博客框架为Hexo_v6.2.0" title=""><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&amp;logo=hexo" alt=""/></a><a class="github-badge" target="_blank" href="https://butterfly.js.org/" style="margin-inline:5px" data-title="主题版本Butterfly_v4.3.1" title=""><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&amp;logo=bitdefender" alt=""/></a><a class="github-badge" target="_blank" href="https://vercel.com/" style="margin-inline:5px" data-title="本站采用多线部署，主线路托管于Vercel" title=""><img src="https://img.shields.io/badge/Hosted-Vercel-brightgreen?style=flat&amp;logo=Vercel" alt=""/></a><a class="github-badge" target="_blank" href="https://dashboard.4everland.org/" style="margin-inline:5px" data-title="本站采用多线部署，备用线路托管于4EVERLAND" title=""><img src="https://img.shields.io/badge/Hosted-4EVERLAND-22DDDD?style=flat&amp;logo=IPFS" alt=""/></a><a class="github-badge" target="_blank" href="https://github.com/" style="margin-inline:5px" data-title="本站项目由Github托管" title=""><img src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&amp;logo=GitHub" alt=""/></a><a class="github-badge" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="margin-inline:5px" data-title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可" title=""><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&amp;logo=Claris" alt=""/></a></p>';
+    console.log('已挂载butterfly_footer_beautify')
+    parent_div_git.insertAdjacentHTML("beforeend",item_html)
+    }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_footer_beautify_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_footer_beautify_injector_config();
+  }
+  </script><script async src="https://unpkg.zhimg.com/hexo-butterfly-footer-beautify@1.0.0/lib/runtime.min.js"></script><!-- hexo injector body_end end --></body></html>
