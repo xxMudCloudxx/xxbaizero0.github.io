@@ -1,18 +1,18 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>React-组件库构建 | 云泥小窝</title><meta name="author" content="xxMudCloudxx"><meta name="copyright" content="xxMudCloudxx"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="-">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>React-组件库构建 | 云泥小窝</title><meta name="author" content="xxMudCloudxx"><meta name="copyright" content="xxMudCloudxx"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="组件打包前置知识1. 模块规范在 JavaScript 生态里，代码组织方式有不同的模块化规范，最常见的有以下三种：  CommonJS（CJS）  require() 语法  主要用于 Node.js 运行环境  代码示例： 12const lodash &#x3D; require(&amp;#x27;lodash&amp;#x27;);console.log(lodash);  缺点：不适用于浏览器，不能 Tree">
 <meta property="og:type" content="article">
 <meta property="og:title" content="React-组件库构建">
 <meta property="og:url" content="http://mudcloud.fun/2025/03/29/%E5%89%8D%E7%AB%AF-React-React-%E7%BB%84%E4%BB%B6%E5%BA%93%E6%9E%84%E5%BB%BA/index.html">
 <meta property="og:site_name" content="云泥小窝">
-<meta property="og:description" content="-">
+<meta property="og:description" content="组件打包前置知识1. 模块规范在 JavaScript 生态里，代码组织方式有不同的模块化规范，最常见的有以下三种：  CommonJS（CJS）  require() 语法  主要用于 Node.js 运行环境  代码示例： 12const lodash &#x3D; require(&amp;#x27;lodash&amp;#x27;);console.log(lodash);  缺点：不适用于浏览器，不能 Tree">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://mudcloud.fun/img/but/010.jpg">
+<meta property="og:image" content="http://mudcloud.fun/img/background/season4.jpg">
 <meta property="article:published_time" content="2025-03-29T08:43:49.000Z">
-<meta property="article:modified_time" content="2025-03-29T08:51:45.916Z">
+<meta property="article:modified_time" content="2025-03-31T09:56:55.493Z">
 <meta property="article:author" content="xxMudCloudxx">
 <meta property="article:tag" content="前端">
 <meta property="article:tag" content="react">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://mudcloud.fun/img/but/010.jpg"><link rel="shortcut icon" href="/img/ico/%E5%9C%A3%E8%AF%9E%E6%A0%91.png"><link rel="canonical" href="http://mudcloud.fun/2025/03/29/%E5%89%8D%E7%AB%AF-React-React-%E7%BB%84%E4%BB%B6%E5%BA%93%E6%9E%84%E5%BB%BA/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+<meta name="twitter:image" content="http://mudcloud.fun/img/background/season4.jpg"><link rel="shortcut icon" href="/img/ico/%E5%9C%A3%E8%AF%9E%E6%A0%91.png"><link rel="canonical" href="http://mudcloud.fun/2025/03/29/%E5%89%8D%E7%AB%AF-React-React-%E7%BB%84%E4%BB%B6%E5%BA%93%E6%9E%84%E5%BB%BA/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
   root: '/',
   algolia: undefined,
   localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
@@ -56,8 +56,8 @@
   isPost: true,
   isHome: false,
   isHighlightShrink: false,
-  isToc: false,
-  postUpdate: '2025-03-29 16:51:45'
+  isToc: true,
+  postUpdate: '2025-03-31 17:56:55'
 }</script><script>(win=>{
       win.saveToLocal = {
         set: (key, value, ttl) => {
@@ -161,8 +161,292 @@
     })(window)</script><link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/cat.css"><div id="myscoll"></div><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-double-row-display@1.00/cardlistpost.min.css"/>
 <style>#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags:before {content:"\A";
   white-space: pre;}#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags > .article-meta__separator{display:none}</style>
-<link rel="stylesheet" href="https://unpkg.zhimg.com/hexo-butterfly-footer-beautify@1.0.0/lib/runtime.min.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/ico/avatar_1.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">105</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">26</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/diary"><i class="fa-fw fas fa-book"></i><span> 日记</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="云泥小窝"><span class="site-name">云泥小窝</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/diary"><i class="fa-fw fas fa-book"></i><span> 日记</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">React-组件库构建</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-03-29T08:43:49.000Z" title="发表于 2025-03-29 16:43:49">2025-03-29</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-03-29T08:51:45.916Z" title="更新于 2025-03-29 16:51:45">2025-03-29</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%89%8D%E7%AB%AF/react/">react</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">0</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>1分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="React-组件库构建"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><p>- </p>
-</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://mudcloud.fun">xxMudCloudxx</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://mudcloud.fun/2025/03/29/%E5%89%8D%E7%AB%AF-React-React-%E7%BB%84%E4%BB%B6%E5%BA%93%E6%9E%84%E5%BB%BA/">http://mudcloud.fun/2025/03/29/%E5%89%8D%E7%AB%AF-React-React-%E7%BB%84%E4%BB%B6%E5%BA%93%E6%9E%84%E5%BB%BA/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://mudcloud.fun" target="_blank">云泥小窝</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%89%8D%E7%AB%AF/">前端</a><a class="post-meta__tags" href="/tags/react/">react</a></div><div class="post_share"><div class="social-share" data-image="/img/but/010.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2025/03/29/%E5%89%8D%E7%AB%AF-React-React-%E5%8A%A8%E7%94%BB%E5%BA%93/" title="React-动画库"><img class="cover" src="/img/background/season1.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">React-动画库</div></div></a></div><div class="next-post pull-right"><a href="/2025/03/29/%E5%89%8D%E7%AB%AF-React-React-%E7%BB%84%E4%BB%B6%E4%BB%BF%E5%86%99/" title="React-组件仿写"><img class="cover" src="/img/background/season1.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">React-组件仿写</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2025/03/23/%E5%89%8D%E7%AB%AF-%E5%91%A8%E6%8A%A5-%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5-1/" title="前端学习周报-1"><img class="cover" src="/img/but/007.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-03-23</div><div class="title">前端学习周报-1</div></div></a></div><div><a href="/2025/03/29/%E5%89%8D%E7%AB%AF-%E5%91%A8%E6%8A%A5-%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5-2/" title="前端学习周报-2"><img class="cover" src="/img/but/017.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-03-29</div><div class="title">前端学习周报-2</div></div></a></div><div><a href="/2025/03/29/%E5%89%8D%E7%AB%AF-React-React-CSS%E6%96%B9%E6%A1%88/" title="React-CSS方案"><img class="cover" src="/img/background/season3.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-03-29</div><div class="title">React-CSS方案</div></div></a></div><div><a href="/2025/03/29/%E5%89%8D%E7%AB%AF-React-React-%E5%AE%9E%E7%94%A8%E5%BA%93or%E9%AB%98%E9%98%B6%E7%BB%84%E4%BB%B6/" title="React-实用库or高阶组件"><img class="cover" src="/img/but/013.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-03-29</div><div class="title">React-实用库or高阶组件</div></div></a></div><div><a href="/2025/03/29/%E5%89%8D%E7%AB%AF-React-React-%E6%B8%B2%E6%9F%93%E5%8E%9F%E7%90%86/" title="React-渲染原理"><img class="cover" src="/img/but/020.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-03-29</div><div class="title">React-渲染原理</div></div></a></div><div><a href="/2025/03/29/%E5%89%8D%E7%AB%AF-React-React-%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%E5%BA%93/" title="React-状态管理库"><img class="cover" src="/img/but/009.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-03-29</div><div class="title">React-状态管理库</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/ico/avatar_1.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">xxMudCloudxx</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">105</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">26</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxMudCloudxx"><i class="fab fa-github"></i><span>中国矿业大学本科生 23级</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/xxMudCloudxx" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:2597453011@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到云泥的小屋</div></div><div class="sticky_layout"></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2025 By xxMudCloudxx</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+<link rel="stylesheet" href="https://unpkg.zhimg.com/hexo-butterfly-footer-beautify@1.0.0/lib/runtime.min.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/ico/avatar_1.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">105</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">26</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/diary"><i class="fa-fw fas fa-book"></i><span> 日记</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="云泥小窝"><span class="site-name">云泥小窝</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/diary"><i class="fa-fw fas fa-book"></i><span> 日记</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">React-组件库构建</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-03-29T08:43:49.000Z" title="发表于 2025-03-29 16:43:49">2025-03-29</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-03-31T09:56:55.493Z" title="更新于 2025-03-31 17:56:55">2025-03-31</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%89%8D%E7%AB%AF/react/">react</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.6k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>9分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="React-组件库构建"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="组件打包前置知识"><a href="#组件打包前置知识" class="headerlink" title="组件打包前置知识"></a>组件打包前置知识</h1><h2 id="1-模块规范"><a href="#1-模块规范" class="headerlink" title="1. 模块规范"></a>1. 模块规范</h2><p>在 JavaScript 生态里，代码组织方式有不同的<strong>模块化规范</strong>，最常见的有以下三种：</p>
+<ol>
+<li><p><strong>CommonJS（CJS）</strong></p>
+<ul>
+<li><p><code>require()</code> 语法</p>
+</li>
+<li><p>主要用于 Node.js 运行环境</p>
+</li>
+<li><p>代码示例：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> lodash = <span class="built_in">require</span>(<span class="string">&#x27;lodash&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(lodash);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>缺点：不适用于浏览器，不能 <strong>Tree Shaking</strong>（优化打包时移除未使用的代码）。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>ES Modules（ESM）</strong></p>
+<ul>
+<li><p><code>import/export</code> 语法</p>
+</li>
+<li><p>现代 JavaScript 规范，适用于浏览器和 Node.js</p>
+</li>
+<li><p>代码示例：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; debounce &#125; <span class="keyword">from</span> <span class="string">&#x27;lodash&#x27;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(debounce);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>优势：支持 <strong>Tree Shaking</strong>，适合前端打包优化。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>UMD（Universal Module Definition）</strong></p>
+<ul>
+<li><p>兼容 CommonJS、AMD（另一种浏览器模块规范）和全局变量</p>
+</li>
+<li><p>适用于在 <code>&lt;script&gt;</code> 直接引入</p>
+</li>
+<li><p>代码示例：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">function</span> (<span class="params">root, factory</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="variable language_">module</span> === <span class="string">&quot;object&quot;</span> &amp;&amp; <span class="variable language_">module</span>.<span class="property">exports</span>) &#123;</span><br><span class="line">        <span class="variable language_">module</span>.<span class="property">exports</span> = <span class="title function_">factory</span>();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        root.<span class="property">myLibrary</span> = <span class="title function_">factory</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)(<span class="variable language_">this</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123; <span class="attr">foo</span>: <span class="string">&quot;bar&quot;</span> &#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>适用于 <strong>CDN 直接引入</strong>，如：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdn.jsdelivr.net/npm/lodash/lodash.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="2-编译工具"><a href="#2-编译工具" class="headerlink" title="2. 编译工具"></a>2. 编译工具</h2><p>组件库源码一般使用 <strong>TypeScript (TS)</strong> 和 <strong>JSX</strong>，需要转换成浏览器或 Node.js 可运行的 JavaScript。这里涉及两个重要工具：</p>
+<ol>
+<li><p><strong>Babel</strong></p>
+<ul>
+<li><p>主要用于 <strong>ES6+ 语法转换</strong>，让新语法兼容老浏览器。</p>
+</li>
+<li><p>组件库通常用它来编译 ESM 和 CJS 代码（即 <code>es</code> 和 <code>lib</code> 目录）。</p>
+</li>
+<li><p>配置示例：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;presets&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;@babel/preset-env&quot;</span><span class="punctuation">,</span> <span class="string">&quot;@babel/preset-react&quot;</span><span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>作用：</p>
+<ul>
+<li>把 JSX 转换成 <code>React.createElement()</code> 语法</li>
+<li>把 ES6+ 代码转换成更低版本的 JavaScript</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>TSC（TypeScript Compiler）</strong></p>
+<ul>
+<li>TypeScript 自带的编译器，<strong>主要用于类型检查</strong>和<strong>代码转换</strong>。</li>
+<li>可以直接编译 TypeScript 到 JavaScript，不负责转换新语法（比如 JSX）。</li>
+<li>组件库通常用它来编译 TypeScript 并生成 <code>.d.ts</code> 类型声明文件。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="3-打包工具"><a href="#3-打包工具" class="headerlink" title="3. 打包工具"></a>3. 打包工具</h2><p>打包工具的目的是<strong>将代码转换成不同的模块格式（CJS、ESM、UMD）</strong>，博客中提到了以下两种工具：</p>
+<ol>
+<li><p><strong>Webpack</strong></p>
+<ul>
+<li><p>主要用于打包 <strong>UMD</strong> 代码，通常用于<strong>浏览器端</strong>的组件库。</p>
+</li>
+<li><p>例如：</p>
+<ul>
+<li>你想发布一个 UI 组件库，并让别人直接用 <code>&lt;script&gt;</code> 引入，这就需要 Webpack 生成 UMD 版本。</li>
+</ul>
+</li>
+<li><p>典型配置：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">output</span>: &#123;</span><br><span class="line">    <span class="attr">library</span>: <span class="string">&quot;MyLibrary&quot;</span>,</span><br><span class="line">    <span class="attr">libraryTarget</span>: <span class="string">&quot;umd&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>Gulp</strong></p>
+<ul>
+<li><p>任务自动化工具，常用于<strong>编排多个编译任务</strong>。</p>
+</li>
+<li><p>例如：先用 TSC 编译，再用 Babel 处理。</p>
+</li>
+<li><p>典型代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> gulp = <span class="built_in">require</span>(<span class="string">&#x27;gulp&#x27;</span>);</span><br><span class="line"></span><br><span class="line">gulp.<span class="title function_">task</span>(<span class="string">&#x27;build-cjs&#x27;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> gulp.<span class="title function_">src</span>(<span class="string">&#x27;src/**/*.ts&#x27;</span>).<span class="title function_">pipe</span>(<span class="title function_">tsc</span>()).<span class="title function_">pipe</span>(gulp.<span class="title function_">dest</span>(<span class="string">&#x27;lib&#x27;</span>));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">gulp.<span class="title function_">task</span>(<span class="string">&#x27;build-esm&#x27;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> gulp.<span class="title function_">src</span>(<span class="string">&#x27;src/**/*.ts&#x27;</span>).<span class="title function_">pipe</span>(<span class="title function_">babel</span>()).<span class="title function_">pipe</span>(gulp.<span class="title function_">dest</span>(<span class="string">&#x27;es&#x27;</span>));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">gulp.<span class="title function_">task</span>(<span class="string">&#x27;default&#x27;</span>, gulp.<span class="title function_">parallel</span>(<span class="string">&#x27;build-cjs&#x27;</span>, <span class="string">&#x27;build-esm&#x27;</span>));</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="4-组件库的构建流程"><a href="#4-组件库的构建流程" class="headerlink" title="4. 组件库的构建流程"></a>4. 组件库的构建流程</h2><p>现在，我们回到博客的核心内容：<strong>Ant Design、Arco Design、Semi Design 组件库是如何打包的？</strong></p>
+<h3 id="1️⃣-目录结构"><a href="#1️⃣-目录结构" class="headerlink" title="1️⃣ 目录结构"></a>1️⃣ 目录结构</h3><p>博客分析了 <code>antd</code>、<code>semi-ui</code>、<code>arco-design</code> 的 <code>node_modules</code> 目录：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">lib/   --&gt; CJS 格式</span><br><span class="line">es/    --&gt; ESM 格式</span><br><span class="line">dist/  --&gt; UMD 格式</span><br></pre></td></tr></table></figure>
+
+<p>这意味着：</p>
+<ul>
+<li><strong>lib（CommonJS）</strong> 用于 Node.js</li>
+<li><strong>es（ES Modules）</strong> 用于前端打包</li>
+<li><strong>dist（UMD）</strong> 用于 <code>&lt;script&gt;</code> 引入</li>
+</ul>
+<h3 id="2️⃣-构建过程"><a href="#2️⃣-构建过程" class="headerlink" title="2️⃣ 构建过程"></a>2️⃣ 构建过程</h3><p>博客中的 <strong>Arco Design</strong> 例子说明了组件库如何打包：</p>
+<ol>
+<li><p><strong>ESM 和 CJS 代码</strong></p>
+<ul>
+<li><p>先用 <strong>TSC 或 Babel</strong> 编译 <code>tsx</code> 和 <code>ts</code></p>
+</li>
+<li><p><code>TSC</code> 负责 <strong>类型检查</strong></p>
+</li>
+<li><p><code>Babel</code> 负责 <strong>转换新语法（如 JSX）</strong></p>
+</li>
+<li><p>产物存放在 <code>lib/</code>（CJS） 和 <code>es/</code>（ESM）</p>
+</li>
+<li><p>关键代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">compileTS</span>(<span class="string">&quot;es&quot;</span>); <span class="comment">// 生成 ESM</span></span><br><span class="line"><span class="title function_">compileTS</span>(<span class="string">&quot;cjs&quot;</span>); <span class="comment">// 生成 CJS</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>UMD 代码</strong></p>
+<ul>
+<li><p>用 Webpack 打包成 <code>dist/</code></p>
+</li>
+<li><p>主要用于 <code>unpkg</code>（CDN）引入</p>
+</li>
+<li><p>关键代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">webpack</span>(&#123; <span class="attr">output</span>: &#123; <span class="attr">libraryTarget</span>: <span class="string">&quot;umd&quot;</span> &#125; &#125;);</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>CSS 处理</strong></p>
+<ul>
+<li>Arco 用 <strong>Less</strong></li>
+<li>Semi Design 用 <strong>SCSS</strong></li>
+<li>通过 <code>gulp</code> 编译</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="5-总结"><a href="#5-总结" class="headerlink" title="5. 总结"></a>5. 总结</h2><ol>
+<li><strong>为什么组件库要支持不同模块格式？</strong><ul>
+<li>ESM（ES6 模块）适用于现代前端打包工具（如 Webpack、Vite）</li>
+<li>CJS（CommonJS）适用于 Node.js 环境</li>
+<li>UMD（通用模块）适用于 <code>&lt;script&gt;</code> 引入（CDN）</li>
+</ul>
+</li>
+<li><strong>组件库的编译过程</strong><ul>
+<li><strong>ESM 和 CJS</strong> → TSC 或 Babel 编译</li>
+<li><strong>UMD</strong> → Webpack 打包</li>
+<li><strong>CSS</strong> → Gulp + Less&#x2F;SCSS 处理</li>
+</ul>
+</li>
+<li><strong>常见工具</strong><ul>
+<li><strong>Babel</strong>：语法转换（JSX、ES6+）</li>
+<li><strong>TSC</strong>：TypeScript 编译</li>
+<li><strong>Webpack</strong>：UMD 打包</li>
+<li><strong>Gulp</strong>：任务管理</li>
+</ul>
+</li>
+</ol>
+<hr>
+<p>你可以这样理解：</p>
+<ul>
+<li><strong>TSC</strong> 和 <strong>Babel</strong> 是负责 <strong>编译</strong></li>
+<li><strong>Webpack</strong> 是负责 <strong>打包</strong></li>
+<li><strong>Gulp</strong> 是负责 <strong>组织任务</strong></li>
+</ul>
+<p>看完这篇博客后，你可以尝试自己创建一个简单的 React 组件库，然后使用 Babel、TSC、Webpack 进行编译打包，这样就能更直观地理解这些概念！🚀</p>
+<h1 id="组件库是怎么构建的"><a href="#组件库是怎么构建的" class="headerlink" title="组件库是怎么构建的"></a>组件库是怎么构建的</h1><h2 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h2><p>新建一个项目：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mkdir component-lib-test</span><br><span class="line"></span><br><span class="line">cd component-lib-test</span><br><span class="line"></span><br><span class="line">npm init -y</span><br></pre></td></tr></table></figure>
+
+<p>分别安装 ant-design、arco-design、semi-design</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">pnpm install antd</span><br><span class="line"></span><br><span class="line">pnpm install @douyinfe/semi-ui</span><br><span class="line"></span><br><span class="line">pnpm install @arco-design/web-react</span><br></pre></td></tr></table></figure>
+
+<p>npm、yarn 会把所有依赖铺平，看着比较乱。而 pnpm 不会，node_modules 下很清晰：</p>
+<p><img src="/2025/03/29/%E5%89%8D%E7%AB%AF-React-React-%E7%BB%84%E4%BB%B6%E5%BA%93%E6%9E%84%E5%BB%BA/2518899cadff43fdb64faceedec43ee0tplv-k3u1fbpfcp-jj-mark0000q75.png"></p>
+<h3 id="antd"><a href="#antd" class="headerlink" title="antd"></a>antd</h3><p>首先看下 antd，分为了 lib、es、dist 3 个目录：</p>
+<p><img src="/2025/03/29/%E5%89%8D%E7%AB%AF-React-React-%E7%BB%84%E4%BB%B6%E5%BA%93%E6%9E%84%E5%BB%BA/b9d31fa31d0148ff8d2598bb3c14d5a8tplv-k3u1fbpfcp-jj-mark0000q75.png"></p>
+<p>分别看下这三个目录的组件代码：</p>
+<p>lib 下的组件是 commonjs 的：</p>
+<p><img src="/2025/03/29/%E5%89%8D%E7%AB%AF-React-React-%E7%BB%84%E4%BB%B6%E5%BA%93%E6%9E%84%E5%BB%BA/4f56b42587074655afebf0a555b33981tplv-k3u1fbpfcp-jj-mark0000q75.png"></p>
+<p>es 下的组件是 es module 的：</p>
+<p><img src="/2025/03/29/%E5%89%8D%E7%AB%AF-React-React-%E7%BB%84%E4%BB%B6%E5%BA%93%E6%9E%84%E5%BB%BA/9131c1971860413a8780a8f4f125a348tplv-k3u1fbpfcp-jj-mark0000q75.png"></p>
+<p>dist 下的组件是 umd 的：</p>
+<p><img src="/2025/03/29/%E5%89%8D%E7%AB%AF-React-React-%E7%BB%84%E4%BB%B6%E5%BA%93%E6%9E%84%E5%BB%BA/4d1c9f6af12d4d0fb72ea940c1a2fca3tplv-k3u1fbpfcp-jj-mark0000q75.png"></p>
+<p>然后在 package.json 里分别声明了 commonjs、esm、umd 还有类型的入口：</p>
+<p><img src="/2025/03/29/%E5%89%8D%E7%AB%AF-React-React-%E7%BB%84%E4%BB%B6%E5%BA%93%E6%9E%84%E5%BB%BA/dd5451ec3cec426abe12b886d54f2072tplv-k3u1fbpfcp-jj-mark0000q75.png"></p>
+<p>这样，当你用 require 引入的就是 lib 下的组件，用 import 引入的就是 es 下的组件。</p>
+<p>而直接 script 标签引入的就是 unpkg 下的组件。</p>
+<h3 id="arco-design"><a href="#arco-design" class="headerlink" title="arco-design"></a>arco-design</h3><p><img src="/2025/03/29/%E5%89%8D%E7%AB%AF-React-React-%E7%BB%84%E4%BB%B6%E5%BA%93%E6%9E%84%E5%BB%BA/a5a97361868947e4b35e34d9be8522bftplv-k3u1fbpfcp-jj-mark0000q75.png"></p>
+<p>也是一样：</p>
+<p><img src="/2025/03/29/%E5%89%8D%E7%AB%AF-React-React-%E7%BB%84%E4%BB%B6%E5%BA%93%E6%9E%84%E5%BB%BA/1b6d6297540244909e19c92e61a1a30etplv-k3u1fbpfcp-jj-mark0000q75.png"></p>
+<p>同样是 lib、es、dist 3 个目录，同样是分别声明了 esm、commonjs、umd 的入口。</p>
+<p>也就是说，组件库都是这样的，分别打包出 3 份代码（esm、commonjs、umd），然后在 package.json 里声明不同模块规范的入口。</p>
+<p>那问题来了，如果我有一个 esm 的模块，怎么分别构建出 esm、commonjs、umd 的 3 份代码呢？</p>
+<p>这个问题很容易回答。</p>
+<p>umd 的代码用 webpack 打包就行。</p>
+<p>esm 和 commonjs 的不用打包，只需要用 tsc 或者 babel 编译下就好了。</p>
+<p>我们分别看下这三个组件库都是怎么做的：</p>
+<h2 id="构建逻辑"><a href="#构建逻辑" class="headerlink" title="构建逻辑"></a>构建逻辑</h2><h3 id="arco-design-1"><a href="#arco-design-1" class="headerlink" title="arco-design"></a>arco-design</h3><p>它的构建逻辑在 arco-cli 的 arco-scripts 下：</p>
+<p><img src="/2025/03/29/%E5%89%8D%E7%AB%AF-React-React-%E7%BB%84%E4%BB%B6%E5%BA%93%E6%9E%84%E5%BB%BA/9f40fa37835947739ce6310737dee358tplv-k3u1fbpfcp-jj-mark0000q75.png"></p>
+<p>看下这个 index.ts</p>
+<p><img src="/2025/03/29/%E5%89%8D%E7%AB%AF-React-React-%E7%BB%84%E4%BB%B6%E5%BA%93%E6%9E%84%E5%BB%BA/464b9ddf94e54cad8e8572f1aa04a83btplv-k3u1fbpfcp-jj-mark0000q75.png"></p>
+<p>分别有 build 3 种代码加上 build css 的方法。</p>
+<p>我们分别看下：</p>
+<p><img src="/2025/03/29/%E5%89%8D%E7%AB%AF-React-React-%E7%BB%84%E4%BB%B6%E5%BA%93%E6%9E%84%E5%BB%BA/599c297c759c44d5bbfc7f1bdd82ec3etplv-k3u1fbpfcp-jj-mark0000q75.png"></p>
+<p>esm 和 cjs 的编译它封装了一个 compileTS 的方法，然后传入不同的 type。</p>
+<p>compileTS 里可以用 tsc 或者 babel 编译：</p>
+<p><img src="/2025/03/29/%E5%89%8D%E7%AB%AF-React-React-%E7%BB%84%E4%BB%B6%E5%BA%93%E6%9E%84%E5%BB%BA/c882faab79824713b543cac586a9a692tplv-k3u1fbpfcp-jj-mark0000q75.png"></p>
+<p>tsc 编译就是读取项目下的 tsconfig.json，然后 compile：</p>
+<p><img src="/2025/03/29/%E5%89%8D%E7%AB%AF-React-React-%E7%BB%84%E4%BB%B6%E5%BA%93%E6%9E%84%E5%BB%BA/544d9ed3a99e48449c3f3618ba086a60tplv-k3u1fbpfcp-jj-mark0000q75.png"></p>
+<p>babel 编译是基于内置配置，修改了下产物 modules 规范，然后编译：</p>
+<p><img src="/2025/03/29/%E5%89%8D%E7%AB%AF-React-React-%E7%BB%84%E4%BB%B6%E5%BA%93%E6%9E%84%E5%BB%BA/a9ff5c33f81b42938306db453d565c25tplv-k3u1fbpfcp-jj-mark0000q75.png"></p>
+<p>babelConfig 里配置了 typescript 和 jsx 的编译：</p>
+<p><img src="/2025/03/29/%E5%89%8D%E7%AB%AF-React-React-%E7%BB%84%E4%BB%B6%E5%BA%93%E6%9E%84%E5%BB%BA/fe52600ebb9844798f95095e947be7b4tplv-k3u1fbpfcp-jj-mark0000q75.png"></p>
+<p>再就是umd</p>
+<p>和我们分析的一样，确实是用 webpack 来打包：</p>
+<p><img src="/2025/03/29/%E5%89%8D%E7%AB%AF-React-React-%E7%BB%84%E4%BB%B6%E5%BA%93%E6%9E%84%E5%BB%BA/deabc8d5960241e38238001735c996detplv-k3u1fbpfcp-jj-mark0000q75.png"></p>
+<p>webpack 配置里可以看到，确实是为了 unpkg 准备的，用了 ts-loader 和 babel-loader：</p>
+<p><img src="/2025/03/29/%E5%89%8D%E7%AB%AF-React-React-%E7%BB%84%E4%BB%B6%E5%BA%93%E6%9E%84%E5%BB%BA/f4c31bb57f8d46b8882385014d999469tplv-k3u1fbpfcp-jj-mark0000q75.png"></p>
+<p>而 css 部分则是用了 less 编译：</p>
+<p><img src="/2025/03/29/%E5%89%8D%E7%AB%AF-React-React-%E7%BB%84%E4%BB%B6%E5%BA%93%E6%9E%84%E5%BB%BA/fc6883ed9ca540a193755ad088cd9e02tplv-k3u1fbpfcp-jj-mark0000q75.png"></p>
+<p>gulp 是用来组织编译任务的，可以让任务串行、并行的执行。</p>
+<p>这里的 gulp.series 就是串行执行任务，而 gulp.parallel 则是并行。</p>
+<p>所以说，那 3 种代码加上 css 文件是怎么打包的就很清晰了：</p>
+<p><img src="/2025/03/29/%E5%89%8D%E7%AB%AF-React-React-%E7%BB%84%E4%BB%B6%E5%BA%93%E6%9E%84%E5%BB%BA/e2d58b5ec46c4a7198300816482e9296tplv-k3u1fbpfcp-jj-mark0000q75.png"></p>
+<p>其中用到 gulp 只是用来组织编译任务的，可用可不用。</p>
+<h3 id="semi-design"><a href="#semi-design" class="headerlink" title="semi-design"></a>semi-design</h3><p><img src="/2025/03/29/%E5%89%8D%E7%AB%AF-React-React-%E7%BB%84%E4%BB%B6%E5%BA%93%E6%9E%84%E5%BB%BA/46d142b5319b424986b46903113028adtplv-k3u1fbpfcp-jj-mark0000q75.png"></p>
+<p>它就没有单独分一个 xx-scripts 包了，直接在 semi-ui 的 scripts 目录下。</p>
+<p>它也是用到了 gulp 来组织任务。</p>
+<p><img src="/2025/03/29/%E5%89%8D%E7%AB%AF-React-React-%E7%BB%84%E4%BB%B6%E5%BA%93%E6%9E%84%E5%BB%BA/a98951609214496db0164e8b6e8ab50dtplv-k3u1fbpfcp-jj-mark0000q75.png"></p>
+<p>看下这个 compileLib 的 gulp task：</p>
+<p><img src="/2025/03/29/%E5%89%8D%E7%AB%AF-React-React-%E7%BB%84%E4%BB%B6%E5%BA%93%E6%9E%84%E5%BB%BA/eed4837772aa4796ac8022d1ffa3d2c5tplv-k3u1fbpfcp-jj-mark0000q75.png"></p>
+<p>这里的 compileTSXForESM 和 ForCJS 很明显就是编译组件到 esm 和 cjs 两种代码的。</p>
+<p>先用了 tsc 编译再用了 babel 编译：</p>
+<p><img src="/2025/03/29/%E5%89%8D%E7%AB%AF-React-React-%E7%BB%84%E4%BB%B6%E5%BA%93%E6%9E%84%E5%BB%BA/a362b4f31d464986b473b03216320f0etplv-k3u1fbpfcp-jj-mark0000q75.png"></p>
+<p>然后是 umd，也是用了 webpack：</p>
+<p><img src="/2025/03/29/%E5%89%8D%E7%AB%AF-React-React-%E7%BB%84%E4%BB%B6%E5%BA%93%E6%9E%84%E5%BB%BA/4cd9ced7af554c68aca8a33a189207f4tplv-k3u1fbpfcp-jj-mark0000q75.png"></p>
+<p>用了 babel-loader 和 ts-loader：</p>
+<p><img src="/2025/03/29/%E5%89%8D%E7%AB%AF-React-React-%E7%BB%84%E4%BB%B6%E5%BA%93%E6%9E%84%E5%BB%BA/87ee46bf694e4e6c9b4036b981e70ab1tplv-k3u1fbpfcp-jj-mark0000q75.png"></p>
+<p>最后是 scss 的编译：</p>
+<p>semi-design 把所有组件的 scss 都放在了 semi-foundation 这个目录下来维护：</p>
+<p><img src="/2025/03/29/%E5%89%8D%E7%AB%AF-React-React-%E7%BB%84%E4%BB%B6%E5%BA%93%E6%9E%84%E5%BB%BA/11215467f35a4e388189dde9d9689bbftplv-k3u1fbpfcp-jj-mark0000q75.png"></p>
+<p>所以编译的时候就是这样的：</p>
+<p><img src="/2025/03/29/%E5%89%8D%E7%AB%AF-React-React-%E7%BB%84%E4%BB%B6%E5%BA%93%E6%9E%84%E5%BB%BA/4ad183672faf44a9b1963097df6e1482tplv-k3u1fbpfcp-jj-mark0000q75.png"></p>
+<p>就是把 semi-foundation 这个目录下的所有 scss 编译后合并成了一个文件</p>
+<p><img src="/2025/03/29/%E5%89%8D%E7%AB%AF-React-React-%E7%BB%84%E4%BB%B6%E5%BA%93%E6%9E%84%E5%BB%BA/ca98599a49f64196a76d3d7303a0cf86tplv-k3u1fbpfcp-jj-mark0000q75.png"></p>
+<p>而 arco-design 的样式是在组件目录下维护的：</p>
+<p><img src="/2025/03/29/%E5%89%8D%E7%AB%AF-React-React-%E7%BB%84%E4%BB%B6%E5%BA%93%E6%9E%84%E5%BB%BA/64a91aeca77a40799523ecbff92e618etplv-k3u1fbpfcp-jj-mark0000q75.png"></p>
+<p>这个倒是没啥大的区别，只是编译的时候改下源码目录就好了。</p>
+<p>这就是 semi-design 的 esm、cjs、umd、scss 是如何编译打包的。</p>
+<p><img src="/2025/03/29/%E5%89%8D%E7%AB%AF-React-React-%E7%BB%84%E4%BB%B6%E5%BA%93%E6%9E%84%E5%BB%BA/0c382fd5d7ac42e48512926719eca0f3tplv-k3u1fbpfcp-jj-mark0000q75.png"></p>
+<p>和 arco-design 的 scripts 区别大么？</p>
+<p>不大，只不过没有单独做一个 xxx-scripts 的包，编译出 esm 和 cjs 代码用的是 tsc + babel，而且用的是 scss 不是 less 而已。</p>
+<h3 id="ant-design"><a href="#ant-design" class="headerlink" title="ant-design"></a>ant-design</h3><p>它也是单独分了一个包来维护编译打包的 scripts，叫做 @ant-design&#x2F;tools。</p>
+<p>它也有个 gulpfile 定义了很多 task</p>
+<p>比如 compile 的 task 是编译出 es 和 cjs 代码的：</p>
+<p><img src="/2025/03/29/%E5%89%8D%E7%AB%AF-React-React-%E7%BB%84%E4%BB%B6%E5%BA%93%E6%9E%84%E5%BB%BA/3db8648376c0448199706830821956e4tplv-k3u1fbpfcp-jj-mark0000q75.png"></p>
+<p>是不是很熟悉的感觉？</p>
+<p>大家都是这么搞的。</p>
+<p>它也是先用了 tsc 再用 babel 编译，最后输出到 es 或者 lib 目录：</p>
+<p><img src="/2025/03/29/%E5%89%8D%E7%AB%AF-React-React-%E7%BB%84%E4%BB%B6%E5%BA%93%E6%9E%84%E5%BB%BA/c363942819694561bacd19aad8defa25tplv-k3u1fbpfcp-jj-mark0000q75.png"></p>
+<p>打包 umd 代码的时候也是用了 webpack：</p>
+<p><img src="/2025/03/29/%E5%89%8D%E7%AB%AF-React-React-%E7%BB%84%E4%BB%B6%E5%BA%93%E6%9E%84%E5%BB%BA/32f22bd04278441abae85cdf9cfd3cb8tplv-k3u1fbpfcp-jj-mark0000q75.png"></p>
+<p>只不过它这个 webpack 配置文件是读取的组件库项目目录下的，而不像 arco-design 那样是内置的。</p>
+<p>这就是这三个组件库的编译打包的逻辑。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>我们分析了 ant-design、semi-design、arco-design 组件库的产物和编译打包逻辑。</p>
+<p>它们都有 lib、es、dist 目录，分别放着 commonjs、es module、umd 规范的组件代码。</p>
+<p>并且在 package.json 里用 main、module、unpkg 来声明了 3 种规范的入口。</p>
+<p>从产物上来看，三个组件库都是差不多的。</p>
+<p>然后我们分析了下编译打包的逻辑。</p>
+<p>ant-design 和 acro-design 都是单独抽了一个放 scripts 的包，而 semi-design 没有。</p>
+<p>它们编译 esm 和 cjs 代码都用了 babel 和 tsc 来编译，只不过 arco-design 是用 tsc 或者 babel 二选一，而 ant-design 和 semi-design 是先用 tsc 编译再用 babel 编译。</p>
+<p>打包出 umd 的代码，三个组件库都是用的 webpack，只不过有的是把 webpack 配置内置了，有的是放在组件库项目目录下。</p>
+<p>而样式部分，ant-design 是用 css-in-js 的运行时方案了，不需要编译，而 arco-design 用的 less，样式放组件目录下维护，semi-design 用的 scss，单独一个目录来放所有组件样式。</p>
+<p>并且编译任务都是用的 gulp 来组织的，它可以串行、并行的执行一些任务。</p>
+<p>虽然有一些细小的差别，但从整体上来看，这三大组件库的编译打包逻辑可以说是一模一样的。</p>
+<p>写这样的 scripts 麻烦么？</p>
+<p>并不麻烦，umd 部分的 webpack 打包大家都会，而 esm 和 cjs 用 babel 或者 tsc 编译也不难，至于 scss、less 部分，那个就更简单了。</p>
+<p>所以编译打包并不是组件库的难点。</p>
+<p>如果你要写一个组件库，也可以这样来写 scripts。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://mudcloud.fun">xxMudCloudxx</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://mudcloud.fun/2025/03/29/%E5%89%8D%E7%AB%AF-React-React-%E7%BB%84%E4%BB%B6%E5%BA%93%E6%9E%84%E5%BB%BA/">http://mudcloud.fun/2025/03/29/%E5%89%8D%E7%AB%AF-React-React-%E7%BB%84%E4%BB%B6%E5%BA%93%E6%9E%84%E5%BB%BA/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://mudcloud.fun" target="_blank">云泥小窝</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%89%8D%E7%AB%AF/">前端</a><a class="post-meta__tags" href="/tags/react/">react</a></div><div class="post_share"><div class="social-share" data-image="/img/background/season4.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2025/03/29/%E5%89%8D%E7%AB%AF-React-React-%E5%8A%A8%E7%94%BB%E5%BA%93/" title="React-动画库"><img class="cover" src="/img/but/010.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">React-动画库</div></div></a></div><div class="next-post pull-right"><a href="/2025/03/29/%E5%89%8D%E7%AB%AF-React-React-%E7%BB%84%E4%BB%B6%E4%BB%BF%E5%86%99/" title="React-组件仿写"><img class="cover" src="/img/background/season2.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">React-组件仿写</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2025/03/29/%E5%89%8D%E7%AB%AF-React-React-%E5%8A%A8%E7%94%BB%E5%BA%93/" title="React-动画库"><img class="cover" src="/img/but/010.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-03-29</div><div class="title">React-动画库</div></div></a></div><div><a href="/2025/03/29/%E5%89%8D%E7%AB%AF-React-React-CSS%E6%96%B9%E6%A1%88/" title="React-CSS方案"><img class="cover" src="/img/but/012.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-03-29</div><div class="title">React-CSS方案</div></div></a></div><div><a href="/2025/03/29/%E5%89%8D%E7%AB%AF-React-React-%E5%AE%9E%E7%94%A8%E5%BA%93or%E9%AB%98%E9%98%B6%E7%BB%84%E4%BB%B6/" title="React-实用库or高阶组件"><img class="cover" src="/img/background/season2.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-03-29</div><div class="title">React-实用库or高阶组件</div></div></a></div><div><a href="/2025/03/29/%E5%89%8D%E7%AB%AF-React-React-%E6%B8%B2%E6%9F%93%E5%8E%9F%E7%90%86/" title="React-渲染原理"><img class="cover" src="/img/but/020.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-03-29</div><div class="title">React-渲染原理</div></div></a></div><div><a href="/2025/03/29/%E5%89%8D%E7%AB%AF-React-React-%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%E5%BA%93/" title="React-状态管理库"><img class="cover" src="/img/but/013.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-03-29</div><div class="title">React-状态管理库</div></div></a></div><div><a href="/2025/03/29/%E5%89%8D%E7%AB%AF-React-React-%E7%BB%84%E4%BB%B6%E4%BB%BF%E5%86%99/" title="React-组件仿写"><img class="cover" src="/img/background/season2.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-03-29</div><div class="title">React-组件仿写</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/ico/avatar_1.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">xxMudCloudxx</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">105</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">26</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxMudCloudxx"><i class="fab fa-github"></i><span>中国矿业大学本科生 23级</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/xxMudCloudxx" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:2597453011@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到云泥的小屋</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6%E6%89%93%E5%8C%85%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86"><span class="toc-number">1.</span> <span class="toc-text">组件打包前置知识</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%A8%A1%E5%9D%97%E8%A7%84%E8%8C%83"><span class="toc-number">1.1.</span> <span class="toc-text">1. 模块规范</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E7%BC%96%E8%AF%91%E5%B7%A5%E5%85%B7"><span class="toc-number">1.2.</span> <span class="toc-text">2. 编译工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%89%93%E5%8C%85%E5%B7%A5%E5%85%B7"><span class="toc-number">1.3.</span> <span class="toc-text">3. 打包工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E7%BB%84%E4%BB%B6%E5%BA%93%E7%9A%84%E6%9E%84%E5%BB%BA%E6%B5%81%E7%A8%8B"><span class="toc-number">1.4.</span> <span class="toc-text">4. 组件库的构建流程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%EF%B8%8F%E2%83%A3-%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="toc-number">1.4.1.</span> <span class="toc-text">1️⃣ 目录结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%EF%B8%8F%E2%83%A3-%E6%9E%84%E5%BB%BA%E8%BF%87%E7%A8%8B"><span class="toc-number">1.4.2.</span> <span class="toc-text">2️⃣ 构建过程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E6%80%BB%E7%BB%93"><span class="toc-number">1.5.</span> <span class="toc-text">5. 总结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6%E5%BA%93%E6%98%AF%E6%80%8E%E4%B9%88%E6%9E%84%E5%BB%BA%E7%9A%84"><span class="toc-number">2.</span> <span class="toc-text">组件库是怎么构建的</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E6%9E%84"><span class="toc-number">2.1.</span> <span class="toc-text">结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#antd"><span class="toc-number">2.1.1.</span> <span class="toc-text">antd</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#arco-design"><span class="toc-number">2.1.2.</span> <span class="toc-text">arco-design</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%84%E5%BB%BA%E9%80%BB%E8%BE%91"><span class="toc-number">2.2.</span> <span class="toc-text">构建逻辑</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#arco-design-1"><span class="toc-number">2.2.1.</span> <span class="toc-text">arco-design</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#semi-design"><span class="toc-number">2.2.2.</span> <span class="toc-text">semi-design</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ant-design"><span class="toc-number">2.2.3.</span> <span class="toc-text">ant-design</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">2.3.</span> <span class="toc-text">总结</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2025 By xxMudCloudxx</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
   const init = () => {
     twikoo.init(Object.assign({
       el: '#twikoo-wrap',
