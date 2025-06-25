@@ -1,0 +1,372 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Docker训练营(三)-Docker网络管理 | 云泥小窝</title><meta name="author" content="xxMudCloudxx"><meta name="copyright" content="xxMudCloudxx"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="Docker 网络是容器通信的基础设施，它使容器能够安全地进行互联互通。在 Docker 中，每个容器都可以被分配到一个或多个网络中，容器可以通过网络进行通信，就像物理机或虚拟机在网络中通信一样。 Docker 网络命令详解在开始学习不同类型的网络之前，我们先来了解一下 Docker 的常用网络命令： 1234567891011121314151617181920# 列出所有网络docker ne">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker训练营(三)-Docker网络管理">
+<meta property="og:url" content="http://mudcloud.fun/2025/06/26/%E8%AE%AD%E7%BB%83%E8%90%A5-Docker-3-Docker%E8%AE%AD%E7%BB%83%E8%90%A5-Docker%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86/index.html">
+<meta property="og:site_name" content="云泥小窝">
+<meta property="og:description" content="Docker 网络是容器通信的基础设施，它使容器能够安全地进行互联互通。在 Docker 中，每个容器都可以被分配到一个或多个网络中，容器可以通过网络进行通信，就像物理机或虚拟机在网络中通信一样。 Docker 网络命令详解在开始学习不同类型的网络之前，我们先来了解一下 Docker 的常用网络命令： 1234567891011121314151617181920# 列出所有网络docker ne">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://mudcloud.fun/img/but/008.jpg">
+<meta property="article:published_time" content="2025-06-25T17:32:36.000Z">
+<meta property="article:modified_time" content="2025-06-25T19:04:53.276Z">
+<meta property="article:author" content="xxMudCloudxx">
+<meta property="article:tag" content="Docker">
+<meta property="article:tag" content="训练营">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://mudcloud.fun/img/but/008.jpg"><link rel="shortcut icon" href="/img/ico/%E5%9C%A3%E8%AF%9E%E6%A0%91.png"><link rel="canonical" href="http://mudcloud.fun/2025/06/26/%E8%AE%AD%E7%BB%83%E8%90%A5-Docker-3-Docker%E8%AE%AD%E7%BB%83%E8%90%A5-Docker%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  noticeOutdate: {"limitDay":500,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":230},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体中文","cht_to_chs":"你已切换为简体中文","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Docker训练营(三)-Docker网络管理',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-06-26 03:04:53'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const now = new Date()
+          const hour = now.getHours()
+          const isNight = hour <= 6 || hour >= 18
+          if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+          else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/cat.css"><div id="myscoll"></div><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-double-row-display@1.00/cardlistpost.min.css"/>
+<style>#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags:before {content:"\A";
+  white-space: pre;}#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags > .article-meta__separator{display:none}</style>
+<link rel="stylesheet" href="https://unpkg.zhimg.com/hexo-butterfly-footer-beautify@1.0.0/lib/runtime.min.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/ico/avatar_1.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">117</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">28</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/diary"><i class="fa-fw fas fa-book"></i><span> 日记</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="云泥小窝"><span class="site-name">云泥小窝</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/diary"><i class="fa-fw fas fa-book"></i><span> 日记</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">Docker训练营(三)-Docker网络管理</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-06-25T17:32:36.000Z" title="发表于 2025-06-26 01:32:36">2025-06-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-06-25T19:04:53.276Z" title="更新于 2025-06-26 03:04:53">2025-06-26</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Docker/">Docker</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Docker/%E8%AE%AD%E7%BB%83%E8%90%A5/">训练营</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>11分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Docker训练营(三)-Docker网络管理"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><p>Docker 网络是容器通信的基础设施，它使容器能够安全地进行互联互通。在 Docker 中，每个容器都可以被分配到一个或多个网络中，容器可以通过网络进行通信，就像物理机或虚拟机在网络中通信一样。</p>
+<h2 id="Docker-网络命令详解"><a href="#Docker-网络命令详解" class="headerlink" title="Docker 网络命令详解"></a>Docker 网络命令详解</h2><p>在开始学习不同类型的网络之前，我们先来了解一下 Docker 的常用网络命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">列出所有网络</span></span><br><span class="line">docker network ls</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">检查网络详情</span></span><br><span class="line">docker network inspect &lt;network-name&gt;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">创建自定义网络</span></span><br><span class="line">docker network create [options] &lt;network-name&gt;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">将容器连接到网络</span></span><br><span class="line">docker network connect &lt;network-name&gt; &lt;container-name&gt;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">断开容器与网络的连接</span></span><br><span class="line">docker network disconnect &lt;network-name&gt; &lt;container-name&gt;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">删除网络</span></span><br><span class="line">docker network rm &lt;network-name&gt;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">删除所有未使用的网络</span></span><br><span class="line">docker network prune</span><br></pre></td></tr></table></figure>
+
+<h2 id="网络类型及实践案例"><a href="#网络类型及实践案例" class="headerlink" title="网络类型及实践案例"></a>网络类型及实践案例</h2><h3 id="1-Bridge-网络（桥接网络）"><a href="#1-Bridge-网络（桥接网络）" class="headerlink" title="1. Bridge 网络（桥接网络）"></a>1. Bridge 网络（桥接网络）</h3><p>Bridge 网络是 Docker 的默认网络驱动程序。当你创建一个容器而不指定网络时，它会自动添加到默认的 <code>bridge</code> 网络中。Bridge 网络在单机环境下使用非常广泛，它通过软件网桥实现容器间的通信。</p>
+<h4 id="Bridge-网络的工作原理"><a href="#Bridge-网络的工作原理" class="headerlink" title="Bridge 网络的工作原理"></a>Bridge 网络的工作原理</h4><p>Bridge 网络就像是 Docker 中的一个虚拟交换机，它在宿主机上创建一个名为 docker0 的网桥，<br>所有连接到这个网桥的容器都可以通过它进行通信。当你安装 Docker 时，会自动创建一个默认的 bridge 网络，<br>它使用 172.17.0.0&#x2F;16 这个网段，所有未指定网络的容器都会自动连接到这个默认网络中。<br>不过，默认的 bridge 网络功能比较简单，容器之间只能通过 IP 地址互相访问，不支持通过容器名称来通信。</p>
+<p>为了解决这个限制，Docker 提供了用户自定义 bridge 网络的功能。<br>当你创建自己的 bridge 网络时，连接到这个网络的容器就能获得更多便利的特性：容器之间可以通过名称相互访问，<br>网络隔离性更好，还可以随时将容器从网络中添加或移除。这就像是给容器们创建了一个独立的局域网，<br>既安全又方便管理。比如说，你可以把一个应用的前端、后端和数据库容器都放在同一个自定义 bridge 网络中，<br>它们就能通过容器名称轻松地相互通信，同时又与其他应用的容器网络保持隔离。</p>
+<h4 id="实践案例一：默认-Bridge-网络"><a href="#实践案例一：默认-Bridge-网络" class="headerlink" title="实践案例一：默认 Bridge 网络"></a>实践案例一：默认 Bridge 网络</h4><p>让我们先来看看默认 bridge 网络的行为：</p>
+<p>我们现构建一个装有 ping, curl 等指令的 nginx 镜像，方便我们在容器内容观察网络行为。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">构建 nginx 镜像</span></span><br><span class="line">docker build -t my-nginx nginx</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看默认 bridge 网络信息</span></span><br><span class="line">docker network inspect bridge</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">启动两个容器</span></span><br><span class="line">docker run -d --name container1 my-nginx</span><br><span class="line">docker run -d --name container2 my-nginx</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看容器的网络配置</span></span><br><span class="line">docker inspect container1 -f &#x27;&#123;&#123;range .NetworkSettings.Networks&#125;&#125;&#123;&#123;.IPAddress&#125;&#125;&#123;&#123;end&#125;&#125;&#x27;</span><br><span class="line">docker inspect container2 -f &#x27;&#123;&#123;range .NetworkSettings.Networks&#125;&#125;&#123;&#123;.IPAddress&#125;&#125;&#123;&#123;end&#125;&#125;&#x27;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">进入容器1，尝试通过 IP 访问容器2</span></span><br><span class="line">docker exec -it container1  curl http://172.17.0.3</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">注意：在默认 bridge 网络中，无法通过容器名称访问</span></span><br><span class="line">docker exec -it container1  curl http://container2  # 这将失败</span><br></pre></td></tr></table></figure>
+
+<p>Docker 默认的 bridge 网络存在通信限制：容器间只能通过易变的 IP 地址互相访问，无法使用固定的容器名称进行通信。<br>这种 IP 依赖会导致服务地址变更时需要人工调整配置，增加维护成本。通过创建自定义 bridge 网络，<br>容器可通过稳定的名称直接互访，这种自动化的服务发现机制正是 Docker Compose 实现容器编排的基础——编排工具会自动创建专用网络，<br>使多容器应用能够通过服务名称维持稳定的通信链路。</p>
+<p><img src="/2025/06/26/%E8%AE%AD%E7%BB%83%E8%90%A5-Docker-3-Docker%E8%AE%AD%E7%BB%83%E8%90%A5-Docker%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86/image-20250626022705199.png" alt="image-20250626022705199"></p>
+<h4 id="实践案例二：自定义-Bridge-网络"><a href="#实践案例二：自定义-Bridge-网络" class="headerlink" title="实践案例二：自定义 Bridge 网络"></a>实践案例二：自定义 Bridge 网络</h4><p>现在让我们看看自定义 bridge 网络的优势：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">创建自定义 bridge 网络</span></span><br><span class="line">docker network create \</span><br><span class="line">    --driver bridge \</span><br><span class="line">    --subnet=172.20.0.0/16 \</span><br><span class="line">    --gateway=172.20.0.1 \</span><br><span class="line">    my-bridge-network</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">启动两个容器，连接到自定义网络</span></span><br><span class="line">docker run -d \</span><br><span class="line">    --name custom-container1 \</span><br><span class="line">    --network my-bridge-network \</span><br><span class="line">    my-nginx</span><br><span class="line"></span><br><span class="line">docker run -d \</span><br><span class="line">    --name custom-container2 \</span><br><span class="line">    --network my-bridge-network \</span><br><span class="line">    my-nginx</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">现在可以通过容器名称访问</span></span><br><span class="line">docker exec -it custom-container1 curl http://custom-container2</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2025/06/26/%E8%AE%AD%E7%BB%83%E8%90%A5-Docker-3-Docker%E8%AE%AD%E7%BB%83%E8%90%A5-Docker%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86/image-20250626022953354.png" alt="image-20250626022953354"></p>
+<p> <code>docker network create ...</code></p>
+<ul>
+<li><strong><code>docker network create</code></strong>: 创建一个新的 Docker 虚拟网络。</li>
+<li><strong><code>--driver bridge</code></strong>: 指定网络的驱动类型。<ul>
+<li><code>bridge</code> (桥接) 是最常用的驱动。它会创建一个私有的内部网络，容器连接到这个网络上后，可以互相通信，也可以通过宿主机的网络接口与外部通信（如果需要的话）。你可以把它想象成你家里的路由器，它创建了一个局域网，所有连上 Wi-Fi 的设备（手机、电脑）都在这个局域网里，可以互相访问。</li>
+</ul>
+</li>
+<li><strong><code>--subnet=172.20.0.0/16</code></strong>: 指定这个网络的子网。<ul>
+<li>这是一个 <a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E6%97%A0%E7%B1%BB%E5%88%AB%E5%9F%9F%E9%97%B4%E8%B7%AF%E7%94%B1">CIDR</a> 地址块表示法。<code>172.20.0.0</code> 是网络地址，<code>/16</code> 表示子网掩码，决定了这个网络里可以容纳多少个 IP 地址（这里是 <code>2^16 - 2 = 65534</code> 个）。</li>
+<li><strong>作用</strong>: 当有容器加入这个网络时，Docker 会从这个 <code>172.20.x.x</code> 的地址池里给它分配一个私有 IP 地址。这让你可以对容器的 IP 地址有一个预期的规划。</li>
+</ul>
+</li>
+<li><strong><code>--gateway=172.20.0.1</code></strong>: 指定这个网络的网关地址。<ul>
+<li>网关是这个虚拟局域网的“出口”。容器需要访问外部网络时，流量都会经过这个地址。通常我们会把网络地址段的第一个可用 IP (<code>.1</code>) 设置为网关。</li>
+</ul>
+</li>
+<li><strong><code>my-bridge-network</code></strong>: 你给这个网络起的名字。</li>
+</ul>
+<hr>
+<p><code>docker run ... --network my-bridge-network ...</code></p>
+<ul>
+<li><strong><code>--network my-bridge-network</code></strong>: 这是 <code>docker run</code> 命令中一个非常关键的参数。它的作用是，在容器启动时，就把它“插”到名为 <code>my-bridge-network</code> 的网络上。</li>
+<li>执行完这两步后，<code>custom-container1</code> 和 <code>custom-container2</code> 就都成为了 <code>my-bridge-network</code> 这个局域网的成员。它们各自会被分配一个 IP 地址，例如 <code>172.20.0.2</code> 和 <code>172.20.0.3</code>。</li>
+</ul>
+<hr>
+<p><code>docker exec -it custom-container1 curl http://custom-container2</code></p>
+<ul>
+<li><p><strong>这是最神奇的地方！</strong></p>
+</li>
+<li><p>当你进入 <code>custom-container1</code> 内部，执行 <code>curl http://custom-container2</code> 时，请求成功了。</p>
+</li>
+<li><p>为什么可以用名字 <code>custom-container2</code>？</p>
+<ul>
+<li><p><strong>答案</strong>: <strong>Docker 为所有连接到自定义桥接网络 (<code>my-bridge-network</code>) 的容器提供了一个内置的 DNS 服务器。</strong></p>
+</li>
+<li><p>工作原理: 当你在 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">custom-container1</span><br></pre></td></tr></table></figure>
+
+<p> 里尝试访问 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">custom-container2</span><br></pre></td></tr></table></figure>
+
+<p> 这个主机名时：</p>
+<ol>
+<li><code>custom-container1</code> 的网络配置会将这个 DNS 查询发送到 Docker 内置的 DNS 服务器。</li>
+<li>这个 DNS 服务器维护着一张“域名-IP”映射表，其中包含了 <code>my-bridge-network</code> 网络上所有容器的名称和它们的内部 IP 地址。它知道 <code>&quot;custom-container2&quot;</code> 对应的 IP 是 <code>172.20.0.3</code>（举例）。</li>
+<li>DNS 服务器将 <code>172.20.0.3</code> 这个地址返回给 <code>custom-container1</code>。</li>
+<li><code>curl</code> 程序拿到了这个 IP 地址，然后向 <code>172.20.0.3</code> 的 <code>80</code> 端口（<code>http</code> 默认端口）发起请求，从而成功访问到了 <code>custom-container2</code> 里的 Nginx 服务。</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<p>✅【额外建议或常见错误】</p>
+<ol>
+<li><strong>自定义网络 vs. 默认网络</strong>:<ul>
+<li>当你安装完 Docker，它会自动创建一个名为 <code>bridge</code> 的默认网络。如果你 <code>docker run</code> 时不指定 <code>--network</code> 参数，容器就会被连接到这个默认网络上。</li>
+<li><strong>一个巨大的区别</strong>: 在默认的 <code>bridge</code> 网络上，这种基于容器名的自动服务发现是<strong>不支持的</strong>（或者说需要使用过时的 <code>--link</code> 参数）。两个在默认网络里的容器无法直接通过名字互相访问。</li>
+<li><strong>因此，最佳实践是</strong>：只要你有两个或以上的容器需要互相通信，就应该为它们创建一个<strong>自定义的桥接网络</strong>，而不是使用默认网络。</li>
+</ul>
+</li>
+<li><strong>应用场景</strong>:<ul>
+<li>这个功能是 <strong>Docker Compose</strong> 和微服务架构的基石。想象一个典型的 Web 应用：一个 <code>web-app</code> 容器（跑着你的 Python&#x2F;Java&#x2F;Node.js 代码）和一个 <code>db</code> 容器（跑着 MySQL&#x2F;PostgreSQL）。</li>
+<li>你只需要把它们都连接到同一个自定义网络 <code>my-app-net</code> 上，你的 <code>web-app</code> 代码里连接数据库的地址就可以直接写成 <code>host=&quot;db&quot;</code>，而不需要关心 <code>db</code> 容器的具体 IP 是什么。这让配置变得极其简单和稳定。</li>
+</ul>
+</li>
+<li><strong>调试技巧</strong>:<ul>
+<li>你可以使用 <code>docker network inspect my-bridge-network</code> 命令来查看网络的详细信息，包括哪些容器连接到了这个网络上，以及它们各自的 IP 地址。这在排查网络问题时非常有用。</li>
+</ul>
+</li>
+</ol>
+<h4 id="实践案例三：-使用自定义-Bridge-网络演示-Web-应用与-Redis-通信"><a href="#实践案例三：-使用自定义-Bridge-网络演示-Web-应用与-Redis-通信" class="headerlink" title="实践案例三： 使用自定义 Bridge 网络演示 Web 应用与 Redis 通信"></a>实践案例三： 使用自定义 Bridge 网络演示 Web 应用与 Redis 通信</h4><p>这个案例展示了在实际应用中如何使用自定义 bridge 网络：</p>
+<p>首先，创建一个简单的 Web 应用：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">构建web-app镜像</span></span><br><span class="line">docker build -t web-app web-app</span><br></pre></td></tr></table></figure>
+
+<p>然后创建网络并运行容器：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">创建自定义 bridge 网络</span></span><br><span class="line">docker network create my-bridge-network</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">启动 Redis 容器</span></span><br><span class="line">docker run -d \</span><br><span class="line">    --name redis-server \</span><br><span class="line">    --network my-bridge-network \</span><br><span class="line">    redis:alpine</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">启动 Web 应用容器</span></span><br><span class="line">docker run -d \</span><br><span class="line">    --name web-app \</span><br><span class="line">    --network my-bridge-network \</span><br><span class="line">    -p 5000:5000 \</span><br><span class="line">    web-app</span><br></pre></td></tr></table></figure>
+
+<p>现在可以测试应用了：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">访问应用</span></span><br><span class="line">curl http://localhost:5000</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">多次访问，观察计数器增加</span></span><br><span class="line">curl http://localhost:5000</span><br><span class="line">curl http://localhost:5000</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看 Redis 中的数据</span></span><br><span class="line">docker exec -it redis-server redis-cli get hits</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2025/06/26/%E8%AE%AD%E7%BB%83%E8%90%A5-Docker-3-Docker%E8%AE%AD%E7%BB%83%E8%90%A5-Docker%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86/image-20250626023541746.png" alt="image-20250626023541746"></p>
+<p><img src="/2025/06/26/%E8%AE%AD%E7%BB%83%E8%90%A5-Docker-3-Docker%E8%AE%AD%E7%BB%83%E8%90%A5-Docker%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86/image-20250626023602853.png" alt="image-20250626023602853"></p>
+<p><code>docker exec -it redis-server redis-cli get hits</code>：在不进入容器交互式 Shell 的情况下，直接从宿主机终端对 <code>redis-server</code> 容器执行一条 Redis 客户端命令，以获取 <code>hits</code> 这个键（key）对应的值（value）。</p>
+<ul>
+<li><strong><code>redis-cli get hits</code></strong>:<ul>
+<li>这是真正要在 <code>redis-server</code> 容器内部执行的<strong>完整命令字符串</strong>。我们可以再把它拆分为三部分：</li>
+<li><strong><code>redis-cli</code></strong>: 这是 Redis 官方提供的<strong>命令行界面 (Command-Line Interface)</strong> 工具。它预装在官方的 <code>redis</code> 镜像中，是你与 Redis 数据库交互的“遥控器”。</li>
+<li><strong><code>get</code></strong>: 这是 <code>redis-cli</code> 的一个子命令，也是 Redis 数据库最基础的命令之一。它的作用是<strong>获取 (GET)</strong> 一个指定键 (key) 所存储的值 (value)。</li>
+<li><strong><code>hits</code></strong>: 这是你提供给 <code>get</code> 命令的参数，即你想要查询的<strong>键（key）的名称</strong>。</li>
+</ul>
+</li>
+</ul>
+<p><strong>所以，整条命令串起来的含义就是：“Docker，请在 <code>redis-server</code> 容器里，帮我运行 <code>redis-cli</code> 工具，用它来 <code>get</code> 一个名叫 <code>hits</code> 的键的值，并把结果显示给我。”</strong></p>
+<p>清理环境：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">停止并删除容器</span></span><br><span class="line">docker stop web-app redis-server</span><br><span class="line">docker rm web-app redis-server</span><br><span class="line">docker network rm my-bridge-network</span><br><span class="line">docker rmi web-app redis:alpine</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-Host-网络"><a href="#2-Host-网络" class="headerlink" title="2. Host 网络"></a>2. Host 网络</h3><p>Host 网络移除了容器和 Docker 主机之间的网络隔离，直接使用主机的网络。</p>
+<p><strong>特点：</strong></p>
+<ul>
+<li>最佳网络性能</li>
+<li>直接使用主机的网络栈</li>
+<li>没有网络隔离</li>
+<li>端口直接绑定到主机上</li>
+</ul>
+<p>实践案例：<strong>使用 Host 网络运行 Nginx 服务器</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">使用 host 网络运行 Nginx</span></span><br><span class="line">docker run -d \</span><br><span class="line">    --name nginx-host \</span><br><span class="line">    --network host \</span><br><span class="line">    my-nginx</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">直接通过主机的 80 端口访问</span></span><br><span class="line">curl http://localhost:80</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">因为使用了 host 网络，容器直接使用主机的 80 端口, 所以当我们再次启动一个 Nginx 容器时，会报端口冲突的错误</span></span><br><span class="line">docker run -d \</span><br><span class="line">    --name nginx-host-2 \</span><br><span class="line">    --network host \</span><br><span class="line">    my-nginx</span><br><span class="line">    </span><br><span class="line">docker logs nginx-host-2</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-None-网络"><a href="#3-None-网络" class="headerlink" title="3. None 网络"></a>3. None 网络</h3><p>None 网络完全禁用了容器的网络功能，容器在这个网络中没有任何外部网络接口。</p>
+<p><strong>特点：</strong></p>
+<ul>
+<li>完全隔离的网络环境</li>
+<li>容器没有网络接口</li>
+<li>适用于不需要网络的批处理任务</li>
+</ul>
+<p>实践案例：<strong>使用 None 网络运行独立计算任务</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">运行一个计算密集型任务，不需要网络</span></span><br><span class="line">docker run --network none alpine sh -c &#x27;for i in $(seq 1 10); do echo $((i*i)); done&#x27;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-Overlay-网络"><a href="#4-Overlay-网络" class="headerlink" title="4. Overlay 网络"></a>4. Overlay 网络</h3><p>Overlay 网络是 Docker 用于实现跨主机容器通信的网络驱动，主要用于 Docker Swarm 集群环境。<br>它通过在不同主机的物理网络之上创建虚拟网络，使用 VXLAN 技术在主机间建立隧道，从而实现容器间的透明通信。<br>在 Overlay 网络中，每个容器都会获得一个虚拟 IP，容器之间可以直接通过这个 IP 进行通信，<br>而不需要关心容器具体运行在哪个主机上。这种网络类型特别适合于微服务架构、分布式应用以及需要跨主机通信的容器化应用，<br>例如分布式数据库集群、消息队列集群等。Overlay 网络支持网络加密，能确保跨主机通信的安全性，<br>同时还提供了负载均衡和服务发现等特性，是构建大规模容器集群的重要基础设施。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://mudcloud.fun">xxMudCloudxx</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://mudcloud.fun/2025/06/26/%E8%AE%AD%E7%BB%83%E8%90%A5-Docker-3-Docker%E8%AE%AD%E7%BB%83%E8%90%A5-Docker%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86/">http://mudcloud.fun/2025/06/26/%E8%AE%AD%E7%BB%83%E8%90%A5-Docker-3-Docker%E8%AE%AD%E7%BB%83%E8%90%A5-Docker%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://mudcloud.fun" target="_blank">云泥小窝</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Docker/">Docker</a><a class="post-meta__tags" href="/tags/%E8%AE%AD%E7%BB%83%E8%90%A5/">训练营</a></div><div class="post_share"><div class="social-share" data-image="/img/but/008.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2025/06/26/%E8%AE%AD%E7%BB%83%E8%90%A5-Docker-4-Docker%E8%AE%AD%E7%BB%83%E8%90%A5-%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92%E4%B9%8BDocker-Compose/" title="Docker训练营(四)-容器编排之Docker_Compose"><img class="cover" src="/img/but/017.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Docker训练营(四)-容器编排之Docker_Compose</div></div></a></div><div class="next-post pull-right"><a href="/2025/06/26/%E8%AE%AD%E7%BB%83%E8%90%A5-Docker-2-Docker%E8%AE%AD%E7%BB%83%E8%90%A5-Docker%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/" title="Docker训练营(二)-Docker存储管理"><img class="cover" src="/img/background/dream2.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Docker训练营(二)-Docker存储管理</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2025/06/26/%E8%AE%AD%E7%BB%83%E8%90%A5-Docker-2-Docker%E8%AE%AD%E7%BB%83%E8%90%A5-Docker%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/" title="Docker训练营(二)-Docker存储管理"><img class="cover" src="/img/background/dream2.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-06-26</div><div class="title">Docker训练营(二)-Docker存储管理</div></div></a></div><div><a href="/2025/06/26/%E8%AE%AD%E7%BB%83%E8%90%A5-Docker-4-Docker%E8%AE%AD%E7%BB%83%E8%90%A5-%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92%E4%B9%8BDocker-Compose/" title="Docker训练营(四)-容器编排之Docker_Compose"><img class="cover" src="/img/but/017.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-06-26</div><div class="title">Docker训练营(四)-容器编排之Docker_Compose</div></div></a></div><div><a href="/2025/06/26/%E8%AE%AD%E7%BB%83%E8%90%A5-Docker-5-Docker%E8%AE%AD%E7%BB%83%E8%90%A5-Docker%E5%AE%B9%E5%99%A8%E7%9B%91%E6%8E%A7%E4%B8%8E%E7%AE%A1%E7%90%86/" title="Docker训练营(五)-Docker容器监控与管理"><img class="cover" src="/img/but/004.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-06-26</div><div class="title">Docker训练营(五)-Docker容器监控与管理</div></div></a></div><div><a href="/2025/06/25/%E8%AE%AD%E7%BB%83%E8%90%A5-Docker-Docker%E8%AE%AD%E7%BB%83%E8%90%A5-%E4%B8%80-Docker%E5%9F%BA%E7%A1%80/" title="Docker训练营(一)-Docker基础"><img class="cover" src="/img/but/013.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-06-25</div><div class="title">Docker训练营(一)-Docker基础</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/ico/avatar_1.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">xxMudCloudxx</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">117</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">28</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxMudCloudxx"><i class="fab fa-github"></i><span>中国矿业大学本科生 23级</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/xxMudCloudxx" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:2597453011@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到云泥的小屋</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-%E7%BD%91%E7%BB%9C%E5%91%BD%E4%BB%A4%E8%AF%A6%E8%A7%A3"><span class="toc-number">1.</span> <span class="toc-text">Docker 网络命令详解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%AE%9E%E8%B7%B5%E6%A1%88%E4%BE%8B"><span class="toc-number">2.</span> <span class="toc-text">网络类型及实践案例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Bridge-%E7%BD%91%E7%BB%9C%EF%BC%88%E6%A1%A5%E6%8E%A5%E7%BD%91%E7%BB%9C%EF%BC%89"><span class="toc-number">2.1.</span> <span class="toc-text">1. Bridge 网络（桥接网络）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Bridge-%E7%BD%91%E7%BB%9C%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="toc-number">2.1.1.</span> <span class="toc-text">Bridge 网络的工作原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E8%B7%B5%E6%A1%88%E4%BE%8B%E4%B8%80%EF%BC%9A%E9%BB%98%E8%AE%A4-Bridge-%E7%BD%91%E7%BB%9C"><span class="toc-number">2.1.2.</span> <span class="toc-text">实践案例一：默认 Bridge 网络</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E8%B7%B5%E6%A1%88%E4%BE%8B%E4%BA%8C%EF%BC%9A%E8%87%AA%E5%AE%9A%E4%B9%89-Bridge-%E7%BD%91%E7%BB%9C"><span class="toc-number">2.1.3.</span> <span class="toc-text">实践案例二：自定义 Bridge 网络</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E8%B7%B5%E6%A1%88%E4%BE%8B%E4%B8%89%EF%BC%9A-%E4%BD%BF%E7%94%A8%E8%87%AA%E5%AE%9A%E4%B9%89-Bridge-%E7%BD%91%E7%BB%9C%E6%BC%94%E7%A4%BA-Web-%E5%BA%94%E7%94%A8%E4%B8%8E-Redis-%E9%80%9A%E4%BF%A1"><span class="toc-number">2.1.4.</span> <span class="toc-text">实践案例三： 使用自定义 Bridge 网络演示 Web 应用与 Redis 通信</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Host-%E7%BD%91%E7%BB%9C"><span class="toc-number">2.2.</span> <span class="toc-text">2. Host 网络</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-None-%E7%BD%91%E7%BB%9C"><span class="toc-number">2.3.</span> <span class="toc-text">3. None 网络</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Overlay-%E7%BD%91%E7%BB%9C"><span class="toc-number">2.4.</span> <span class="toc-text">4. Overlay 网络</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2025 By xxMudCloudxx</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://commentsection-xxbaizeros-projects.vercel.app',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(init)
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://commentsection-xxbaizeros-projects.vercel.app',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else {
+      loadTwikoo()
+      GLOBAL_CONFIG_SITE.isPost && getCount()
+    }
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script defer src="https://npm.elemecdn.com/jquery@latest/dist/jquery.min.js"></script><script defer data-pjax src="/js/cat.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="20" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><!-- hexo injector body_end start --> <script data-pjax>if(document.getElementById('recent-posts') && (location.pathname ==='/'|| '/' ==='all')){
+    var parent = document.getElementById('recent-posts');
+    var child = '<div class="recent-post-item" style="width:100%;height: auto"><div id="catalog_magnet"><div class="magnet_item"><a class="magnet_link" href="http://mudcloud.fun/categories/C/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📚 C++笔记 (3)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://mudcloud.fun/categories/CS自学笔记/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🎮 CS自学笔记 (49)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://mudcloud.fun/categories/体系结构/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🐱‍👓 体系结构学习笔记 (15)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://mudcloud.fun/categories/JAVA/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🐱‍👓 Java学习笔记 (32)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://mudcloud.fun/categories/有趣の文章/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📒 有趣の文章 (1)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://mudcloud.fun/categories/前端/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">👩‍💻 前端 (38)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><a class="magnet_link_more"  href="http://mudcloud.fun/categories" style="flex:1;text-align: center;margin-bottom: 10px;">查看更多...</a></div></div>';
+    console.log('已挂载magnet')
+    parent.insertAdjacentHTML("afterbegin",child)}
+     </script><style>#catalog_magnet{flex-wrap: wrap;display: flex;width:100%;justify-content:space-between;padding: 10px 10px 0 10px;align-content: flex-start;}.magnet_item{flex-basis: calc(50% - 5px);background: #f2f2f2;margin-bottom: 10px;border-radius: 8px;transition: all 0.2s ease-in-out;}.magnet_item:hover{background: #69e8f2}.magnet_link_more{color:#555}.magnet_link{color:black}.magnet_link:hover{color:white}@media screen and (max-width: 600px) {.magnet_item {flex-basis: 100%;}}.magnet_link_context{display:flex;padding: 10px;font-size:16px;transition: all 0.2s ease-in-out;}.magnet_link_context:hover{padding: 10px 20px;}</style>
+    <style></style><script data-pjax>
+  function butterfly_footer_beautify_injector_config(){
+    var parent_div_git = document.getElementById('footer-wrap');
+    var item_html = '<div id="workboard"></div><p id="ghbdages"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px" data-title="博客框架为Hexo_v6.2.0" title=""><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&amp;logo=hexo" alt=""/></a><a class="github-badge" target="_blank" href="https://butterfly.js.org/" style="margin-inline:5px" data-title="主题版本Butterfly_v4.3.1" title=""><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&amp;logo=bitdefender" alt=""/></a><a class="github-badge" target="_blank" href="https://vercel.com/" style="margin-inline:5px" data-title="本站采用多线部署，主线路托管于Vercel" title=""><img src="https://img.shields.io/badge/Hosted-Vercel-brightgreen?style=flat&amp;logo=Vercel" alt=""/></a><a class="github-badge" target="_blank" href="https://dashboard.4everland.org/" style="margin-inline:5px" data-title="本站采用多线部署，备用线路托管于4EVERLAND" title=""><img src="https://img.shields.io/badge/Hosted-4EVERLAND-22DDDD?style=flat&amp;logo=IPFS" alt=""/></a><a class="github-badge" target="_blank" href="https://github.com/" style="margin-inline:5px" data-title="本站项目由Github托管" title=""><img src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&amp;logo=GitHub" alt=""/></a><a class="github-badge" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="margin-inline:5px" data-title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可" title=""><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&amp;logo=Claris" alt=""/></a></p>';
+    console.log('已挂载butterfly_footer_beautify')
+    parent_div_git.insertAdjacentHTML("beforeend",item_html)
+    }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_footer_beautify_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_footer_beautify_injector_config();
+  }
+  </script><script async src="https://unpkg.zhimg.com/hexo-butterfly-footer-beautify@1.0.0/lib/runtime.min.js"></script><!-- hexo injector body_end end --></body></html>
